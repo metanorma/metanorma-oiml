@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "metanorma/oiml/sts/cli"
+
+Metanorma::Oiml::Sts::Cli.start(ARGV)
