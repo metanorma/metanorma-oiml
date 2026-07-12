@@ -1,0 +1,211 @@
+= metanorma-oiml
+
+OIML NISO STS toolkit. Converts OIML-flavored Metanorma presentation XML into
+OIML NISO STS XML (ANSI/NISO Z39.102-2022 profile), validates it against the
+OIML X 999:2026 constraints, and exposes a Thor CLI plus a native Ruby API.
+
+== Installation
+
+```sh
+gem install metanorma-oiml
+```
+
+Or, in a Gemfile:
+
+```ruby
+gem "metanorma-oiml"
+```
+
+== CLI
+
+```sh
+oiml-sts convert <input.presentation.xml> [output.sts.xml]
+oiml-sts convert-dir <input-dir> <output-dir>
+oiml-sts validate <sts.xml>
+```
+
+== Native Ruby API
+
+```ruby
+require "metanorma/oiml/sts"
+
+sts_xml = Metanorma::Oiml::Sts.convert(metanorma_presentation_xml)
+File.write("out.sts.xml", sts_xml)
+
+report = Metanorma::Oiml::Sts.validate(sts_xml)
+report.errors.any? { |e| puts e.message }
+```
+
+== Creating OIML STS from MN-OIML XML output
+
+The OIML NISO STS XML is derived from a Metanorma OIML publication's
+_presentation XML_ — the rendered XML form that Metanorma produces from
+AsciiDoc sources. The conversion pipeline is:
+
+....
+OIML AsciiDoc source  -->  metanorma (oiml flavor)  -->  document.presentation.xml
+                                                            |
+                                                            v
+                                                       oiml-sts convert
+                                                            |
+                                                            v
+                                                       OIML NISO STS XML
+....
+
+=== Step 1 — Author the OIML publication in Metanorma AsciiDoc
+
+Use the `metanorma-oiml` flavor in your `document.adoc` header:
+
+```adoc
+= Clinical thermometers (mercury-in-glass, with maximum device)
+:docidentifier: OIML R 7
+:docnumber: 7
+:edition: 1979
+:revdate: 1979
+:copyright-year: 1979
+:language: en
+:title-main-en: Clinical thermometers (mercury-in-glass, with maximum device)
+:doctype: international-recommendation
+:docstage: 60
+:docsubstage: 60
+:mn-document-class: oiml
+:mn-output-extensions: xml,html,pdf,rxl
+```
+
+See the OIML X 999:2026 spec (in `~/src/mn/sts-specs/sources/oiml-x-999-2026/`)
+for the full OIML profile: identifier schemes, document types, languages,
+and the three normative constraints every OIML publication shall satisfy.
+
+=== Step 2 — Compile to presentation XML
+
+Run Metanorma against the AsciiDoc source:
+
+```sh
+bundle exec metanorma path/to/document.adoc
+```
+
+This produces several outputs alongside the source:
+
+* `document.xml` — the semantic (canonical) Metanorma XML.
+* `document.presentation.xml` — the presentation XML. **This is the input
+  to `oiml-sts`.** It carries the rendered labels, table of contents, and
+  resolved cross-references that the STS transformer needs.
+* `document.html`, `document.pdf` — render outputs (optional for the STS
+  pipeline).
+
+TIP: If you only need the presentation XML, skip the heavy PDF render by
+restricting extensions: `:mn-output-extensions: xml` in the header.
+
+=== Step 3 — Convert presentation XML to OIML STS XML
+
+```sh
+oiml-sts convert path/to/document.presentation.xml path/to/document.sts.xml
+```
+
+Add `--validate` to also run the OIML X 999 Clause 6 rules against the
+output and exit non-zero on any violation:
+
+```sh
+oiml-sts convert path/to/document.presentation.xml --validate
+```
+
+For a directory of OIML publications (e.g. the `mn-samples-oiml` repo):
+
+```sh
+oiml-sts convert-dir ~/src/mn/mn-samples-oiml/sources ./sts-output
+```
+
+The converter walks every `document.presentation.xml` under the input
+directory and writes `<slug>.sts.xml` into the output directory.
+
+=== Step 4 — (Optional) Validate standalone
+
+```sh
+oiml-sts validate path/to/document.sts.xml
+```
+
+The validator applies the rules defined in `schematron/oiml-sts.sch`
+(implemented in pure Ruby for fast startup — no XSLT engine required):
+
+* `oiml-x999-root-element` — root shall be `<standard>` or `<adoption>`.
+* `oiml-x999-processing-meta` — every `<standard>` shall declare
+  `<processing-meta>`.
+* `oiml-x999-std-title-and-date` — every `<std>` shall carry `<title>`
+  and `<pub-date>`.
+* `oiml-x999-no-self-uri-in-xref` — `<self-uri>` shall not occur inside
+  `<self-xref>`.
+* `oiml-x999-permission-on-reuse-disp-quote` — `<disp-quote>` with
+  `<attrib>` shall carry `<permissions>`.
+
+=== Step 5 — (Optional) Drive the conversion from Ruby
+
+```ruby
+require "metanorma/oiml/sts"
+
+presentation_xml = File.read("path/to/document.presentation.xml")
+sts_xml = Metanorma::Oiml::Sts.convert(presentation_xml)
+File.write("document.sts.xml", sts_xml)
+
+report = Metanorma::Oiml::Sts.validate(sts_xml)
+abort(report.to_s) unless report.valid?
+```
+
+=== End-to-end example
+
+The `mn-samples-oiml` repository ships 32 OIML documents whose
+presentation XMLs are already generated. To convert all of them to OIML
+NISO STS XML and drop the outputs into a `sts-output/` directory:
+
+```sh
+git clone https://github.com/metanorma/mn-samples-oiml ~/src/mn/mn-samples-oiml
+cd ~/src/mn/mn-samples-oiml && bundle install && bundle exec metanorma site generate
+oiml-sts convert-dir ~/src/mn/mn-samples-oiml/sources ./sts-output
+```
+
+=== What the converter does
+
+For every OIML publication the converter:
+
+. Wraps the output in a `<standard>` root with `@xml:lang` and
+  `@dtd-version="1.2"`.
+. Emits a `<processing-meta>` block declaring the OIML-default modeling
+  choices (STS interchange tag set, XHTML table model, MathML 3.0, TBX
+  terminology model).
+. Builds an `<iso-meta>` block from the source `<bibdata>`: identifier,
+  title group, publication date, release version, permissions,
+  contributors, and a `<custom-meta>` recording the OIML document-series
+  letter (R/B/D/G/E/X).
+. Walks the source `<sections>` into `<body><sec>` (nested), preserving
+  labels, titles, and `@id` values.
+. Dispatches per-element transformers for paragraphs, lists, tables,
+  figures, formulae, notes, examples, quotations, and references.
+. Emits annexes inside `<back><app-group><app>` and the bibliography as
+  `<back><ref-list content-type="bibliography">`.
+. Ensures every bibliographic `<std>` carries both `<title>` and
+  `<pub-date>` (per OIML X 999 Clause 6.3).
+
+== Architecture
+
+The transformer mirrors `Metanorma::Iso::Sts::Transformer`:
+
+* `Metanorma::Oiml::Sts::Transformer::SourceDocument` — typed wrapper around
+  `Metanorma::OimlDocument::Root` (from the `metanorma-document` gem).
+* `Metanorma::Oiml::Sts::Transformer::Context` — shared state per conversion.
+* `Metanorma::Oiml::Sts::Transformer::StsXml` — Nokogiri-backed output
+  builder; every transformer emits through it.
+* Per-element transformers under `Metanorma::Oiml::Sts::Transformer::*`.
+* `Metanorma::Oiml::Sts::Validator` — applies the Schematron ruleset and
+  reports violations.
+
+== Validation rules
+
+The Schematron ruleset (`schematron/oiml-sts.sch`) checks every normative
+constraint in OIML X 999:2026 Clause 6:
+
+* `<permission>` required on reused content.
+* `<self-uri>` forbidden inside `<self-xref>`.
+* `<title>` and `<pub-date>` required on every `<std>`.
+
+== License
+
+MIT — see `LICENSE`.
