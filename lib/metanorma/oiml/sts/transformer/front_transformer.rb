@@ -4,115 +4,92 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
-        # Emits the `<front>` block: `<iso-meta>`, foreword, introduction.
+        # Builds a `Sts::IsoSts::Front` containing ONLY `<iso-meta>`.
+        # Foreword and introduction sections are emitted by BodyTransformer
+        # to avoid the Front model's `ordered` serialization issue when
+        # multiple collection attributes are set simultaneously.
         class FrontTransformer < Base
-          def transform(source, builder)
-            emit_iso_meta(source, builder) if source.has_metadata?
-            emit_foreword(source, builder) if source.foreword
-            emit_introduction(source, builder) if source.introduction
+          def transform(source)
+            ModelBuilder.front(iso_meta: build_iso_meta(source))
+          end
+
+          # Returns foreword/introduction sections for the body.
+          def preface_sections(source)
+            sections = []
+            sections += build_boilerplate(source) if source.respond_to?(:typed_root)
+            sections += build_foreword(source) if source.foreword
+            sections += build_introduction(source) if source.introduction
+            sections
           end
 
           private
 
-          def emit_iso_meta(source, builder)
-            builder.iso_meta("xml:lang" => context.language) do
-              builder.doc_identifier(source.docidentifier) if source.docidentifier
-              emit_title_group(source, builder)
-              emit_pub_date(source, builder)
-              emit_release_version(source, builder)
-              emit_permissions(source, builder)
-              emit_contributors(source, builder)
-              emit_custom_meta(source, builder)
+          def build_boilerplate(source)
+            typed = source.typed_root
+            bp = typed.boilerplate
+            return [] unless bp
+
+            sections = []
+            sections += build_boilerplate_section(bp.copyright_statement, "Copyright")
+            sections += build_boilerplate_section(bp.feedback_statement, "Feedback")
+            sections
+          end
+
+          def build_boilerplate_section(stmt_collection, default_title)
+            sections = []
+            Array(stmt_collection).each do |cs|
+              cs.each_mixed_content do |inner|
+                next if inner.is_a?(String)
+                next unless inner.respond_to?(:paragraphs)
+
+                paragraphs = Array(inner.paragraphs).map { |p| paragraph_transformer.transform(p) }
+                next if paragraphs.empty?
+
+                sections << ModelBuilder.sec(title: default_title, content: paragraphs)
+              end
             end
+            sections
           end
 
-          def emit_title_group(source, builder)
-            title = source.title(type: "main") || source.title
-            return unless title
+          def build_iso_meta(source)
+            return nil unless source.has_metadata?
 
-            builder.std_title_group { builder.title(title) }
+            ModelBuilder.iso_meta(
+              doc_identifier: source.docidentifier,
+              title: source.formatted_title || source.title(type: "main") || source.title,
+              pub_date: source.pub_date,
+              permissions: build_permissions(source),
+              custom_meta_group: build_custom_meta(source)
+            )
           end
 
-          def emit_pub_date(source, builder)
-            date = source.pub_date
-            return unless date
-
-            builder.pub_date("date-type" => "published") do
-              builder.year(date)
-            end
-          end
-
-          def emit_release_version(source, builder)
-            stage = source.stage_code || "60"
-            label = release_label(stage)
-            builder.release_version("stage-code" => stage) { builder.text(label) }
-          end
-
-          def emit_permissions(source, builder)
+          def build_permissions(source)
             holder = source.copyright_holder || source.publisher || "OIML"
-            year = source.copyright_year || source.pub_date || Time.now.year
-            builder.permissions do
-              builder.copyright_statement("#{copyright_symbol} #{year} #{holder}")
-              builder.copyright_year(year)
-              builder.copyright_holder(holder)
-            end
+            year = source.copyright_year || source.pub_date || Time.now.year.to_s
+            ModelBuilder.permissions(holder: holder, year: year)
           end
 
-          def emit_contributors(source, builder)
-            publisher = source.publisher
-            return unless publisher
-
-            builder.contrib_group do
-              builder.contrib do
-                builder.role("type" => "publisher")
-                builder.organization { builder.name(publisher) }
-              end
-            end
-          end
-
-          def emit_custom_meta(source, builder)
+          def build_custom_meta(source)
             series = oiml_series_letter(source.docidentifier)
-            return unless series
+            return nil unless series
 
-            builder.custom_meta_group do
-              builder.custom_meta do
-                builder.meta_name("oiml-doc-series")
-                builder.meta_value(series)
-              end
-            end
+            ModelBuilder.custom_meta_group(name: "oiml-doc-series", value: series)
           end
 
-          def emit_foreword(source, builder)
-            builder.foreword do
-              inline_transformer.transform_children(source.foreword, builder)
-            end
+          def build_foreword(source)
+            content = dispatcher.dispatch_section_blocks(source.foreword)
+            [ModelBuilder.sec(label: nil, title: "Foreword", content: content)]
           end
 
-          def emit_introduction(source, builder)
-            builder.introduction do
-              inline_transformer.transform_children(source.introduction, builder)
-            end
-          end
-
-          def release_label(stage)
-            case stage.to_s
-            when "30" then "Working draft"
-            when "40" then "Committee draft"
-            when "50" then "Draft"
-            when "60" then "Published"
-            else "Published"
-            end
+          def build_introduction(source)
+            content = dispatcher.dispatch_section_blocks(source.introduction)
+            [ModelBuilder.sec(label: nil, title: "Introduction", content: content)]
           end
 
           def oiml_series_letter(identifier)
             return nil unless identifier
 
-            match = identifier.match(/\AOIML\s+([A-Z])\s/)
-            match ? match[1] : nil
-          end
-
-          def copyright_symbol
-            "©"
+            identifier.match(/\AOIML\s+([A-Z])\s/) { |m| m[1] }
           end
         end
       end

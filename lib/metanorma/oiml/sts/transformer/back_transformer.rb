@@ -4,40 +4,46 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
-        # Emits the `<back>` block: annexes inside `<app-group>`, and any
-        # bibliography as `<ref-list>`.
         class BackTransformer < Base
-          def transform(source, builder)
-            emit_annexes(source, builder)
-            emit_bibliography(source, builder)
+          def transform(source)
+            app_group = build_app_group(source)
+            ref_lists = build_bibliography(source)
+
+            ModelBuilder.back(
+              app_group: app_group,
+              ref_list: ref_lists
+            )
           end
 
           private
 
-          def emit_annexes(source, builder)
-            return if source.annexes.empty?
+          def build_app_group(source)
+            return nil if source.annexes.empty?
 
-            builder.app_group do
-              source.annexes.each do |annex|
-                section_transformer.transform(annex, builder, as: :app)
-              end
-            end
+            apps = source.annexes.map { |annex| build_app(annex) }
+            ModelBuilder.app_group(app: apps)
           end
 
-          def emit_bibliography(source, builder)
-            return if source.bibliography.empty?
-
-            builder.ref_list("content-type" => "bibliography") do
-              source.bibliography.each do |ref_section|
-                emit_references_in(ref_section, builder)
-              end
-            end
+          # Wrap each annex section in a `<app>` element so it serializes
+          # correctly via the sts-ruby AppGroup → App model.
+          def build_app(annex)
+            sec = section_transformer.transform(annex)
+            attrs = {}
+            attrs[:id] = sec.id if sec.id
+            attrs[:title] = sec.title if sec.title
+            attrs[:label] = sec.label if sec.label
+            attrs[:paragraph] = sec.paragraph if sec.paragraph&.any?
+            attrs[:sec] = sec.sec if sec.sec&.any?
+            attrs[:list] = sec.list if sec.list&.any?
+            attrs[:table_wrap] = sec.table_wrap if sec.table_wrap&.any?
+            attrs[:fig] = sec.fig if sec.fig&.any?
+            ::Sts::IsoSts::App.new(attrs)
           end
 
-          def emit_references_in(ref_section, builder)
-            ref_section.xpath("./m:bibitem", source.namespaces).each do |bibitem|
-              reference_transformer.transform(bibitem, builder)
-            end
+          def build_bibliography(source)
+            return [] if source.bibliography.empty?
+
+            source.bibliography.map { |ref_section| reference_transformer.transform_section(ref_section) }
           end
         end
       end

@@ -9,7 +9,7 @@ RSpec.describe Metanorma::Oiml::Sts do
       expect(output).to include("<standard")
       expect(output).to include('dtd-version="1.2"')
       expect(output).to include("<processing-meta")
-      expect(output).to include("<doc-identifier>OIML R 7</doc-identifier>")
+      expect(output).to include("<originator>OIML R</originator>")
     end
 
     it "records the OIML series letter in <custom-meta>" do
