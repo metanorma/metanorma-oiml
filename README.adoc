@@ -72,9 +72,10 @@ Use the `metanorma-oiml` flavor in your `document.adoc` header:
 :mn-output-extensions: xml,html,pdf,rxl
 ```
 
-See the OIML X 999:2026 spec (in `~/src/mn/sts-specs/sources/oiml-x-999-2026/`)
-for the full OIML profile: identifier schemes, document types, languages,
-and the three normative constraints every OIML publication shall satisfy.
+See the OIML X 999:2026 spec at
+https://github.com/oimlsmart/specs[`oimlsmart/specs`] for the full OIML
+profile: identifier schemes, document types, languages, and the three
+normative constraints every OIML publication shall satisfy.
 
 === Step 2 — Compile to presentation XML
 
@@ -137,7 +138,23 @@ The validator applies the rules defined in `schematron/oiml-sts.sch`
 * `oiml-x999-permission-on-reuse-disp-quote` — `<disp-quote>` with
   `<attrib>` shall carry `<permissions>`.
 
-=== Step 5 — (Optional) Drive the conversion from Ruby
+=== Step 5 — Render STS XML to HTML
+
+The converter ships an XSLT 1.0 renderer that produces semantic HTML
+with OIML-branded styling:
+
+```ruby
+require "metanorma/oiml/sts"
+
+sts_xml = Metanorma::Oiml::Sts.convert(presentation_xml)
+sts_html = Metanorma::Oiml::Sts::HtmlRenderer.render(sts_xml, renderer: :xslt)
+File.write("document.sts.html", sts_html)
+```
+
+The `vendor/xslt/oiml-logo.svg` must be in the same directory as the
+output HTML for the OIML logo to display.
+
+=== Step 6 — (Optional) Drive the conversion from Ruby
 
 ```ruby
 require "metanorma/oiml/sts"

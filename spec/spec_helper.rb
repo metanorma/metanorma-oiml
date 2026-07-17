@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 require "pathname"
+require "set"
 
 REPO_ROOT = Pathname.new(File.expand_path("..", __dir__))
 FIXTURES_ROOT = REPO_ROOT.join("spec", "fixtures").freeze
 
 require "metanorma/oiml/sts"
+require "support/content_matcher"
+require "support/xsd_validator"
+require "support/html_fingerprint"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

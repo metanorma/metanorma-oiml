@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "pathname"
+$LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
+require "metanorma/oiml/sts"
+
+input = Pathname.new(ENV["HOME"] + "/src/mn/mn-samples-oiml/_site/documents/r060/1/document.presentation.xml")
+unless input.exist?
+  abort "Input not found: #{input}"
+end
+puts "=== Input: #{input} (#{input.size} bytes) ==="
+puts
+
+sts_xml = Metanorma::Oiml::Sts.convert(input.read)
+puts "=== STS XML (#{sts_xml.size} bytes) ==="
+puts "  sec:        #{sts_xml.scan(/<sec[\s>]/).size}"
+puts "  p:          #{sts_xml.scan(/<p[\s>]/).size}"
+puts "  table-wrap: #{sts_xml.scan(/<table-wrap[\s>]/).size}"
+puts "  fig:        #{sts_xml.scan(/<fig[\s>]/).size}"
+puts "  list:       #{sts_xml.scan(/<list[\s>]/).size}"
+puts "  ref:        #{sts_xml.scan(/<ref[\s>]/).size}"
+puts
+
+out_dir = Pathname.new(ENV.fetch("OIML_DEMO_OUT", "/tmp/oiml-demo"))
+out_dir.mkpath
+sts_path = out_dir + "r060-1.xml"
+html_path = out_dir + "r060-1.html"
+sts_path.write(sts_xml)
+
+renderer = Metanorma::Oiml::Sts::HtmlRenderer::Xslt.new
+html = renderer.render(sts_xml)
+html_path.write(html)
+
+puts "=== Wrote STS to #{sts_path} ==="
+puts "=== Wrote HTML to #{html_path} (#{html.size} bytes) ==="

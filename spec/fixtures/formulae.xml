@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fixture: display and inline formulae with MathML. -->
+<metanorma xmlns="https://www.metanorma.org/ns/standoc" type="presentation" version="3.4.3" flavor="iso">
+<bibdata type="standard">
+<docidentifier primary="true">OIML R 111</docidentifier>
+<language>en</language>
+<contributor><role type="publisher"/><organization><name>OIML</name></organization></contributor>
+<copyright><from>2024</from><owner><organization><name>OIML</name></organization></owner></copyright>
+<status><stage>60</stage></status>
+</bibdata>
+<sections>
+<clause id="s_formulae" obligation="normative">
+<title>Formulae test</title>
+<p>The maximum permissible error is given by:</p>
+<formula id="eq1">
+<stem type="MathML">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mstyle displaystyle="true">
+<mrow>
+<mi>E</mi>
+<mo>=</mo>
+<mrow>
+<mi>m</mi>
+<mo>&#x00D7;</mo>
+<mi>g</mi>
+</mrow>
+</mrow>
+</mstyle>
+</math>
+<asciimath>E = m xx g</asciimath>
+</stem>
+</formula>
+<p>Inline formula in text: <stem block="false" type="MathML"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>v</mi><mo>=</mo><mfrac><mi>s</mi><mi>t</mi></mfrac></math><asciimath>v = s/t</asciimath></stem> defines velocity.</p>
+</clause>
+</sections>
+</metanorma>

@@ -1,172 +1,317 @@
 # frozen_string_literal: true
 
-require "nokogiri"
 require "metanorma/document"
 
 module Metanorma
   module Oiml
     module Sts
       module Transformer
-        # Parsed-input façade over a Metanorma OIML presentation XML document.
-        #
-        # Uses `Metanorma::OimlDocument::Root.from_xml` for typed parsing of
-        # the high-level bibliographic metadata, and Nokogiri for everything
-        # else (body content, inline markup) — the typed model does not yet
-        # cover every construct the transformer needs to walk.
         class SourceDocument
-          METANORMA_NS = "https://www.metanorma.org/ns/standoc".freeze
-          NAMESPACES = { "m" => METANORMA_NS }.freeze
-
-          attr_reader :nokogiri
+          attr_reader :typed_root
 
           def self.parse(input)
-            case input
-            when Pathname
-              new(Nokogiri::XML(input.read, nil, nil, Nokogiri::XML::ParseOptions::NOBLANKS))
-            when ->(x) { x.respond_to?(:read) }
-              new(Nokogiri::XML(input.read, nil, nil, Nokogiri::XML::ParseOptions::NOBLANKS))
-            else
-              new(Nokogiri::XML(input.to_s, nil, nil, Nokogiri::XML::ParseOptions::NOBLANKS))
-            end
+            xml_string = input.respond_to?(:read) ? input.read : input.to_s
+            typed = Metanorma::OimlDocument::Root.from_xml(xml_string)
+            new(typed)
           end
 
-          def initialize(nokogiri)
-            @nokogiri = nokogiri
-          end
-
-          def root
-            nokogiri.root
-          end
-
-          def namespaces
-            NAMESPACES
+          def initialize(typed_root)
+            @typed_root = typed_root
           end
 
           def bibdata
-            nokogiri.at_xpath("//m:bibdata", namespaces)
+            typed_root.bibdata
           end
 
           def language
-            node = bibdata&.at_xpath("./m:language", namespaces)
-            node&.text&.strip
+            return "en" unless bibdata
+
+            langs = bibdata.language rescue nil
+            return "en" unless langs
+
+            lang = langs.first if langs.is_a?(Array)
+            val = lang.respond_to?(:value) ? lang.value : lang.to_s
+            val.to_s.strip.match?(/\A[a-z]{2}(-[A-Z]{2})?\z/) ? val.to_s.strip : "en"
           end
 
           def docidentifier
-            node = bibdata&.at_xpath("./m:docidentifier[@primary='true']", namespaces) ||
-                   bibdata&.at_xpath("./m:docidentifier", namespaces)
-            return nil unless node
+            return nil unless bibdata
 
-            node.text.strip
+            ids = bibdata.doc_identifier rescue nil
+            return nil unless ids
+
+            Array(ids).each do |id_obj|
+              next if id_obj.type
+              return text_of(id_obj)
+            end
+            text_of(Array(ids).first)
           end
 
-          def doctype
-            node = bibdata&.at_xpath("./m:ext/m:doctype", namespaces)
-            return nil unless node
+          def text_of(obj)
+            return obj if obj.is_a?(String)
+            return "" unless obj
 
-            node.text.strip
+            val = (obj.value rescue nil) || (obj.content rescue nil) || (obj.text rescue nil)
+            return "" unless val
+
+            Array(val).map { |v| v.is_a?(String) ? v : text_of(v) }.join.strip
           end
 
-          def title(lang: nil, type: nil)
-            xpath = "./m:title"
-            constraints = []
-            constraints << "@language='#{lang}'" if lang
-            constraints << "@type='#{type}'" if type
-            xpath += "[#{constraints.join(' and ')}]" if constraints.any?
-            node = bibdata&.at_xpath(xpath, namespaces)
-            return nil unless node
+          def title(type: nil)
+            return nil unless bibdata
 
-            node.text.strip
+            titles = bibdata.titles rescue bibdata.title rescue nil
+            return nil unless titles
+
+            titles = Array(titles)
+            t = titles.find { |x| type.nil? || (x.type == type rescue false) } || titles.first
+            text_of(t)
           end
 
-          def edition
-            node = bibdata&.at_xpath("./m:edition", namespaces)
-            return nil unless node
+          # Assemble the rendered document title using title_main +
+          # title_part_prefix + title_part, matching how Metanorma
+          # HTML renders the coverpage title.
+          def formatted_title
+            return title unless bibdata
 
-            node.text.strip
+            iso_title = bibdata.title
+            return title unless iso_title
+
+            main = abstract_title_value(iso_title.title_main)
+            part_prefix = abstract_title_value(iso_title.title_part_prefix)
+            part = abstract_title_value(iso_title.title_part)
+
+            segments = [main]
+            if part_prefix && !part_prefix.empty?
+              # Metanorma HTML renders "Part 1:Subtitle" without space after
+              # colon when concatenating prefix + part. Match that here.
+              segments << (part && !part.empty? ? "#{part_prefix}:#{part}" : part_prefix)
+            elsif part && !part.empty?
+              segments << part
+            end
+            segments.compact!(&:empty?)
+            return title if segments.empty?
+
+            segments.join(" — ")
+          end
+
+          def abstract_title_value(abstract)
+            return nil if abstract.nil?
+            val = abstract.value rescue nil
+            val.nil? ? nil : val.to_s.strip
           end
 
           def copyright_year
-            node = bibdata&.at_xpath("./m:copyright/m:from", namespaces)
-            return nil unless node
+            return nil unless bibdata
 
-            node.text.strip
+            cps = bibdata.copyright rescue nil
+            return nil unless cps
+
+            cp = Array(cps).first
+            return nil unless cp
+
+            from = cp.from rescue nil
+            return text_of(from) unless from.nil?
+
+            nil
           end
 
           def copyright_holder
-            node = bibdata&.at_xpath("./m:copyright/m:owner/m:organization/m:name", namespaces)
-            return nil unless node
+            return nil unless bibdata
 
-            node.text.strip
+            cps = bibdata.copyright rescue nil
+            return nil unless cps
+
+            cp = Array(cps).first
+            return nil unless cp
+
+            owner = cp.owner rescue nil
+            return nil unless owner
+
+            org = Array(owner.organization).first rescue nil
+            return nil unless org
+
+            name = org.name rescue nil
+            return text_of(name) if name
+
+            nil
           end
 
           def publisher
-            contributors = bibdata&.xpath("./m:contributor[m:role[@type='publisher']]/m:organization/m:name", namespaces)
-            return nil unless contributors&.any?
+            ch = copyright_holder
+            return ch if ch
 
-            contributors.first.text.strip
+            return nil unless bibdata
+
+            Array(bibdata.contributor).each do |c|
+              role = Array(c.role).first rescue nil
+              next unless role && (role.type == "publisher" rescue false)
+
+              org = Array(c.organization).first rescue nil
+              return text_of(org)
+            end
+            nil
           end
 
           def pub_date
-            node = bibdata&.at_xpath("./m:date[@type='published']", namespaces) ||
-                   bibdata&.at_xpath("./m:date", namespaces)
-            return nil unless node
+            return nil unless bibdata
 
-            year = node.at_xpath("./m:on", namespaces)&.text&.strip
-            year || node.text.strip
+            dates = bibdata.date rescue nil
+            return copyright_year unless dates
+
+            pub = Array(dates).find { |d| (d.type rescue nil) == "published" } || Array(dates).first
+            return copyright_year unless pub
+
+            val = text_of(pub)
+            val.empty? ? copyright_year : val
           end
 
           def stage_code
-            node = bibdata&.at_xpath("./m:status/m:stage", namespaces)
-            return nil unless node
+            return nil unless bibdata&.status
 
-            node.text.strip
+            bibdata.status.respond_to?(:stage) ? bibdata.status.stage.to_s.strip : nil
           end
 
           def foreword
-            nokogiri.at_xpath("//m:preface/m:foreword", namespaces)
+            typed_root.preface&.foreword
           end
 
           def introduction
-            node = nokogiri.at_xpath("//m:preface/m:introduction", namespaces)
-            return node if node
-
-            nokogiri.at_xpath("//m:preface/m:clause[@obligation='informative' and contains(m:title, 'Introduction')]", namespaces)
+            typed_root.preface&.introduction
           end
 
           def sections
-            nokogiri.xpath("//m:metanorma/m:sections/m:clause", namespaces)
+            secs = typed_root.sections
+            return [] unless secs
+
+            Array(secs.clause)
+          end
+
+          def sections_block_other_children
+            []
           end
 
           def annexes
-            nokogiri.xpath("//m:metanorma/m:annex", namespaces)
+            Array(typed_root.annex)
           end
 
           def bibliography
-            nokogiri.xpath("//m:bibliography/m:references", namespaces)
+            bib = typed_root.bibliography
+            return [] unless bib&.respond_to?(:references)
+
+            Array(bib.references)
           end
 
           def front?
-            !!foreword || !!introduction
+            !foreword.nil? || !introduction.nil?
           end
 
           def has_metadata?
-            !!docidentifier
+            !docidentifier.nil?
           end
 
           def has_back?
             annexes.any? || bibliography.any?
           end
 
+          # Look up the autonum (e.g. "3.1.3.1") for a term by id.
+          # Returns nil if not found.
+          def term_autonum_for(term_id)
+            @term_autonum_cache ||= build_term_autonum_cache
+            @term_autonum_cache[term_id]
+          end
+
           private
 
-          # Use the metanorma-document gem's typed model to parse the source
-          # XML. Returns nil if the typed parse fails (e.g. for inputs the
-          # typed model does not yet cover); Nokogiri accessors above are
-          # the fallback.
-          def parse_typed_root
-            Metanorma::OimlDocument::Root.from_xml(nokogiri.to_xml)
-          rescue LoadError, StandardError
-            nil
+          def build_term_autonum_cache
+            cache = {}
+            walk_for_terms(typed_root) do |term|
+              next unless term.respond_to?(:id)
+              autonum = extract_term_autonum(term)
+              cache[term.id] = autonum if autonum && !autonum.empty?
+            end
+            cache
+          end
+
+          def walk_for_terms(node, &blk)
+            yield(node) if node.class.name&.end_with?("::IsoTerm") ||
+                           node.class.name&.end_with?("::Term") &&
+                           node.respond_to?(:id)
+
+            if node.respond_to?(:clause)
+              Array(node.clause).each { |c| walk_for_terms(c, &blk) }
+            end
+            if node.respond_to?(:sections) && node.sections.respond_to?(:clause)
+              Array(node.sections.clause).each { |c| walk_for_terms(c, &blk) }
+            end
+            if node.respond_to?(:terms) && node.terms.is_a?(Array)
+              node.terms.each { |t| walk_for_terms(t, &blk) }
+            end
+            if node.respond_to?(:term)
+              Array(node.term).each { |t| walk_for_terms(t, &blk) }
+            end
+          end
+
+          def extract_term_autonum(term)
+            label_arr = Array(term.fmt_xref_label)
+            label = label_arr.first
+            return nil unless label
+
+            # FmtXrefLabelElement children alternate: SemxElement (autonum),
+            # SpanElement (delimiter "."). Walk via each_mixed_content to
+            # reconstruct e.g. "3.1.3.1".
+            return nil unless label.respond_to?(:each_mixed_content)
+
+            parts = []
+            label.each_mixed_content do |n|
+              if n.is_a?(String) && !n.strip.empty?
+                parts << n.strip
+              else
+                cn = n.class.name.split("::").last
+                case cn
+                when "SemxElement"
+                  txt = semx_text(n)
+                  parts << txt if txt && !txt.empty?
+                when "SpanElement"
+                  txt = span_text(n)
+                  parts << txt if txt && !txt.empty?
+                end
+              end
+            end
+            joined = parts.join.strip
+            joined.empty? ? nil : joined
+          end
+
+          def semx_text(semx)
+            return semx.to_s unless semx.respond_to?(:each_mixed_content)
+
+            parts = []
+            semx.each_mixed_content do |n|
+              if n.is_a?(String)
+                parts << n
+              else
+                # nested autonum element
+                txt = autonum_text(n)
+                parts << txt if txt && !txt.empty?
+              end
+            end
+            parts.join
+          end
+
+          def span_text(span)
+            return "" unless span.respond_to?(:each_mixed_content)
+
+            parts = []
+            span.each_mixed_content { |n| parts << n if n.is_a?(String) }
+            parts.join
+          end
+
+          def autonum_text(node)
+            return "" unless node.respond_to?(:each_mixed_content)
+
+            parts = []
+            node.each_mixed_content { |n| parts << n if n.is_a?(String) }
+            parts.join
           end
         end
       end

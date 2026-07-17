@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fixture: complete bibliographic metadata.
+     Every <bibdata> field that OIML publications use. -->
+<metanorma xmlns="https://www.metanorma.org/ns/standoc" type="presentation" version="3.4.3" flavor="iso">
+<bibdata type="standard">
+<title language="en" type="main">Metrological regulation for load cells</title>
+<title language="en" type="title-main">Metrological regulation for load cells</title>
+<title language="fr" type="main">Réglementation métrologique des cellules de pesage</title>
+<docidentifier primary="true" type="OIML">OIML R 60:2000</docidentifier>
+<docnumber>60</docnumber>
+<language>en</language>
+<script>Latn</script>
+<edition>2</edition>
+<version>
+<revision-date>2000</revision-date>
+<draft>2000</draft>
+</version>
+<status><stage>60</stage><substage>60</substage></status>
+<date type="published"><on>2000</on></date>
+<date type="updated"><on>2020</on></date>
+<contributor><role type="author"/><organization><name>International Organization of Legal Metrology</name><abbreviation>OIML</abbreviation></organization></contributor>
+<contributor><role type="publisher"/><organization><name>International Organization of Legal Metrology</name><abbreviation>OIML</abbreviation></organization></contributor>
+<copyright><from>2000</from><owner><organization><name>International Organization of Legal Metrology</name></organization></owner></copyright>
+<ext><doctype>international-recommendation</doctype><flavor>oiml</flavor></ext>
+</bibdata>
+<sections>
+<clause id="s_scope" obligation="normative">
+<title>Scope</title>
+<p id="scope-p1">This Recommendation applies to load cells used in measuring instruments.</p>
+</clause>
+</sections>
+</metanorma>
