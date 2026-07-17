@@ -21,7 +21,7 @@
 module Metanorma::Oiml::Sts::Transformer
   autoload :SourceDocument, "metanorma/oiml/sts/transformer/source_document"
   autoload :Context, "metanorma/oiml/sts/transformer/context"
-  autoload :StsXml, "metanorma/oiml/sts/transformer/sts_xml"
+  autoload :ModelBuilder, "metanorma/oiml/sts/transformer/model_builder"
   autoload :IdGenerator, "metanorma/oiml/sts/transformer/id_generator"
   autoload :FootnoteCollector, "metanorma/oiml/sts/transformer/footnote_collector"
   autoload :Base, "metanorma/oiml/sts/transformer/base"
@@ -38,7 +38,9 @@ module Metanorma::Oiml::Sts::Transformer
   autoload :FormulaTransformer, "metanorma/oiml/sts/transformer/formula_transformer"
   autoload :NoteTransformer, "metanorma/oiml/sts/transformer/note_transformer"
   autoload :ReferenceTransformer, "metanorma/oiml/sts/transformer/reference_transformer"
+  autoload :TermTransformer, "metanorma/oiml/sts/transformer/term_transformer"
   autoload :BlockDispatcher, "metanorma/oiml/sts/transformer/block_dispatcher"
+  autoload :RenderedTextExtractor, "metanorma/oiml/sts/transformer/rendered_text_extractor"
 
   # Convert a Metanorma presentation XML input into OIML NISO STS XML.
   # @param input [String, Pathname, #read] the source XML.

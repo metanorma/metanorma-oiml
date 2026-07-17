@@ -4,7 +4,10 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
-        # Base class for every transformer.
+        # Shared base for every transformer. Provides access to the
+        # conversion {Context} and factory methods for child transformers.
+        # Transformers RETURN model instances — they do not emit into a
+        # builder.
         class Base
           attr_reader :context
 
@@ -16,10 +19,6 @@ module Metanorma
 
           def source
             context.source
-          end
-
-          def sts
-            @sts ||= StsXml.new
           end
 
           def dispatcher
@@ -60,6 +59,10 @@ module Metanorma
 
           def reference_transformer
             ReferenceTransformer.new(context)
+          end
+
+          def term_transformer
+            TermTransformer.new(context)
           end
         end
       end

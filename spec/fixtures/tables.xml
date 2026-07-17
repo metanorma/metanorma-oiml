@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fixture: tables with thead, tbody, th, td. -->
+<metanorma xmlns="https://www.metanorma.org/ns/standoc" type="presentation" version="3.4.3" flavor="iso">
+<bibdata type="standard">
+<docidentifier primary="true">OIML R 76</docidentifier>
+<language>en</language>
+<contributor><role type="publisher"/><organization><name>OIML</name></organization></contributor>
+<copyright><from>2024</from><owner><organization><name>OIML</name></organization></owner></copyright>
+<status><stage>60</stage></status>
+</bibdata>
+<sections>
+<clause id="s_tables" obligation="normative">
+<title>Tables test</title>
+<p>Simple table with header:</p>
+<table id="t1">
+<thead>
+<tr><th>Class</th><th>Range</th><th>Accuracy</th></tr>
+</thead>
+<tbody>
+<tr><td>I</td><td>0–50 kg</td><td>±0.1%</td></tr>
+<tr><td>II</td><td>0–100 kg</td><td>±0.2%</td></tr>
+<tr><td>III</td><td>0–500 kg</td><td>±0.5%</td></tr>
+</tbody>
+</table>
+<p>Another table with inline markup in cells:</p>
+<table id="t2">
+<tbody>
+<tr><td>Cell with <em>italic</em></td><td>Cell with <strong>bold</strong></td></tr>
+<tr><td>Cell with <xref target="t1" type="table">table ref</xref></td><td>Plain cell</td></tr>
+</tbody>
+</table>
+</clause>
+</sections>
+</metanorma>

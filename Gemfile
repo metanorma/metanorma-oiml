@@ -3,7 +3,9 @@
 source "https://rubygems.org"
 
 gemspec
-gem "mml", ">= 2.0"
+gem "sts", path: "~/src/mn/sts-ruby"
+gem "plurimath", path: "~/src/plurimath/plurimath"
+gem "unitsml", path: "~/src/unitsml/unitsml-ruby"
 
 group :development do
   gem "pry"

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "metanorma/document"
+require "sts"
 
 # OIML NISO STS toolkit.
 #
@@ -18,7 +19,11 @@ module Metanorma
       autoload :Transformer, "metanorma/oiml/sts/transformer"
       autoload :Validator, "metanorma/oiml/sts/validator"
       autoload :ValidationReport, "metanorma/oiml/sts/validation_report"
+      autoload :HtmlRenderer, "metanorma/oiml/sts/html_renderer"
       autoload :Cli, "metanorma/oiml/sts/cli"
+      autoload :Source, "metanorma/oiml/sts/source"
+      autoload :MathmlBuilder, "metanorma/oiml/sts/mathml_builder"
+      autoload :ParityValidator, "metanorma/oiml/sts/parity_validator"
 
       # Convert a Metanorma OIML presentation XML string (or anything
       # `SourceDocument.parse` accepts) into an OIML NISO STS XML string.

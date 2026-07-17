@@ -5,50 +5,52 @@ module Metanorma
     module Sts
       module Transformer
         class FigureTransformer < Base
-          def transform(source_node, builder)
-            id = context.id_generator.id_for(source_node, prefix: "fig")
-            builder.fig(id: id) do
-              emit_label(source_node, builder)
-              emit_caption(source_node, builder)
-              emit_graphic(source_node, builder)
-              emit_alt_text(source_node, builder)
-            end
+          def transform(source_figure)
+            attrs = {}
+            attrs[:id] = source_figure.id if source_figure.respond_to?(:id) && source_figure.id
+
+            label = extract_label(source_figure)
+            attrs[:label] = ::Sts::IsoSts::Label.new(content: [label]) if label
+
+            caption_text = extract_caption(source_figure)
+            attrs[:caption] = ::Sts::IsoSts::Caption.new(
+              title: ::Sts::IsoSts::Title.new(content: [caption_text])
+            ) if caption_text
+
+            graphic = build_graphic(source_figure)
+            attrs[:graphic] = [graphic] if graphic
+
+            ::Sts::IsoSts::Fig.new(attrs)
           end
 
           private
 
-          def emit_label(source_node, builder)
-            name_node = source_node.at_xpath("./m:fmt-name/m:tab | ./m:name/m:tab", source.namespaces)
-            text = name_node&.text&.strip
-            builder.label(text) if text && !text.empty?
+          def extract_label(source_figure)
+            return nil unless source_figure.respond_to?(:autonum)
+            num = source_figure.autonum
+            num.to_s.strip unless num.to_s.strip.empty?
           end
 
-          def emit_caption(source_node, builder)
-            title_node = source_node.at_xpath("./m:fmt-name | ./m:name | ./m:fmt-title | ./m:title", source.namespaces)
-            return unless title_node
+          def extract_caption(source_figure)
+            name = source_figure.respond_to?(:name) ? source_figure.name : nil
+            return nil unless name
 
-            text = title_node.children.reject { |c| c.name == "tab" }.map(&:text).join.strip
-            return if text.empty?
-
-            builder.caption { builder.text(text) }
+            text = (name.text rescue nil)
+            text = Array(text).first if text.is_a?(Array)
+            text.to_s.strip
           end
 
-          def emit_graphic(source_node, builder)
-            image = source_node.at_xpath(".//m:image", source.namespaces)
-            return unless image
+          def build_graphic(source_figure)
+            image = source_figure.respond_to?(:image) ? source_figure.image : nil
+            return nil unless image
 
-            href = image["src"] || image["href"]
-            return unless href
+            href = (image.source rescue nil) || (source_figure.source rescue nil)
+            return nil unless href
 
-            builder.graphic("xmlns:xlink" => StsXml::XLINK_NS, "xlink:href" => href)
-          end
+            attrs = { xlink_href: href }
+            attrs[:mimetype] = image.mimetype if image.respond_to?(:mimetype) && image.mimetype
 
-          def emit_alt_text(source_node, builder)
-            image = source_node.at_xpath(".//m:image", source.namespaces)
-            alt = image && image["alttext"]
-            return unless alt && !alt.empty?
-
-            builder.alt_text(alt)
+            ::Sts::IsoSts::Graphic.new(attrs)
           end
         end
       end
