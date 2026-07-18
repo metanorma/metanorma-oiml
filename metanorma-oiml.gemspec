@@ -16,7 +16,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = Gem::Requirement.new(">= 3.0.0")
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
-    Dir["lib/**/*", "exe/*", "schematron/**/*", "README*", "LICENSE*"]
+    Dir["lib/**/*", "exe/*", "schematron/**/*", "data/**/*", "README*",
+        "LICENSE*"]
   end
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
