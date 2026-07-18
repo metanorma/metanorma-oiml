@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require "metanorma/document"
+# OIML is an ISO-family flavor: the ISO document register must exist for
+# the oiml_document register fallback to resolve during parsing.
+require "metanorma/iso_document"
 
 module Metanorma
   module Registers
