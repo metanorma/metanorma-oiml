@@ -189,7 +189,8 @@ For every OIML publication the converter:
 The transformer mirrors `Metanorma::Iso::Sts::Transformer`:
 
 * `Metanorma::Oiml::Sts::Transformer::SourceDocument` — typed wrapper around
-  `Metanorma::OimlDocument::Root` (from the `metanorma-document` gem).
+  `Metanorma::Oiml::Document::Root` (this gem's document model, built on the
+  `metanorma-document` framework).
 * `Metanorma::Oiml::Sts::Transformer::Context` — shared state per conversion.
 * `Metanorma::Oiml::Sts::Transformer::StsXml` — Nokogiri-backed output
   builder; every transformer emits through it.

@@ -18,8 +18,10 @@ module Metanorma
     end
   end
 
-  module OimlDocument
-    autoload :Root, "metanorma/oiml_document/root"
+  module Oiml
+    module Document
+      autoload :Root, "metanorma/oiml/document/root"
+    end
   end
 end
 
