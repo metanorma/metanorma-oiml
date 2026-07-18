@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "metanorma/document"
-require "metanorma/oiml/document"
-require "metanorma/oiml/html/renderer"
+require_relative "document"
+require_relative "html/renderer"
 
 # Registers the OIML document flavor with metanorma-document's HTML
 # generator: the model class, the renderer, and the theme assets that

@@ -20,7 +20,7 @@ module Metanorma
 
   module Oiml
     module Document
-      autoload :Root, "metanorma/oiml/document/root"
+      autoload :Root, "#{__dir__}/document/root"
     end
   end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "metanorma/document"
-require "metanorma/oiml/document"
+require_relative "../../document"
 
 module Metanorma
   module Oiml
