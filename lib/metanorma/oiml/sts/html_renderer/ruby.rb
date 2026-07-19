@@ -178,13 +178,46 @@ module Metanorma
             sec_id = section_id(node)
             register_toc(node, sec_id)
             previous_section_id = @current_section_id
+            previous_label = @current_label
+            label_node = own_label(node)
+            suppress_label(label_node) if label_node
+            @current_label = label_node ? plain_text(label_node).gsub(/\s+/, " ").strip : nil
+            # Unnumbered top-level sections (Copyright, Feedback,
+            # Foreword, Introduction) get muted front-matter cards
+            # instead of the numbered-section heading band.
+            frontmatter = @depth.zero? && @current_label.nil?
             @depth += 1
             @current_section_id = sec_id
             inner = render_children(node)
-            render_element("section", inner, id: sec_id)
+            render_element("section", inner, id: sec_id, css: frontmatter ? "frontmatter" : nil)
           ensure
             @depth -= 1
             @current_section_id = previous_section_id
+            @current_label = previous_label
+          end
+
+          # The section's/list item's own <label> child model (nil when
+          # absent or a bare string, e.g. TableWrap#label).
+          def own_label(node)
+            return nil unless node.class.method_defined?(:label)
+
+            label = node.label
+            label if label.is_a?(Lutaml::Model::Serializable)
+          end
+
+          # Marks a label model as consumed by its container (section
+          # heading prefix / list-item marker) so the generic label
+          # handler does not render it a second time.
+          def suppress_label(node)
+            suppressed_labels[node] = true
+          end
+
+          def label_suppressed?(node)
+            suppressed_labels.key?(node)
+          end
+
+          def suppressed_labels
+            @suppressed_labels ||= {}.compare_by_identity
           end
 
           # Sections built without an id (e.g. front-matter sections)
@@ -203,13 +236,16 @@ module Metanorma
 
           # Records the section in the interactive table of contents.
           # Apps are sections too; their titles come from the same walk.
+          # The entry text carries the section number ("1 Scope").
           def register_toc(node, sec_id)
             title_node = find_child(node, "Title")
             return unless sec_id && title_node
 
-            register_toc_entry(id: sec_id,
-                               title: plain_text(title_node).gsub(/\s+/, " ").strip,
-                               depth: @depth)
+            label_node = own_label(node)
+            label_text = label_node ? plain_text(label_node).gsub(/\s+/, " ").strip : nil
+            title_text = plain_text(title_node).gsub(/\s+/, " ").strip
+            title_text = "#{label_text} #{title_text}" if label_text && !label_text.empty?
+            register_toc_entry(id: sec_id, title: title_text, depth: @depth)
           end
 
           def register_toc_entry(id:, title:, depth:)
@@ -226,7 +262,11 @@ module Metanorma
             nil
           end
 
-          def label(node) = render_element("span", render_inline(node), css: "label")
+          def label(node)
+            return "" if label_suppressed?(node)
+
+            render_element("span", render_inline(node), css: "label")
+          end
 
           def title(node)
             return render_element("em", render_inline(node)) if @in_std
@@ -237,17 +277,45 @@ module Metanorma
                      else
                        ""
                      end
-            render_element("h#{level}", render_inline(node) + anchor)
+            # The section number captured from its <label> prefixes the
+            # heading ("1 Scope"); consumed so nested content never
+            # inherits it.
+            prefix = ""
+            if @current_label && !@current_label.empty?
+              prefix = %(<span class="sec-label">#{escape(@current_label)}</span> )
+              @current_label = nil
+            end
+            render_element("h#{level}", prefix + render_inline(node) + anchor)
           end
 
           def paragraph(node) = render_element("p", render_inline(node), id: node.id)
 
+          # A list whose items carry explicit <label> markers from the
+          # source renders without HTML bullets — the label IS the
+          # marker (mn-labeled-list); otherwise the browser's bullets
+          # would duplicate the source's markers.
           def list(node)
             tag = node.list_type == "order" ? "ol" : "ul"
-            render_element(tag, render_children(node))
+            css = labeled_list?(node) ? "mn-labeled-list" : nil
+            render_element(tag, render_children(node), css: css)
           end
 
-          def list_item(node) = render_element("li", render_children(node))
+          def labeled_list?(node)
+            return false unless node.class.method_defined?(:list_item)
+
+            Array(node.list_item).any? { |item| own_label(item) }
+          end
+
+          def list_item(node)
+            label_node = own_label(node)
+            suppress_label(label_node) if label_node
+            inner = render_children(node)
+            if label_node
+              marker = render_element("span", escape(plain_text(label_node).strip), css: "li-label")
+              inner = marker + inner
+            end
+            render_element("li", inner)
+          end
 
           def def_list(node) = render_element("dl", render_children(node))
 
@@ -255,7 +323,28 @@ module Metanorma
 
           def def_item(node) = render_element("dd", render_children(node))
 
-          def table_wrap(node) = render_element("div", render_children(node), css: "table-wrap")
+          # Table number + caption render as a caption band above the
+          # table; the raw label/caption children are skipped so they
+          # don't repeat inside the box.
+          def table_wrap(node)
+            inner = render_children(node, skip: %w[label caption])
+            render_element("div", table_caption_line(node) + inner, css: "table-wrap")
+          end
+
+          def table_caption_line(node)
+            label_text = node.class.method_defined?(:label) ? node.label.to_s.strip : ""
+            caption_node = node.caption if node.class.method_defined?(:caption)
+            title_node = caption_node.title if caption_node&.class&.method_defined?(:title)
+            title_html = title_node ? render_inline(title_node) : ""
+            return "" if label_text.empty? && title_html.empty?
+
+            parts = []
+            parts << %(<span class="tc-label">#{escape(label_text)}</span>) unless label_text.empty?
+            parts << title_html unless title_html.empty?
+            # NB: class is tbl-caption — "table-caption" collides with
+            # Tailwind's own display utility (display: table-caption).
+            %(<p class="tbl-caption">#{parts.join('<span class="tc-delim"> — </span>')}</p>)
+          end
 
           def table(node) = render_element("table", render_children(node))
 
@@ -290,11 +379,19 @@ module Metanorma
 
           def quote(node) = render_element("blockquote", render_children(node))
 
+          # A ref-list with a title (the back-matter bibliography) gets a
+          # TOC entry and an anchor; an untitled one (e.g. the normative
+          # references list nested in its numbered section) stays
+          # anonymous — the enclosing section carries the TOC entry.
           def ref_list(node)
-            register_toc_entry(id: "bibliography", title: "Bibliography", depth: @depth)
+            title_node = find_child(node, "Title")
+            title_text = title_node ? plain_text(title_node).gsub(/\s+/, " ").strip : nil
+            sec_id = title_text ? title_text.downcase.gsub(/[^a-z0-9]+/, "-").gsub(/\A-|-\z/, "") : nil
+            sec_id = nil if sec_id && sec_id.empty?
+            register_toc_entry(id: sec_id, title: title_text, depth: @depth) if sec_id
             previous_section_id = @current_section_id
-            @current_section_id = "bibliography"
-            render_element("div", render_children(node), id: "bibliography", css: "ref-list")
+            @current_section_id = sec_id
+            render_element("div", render_children(node), id: sec_id, css: "ref-list")
           ensure
             @current_section_id = previous_section_id
           end
@@ -328,7 +425,8 @@ module Metanorma
           def citation(node) = render_element("span", render_inline(node), css: "citation")
 
           # <std> inside a bibliography ref: keep everything inline —
-          # titles become <em>, never headings.
+          # titles become <em>, never headings. std-ref and title are
+          # space-joined so identifier and citation don't glue together.
           def std(node)
             @in_std = true
             parts = []
@@ -336,7 +434,7 @@ module Metanorma
             parts << render_element("span", render_inline(ref_node), css: "std-ref") if ref_node
             title_node = find_model(node, "Title")
             parts << render_element("em", render_inline(title_node)) if title_node
-            render_element("span", parts.join, css: "std")
+            render_element("span", parts.join(" "), css: "std")
           ensure
             @in_std = false
           end
@@ -395,8 +493,10 @@ module Metanorma
           # Children of a non-mixed container in document order.
           # Repeated elements of a collection appear as one element_order
           # entry PER ITEM, so collection items are consumed one entry at
-          # a time (per-attribute index counters).
-          def render_children(node)
+          # a time (per-attribute index counters). +skip+ lists element
+          # names the caller renders itself (e.g. table-wrap's label and
+          # caption, which become the caption band).
+          def render_children(node, skip: [])
             return render_inline(node) if mixed_model?(node)
 
             mapping = @mapping_cache[node.class][:elements]
@@ -406,6 +506,8 @@ module Metanorma
               when :text
                 escape(entry.text_content.to_s)
               when :element
+                next if skip.include?(entry.name.to_s)
+
                 attr = mapping[entry.name.to_s]
                 next unless attr
 

@@ -233,8 +233,72 @@ h2:hover .h-anchor, h3:hover .h-anchor, h4:hover .h-anchor { opacity: 1; }
 html { scroll-padding-top: 68px; }
 body { -webkit-font-smoothing: antialiased; }
 
+/* Vertical rhythm (Tailwind preflight zeroes these) */
+main p { margin: 0.85rem 0; }
+main ul, main ol { margin: 0.85rem 0; }
+li { margin: 0.35rem 0; }
+li > p { margin: 0.3rem 0; }
+li > p:first-child { margin-top: 0; }
+li > p:last-child { margin-bottom: 0; }
+
 ul, ol { padding-left: 1.6em; }
 li::marker { color: var(--color-accent); }
+
+/* Section numbers from the source's <label>, prefixed to headings */
+.sec-label {
+  font-weight: 750;
+  color: var(--color-accent);
+  margin-right: 0.35em;
+}
+
+/* Lists whose items carry explicit markers from the source */
+.mn-labeled-list { list-style: none; padding-left: 0.2em; }
+.mn-labeled-list > li { position: relative; padding-left: 1.9em; }
+.li-label {
+  position: absolute;
+  left: 0.2em;
+  color: var(--color-ink-soft);
+  font-weight: 500;
+}
+
+/* Table caption band above the table (tbl-caption, not table-caption:
+   Tailwind owns the latter as a display utility) */
+.tbl-caption {
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.88rem;
+  background: var(--color-paper-soft);
+  border-bottom: 1px solid var(--color-line);
+  border-radius: 8px 8px 0 0;
+}
+.tc-label { font-weight: 700; color: var(--color-accent); }
+.tc-delim { color: var(--color-ink-faint); }
+
+/* Unnumbered front-matter sections (Copyright, Feedback, Foreword,
+   Introduction): separated muted cards, no big heading band */
+.frontmatter {
+  margin: 0 0 1.1rem;
+  padding: 0.9rem 1.2rem;
+  background: var(--color-paper-soft);
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+}
+.frontmatter h2 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0 0 0.5rem;
+  border-left: none;
+  background: none;
+  border-radius: 0;
+  color: var(--color-ink-faint);
+}
+.frontmatter p { margin: 0.35rem 0; font-size: inherit; }
+.frontmatter p:last-child { margin-bottom: 0; }
 
 dt { margin-top: 0.7rem; font-weight: 650; color: var(--color-accent); }
 dd { margin: 0.15rem 0 0.4rem 1.4rem; }
@@ -311,8 +375,12 @@ main section { margin-bottom: 1.75rem; }
   padding: 0.2rem 0.6rem;
 }
 .footer-generated { color: var(--color-ink-faint); }
-.mn-icon { display: inline-block; vertical-align: -2px; margin-right: 0.35rem; }
-.mn-icon svg { height: 15px; width: auto; display: block; }
+/* The span must NOT set display: the brand-logo-light/dark utility
+   decides visibility, and an unlayered display here would override it
+   (unlayered CSS beats layered utilities) — showing BOTH metanorma
+   icons in light mode. */
+.mn-icon { vertical-align: -2px; margin-right: 0.35rem; }
+.mn-icon svg { height: 15px; width: auto; }
 @media (max-width: 640px) {
   .footer-grid { grid-template-columns: 1fr; gap: 0.75rem; }
   .footer-meta { text-align: left; }

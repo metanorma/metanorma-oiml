@@ -54,7 +54,54 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
   end
 
   it "renders sections" do
-    expect(html).to include('<section id="s1">')
+    expect(html).to include('<section id="s1" class="frontmatter">')
+  end
+
+  it "marks unnumbered top-level sections as front matter" do
+    expect(html).to include('<section id="s1" class="frontmatter">')
+    expect(html).to include('<section id="s2" class="frontmatter">')
+  end
+
+  it "prefixes numbered section headings with their label" do
+    numbered = renderer.render(
+      '<standard><body><sec id="sc"><label>1</label><title>Scope</title><p>x</p></sec></body></standard>',
+      full_document: false,
+    )
+    expect(numbered).to include('<h2><span class="sec-label">1</span> Scope<a class="h-anchor"')
+    expect(numbered).not_to include('class="frontmatter"')
+  end
+
+  it "numbers TOC entries with the section label" do
+    numbered = renderer.render(
+      '<standard><body><sec id="sc"><label>1</label><title>Scope</title><p>x</p></sec></body></standard>',
+    ).gsub(/\s+/, " ")
+    expect(numbered).to include('href="#sc">1 Scope</a>')
+  end
+
+  it "renders list item labels as markers without HTML bullets" do
+    labeled = renderer.render(
+      '<standard><body><sec><title>S</title><list list-type="bullet">' \
+      "<list-item><label>—</label><p>one</p></list-item>" \
+      "</list></sec></body></standard>",
+      full_document: false,
+    )
+    expect(labeled).to include('<ul class="mn-labeled-list">')
+    expect(labeled).to include("<li><span class=\"li-label\">—</span>")
+    expect(labeled).not_to include('<span class="label">—</span>')
+  end
+
+  it "renders the table caption band above the table" do
+    captioned = renderer.render(
+      '<standard><body><sec><title>S</title><table-wrap><label>Table 1</label>' \
+      "<caption><title>Cap</title></caption>" \
+      "<table><tbody><tr><td>a</td></tr></tbody></table></table-wrap></sec></body></standard>",
+      full_document: false,
+    ).gsub(/\s+/, " ")
+    expect(captioned).to include(
+      '<p class="tbl-caption"><span class="tc-label">Table 1</span>' \
+      "<span class=\"tc-delim\"> — </span>Cap</p>",
+    )
+    expect(captioned.scan("Table 1").size).to eq(1)
   end
 
   it "renders titles with an anchor link" do
