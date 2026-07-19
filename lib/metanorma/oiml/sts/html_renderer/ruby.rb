@@ -430,7 +430,10 @@ module Metanorma
           def render_liquid(template_name, assigns)
             template = @template_cache[template_name] ||= begin
               path = File.join(templates_dir, template_name)
-              Liquid::Template.parse(File.read(path), environment: @liquid_env)
+              # chomp: template files must not contribute their own
+              # trailing newline into the output (it surfaces as a
+              # visible space between inline elements)
+              Liquid::Template.parse(File.read(path).chomp, environment: @liquid_env)
             end
             template.render(assigns)
           end
