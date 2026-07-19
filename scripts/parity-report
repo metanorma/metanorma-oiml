@@ -1,0 +1,69 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "pathname"
+$LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
+require "metanorma/oiml/sts"
+
+SAMPLES_ROOT = Pathname.new(ENV["HOME"] + "/src/mn/mn-samples-oiml")
+PRES_XML = SAMPLES_ROOT.join("_site/documents/r060/1/document.presentation.xml")
+MN_HTML  = SAMPLES_ROOT.join("_site/documents/r060/1/document.html")
+
+abort "Input not found: #{PRES_XML}" unless PRES_XML.exist?
+abort "MN HTML not found: #{MN_HTML}" unless MN_HTML.exist?
+
+sts_xml = Metanorma::Oiml::Sts.convert(PRES_XML.read)
+sts_html_ruby = Metanorma::Oiml::Sts::HtmlRenderer.render(sts_xml)
+
+# Try XSLT renderer
+begin
+  sts_html_xslt = Metanorma::Oiml::Sts::HtmlRenderer.render(sts_xml)
+rescue StandardError => e
+  sts_html_xslt = nil
+  warn "XSLT renderer failed: #{e.message}"
+end
+
+mn_html = MN_HTML.read
+
+# Run parity validation
+report = Metanorma::Oiml::Sts::ParityValidator.validate(
+  mn_html: mn_html,
+  sts_html: sts_html_ruby
+)
+
+puts "=== OIML R 60-1:2021 Content Parity Report ==="
+puts ""
+puts "STS XML:  #{sts_xml.size} bytes"
+puts "STS HTML: #{sts_html_ruby.size} bytes (Ruby renderer)"
+puts "MN HTML:  #{mn_html.size} bytes"
+puts ""
+puts "Coverage:"
+puts "  Word coverage:      #{report.word_coverage_percent}%"
+puts "  Paragraph coverage: #{report.paragraph_coverage_percent}%"
+puts ""
+puts "Missing elements:"
+puts "  Headings:      #{report.missing_headings.size}"
+puts "  Paragraphs:    #{report.missing_paragraphs.size}"
+puts "  Table cells:   #{report.missing_table_cells.size}"
+puts "  List items:    #{report.missing_list_items.size}"
+puts "  Images:        #{report.missing_images.size}"
+puts ""
+puts "Pass: #{report.pass?}"
+
+if report.missing_paragraphs.any?
+  puts ""
+  puts "First 5 missing paragraphs:"
+  report.missing_paragraphs.first(5).each { |p| puts "  #{p[0..100]}..." }
+end
+
+if sts_html_xslt
+  xslt_report = Metanorma::Oiml::Sts::ParityValidator.validate(
+    mn_html: mn_html,
+    sts_html: sts_html_xslt
+  )
+  puts ""
+  puts "=== XSLT Renderer Parity ==="
+  puts "  Word coverage:      #{xslt_report.word_coverage_percent}%"
+  puts "  Paragraph coverage: #{xslt_report.paragraph_coverage_percent}%"
+  puts "  Missing paragraphs: #{xslt_report.missing_paragraphs.size}"
+end
