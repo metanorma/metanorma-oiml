@@ -1,43 +1,47 @@
 # frozen_string_literal: true
-
 module Metanorma
   module Oiml
     module Sts
       module Transformer
-        # Emits the `<back>` block: annexes inside `<app-group>`, and any
-        # bibliography as `<ref-list>`.
         class BackTransformer < Base
-          def transform(source, builder)
-            emit_annexes(source, builder)
-            emit_bibliography(source, builder)
+          def transform(source)
+            app_group = build_app_group(source)
+            ref_lists = build_bibliography(source)
+            ModelBuilder.back(app_group: app_group, ref_list: ref_lists)
           end
 
           private
 
-          def emit_annexes(source, builder)
-            return if source.annexes.empty?
+          def build_app_group(source)
+            return nil if source.annexes.empty?
 
-            builder.app_group do
-              source.annexes.each do |annex|
-                section_transformer.transform(annex, builder, as: :app)
+            apps = source.annexes.map do |annex|
+              sec = section_transformer.transform(annex)
+              attrs = {}
+              APP_CONTENT_ATTRS.each do |attr|
+                next unless sec.class.method_defined?(attr)
+
+                value = sec.public_send(attr)
+                next if value.nil? || (value.is_a?(Array) && value.empty?)
+
+                attrs[attr] = value
               end
+              ::Sts::IsoSts::App.new(attrs)
             end
+            ModelBuilder.app_group(app: apps)
           end
 
-          def emit_bibliography(source, builder)
-            return if source.bibliography.empty?
+          # Everything SectionTransformer can produce: dropping any of
+          # these at the app boundary silently loses annex-level content
+          # (e.g. the Element map annex's table).
+          APP_CONTENT_ATTRS = %i[
+            id title paragraph list fig table_wrap def_list disp_formula
+            non_normative_note non_normative_example ref_list sec
+          ].freeze
 
-            builder.ref_list("content-type" => "bibliography") do
-              source.bibliography.each do |ref_section|
-                emit_references_in(ref_section, builder)
-              end
-            end
-          end
-
-          def emit_references_in(ref_section, builder)
-            ref_section.xpath("./m:bibitem", source.namespaces).each do |bibitem|
-              reference_transformer.transform(bibitem, builder)
-            end
+          def build_bibliography(source)
+            return [] if source.bibliography.empty?
+            source.bibliography.map { |rs| reference_transformer.transform_section(rs) }
           end
         end
       end

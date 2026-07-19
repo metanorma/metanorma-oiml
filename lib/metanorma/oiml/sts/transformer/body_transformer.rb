@@ -1,15 +1,20 @@
 # frozen_string_literal: true
-
 module Metanorma
   module Oiml
     module Sts
       module Transformer
-        # Emits the `<body>` block.
         class BodyTransformer < Base
-          def transform(source, builder)
+          def transform(source)
+            sections = []
+
+            sections += front_transformer.preface_sections(source) if source.front?
+
             source.sections.each do |clause|
-              dispatcher.dispatch(clause, builder)
+              sec = dispatcher.dispatch(clause)
+              sections << sec if sec
             end
+
+            ModelBuilder.body(sec: sections)
           end
         end
       end

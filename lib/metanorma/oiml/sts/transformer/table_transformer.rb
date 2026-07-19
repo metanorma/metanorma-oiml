@@ -1,47 +1,112 @@
 # frozen_string_literal: true
-
 module Metanorma
   module Oiml
     module Sts
       module Transformer
         class TableTransformer < Base
-          def transform(source_node, builder)
-            id = context.id_generator.id_for(source_node, prefix: "tab")
-            builder.table_wrap(id: id) do
-              emit_caption(source_node, builder)
-              emit_table(source_node, builder)
-            end
+          def transform(source_table)
+            attrs = {}
+            attrs[:id] = source_table.id if source_table.class.method_defined?(:id) && source_table.id
+            table = build_table(source_table)
+            attrs[:table] = [table] if table
+            ::Sts::TbxIsoTml::TableWrap.new(attrs)
           end
 
           private
 
-          def emit_caption(source_node, builder)
-            title_node = source_node.at_xpath("./m:fmt-name | ./m:name", source.namespaces)
-            return unless title_node
-
-            text = title_node.text.strip
-            return if text.empty?
-
-            builder.caption { builder.text(text) }
-          end
-
-          def emit_table(source_node, builder)
-            builder.table do
-              source_node.xpath("./m:tbody/m:tr | ./m:tr", source.namespaces).each do |tr|
-                emit_row(tr, builder)
-              end
+          def build_table(source_table)
+            attrs = {}
+            if source_table.class.method_defined?(:thead) && source_table.thead
+              attrs[:thead] = build_section(source_table.thead, ::Sts::TbxIsoTml::Thead)
             end
+            if source_table.class.method_defined?(:tbody) && source_table.tbody
+              attrs[:tbody] = build_section(source_table.tbody, ::Sts::TbxIsoTml::Tbody)
+            end
+            ::Sts::TbxIsoTml::Table.new(attrs)
           end
 
-          def emit_row(tr_node, builder)
-            builder.tr do
-              tr_node.xpath("./m:td | ./m:th", source.namespaces).each do |cell|
-                tag = cell.name == "th" ? :th : :td
-                builder.public_send(tag) do
-                  inline_transformer.transform_children(cell, builder)
+          def build_section(source_section, klass)
+            trs = Array(source_section.tr).map { |tr| build_tr(tr) }
+            klass.new(tr: trs)
+          end
+
+          def build_tr(tr)
+            th_cells = Array(tr.th).map { |c| build_cell(c, ::Sts::TbxIsoTml::Th) }
+            td_cells = Array(tr.td).map { |c| build_cell(c, ::Sts::TbxIsoTml::Td) }
+            attrs = {}
+            attrs[:th] = th_cells if th_cells.any?
+            attrs[:td] = td_cells if td_cells.any?
+            ::Sts::TbxIsoTml::Tr.new(attrs)
+          end
+
+          def build_cell(cell, klass)
+            entries = cell_entries(cell)
+            klass.new do |c|
+              entries.each do |kind, value|
+                case kind
+                when :text then c.content value
+                when :inline_formula then c.inline_formula value
                 end
               end
             end
+          end
+
+          # Walks the cell's mixed content in document order and produces
+          # an array of [:text, String] | [:inline_formula, InlineFormula]
+          # tuples. The builder in build_cell routes them to the correct
+          # typed collection on the Td/Th model, preserving cross-type
+          # ordering via lutaml-model's mixed_content element_order.
+          def cell_entries(cell)
+            entries = []
+            current_text = nil
+            flush = lambda do
+              return if current_text.nil?
+              entries << [:text, current_text]
+              current_text = nil
+            end
+
+            walk_cell(cell) do |kind, node, text|
+              case kind
+              when :text
+                current_text = (current_text || "") + text
+              when :stem
+                formula = build_inline_formula(node)
+                next unless formula
+
+                flush.call
+                entries << [:inline_formula, formula]
+              end
+            end
+            flush.call
+            entries
+          end
+
+          def walk_cell(cell)
+            return unless cell.class.method_defined?(:each_mixed_content)
+
+            cell.each_mixed_content do |node|
+              if node.is_a?(String)
+                yield(:text, node, node)
+                next
+              end
+
+              case node.class.name&.split("::")&.last
+              when "StemInlineElement", "StemBlockElement", "FmtStemElement"
+                yield(:stem, node, nil)
+              when "AsciimathElement"
+                next
+              else
+                text = RenderedTextExtractor.text_of(node)
+                yield(:text, node, text) if text && !text.empty?
+              end
+            end
+          end
+
+          def build_inline_formula(stem_node)
+            ::Metanorma::Oiml::Sts::MathmlBuilder.inline_formula_from_stem(
+              stem_node,
+              klass: ::Sts::NisoSts::InlineFormula
+            )
           end
         end
       end

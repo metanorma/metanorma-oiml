@@ -1,37 +1,68 @@
 # frozen_string_literal: true
-
 module Metanorma
   module Oiml
     module Sts
       module Transformer
         class ListTransformer < Base
-          def transform(source_node, builder)
-            list_type = list_type_for(source_node)
-            attrs = { list_type: list_type }
-            id = source_node["id"]
-            attrs[:id] = id if id
+          def transform(source_list)
+            list_type = source_list.is_a?(Metanorma::Document::Components::Lists::OrderedList) ? "order" : "bullet"
+            items = Array(source_list.listitem).map { |li| build_list_item(li) }
+            ModelBuilder.list(list_type: list_type, list_item: items)
+          end
 
-            builder.list(**attrs) do
-              source_node.xpath("./m:li", source.namespaces).each do |li|
-                emit_list_item(li, builder)
-              end
-            end
+          def transform_def_list(source_dl)
+            items = Array(source_dl.dt).zip(Array(source_dl.dd)).map do |dt, dd|
+              build_def_item(dt, dd)
+            end.compact
+            ::Sts::IsoSts::DefList.new(def_item: items)
           end
 
           private
 
-          def emit_list_item(li_node, builder)
-            builder.list_item do
-              inline_transformer.transform_children(li_node, builder)
+          def build_list_item(li)
+            nested_lists = build_nested_lists(li)
+
+            ::Sts::IsoSts::ListItem.new do |item|
+              Array(li.paragraphs).each { |p| item.paragraph paragraph_transformer.transform(p) }
+              nested_lists.each { |l| item.list l }
             end
           end
 
-          def list_type_for(node)
-            case node.name
-            when "ul" then "bullet"
-            when "ol" then "order"
-            else "bullet"
+          # Recurses into nested <ul>/<ol> children of a list item.
+          # MN stores them as typed collection attrs on ListItem.
+          def build_nested_lists(li)
+            results = []
+            [:unordered_lists, :ordered_lists].each do |attr|
+              next unless li.class.method_defined?(attr)
+              Array(li.public_send(attr)).each do |nested|
+                results << transform(nested)
+              end
             end
+            results
+          end
+
+          def build_def_item(dt, dd)
+            term_text = RenderedTextExtractor.text_of(dt)
+            desc_text = extract_dd_text(dd)
+            return nil unless term_text || desc_text
+
+            attrs = {}
+            attrs[:term] = ::Sts::IsoSts::Term.new(content: [term_text]) if term_text && !term_text.empty?
+            if desc_text && !desc_text.empty?
+              attrs[:def] = ::Sts::IsoSts::Def.new(
+                paragraph: [::Sts::IsoSts::Paragraph.new(content: [desc_text])]
+              )
+            end
+            ::Sts::IsoSts::DefItem.new(attrs)
+          end
+
+          def extract_dd_text(dd)
+            return nil unless dd
+            ps = dd.p if dd.is_a?(Lutaml::Model::Serializable) && dd.class.method_defined?(:p)
+            ps = Array(ps)
+            return RenderedTextExtractor.text_of(dd) if ps.empty?
+            texts = ps.map { |p| RenderedTextExtractor.text_of(p) }.reject(&:empty?)
+            texts.empty? ? nil : texts.join(" ")
           end
         end
       end

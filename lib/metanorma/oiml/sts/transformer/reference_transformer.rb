@@ -1,73 +1,89 @@
 # frozen_string_literal: true
-
 module Metanorma
   module Oiml
     module Sts
       module Transformer
-        # Transforms a Metanorma `<bibitem>` into a NISO STS `<ref>` wrapping
-        # `<element-citation>`. For standards references, emits `<std>` with
-        # the required `<title>` and `<pub-date>` (per OIML X 999 Clause 6).
         class ReferenceTransformer < Base
-          def transform(source_node, builder)
-            builder.ref do
-              builder.element_citation do
-                emit_std(source_node, builder) || emit_generic(source_node, builder)
-              end
-            end
+          def transform_section(ref_section)
+            bibitems = extract_bibitems(ref_section)
+            refs = bibitems.map.with_index { |b, i| transform_bibitem(b, i + 1) }.compact
+            title_text = extract_title(ref_section)
+            ModelBuilder.ref_list(content_type: "bibliography", title: title_text, ref: refs)
+          end
+
+          def transform_bibitem(bibitem, ordinal = nil)
+            identifier = extract_docidentifier(bibitem)
+            formattedref = extract_formattedref(bibitem)
+            label_text = ordinal ? "[#{ordinal}]" : nil
+
+            content_parts = []
+            content_parts << identifier if identifier
+            content_parts << formattedref if formattedref
+
+            ModelBuilder.ref(
+              label: label_text,
+              mixed_citation: content_parts.join(", "),
+              std: build_std(identifier, formattedref)
+            )
           end
 
           private
 
-          def emit_std(source_node, builder)
-            return false unless standard_reference?(source_node)
+          # Every bibliographic <std> carries a <title> (and a pub-date
+          # when the bibitem is dated) per OIML X 999 Clause 6.3. Undated
+          # bibitems (e.g. nofetch entries) emit type="undated".
+          def build_std(identifier, formattedref)
+            return nil unless identifier || formattedref
 
-            builder.std do
-              emit_std_ident(source_node, builder)
-              emit_title(source_node, builder)
-              emit_pub_date(source_node, builder)
+            attrs = { type: "undated" }
+            if identifier
+              std_ref_attrs = { type: "undated", content: [identifier] }
+              originator = extract_originator(identifier)
+              if originator
+                std_ref_attrs[:originator] = ::Sts::NisoSts::Originator.new(
+                  content: [originator]
+                )
+              end
+              attrs[:std_ref] = [::Sts::IsoSts::StdRef.new(std_ref_attrs)]
             end
-            true
-          end
-
-          def emit_generic(source_node, builder)
-            title = source_node.at_xpath("./m:title", source.namespaces)&.text&.strip
-            builder.text(title) if title
-          end
-
-          def standard_reference?(source_node)
-            !!source_node.at_xpath(".//m:docidentifier", source.namespaces)
-          end
-
-          def emit_std_ident(source_node, builder)
-            identifier = source_node.at_xpath("./m:docidentifier", source.namespaces)&.text&.strip
-            return unless identifier
-
-            builder.std_ident do
-              builder.std_org(publisher_org(identifier))
-              builder.doc_identifier(identifier)
+            if formattedref
+              attrs[:title] = ::Sts::IsoSts::Title.new(content: [formattedref])
             end
+            ::Sts::IsoSts::Std.new(attrs)
           end
 
-          def emit_title(source_node, builder)
-            title = source_node.at_xpath("./m:title", source.namespaces)&.text&.strip
-            builder.title(title) if title
+          # Leading organization token of an identifier like
+          # "IEC/ISO Guidelines..." → "IEC"; nil otherwise.
+          def extract_originator(identifier)
+            token = identifier.to_s.split("/").first
+            token if token&.match?(/\A[A-Z]{2,}\z/)
           end
 
-          def emit_pub_date(source_node, builder)
-            year = source_node.at_xpath("./m:date[@type='published']/m:on | ./m:date/m:on", source.namespaces)&.text&.strip
-            return unless year
-
-            builder.pub_date { builder.year(year) }
+          def extract_bibitems(ref_section)
+            refs = ref_section.class.method_defined?(:references) ? ref_section.references : nil
+            return Array(refs) if refs
+            []
           end
 
-          def publisher_org(identifier)
-            case identifier
-            when /\AOIML\b/ then "OIML"
-            when /\AISO\b/  then "ISO"
-            when /\AIEC\b/  then "IEC"
-            when /\AANSI\/NISO\b/ then "NISO"
-            else "ISO"
-            end
+          def extract_title(ref_section)
+            return nil unless ref_section.class.method_defined?(:title) && ref_section.title
+            RenderedTextExtractor.text_of(ref_section.title)
+          end
+
+          def extract_docidentifier(bibitem)
+            return nil unless bibitem.class.method_defined?(:docidentifier)
+            ids = Array(bibitem.docidentifier)
+            primary = ids.find { |i| !(i.class.method_defined?(:type) && i.type) } || ids.first
+            return nil unless primary
+            val = primary.class.method_defined?(:id) ? primary.id : primary.to_s
+            val.to_s.strip
+          end
+
+          def extract_formattedref(bibitem)
+            fr = bibitem.class.method_defined?(:formatted_ref) ? bibitem.formatted_ref : nil
+            return nil unless fr
+            text = RenderedTextExtractor.text_of(fr)
+            text.empty? ? nil : text
           end
         end
       end

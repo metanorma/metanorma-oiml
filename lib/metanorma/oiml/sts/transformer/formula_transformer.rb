@@ -1,33 +1,42 @@
 # frozen_string_literal: true
-
 module Metanorma
   module Oiml
     module Sts
       module Transformer
         class FormulaTransformer < Base
-          def transform(source_node, builder)
-            id = context.id_generator.id_for(source_node, prefix: "for")
-            builder.disp_formula(id: id) do
-              emit_label(source_node, builder)
-              emit_math(source_node, builder)
-            end
+          def transform(source_formula)
+            id = source_formula.id if source_formula.class.method_defined?(:id) && source_formula.id
+            label = extract_label(source_formula)
+            math = extract_math(source_formula)
+            ModelBuilder.disp_formula(id: id, label: label, math: math)
           end
 
           private
 
-          def emit_label(source_node, builder)
-            name_node = source_node.at_xpath("./m:fmt-name/m:tab | ./m:name/m:tab", source.namespaces)
-            text = name_node&.text&.strip
-            builder.label(text) if text && !text.empty?
+          def extract_label(source_formula)
+            return nil unless source_formula.class.method_defined?(:fmt_name)
+            fmt_name = Array(source_formula.fmt_name).first
+            return nil unless fmt_name
+            RenderedTextExtractor.text_of(fmt_name)
           end
 
-          def emit_math(source_node, builder)
-            math = source_node.at_xpath(".//m:math", source.namespaces)
-            return unless math
+          # MathML passthrough: extract <math> from the formula's stem and
+          # parse into Mml::V3::Math. Delegates to MathmlBuilder so the
+          # math extraction logic lives in one place. Zero Nokogiri.
+          def extract_math(source_formula)
+            stem = first_stem(source_formula)
+            return nil unless stem
 
-            cloned = math.clone
-            cloned.add_namespace("mml", StsXml::MML_NS)
-            builder.document.root << cloned
+            ::Metanorma::Oiml::Sts::MathmlBuilder.math_from_stem(stem)
+          end
+
+          def first_stem(source_formula)
+            if source_formula.class.method_defined?(:stem)
+              Array(source_formula.stem).first
+            elsif source_formula.class.method_defined?(:formula)
+              formula_el = Array(source_formula.formula).first
+              Array(formula_el.stem).first if formula_el
+            end
           end
         end
       end

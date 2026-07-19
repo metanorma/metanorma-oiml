@@ -165,15 +165,26 @@ module Metanorma
             walk_for_terms(typed_root) do |term|
               next unless term.is_a?(Metanorma::IsoDocument::Terms::IsoTerm)
               autonum = extract_term_autonum(term)
-              cache[term.id] = autonum if autonum && !autonum.empty?
+              next unless autonum && !autonum.empty?
+              cache[term.id] = autonum if term.id
+              anchor = term.anchor if term.class.method_defined?(:anchor)
+              cache[anchor] = autonum if anchor && !cache.key?(anchor)
             end
             cache
           end
 
-          def walk_for_terms(node, &blk)
-            yield(node)
-            if node.is_a?(Metanorma::IsoDocument::Sections::IsoSections)
-              Array(node.clause).each { |c| walk_for_terms(c, &blk) }
+          def walk_for_terms(node, seen = {}, &blk)
+            return unless node.is_a?(Object) && !node.is_a?(String)
+            return if seen[node.object_id]
+            seen[node.object_id] = true
+            blk.call(node)
+            attrs = node.class.instance_variable_get(:@attributes) rescue nil
+            return unless attrs
+            attrs.each do |name, _|
+              next unless node.class.method_defined?(name)
+              val = node.public_send(name) rescue next
+              next if val.nil?
+              Array(val).each { |v| walk_for_terms(v, seen, &blk) if v.is_a?(Object) && !v.is_a?(String) && !v.is_a?(Array) }
             end
           end
 
