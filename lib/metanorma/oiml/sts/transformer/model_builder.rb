@@ -11,7 +11,7 @@ module Metanorma
 
           def standard(lang:, dtd_version: "1.2", front: nil, body: nil, back: nil)
             ::Sts::IsoSts::Standard.new(
-              xml_lang: lang,
+              lang: lang,
               dtd_version: dtd_version
             ).tap do |std|
               std.front = front if front
@@ -216,13 +216,42 @@ module Metanorma
                 )]
               end
               if doc_identifier
-                m.std_ident = ::Sts::IsoSts::StandardIdentification.new(
-                  originator: ::Sts::NisoSts::Originator.new(content: [doc_identifier])
-                )
+                m.std_ident = std_ident_for(doc_identifier)
               end
               m.permissions = [permissions] if permissions
+              if pub_date
+                m.pub_date = ::Sts::NisoSts::PubDate.new(
+                  date_type: "published", year: pub_date.to_s,
+                )
+              end
               m.custom_meta_group = custom_meta_group if custom_meta_group
             end
+          end
+
+          # <std-ident> per NISO STS (Z39.102-2022): the OIML identifier
+          # decomposed into originator + doc-type + doc-number
+          # (+ part-number). "OIML B 6-2:2024" → OIML / b / 6 / 2. The
+          # publication year is NOT repeated here — pub-date carries it.
+          # Identifiers that don't match the OIML pattern fall back to a
+          # plain originator string rather than being dropped.
+          OIML_ID_PATTERN = /\A(OIML)\s+([A-Z]+)\s+(\d+)(?:-(\d+))?(?::\d{4})?\z/.freeze
+
+          def std_ident_for(doc_identifier)
+            match = OIML_ID_PATTERN.match(doc_identifier.to_s.strip)
+            return plain_std_ident(doc_identifier) unless match
+
+            attrs = {}
+            attrs[:originator] = ::Sts::NisoSts::Originator.new(content: [match[1]])
+            attrs[:doc_type] = ::Sts::NisoSts::DocType.new(content: [match[2].downcase])
+            attrs[:doc_number] = ::Sts::NisoSts::DocNumber.new(content: [match[3]])
+            attrs[:part_number] = ::Sts::NisoSts::PartNumber.new(content: [match[4]]) if match[4]
+            ::Sts::IsoSts::StandardIdentification.new(attrs)
+          end
+
+          def plain_std_ident(doc_identifier)
+            ::Sts::IsoSts::StandardIdentification.new(
+              originator: ::Sts::NisoSts::Originator.new(content: [doc_identifier])
+            )
           end
 
           def permissions(holder: nil, year: nil)

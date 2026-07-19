@@ -99,7 +99,11 @@ module Metanorma
 
             nodes = obj.each_mixed_content.to_a
             nodes.each_with_index do |node, index|
-              next if semantic_with_mirror?(node, nodes[index + 1])
+              following = nodes[index + 1]
+              if semantic_with_mirror?(node, following)
+                emit_mirror(node, following, &block)
+                next
+              end
 
               walk_node(node, &block)
             end
@@ -107,16 +111,33 @@ module Metanorma
 
           # A semantic element (<link>, <eref>, ...) immediately followed
           # by its <semx> presentation mirror (semx@source == element@id):
-          # the semx carries the renderable form, so the semantic original
-          # is skipped — otherwise the content is emitted twice, once per
-          # representation (e.g. a citation's citeas text followed by an
-          # xref with the same visible text).
+          # the pair is emitted as ONE unit — the mirror carries the
+          # renderable form, the semantic original lends its kind
+          # (style/type) when the mirror doesn't declare one (NISO STS
+          # @ref-type maps from Metanorma's @type/@style).
           def semantic_with_mirror?(node, following)
             return false if node.is_a?(String)
             return false unless following.is_a?(Metanorma::Document::Components::Inline::SemxElement)
             return false unless following.class.method_defined?(:source) && following.source
 
             node.class.method_defined?(:id) && node.id && node.id == following.source
+          end
+
+          def emit_mirror(node, mirror, &block)
+            @mirror_style = node_style(node)
+            walk_node(mirror, &block)
+          ensure
+            @mirror_style = nil
+          end
+
+          def node_style(node)
+            %i[style type].each do |attr|
+              next unless node.class.method_defined?(attr)
+
+              val = node.public_send(attr).to_s
+              return val unless val.empty?
+            end
+            nil
           end
 
           # Walks a single node yielded by each_mixed_content. Recurses
@@ -241,6 +262,7 @@ module Metanorma
           def ref_type_for(node)
             style = node.style if node.class.method_defined?(:style)
             style = style.to_s if style
+            style = @mirror_style if (style.nil? || style.empty?) && @mirror_style
             case style
             when "clause", "section" then "sec"
             when "table" then "table"

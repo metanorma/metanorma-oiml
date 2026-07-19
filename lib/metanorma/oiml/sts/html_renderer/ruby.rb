@@ -640,11 +640,34 @@ module Metanorma
             return { title: "", docid: "" } unless meta_node
 
             { title: find_text(meta_node, ["TitleWrap", "Title"]),
-              docid: find_text(meta_node, META_ID_NAMES),
+              docid: doc_id(meta_node),
               year: find_text(meta_node, ["CopyrightYear", "PubDate", "Year"]),
               series: doc_series(meta_node),
               copyright: find_text(meta_node, ["CopyrightStatement"]),
               holder: find_text(meta_node, ["CopyrightHolder"]) }
+          end
+
+          # Display form of the document identifier, rebuilt from the
+          # decomposed <std-ident> parts ("OIML" + "x" + "999" →
+          # "OIML X 999"), dated with the copyright year
+          # ("OIML X 999:2026"). Falls back to raw text extraction when
+          # the std-ident carries no originator (legacy/other layouts).
+          def doc_id(meta_node)
+            std_ident = find_model(meta_node, "StandardIdentification")
+            return find_text(meta_node, META_ID_NAMES) unless std_ident
+
+            originator = find_text(std_ident, %w[Originator])
+            return find_text(meta_node, META_ID_NAMES) if originator.empty?
+
+            parts = [originator,
+                     find_text(std_ident, %w[DocType]).upcase,
+                     find_text(std_ident, %w[DocNumber])].reject(&:empty?)
+            id = parts.join(" ")
+            part_number = find_text(std_ident, %w[PartNumber])
+            id += "-#{part_number}" unless part_number.empty?
+            year = find_text(meta_node, %w[CopyrightYear])
+            id += ":#{year}" if !id.empty? && year.match?(/\A\d{4}\z/)
+            id
           end
 
           # The oiml-doc-series letter recorded in
