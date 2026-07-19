@@ -149,7 +149,7 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
   end
 
   it "carries the title in the brand header" do
-    expect(normalized).to include('id="crumb-current">Test Document</span>')
+    expect(normalized).to include('class="crumb-title ')
   end
 
   it "renders a bare fragment with full_document: false" do

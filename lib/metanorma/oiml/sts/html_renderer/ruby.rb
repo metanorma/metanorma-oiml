@@ -77,9 +77,15 @@ module Metanorma
                              StandardIdentification
                              DocumentIdentification].freeze
 
-          def initialize(templates_dir: nil, assets_dir: nil)
+          PUBLISHER_NAME = "International Organization of Legal Metrology"
+          PUBLISHER_ADDRESS = "Bureau International de Métrologie Légale · 11 rue Turgot, 75009 Paris, France"
+
+          def initialize(templates_dir: nil, assets_dir: nil, publisher_name: nil, publisher_address: nil, license_text: nil)
             @templates_dir = templates_dir || TEMPLATES_DIR
             @assets_dir = assets_dir || ASSETS_DIR
+            @publisher_name = publisher_name
+            @publisher_address = publisher_address
+            @license_text = license_text || "All rights reserved"
             @liquid_env = Liquid::Environment.new
             @liquid_env.file_system = Liquid::LocalFileSystem.new(@templates_dir)
             @template_cache = {}
@@ -293,7 +299,31 @@ module Metanorma
             @current_section_id = previous_section_id
           end
 
-          def ref(node) = render_element("div", render_children(node), css: "ref")
+          # A ref with a structured <std> renders label + std (std-ref
+          # and title); the plain mixed-citation is skipped to avoid
+          # repeating the same reference three times.
+          def ref(node)
+            std_node = find_model(node, "Std")
+            content = std_node ? render_node(std_node) : render_children(node)
+            render_element("div", ref_label(node) + content, css: "ref")
+          end
+
+          def ref_label(node)
+            label_node = find_model(node, "Label")
+            return "" unless label_node
+
+            render_element("span", render_inline(label_node), css: "label")
+          end
+
+          # First typed model in the tree whose demodulized class name
+          # equals +demodulized+, depth-first.
+          def find_model(node, demodulized)
+            found = nil
+            walk_models(node) do |model|
+              found ||= model if model.class.name.split("::").last == demodulized
+            end
+            found
+          end
 
           def citation(node) = render_element("span", render_inline(node), css: "citation")
 
@@ -301,7 +331,12 @@ module Metanorma
           # titles become <em>, never headings.
           def std(node)
             @in_std = true
-            render_element("span", render_inline(node), css: "std")
+            parts = []
+            ref_node = find_model(node, "StdRef")
+            parts << render_element("span", render_inline(ref_node), css: "std-ref") if ref_node
+            title_node = find_model(node, "Title")
+            parts << render_element("em", render_inline(title_node)) if title_node
+            render_element("span", parts.join, css: "std")
           ensure
             @in_std = false
           end
@@ -437,8 +472,38 @@ module Metanorma
                             "logo_dark" => logo_svg_dark,
                             "docid" => meta[:docid],
                             "toc" => toc_html,
+                            "hero" => hero_html(meta),
                             "content" => body,
+                            "footer" => footer_html(meta),
                             "js" => javascript,
+                          })
+          end
+
+          def hero_html(meta)
+            return "" if meta[:title].empty?
+
+            chips = []
+            chips << meta[:docid] unless meta[:docid].empty?
+            chips << "Series #{meta[:series]}" unless meta[:series].empty?
+            chips << meta[:year] unless meta[:year].empty?
+            chips << "EN"
+            render_liquid("_hero.html.liquid", {
+                            "eyebrow" => @publisher_name || PUBLISHER_NAME,
+                            "title" => meta[:title],
+                            "chips" => chips,
+                          })
+          end
+
+          def footer_html(meta)
+            render_liquid("_footer.html.liquid", {
+                            "copyright" => meta[:copyright],
+                            "holder" => meta[:holder],
+                            "year" => meta[:year],
+                            "docid" => meta[:docid],
+                            "series" => meta[:series],
+                            "publisher_name" => @publisher_name || PUBLISHER_NAME,
+                            "publisher_address" => @publisher_address || PUBLISHER_ADDRESS,
+                            "license" => @license_text,
                           })
           end
 
@@ -458,7 +523,37 @@ module Metanorma
             return { title: "", docid: "" } unless meta_node
 
             { title: find_text(meta_node, ["TitleWrap", "Title"]),
-              docid: find_text(meta_node, META_ID_NAMES) }
+              docid: find_text(meta_node, META_ID_NAMES),
+              year: find_text(meta_node, ["CopyrightYear", "PubDate", "Year"]),
+              series: doc_series(meta_node),
+              copyright: find_text(meta_node, ["CopyrightStatement"]),
+              holder: find_text(meta_node, ["CopyrightHolder"]) }
+          end
+
+          # The oiml-doc-series letter recorded in
+          # <custom-meta name="oiml-doc-series"> (X 999 §4).
+          def doc_series(meta_node)
+            series = ""
+            walk_models(meta_node) do |model|
+              next unless model.instance_of?(::Sts::NisoSts::CustomMeta)
+
+              name = model.class.method_defined?(:meta_name) ? model.meta_name.to_s : ""
+              value = model.class.method_defined?(:meta_value) ? model.meta_value.to_s : ""
+              series = value if name == "oiml-doc-series" && !value.empty?
+            end
+            series
+          end
+
+          # Yields every typed model in the tree, depth-first.
+          def walk_models(node, &block)
+            return unless node.is_a?(Lutaml::Model::Serializable)
+
+            yield node
+            node.class.attributes.each_value do |attr_def|
+              Array(node.public_send(attr_def.name)).compact.each do |child|
+                walk_models(child, &block) if child.is_a?(Lutaml::Model::Serializable)
+              end
+            end
           end
 
           # First meta block (iso-meta / std-meta / reg-meta / nat-meta)
