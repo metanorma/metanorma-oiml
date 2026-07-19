@@ -46,15 +46,19 @@ module Metanorma
 
           private
 
-          # Every bibliographic <std> carries a <title> (and a pub-date
-          # when the bibitem is dated) per OIML X 999 Clause 6.3. Undated
-          # bibitems (e.g. nofetch entries) emit type="undated".
+          # Every bibliographic <std> carries a <title> (OIML X 999
+          # 5.4); the publication year rides inside the <std-ref>
+          # designation, which is type="dated" when the identifier
+          # embeds a year ("…:2012", "…-2022") and "undated" otherwise
+          # (NISO STS idiom — <std> has no <pub-date> in the base tag
+          # suite).
           def build_std(identifier, formattedref)
             return nil unless identifier || formattedref
 
-            attrs = { type: "undated" }
+            type = identifier.to_s.match?(/(:\d{4}|-\d{4}\b)/) ? "dated" : "undated"
+            attrs = { type: type }
             if identifier
-              std_ref_attrs = { type: "undated", content: [identifier] }
+              std_ref_attrs = { type: type, content: [identifier] }
               originator = extract_originator(identifier)
               if originator
                 std_ref_attrs[:originator] = ::Sts::NisoSts::Originator.new(

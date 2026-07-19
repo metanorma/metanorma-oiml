@@ -32,10 +32,9 @@ RSpec.describe Metanorma::Oiml::Sts::Validator do
     xml = sts_xml(<<~X)
       <back>
         <ref-list content-type="bibliography">
-          <ref><element-citation><std>
-            <std-ident><std-org>ISO</std-org></std-ident>
-            <pub-date><year>2024</year></pub-date>
-          </std></element-citation></ref>
+          <ref><std type="dated">
+            <std-ref type="dated">ISO 123:2024</std-ref>
+          </std></ref>
         </ref-list>
       </back>
     X
@@ -43,14 +42,14 @@ RSpec.describe Metanorma::Oiml::Sts::Validator do
     expect(report.errors.map(&:rule_id)).to include("oiml-x999-std-title-and-date")
   end
 
-  it "fails when <std> lacks <pub-date>" do
+  it "fails when <std-ref> does not declare datedness" do
     xml = sts_xml(<<~X)
       <back>
         <ref-list content-type="bibliography">
-          <ref><element-citation><std>
-            <std-ident><std-org>ISO</std-org></std-ident>
+          <ref><std>
+            <std-ref>ISO 123</std-ref>
             <title>A title</title>
-          </std></element-citation></ref>
+          </std></ref>
         </ref-list>
       </back>
     X
@@ -58,15 +57,14 @@ RSpec.describe Metanorma::Oiml::Sts::Validator do
     expect(report.errors.map(&:rule_id)).to include("oiml-x999-std-title-and-date")
   end
 
-  it "passes when <std> has both <title> and <pub-date>" do
+  it "passes when <std> has <title> and a typed <std-ref>" do
     xml = sts_xml(<<~X)
       <back>
         <ref-list content-type="bibliography">
-          <ref><element-citation><std>
-            <std-ident><std-org>ISO</std-org></std-ident>
+          <ref><std type="dated">
+            <std-ref type="dated">ISO 123:2024</std-ref>
             <title>A title</title>
-            <pub-date><year>2024</year></pub-date>
-          </std></element-citation></ref>
+          </std></ref>
         </ref-list>
       </back>
     X
