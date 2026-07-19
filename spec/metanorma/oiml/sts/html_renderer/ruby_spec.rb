@@ -128,8 +128,16 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
     expect(normalized).to include("<!DOCTYPE html>")
   end
 
-  it "brands the document with the site header" do
-    expect(normalized).to include('class="site-brand"')
+  it "brands the document with the beige site nav" do
+    expect(normalized).to include('class="site-nav"')
+  end
+
+  it "includes a breadcrumb integrated with the TOC" do
+    expect(normalized).to include('class="breadcrumb"')
+  end
+
+  it "includes a light/dark theme toggle" do
+    expect(normalized).to include('id="theme-toggle"')
   end
 
   it "adds a site footer" do
@@ -137,11 +145,11 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
   end
 
   it "carries the doc id in the brand header" do
-    expect(normalized).to include('<span class="doc-id">OIML X 999</span>')
+    expect(normalized).to include('<span class="crumb-doc">OIML X 999</span>')
   end
 
   it "carries the title in the brand header" do
-    expect(normalized).to include('<span class="doc-title">Test Document</span>')
+    expect(normalized).to include('<span class="crumb-current" id="crumb-current">Test Document</span>')
   end
 
   it "renders a bare fragment with full_document: false" do

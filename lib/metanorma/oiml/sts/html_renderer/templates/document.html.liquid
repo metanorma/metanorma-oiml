@@ -9,13 +9,18 @@
 </style>
 </head>
 <body>
-<header class="site-brand">
+<header class="site-nav">
   <span class="brand-logo">{{ logo }}</span>
-  <span class="brand-text">
-    <span class="doc-id">{{ docid | escape }}</span>
-    <span class="doc-title">{{ title | escape }}</span>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <span class="crumb-doc">{{ docid | escape }}</span><span class="crumb-sep" aria-hidden="true">›</span><span class="crumb-current" id="crumb-current">{{ title | escape }}</span>
+  </nav>
+  <span class="nav-actions">
+    <button id="theme-toggle" class="nav-btn" aria-label="Toggle light and dark mode" title="Toggle light / dark mode">
+      <svg class="icon-sun" viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><line x1="8" y1="1" x2="8" y2="3"/><line x1="8" y1="13" x2="8" y2="15"/><line x1="1" y1="8" x2="3" y2="8"/><line x1="13" y1="8" x2="15" y2="8"/><line x1="3.05" y1="3.05" x2="4.46" y2="4.46"/><line x1="11.54" y1="3.05" x2="12.95" y2="4.46"/><line x1="3.05" y1="12.95" x2="4.46" y2="11.54"/><line x1="11.54" y1="12.95" x2="12.95" y2="11.54"/></svg>
+      <svg class="icon-moon" viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5 5.5 5.5 0 1 0 13.5 9.5z"/></svg>
+    </button>
+    <button id="toc-toggle" class="nav-btn toc-toggle" aria-label="Show contents" aria-expanded="false" aria-controls="toc" title="Contents">☰</button>
   </span>
-  <button id="toc-toggle" class="toc-toggle" aria-label="Show contents" aria-expanded="false" aria-controls="toc">☰</button>
 </header>
 <div class="page">
   {{ toc }}
