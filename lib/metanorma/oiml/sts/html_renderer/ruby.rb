@@ -504,7 +504,22 @@ module Metanorma
                             "publisher_name" => @publisher_name || PUBLISHER_NAME,
                             "publisher_address" => @publisher_address || PUBLISHER_ADDRESS,
                             "license" => @license_text,
+                            "version" => ::Metanorma::Oiml::Sts::VERSION,
+                            "mn_icon_light" => metanorma_icon_light,
+                            "mn_icon_dark" => metanorma_icon_dark,
                           })
+          end
+
+          # Metanorma icon (aequitate verum) in light/dark variants,
+          # from metanorma.org.
+          def metanorma_icon_light
+            @mn_icon_light ||= File.read(File.join(assets_dir, "metanorma-icon-light.svg"))
+              .sub(/\A<\?xml[^?]*\?>\s*/, "")
+          end
+
+          def metanorma_icon_dark
+            @mn_icon_dark ||= File.read(File.join(assets_dir, "metanorma-icon-dark.svg"))
+              .sub(/\A<\?xml[^?]*\?>\s*/, "")
           end
 
           # Flat TOC list with depth classes (indented via CSS); consumed
