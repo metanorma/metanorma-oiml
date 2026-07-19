@@ -52,6 +52,7 @@ module Metanorma
             "RefList" => :ref_list, "Ref" => :ref,
             "MixedCitation" => :citation, "ElementCitation" => :citation,
             "Std" => :std, "StdIdent" => :std_ident,
+            "Originator" => :originator,
             "DocIdentifier" => :doc_id, "DocIdent" => :doc_id,
             "CopyrightStatement" => :copyright,
             "Fn" => :fn, "Xref" => :xref,
@@ -82,6 +83,8 @@ module Metanorma
             @liquid_env.file_system = Liquid::LocalFileSystem.new(@templates_dir)
             @template_cache = {}
             @mapping_cache = Hash.new { |h, klass| h[klass] = build_mapping(klass) }
+            @toc = []
+            @depth = 0
           end
 
           # Render +model_or_xml+. With +full_document: true+ (default)
@@ -90,6 +93,8 @@ module Metanorma
           def render(model_or_xml, full_document: true)
             model = coerce_model(model_or_xml)
             @assemble = full_document
+            @toc = []
+            @depth = 0
             body = render_node(model)
             return body unless full_document
 
@@ -127,11 +132,64 @@ module Metanorma
 
           def main(node) = render_element("main", render_children(node))
 
-          def section(node) = render_element("section", render_children(node), id: node.id)
+          def section(node)
+            sec_id = section_id(node)
+            register_toc(node, sec_id)
+            @depth += 1
+            @current_section_id = sec_id
+            inner = render_children(node)
+            render_element("section", inner, id: sec_id)
+          ensure
+            @depth -= 1
+          end
+
+          # Sections built without an id (e.g. front-matter sections)
+          # get a slug from their title so they are linkable and can
+          # appear in the TOC.
+          def section_id(node)
+            return node.id if node.class.method_defined?(:id) && node.id
+
+            title_node = find_child(node, "Title")
+            return nil unless title_node
+
+            plain_text(title_node).gsub(/\s+/, " ").strip
+              .downcase.gsub(/[^a-z0-9]+/, "-")
+              .gsub(/\A-|-\z/, "")
+          end
+
+          # Records the section in the interactive table of contents.
+          # Apps are sections too; their titles come from the same walk.
+          def register_toc(node, sec_id)
+            title_node = find_child(node, "Title")
+            return unless sec_id && title_node
+
+            @toc << { id: sec_id, title: plain_text(title_node).gsub(/\s+/, " ").strip,
+                      depth: @depth }
+          end
+
+          # First direct child model whose demodulized class name matches.
+          def find_child(node, demodulized_name)
+            return nil unless node.class.method_defined?(:title)
+
+            title = node.title
+            return title if title && title.class.name.split("::").last == demodulized_name
+
+            nil
+          end
 
           def label(node) = render_element("span", render_inline(node), css: "label")
 
-          def title(node) = render_element("h2", render_inline(node))
+          def title(node)
+            return render_element("em", render_inline(node)) if @in_std
+
+            level = (1 + @depth).clamp(2, 4)
+            anchor = if @current_section_id
+                       %(<a class="h-anchor" href="##{@current_section_id}" aria-label="Link to this section">§</a>)
+                     else
+                       ""
+                     end
+            render_element("h#{level}", render_inline(node) + anchor)
+          end
 
           def paragraph(node) = render_element("p", render_inline(node), id: node.id)
 
@@ -189,9 +247,19 @@ module Metanorma
 
           def citation(node) = render_element("span", render_inline(node), css: "citation")
 
-          def std(node) = render_element("span", render_inline(node), css: "std-ref")
+          # <std> inside a bibliography ref: keep everything inline —
+          # titles become <em>, never headings.
+          def std(node)
+            @in_std = true
+            render_element("span", render_inline(node), css: "std")
+          ensure
+            @in_std = false
+          end
 
           def std_ident(node) = render_element("span", render_inline(node), css: "std-ident")
+
+          # <originator> inside std-ref: separated, quieter.
+          def originator(node) = render_element("span", render_inline(node), css: "originator")
 
           def doc_id(node) = render_element("span", render_inline(node), css: "doc-id")
 
@@ -317,8 +385,21 @@ module Metanorma
                             "css" => stylesheet,
                             "logo" => logo_svg,
                             "docid" => meta[:docid],
+                            "toc" => toc_html,
                             "content" => body,
+                            "js" => javascript,
                           })
+          end
+
+          # Flat TOC list with depth classes (indented via CSS); consumed
+          # by the scroll-spy script in the page.
+          def toc_html
+            return "" if @toc.empty?
+
+            items = @toc.map do |entry|
+              %(<li class="toc-d#{entry[:depth]}"><a href="##{entry[:id]}">#{escape(entry[:title])}</a></li>)
+            end.join
+            %(<nav id="toc" aria-label="Contents"><p class="toc-heading">Contents</p><ol class="toc-list">#{items}</ol></nav>)
           end
 
           def meta_info(model)
@@ -355,6 +436,12 @@ module Metanorma
           def logo_svg
             @logo_svg ||= File.read(File.join(assets_dir, "oiml-logo.svg"))
               .sub(/\A<\?xml[^?]*\?>\s*/, "")
+          end
+
+          # Page behaviour: scroll-spy TOC, mobile TOC drawer, back-to-top,
+          # heading-anchor copy. Vanilla JS, no dependencies.
+          def javascript
+            @javascript ||= File.read(File.join(assets_dir, "page.js"))
           end
 
           # --------------------------------------------------------------

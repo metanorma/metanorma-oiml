@@ -57,8 +57,24 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
     expect(html).to include('<section id="s1">')
   end
 
-  it "renders titles" do
-    expect(html).to include("<h2>First</h2>")
+  it "renders titles with an anchor link" do
+    expect(html).to include('<h2>First<a class="h-anchor" href="#s1"')
+  end
+
+  it "includes an interactive table of contents" do
+    expect(normalized).to include('<nav id="toc" aria-label="Contents">')
+  end
+
+  it "links TOC entries to sections" do
+    expect(normalized).to include('<li class="toc-d0"><a href="#s1">First</a></li>')
+  end
+
+  it "nests deeper section titles at deeper heading levels" do
+    nested = renderer.render(
+      "<standard><body><sec id=\"a\"><title>A</title><sec id=\"b\"><title>B</title><p>x</p></sec></sec></body></standard>",
+      full_document: false,
+    )
+    expect(nested).to include("<h3>B<a class=\"h-anchor\" href=\"#b\"")
   end
 
   it "renders paragraphs with inline markup and escaped text" do
@@ -76,6 +92,14 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
 
   it "renders each list item exactly once" do
     expect(html.scan("<li>").size).to eq(3)
+  end
+
+  it "renders the bibliography with inline std markup, no headings" do
+    bib = renderer.render(
+      "<standard><back><ref-list><ref><label>[1]</label><std><std-ref>Some Org Standard</std-ref><title>Full Title</title></std></ref></ref-list></back></standard>",
+      full_document: false,
+    )
+    expect(bib).not_to include("<h2>Full Title</h2>")
   end
 
   it "renders a table wrapper with a table" do
