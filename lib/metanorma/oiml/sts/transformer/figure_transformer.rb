@@ -17,16 +17,19 @@ module Metanorma
 
           private
 
+          # "Figure 1" from the presentation XML autonum attribute —
+          # same pattern as TableTransformer's label.
           def extract_label(source_fig)
-            return nil unless source_fig.class.method_defined?(:fmt_name)
-            fmt_name = Array(source_fig.fmt_name).first
-            return nil unless fmt_name
-            RenderedTextExtractor.text_of(fmt_name)
+            return nil unless source_fig.class.method_defined?(:autonum) && source_fig.autonum
+
+            "Figure #{source_fig.autonum}"
           end
 
           def extract_title(source_fig)
-            return nil unless source_fig.class.method_defined?(:title) && source_fig.title
-            RenderedTextExtractor.text_of(source_fig.title)
+            return nil unless source_fig.class.method_defined?(:name) && source_fig.name
+
+            text = RenderedTextExtractor.text_of(source_fig.name).strip
+            text.empty? ? nil : text
           end
 
           def extract_graphic(source_fig)

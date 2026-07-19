@@ -8,7 +8,24 @@ module Metanorma
             bibitems = extract_bibitems(ref_section)
             refs = bibitems.map.with_index { |b, i| transform_bibitem(b, i + 1) }.compact
             title_text = extract_title(ref_section)
-            ModelBuilder.ref_list(content_type: "bibliography", title: title_text, ref: refs)
+
+            paragraphs = intro_paragraphs(ref_section)
+            label = section_transformer.extract_autonum(ref_section)
+            if paragraphs.empty? && label.nil?
+              # Back-matter bibliography: a bare ref-list.
+              return ModelBuilder.ref_list(content_type: "bibliography", title: title_text, ref: refs)
+            end
+
+            # In-body normative references: a numbered <sec> whose intro
+            # paragraphs precede the (untitled) ref-list.
+            ref_list = ModelBuilder.ref_list(content_type: "normative-refs", title: nil, ref: refs)
+            attrs = {}
+            attrs[:id] = ref_section.id if ref_section.class.method_defined?(:id) && ref_section.id
+            attrs[:label] = ::Sts::IsoSts::Label.new(content: [label]) if label
+            attrs[:title] = ::Sts::IsoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
+            attrs[:paragraph] = paragraphs if paragraphs.any?
+            attrs[:ref_list] = [ref_list] if ref_list
+            ::Sts::IsoSts::Sec.new(attrs)
           end
 
           def transform_bibitem(bibitem, ordinal = nil)
@@ -63,6 +80,14 @@ module Metanorma
             refs = ref_section.class.method_defined?(:references) ? ref_section.references : nil
             return Array(refs) if refs
             []
+          end
+
+          # Boilerplate paragraphs of an in-body references section
+          # ("The following documents are referred to ...").
+          def intro_paragraphs(ref_section)
+            return [] unless ref_section.class.method_defined?(:p)
+
+            Array(ref_section.p).map { |p| paragraph_transformer.transform(p) }
           end
 
           def extract_title(ref_section)

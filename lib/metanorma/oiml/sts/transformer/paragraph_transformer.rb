@@ -22,7 +22,7 @@ module Metanorma
             current_text = nil
             flush_text = lambda do
               return if current_text.nil?
-              entries << [:text, current_text]
+              entries << [:text, clean_text(current_text)]
               current_text = nil
             end
 
@@ -99,22 +99,24 @@ module Metanorma
 
             nodes = obj.each_mixed_content.to_a
             nodes.each_with_index do |node, index|
-              next if semantic_link_with_mirror?(node, nodes[index + 1])
+              next if semantic_with_mirror?(node, nodes[index + 1])
 
               walk_node(node, &block)
             end
           end
 
-          # A semantic <link> immediately followed by its <semx>
-          # presentation mirror: the semx carries the renderable form,
-          # so the semantic one is skipped (otherwise every link is
-          # emitted twice, once per representation).
-          def semantic_link_with_mirror?(node, following)
-            return false unless node.is_a?(Metanorma::Document::Components::Inline::LinkElement)
+          # A semantic element (<link>, <eref>, ...) immediately followed
+          # by its <semx> presentation mirror (semx@source == element@id):
+          # the semx carries the renderable form, so the semantic original
+          # is skipped — otherwise the content is emitted twice, once per
+          # representation (e.g. a citation's citeas text followed by an
+          # xref with the same visible text).
+          def semantic_with_mirror?(node, following)
+            return false if node.is_a?(String)
             return false unless following.is_a?(Metanorma::Document::Components::Inline::SemxElement)
             return false unless following.class.method_defined?(:source) && following.source
 
-            node.class.method_defined?(:id) && node.id == following.source
+            node.class.method_defined?(:id) && node.id && node.id == following.source
           end
 
           # Walks a single node yielded by each_mixed_content. Recurses

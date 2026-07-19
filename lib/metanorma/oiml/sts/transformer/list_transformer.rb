@@ -23,9 +23,20 @@ module Metanorma
             nested_lists = build_nested_lists(li)
 
             ::Sts::IsoSts::ListItem.new do |item|
+              label = item_label(li)
+              item.label ::Sts::IsoSts::Label.new(content: [label]) if label
               Array(li.paragraphs).each { |p| item.paragraph paragraph_transformer.transform(p) }
               nested_lists.each { |l| item.list l }
             end
+          end
+
+          # The item's marker from the presentation XML (its fmt-name /
+          # autonum, e.g. "—" or "1."), nil when absent.
+          def item_label(li)
+            return nil unless li.class.method_defined?(:fmt_name) && li.fmt_name
+
+            text = RenderedTextExtractor.text_of(li.fmt_name).strip
+            text.empty? ? nil : text
           end
 
           # Recurses into nested <ul>/<ol> children of a list item.

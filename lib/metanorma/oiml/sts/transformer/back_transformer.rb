@@ -33,9 +33,10 @@ module Metanorma
 
           # Everything SectionTransformer can produce: dropping any of
           # these at the app boundary silently loses annex-level content
-          # (e.g. the Element map annex's table).
+          # (e.g. the Element map annex's table — or the annex letter
+          # label, "Annex A").
           APP_CONTENT_ATTRS = %i[
-            id title paragraph list fig table_wrap def_list disp_formula
+            id label title paragraph list fig table_wrap def_list disp_formula
             non_normative_note non_normative_example ref_list sec
           ].freeze
 

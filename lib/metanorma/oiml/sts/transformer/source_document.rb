@@ -125,10 +125,20 @@ module Metanorma
             typed_root.preface&.introduction
           end
 
+          # Top-level sections of every kind — <clause>, <terms>,
+          # <definitions>, <references> (normative references) — in
+          # document order. The XML's physical order differs (references
+          # trails the clauses); displayorder carries the intended one.
+          SECTION_COLLECTIONS = %i[clause terms definitions references].freeze
+
           def sections
             secs = typed_root.sections
             return [] unless secs
-            Array(secs.clause)
+
+            SECTION_COLLECTIONS.flat_map { |attr| Array(secs.public_send(attr)) }
+              .sort_by do |s|
+                s.class.method_defined?(:displayorder) && s.displayorder ? s.displayorder : Float::INFINITY
+              end
           end
 
           def annexes

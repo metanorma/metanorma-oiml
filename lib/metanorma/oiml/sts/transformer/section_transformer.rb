@@ -19,19 +19,24 @@ module Metanorma
               nested_clauses = Array(source_clause.clause).map { |sub| transform(sub) }.compact
             end
 
-            # Dispatch terms sections (IsoTermsSection has .term collection)
-            if source_clause.is_a?(Metanorma::IsoDocument::Sections::IsoClauseSection) && source_clause.class.method_defined?(:terms)
-              Array(source_clause.terms).each do |terms_section|
-                Array(terms_section.term).each do |term|
-                  term_sec = term_transformer.transform(term)
-                  nested_clauses << term_sec if term_sec
-                end
+            # Dispatch terms sections (a top-level <terms> carries its
+            # entries directly in .term; a clause's nested terms section
+            # appears in .terms).
+            terms_sections = []
+            terms_sections << source_clause if source_clause.class.method_defined?(:term)
+            terms_sections.concat(Array(source_clause.terms)) if source_clause.class.method_defined?(:terms)
+            terms_sections.each do |terms_section|
+              Array(terms_section.term).each do |term|
+                term_sec = term_transformer.transform(term)
+                nested_clauses << term_sec if term_sec
               end
             end
 
             attrs = {}
             attrs[:id] = id_val if id_val
             attrs[:title] = ::Sts::IsoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
+            autonum = extract_autonum(source_clause)
+            attrs[:label] = ::Sts::IsoSts::Label.new(content: [autonum]) if autonum
 
             paragraphs, lists, figs, tables, notes, examples, formulas, def_lists, sub_secs = [], [], [], [], [], [], [], [], []
             content.each do |item|
@@ -62,11 +67,47 @@ module Metanorma
             ::Sts::IsoSts::Sec.new(attrs)
           end
 
+          # Section number from the presentation XML: the autonum
+          # attribute (annexes) or the fmt-title caption-label's autonum
+          # semx ("1", "8.1"). The delim between number and title is a
+          # <tab/>, which text extraction drops, so the caption-label
+          # span must be isolated — splitting the whole fmt-title text
+          # would glue number and title together ("1Scope").
+          def extract_autonum(source_clause)
+            if source_clause.class.method_defined?(:autonum) && source_clause.autonum
+              return source_clause.autonum.to_s
+            end
+
+            title_wrapper = source_clause.class.method_defined?(:fmt_title) ? source_clause.fmt_title : nil
+            return nil unless title_wrapper
+
+            caption_label_text(title_wrapper)
+          end
+
           private
 
           def extract_title(source_clause)
             return nil unless source_clause.class.method_defined?(:title) && source_clause.title
             RenderedTextExtractor.text_of(source_clause.title)
+          end
+
+          # Text of the <span class="fmt-caption-label"> inside a
+          # fmt-title — the bare section number.
+          def caption_label_text(fmt_title)
+            return nil unless fmt_title.class.method_defined?(:each_mixed_content)
+
+            label_span = nil
+            fmt_title.each_mixed_content do |child|
+              if child.is_a?(Metanorma::Document::Components::Inline::SpanElement) &&
+                  child.class_attr == "fmt-caption-label"
+                label_span = child
+                break
+              end
+            end
+            return nil unless label_span
+
+            text = RenderedTextExtractor.text_of(label_span).strip
+            text.empty? ? nil : text
           end
         end
       end

@@ -78,10 +78,27 @@ module Metanorma
             end
             return unless self.class.walkable?(node)
 
-            node.each_mixed_content { |child| collect_node(child) }
+            collect_content_mapped_text?(node) ||
+              node.each_mixed_content { |child| collect_node(child) }
           end
 
           private
+
+          # Elements like NameWithIdElement map their whole content to a
+          # plain `text` attribute (no mixed_content), so walking yields
+          # nothing. SpanElement declares BOTH mixed_content and a text
+          # mapping — only take the attribute shortcut when there is no
+          # mixed content to walk.
+          def collect_content_mapped_text?(node)
+            return false unless node.class.method_defined?(:text)
+            return false unless node.class.method_defined?(:mixed_content?) && !node.mixed_content?
+
+            text = node.text
+            return false unless text.is_a?(String) && !text.empty?
+
+            @parts << text
+            true
+          end
 
           def collect_node(child)
             if child.is_a?(String)
