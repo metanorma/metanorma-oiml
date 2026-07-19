@@ -172,18 +172,16 @@ h2:hover .h-anchor, h3:hover .h-anchor, h4:hover .h-anchor { opacity: 1; }
 
 @utility ref {
   display: flex;
-  gap: 0.6em;
-  align-items: baseline;
   margin: 0.45rem 0;
   padding: 0.55rem 0.8rem;
   border-radius: 5px;
   background: var(--color-paper-soft);
   border: 1px solid var(--color-line);
-  & > .label {
-    flex-shrink: 0;
+  & .label {
     font-family: var(--font-mono);
     font-size: 0.85em;
     color: var(--color-ink-faint);
+    margin-right: 0.5em;
   }
   & .citation { flex: 1; }
 }
@@ -243,6 +241,26 @@ li > p:last-child { margin-bottom: 0; }
 
 ul, ol { padding-left: 1.6em; }
 li::marker { color: var(--color-accent); }
+
+/* Notes and examples carry a kind label */
+.note-label {
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.04em;
+}
+
+/* The TOC panel heading is an h2 for document structure, but must not
+   inherit the numbered-section band */
+h2.toc-heading {
+  border-left: none;
+  background: none;
+  padding: 0;
+  margin: 0 0 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+/* Reference bodies are paragraphs; the flex ref card resets their rhythm */
+.ref > .ref-body { margin: 0; flex: 1; }
 
 /* Section numbers from the source's <label>, prefixed to headings */
 .sec-label {
@@ -427,6 +445,19 @@ code {
   border-radius: 4px;
   padding: 0.12em 0.34em;
   white-space: nowrap;
+}
+
+pre {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
 }
 
 a { color: var(--color-link); text-decoration: none; }

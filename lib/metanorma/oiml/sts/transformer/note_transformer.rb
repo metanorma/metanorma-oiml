@@ -1,4 +1,7 @@
 # frozen_string_literal: true
+
+require "cgi"
+
 module Metanorma
   module Oiml
     module Sts
@@ -15,10 +18,27 @@ module Metanorma
             end
           end
 
+          # SourcecodeBlock stores its text in body.content (the bare
+          # `content` attribute is nil for parsed documents). The body's
+          # content is markup-encoded by the model's roundtrip contract;
+          # decoded_content (metanorma-document >= 0.3.1) unwraps it —
+          # with a local decode as the fallback for older releases.
           def transform_preformat(source_code)
+            text = preformat_text(source_code)
+            return nil if text.nil? || text.empty?
+
+            ::Sts::IsoSts::Preformat.new(content: [text])
+          end
+
+          def preformat_text(source_code)
+            body = source_code.body if source_code.class.method_defined?(:body)
+            if body
+              return body.decoded_content if body.respond_to?(:decoded_content)
+              return CGI.unescapeHTML(Array(body.content).join) if body.class.method_defined?(:content)
+            end
             text = source_code.content if source_code.class.method_defined?(:content)
-            text = source_code.text if text.nil? && source_code.class.method_defined?(:text)
-            ::Sts::IsoSts::Preformat.new(content: Array(text))
+            text = source_code.text if (text.nil? || text.empty?) && source_code.class.method_defined?(:text)
+            text
           end
 
           private

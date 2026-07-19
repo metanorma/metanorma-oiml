@@ -25,7 +25,7 @@ module Metanorma
             "ExampleBlock"                 => :dispatch_via_note,
             "AdmonitionBlock"              => :dispatch_via_note,
             "QuoteBlock"                   => :dispatch_via_note,
-            "SourcecodeBlock"              => :dispatch_via_note,
+            "SourcecodeBlock"              => :dispatch_via_sourcecode,
             "StandardReferencesSection"    => :dispatch_via_references,
             "BibliographySection"          => :dispatch_via_references
           }.freeze
@@ -67,7 +67,7 @@ module Metanorma
             notes: :dispatch_via_note,
             examples: :dispatch_via_note,
             admonitions: :dispatch_via_note,
-            sourcecode_blocks: :dispatch_via_note,
+            sourcecode_blocks: :dispatch_via_sourcecode,
             quote_blocks: :dispatch_via_note,
             definition_lists: :dispatch_via_dl,
             definitions: :dispatch_via_section,
@@ -94,14 +94,15 @@ module Metanorma
           end
 
           # MN's typed model attaches "block siblings" as attributes on
-          # the preceding ParagraphBlock (e.g. ParagraphBlock.note holds
-          # notes that semantically follow the paragraph). Walk those
+          # the preceding block (ParagraphBlock.note holds notes that
+          # semantically follow the paragraph; TableBlock.note holds
+          # table notes, which render right after the table). Walk those
           # sibling collections and dispatch each, preserving document
-          # order. Restricted to ParagraphBlock to avoid firing for
-          # tables/lists/etc. that have their own note sub-collections
+          # order. Restricted to ParagraphBlock and TableBlock to avoid
+          # firing for lists/etc. that have their own note sub-collections
           # with different semantics.
           def dispatch_paragraph_siblings(item, results)
-            return unless paragraph_block?(item)
+            return unless paragraph_block?(item) || table_block?(item)
 
             SIBLING_ATTRS.each do |attr, handler|
               next unless item.class.method_defined?(attr)
@@ -114,6 +115,10 @@ module Metanorma
 
           def paragraph_block?(item)
             item.is_a?(Metanorma::Document::Components::Paragraphs::ParagraphBlock)
+          end
+
+          def table_block?(item)
+            item.is_a?(Metanorma::Document::Components::Tables::TableBlock)
           end
 
           SIBLING_ATTRS = {
@@ -131,6 +136,7 @@ module Metanorma
           def dispatch_via_figure(obj);   figure_transformer.transform(obj);   end
           def dispatch_via_formula(obj);  formula_transformer.transform(obj);  end
           def dispatch_via_note(obj);     note_transformer.transform(obj);     end
+          def dispatch_via_sourcecode(obj); note_transformer.transform_preformat(obj); end
           def dispatch_via_references(obj); reference_transformer.transform_section(obj); end
         end
       end

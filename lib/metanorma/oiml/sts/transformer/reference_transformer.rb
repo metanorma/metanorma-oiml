@@ -6,12 +6,16 @@ module Metanorma
         class ReferenceTransformer < Base
           def transform_section(ref_section)
             bibitems = extract_bibitems(ref_section)
-            refs = bibitems.map.with_index { |b, i| transform_bibitem(b, i + 1) }.compact
             title_text = extract_title(ref_section)
 
             paragraphs = intro_paragraphs(ref_section)
             label = section_transformer.extract_autonum(ref_section)
-            if paragraphs.empty? && label.nil?
+            normative = paragraphs.any? || !label.nil?
+            # Bibliography entries are numbered ([1], [2], …); normative
+            # reference entries are not (ISO/Metanorma convention).
+            refs = bibitems.map.with_index { |b, i| transform_bibitem(b, normative ? nil : i + 1) }.compact
+
+            unless normative
               # Back-matter bibliography: a bare ref-list.
               return ModelBuilder.ref_list(content_type: "bibliography", title: title_text, ref: refs)
             end
@@ -58,26 +62,12 @@ module Metanorma
             type = identifier.to_s.match?(/(:\d{4}|-\d{4}\b)/) ? "dated" : "undated"
             attrs = { type: type }
             if identifier
-              std_ref_attrs = { type: type, content: [identifier] }
-              originator = extract_originator(identifier)
-              if originator
-                std_ref_attrs[:originator] = ::Sts::NisoSts::Originator.new(
-                  content: [originator]
-                )
-              end
-              attrs[:std_ref] = [::Sts::IsoSts::StdRef.new(std_ref_attrs)]
+              attrs[:std_ref] = [::Sts::IsoSts::StdRef.new(type: type, content: [identifier])]
             end
             if formattedref
               attrs[:title] = ::Sts::IsoSts::Title.new(content: [formattedref])
             end
             ::Sts::IsoSts::Std.new(attrs)
-          end
-
-          # Leading organization token of an identifier like
-          # "IEC/ISO Guidelines..." → "IEC"; nil otherwise.
-          def extract_originator(identifier)
-            token = identifier.to_s.split("/").first
-            token if token&.match?(/\A[A-Z]{2,}\z/)
           end
 
           def extract_bibitems(ref_section)

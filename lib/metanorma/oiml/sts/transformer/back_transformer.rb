@@ -37,7 +37,7 @@ module Metanorma
           # label, "Annex A").
           APP_CONTENT_ATTRS = %i[
             id label title paragraph list fig table_wrap def_list disp_formula
-            non_normative_note non_normative_example ref_list sec
+            non_normative_note non_normative_example ref_list sec preformat
           ].freeze
 
           def build_bibliography(source)

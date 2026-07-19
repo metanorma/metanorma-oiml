@@ -8,6 +8,7 @@ module Metanorma
           def transform(source_term)
             content = []
 
+            add_term_number(content, source_term)
             add_preferred_name(content, source_term)
             add_definition(content, source_term)
             add_standalone_paragraphs(content, source_term)
@@ -18,9 +19,10 @@ module Metanorma
 
             attrs = {}
             attrs[:id] = source_term.id if source_term.id
-            paragraphs, lists = partition_content(content)
+            paragraphs, lists, notes = partition_content(content)
             attrs[:paragraph] = paragraphs if paragraphs.any?
             attrs[:list] = lists if lists.any?
+            attrs[:non_normative_note] = notes if notes.any?
 
             nested = Array(source_term.term).map { |sub| transform(sub) }
             attrs[:sec] = nested if nested.any?
@@ -31,11 +33,25 @@ module Metanorma
           def partition_content(content)
             paragraphs = content.grep(::Sts::IsoSts::Paragraph)
             lists = content.grep(::Sts::IsoSts::List)
-            others = content.reject { |c| c.is_a?(::Sts::IsoSts::Paragraph) || c.is_a?(::Sts::IsoSts::List) }
-            [paragraphs + others, lists]
+            notes = content.grep(::Sts::IsoSts::NonNormativeNote)
+            others = content.reject do |c|
+              [::Sts::IsoSts::Paragraph, ::Sts::IsoSts::List,
+               ::Sts::IsoSts::NonNormativeNote].any? { |k| c.is_a?(k) }
+            end
+            [paragraphs + others, lists, notes]
           end
 
           private
+
+          # The term number ("3.1") from the term's fmt-name caption
+          # label, emitted as a leading paragraph the way Metanorma's
+          # TermNum renders it.
+          def add_term_number(content, source_term)
+            number = section_transformer.extract_autonum(source_term)
+            return unless number
+
+            content << ::Sts::IsoSts::Paragraph.new(content: [number])
+          end
 
           def add_preferred_name(content, source_term)
             para = preferred_name_paragraph(source_term)
@@ -104,8 +120,24 @@ module Metanorma
             end
           end
 
+          # Term notes become <non-normative-note> carrying their own
+          # label ("Note 1 to entry:") — plain "Note" notes leave the
+          # kind label to the renderer.
           def add_term_notes(content, source_term)
-            Array(source_term.termnote).each { |tn| add_typed_note_paragraphs(content, tn, "Note", colon: true) }
+            Array(source_term.termnote).each do |tn|
+              paragraphs = Array(tn.p).map { |p| paragraph_transformer.transform(p) }
+              next if paragraphs.empty?
+
+              attrs = { paragraph: paragraphs }
+              label = term_note_label(tn)
+              attrs[:label] = ::Sts::IsoSts::Label.new(content: [label]) if label != "Note"
+              content << ::Sts::IsoSts::NonNormativeNote.new(attrs)
+            end
+          end
+
+          def term_note_label(note_obj)
+            number = note_obj.autonum if note_obj.class.method_defined?(:autonum)
+            number && !number.to_s.empty? ? "Note #{number} to entry:" : "Note"
           end
 
           def add_term_examples(content, source_term)

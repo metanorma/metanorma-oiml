@@ -48,6 +48,7 @@ module Metanorma
             "Td" => :td, "Th" => :th,
             "Fig" => :figure, "Caption" => :caption, "Graphic" => :graphic,
             "DispFormula" => :disp_formula, "InlineFormula" => :inline_formula,
+            "Preformat" => :preformat,
             "NonNormativeNote" => :note, "NonNormativeExample" => :example,
             "DispQuote" => :quote,
             "RefList" => :ref_list, "Ref" => :ref,
@@ -181,7 +182,8 @@ module Metanorma
             previous_label = @current_label
             label_node = own_label(node)
             suppress_label(label_node) if label_node
-            @current_label = label_node ? plain_text(label_node).gsub(/\s+/, " ").strip : nil
+            raw_label = label_node ? plain_text(label_node).gsub(/\s+/, " ").strip : nil
+            @current_label = display_label(node, raw_label)
             # Unnumbered top-level sections (Copyright, Feedback,
             # Foreword, Introduction) get muted front-matter cards
             # instead of the numbered-section heading band.
@@ -234,6 +236,15 @@ module Metanorma
               .gsub(/\A-|-\z/, "")
           end
 
+          # The display form of a section label: annex letters gain the
+          # "Annex" prefix ("Annex A"), everything else renders bare.
+          def display_label(node, label_text)
+            return nil if label_text.nil? || label_text.empty?
+            return "Annex #{label_text}" if node.class.name.split("::").last == "App"
+
+            label_text
+          end
+
           # Records the section in the interactive table of contents.
           # Apps are sections too; their titles come from the same walk.
           # The entry text carries the section number ("1 Scope").
@@ -242,9 +253,9 @@ module Metanorma
             return unless sec_id && title_node
 
             label_node = own_label(node)
-            label_text = label_node ? plain_text(label_node).gsub(/\s+/, " ").strip : nil
+            label_text = display_label(node, label_node ? plain_text(label_node).gsub(/\s+/, " ").strip : nil)
             title_text = plain_text(title_node).gsub(/\s+/, " ").strip
-            title_text = "#{label_text} #{title_text}" if label_text && !label_text.empty?
+            title_text = "#{label_text} #{title_text}" if label_text
             register_toc_entry(id: sec_id, title: title_text, depth: @depth)
           end
 
@@ -373,9 +384,32 @@ module Metanorma
 
           def inline_formula(node) = render_element("span", render_inline(node), css: "formula")
 
-          def note(node) = render_element("div", render_children(node), css: "note")
+          def preformat(node) = render_element("pre", render_inline(node))
 
-          def example(node) = render_element("div", render_children(node), css: "example")
+          # Notes carrying their own label (term notes, "Note 1 to
+          # entry: …") render the label inside the first paragraph, the
+          # way Metanorma marks up term notes; plain notes get the kind
+          # label ("NOTE") ahead of the content.
+          def note(node)
+            label_node = own_label(node)
+            suppress_label(label_node) if label_node
+            inner = render_children(node)
+            if label_node
+              label_html = %(<span class="note-label">#{escape(plain_text(label_node).strip)}</span> )
+              inner = inner.sub(/<p(?:\s[^>]*)?>/, "\\0#{label_html}")
+            else
+              inner = kind_label("NOTE") + inner
+            end
+            render_element("div", inner, css: "note")
+          end
+
+          def example(node)
+            render_element("div", kind_label("EXAMPLE") + render_children(node), css: "example")
+          end
+
+          def kind_label(text)
+            %(<span class="note-label">#{text}</span> )
+          end
 
           def quote(node) = render_element("blockquote", render_children(node))
 
@@ -398,18 +432,20 @@ module Metanorma
 
           # A ref with a structured <std> renders label + std (std-ref
           # and title); the plain mixed-citation is skipped to avoid
-          # repeating the same reference three times.
+          # repeating the same reference three times. The label sits
+          # inside the body <p> — a reference reads "[1] Citation…".
           def ref(node)
             std_node = find_model(node, "Std")
-            content = std_node ? render_node(std_node) : render_children(node)
-            render_element("div", ref_label(node) + content, css: "ref")
+            content = std_node ? render_node(std_node) : render_children(node, skip: %w[label])
+            body = render_element("p", ref_label(node) + content, css: "ref-body")
+            render_element("div", body, css: "ref")
           end
 
           def ref_label(node)
             label_node = find_model(node, "Label")
             return "" unless label_node
 
-            render_element("span", render_inline(label_node), css: "label")
+            render_element("span", render_inline(label_node), css: "label") + " "
           end
 
           # First typed model in the tree whose demodulized class name
@@ -425,8 +461,8 @@ module Metanorma
           def citation(node) = render_element("span", render_inline(node), css: "citation")
 
           # <std> inside a bibliography ref: keep everything inline —
-          # titles become <em>, never headings. std-ref and title are
-          # space-joined so identifier and citation don't glue together.
+          # titles become <em>, never headings. std-ref and title join
+          # with the NISO STS citation idiom ", ".
           def std(node)
             @in_std = true
             parts = []
@@ -434,7 +470,7 @@ module Metanorma
             parts << render_element("span", render_inline(ref_node), css: "std-ref") if ref_node
             title_node = find_model(node, "Title")
             parts << render_element("em", render_inline(title_node)) if title_node
-            render_element("span", parts.join(" "), css: "std")
+            render_element("span", parts.join(", "), css: "std")
           ensure
             @in_std = false
           end
@@ -632,7 +668,7 @@ module Metanorma
             items = @toc.map do |entry|
               %(<li><a class="toc-link toc-link-d#{entry[:depth]}" href="##{entry[:id]}">#{escape(entry[:title])}</a></li>)
             end.join
-            %(<nav id="toc" class="toc-panel sticky top-[68px] self-start max-h-[calc(100vh-5rem)] overflow-y-auto py-4 pr-3 text-sm [scrollbar-width:thin]" aria-label="Contents"><p class="toc-heading m-0 mb-2 ml-4 text-xs font-bold tracking-[0.14em] uppercase text-ink-faint">Contents</p><ol class="toc-list list-none m-0 p-0">#{items}</ol></nav>)
+            %(<nav id="toc" class="toc-panel sticky top-[68px] self-start max-h-[calc(100vh-5rem)] overflow-y-auto py-4 pr-3 text-sm [scrollbar-width:thin]" aria-label="Contents"><h2 class="toc-heading m-0 mb-2 ml-4 text-xs font-bold tracking-[0.14em] uppercase text-ink-faint">Contents</h2><ol class="toc-list list-none m-0 p-0">#{items}</ol></nav>)
           end
 
           def meta_info(model)

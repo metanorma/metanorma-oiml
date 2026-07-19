@@ -38,7 +38,7 @@ module Metanorma
             autonum = extract_autonum(source_clause)
             attrs[:label] = ::Sts::IsoSts::Label.new(content: [autonum]) if autonum
 
-            paragraphs, lists, figs, tables, notes, examples, formulas, def_lists, sub_secs = [], [], [], [], [], [], [], [], []
+            paragraphs, lists, figs, tables, notes, examples, formulas, def_lists, preformats, sub_secs = [], [], [], [], [], [], [], [], [], []
             content.each do |item|
               case item
               when ::Sts::IsoSts::Paragraph then paragraphs << item
@@ -49,6 +49,7 @@ module Metanorma
               when ::Sts::IsoSts::NonNormativeExample then examples << item
               when ::Sts::IsoSts::DispFormula then formulas << item
               when ::Sts::IsoSts::DefList then def_lists << item
+              when ::Sts::IsoSts::Preformat then preformats << item
               when ::Sts::IsoSts::Sec then sub_secs << item
               end
             end
@@ -62,23 +63,28 @@ module Metanorma
             attrs[:non_normative_example] = examples if examples.any?
             attrs[:disp_formula] = formulas if formulas.any?
             attrs[:def_list] = def_lists if def_lists.any?
+            attrs[:preformat] = preformats if preformats.any?
             attrs[:sec] = nested_clauses if nested_clauses.any?
 
             ::Sts::IsoSts::Sec.new(attrs)
           end
 
           # Section number from the presentation XML: the autonum
-          # attribute (annexes) or the fmt-title caption-label's autonum
-          # semx ("1", "8.1"). The delim between number and title is a
-          # <tab/>, which text extraction drops, so the caption-label
-          # span must be isolated — splitting the whole fmt-title text
-          # would glue number and title together ("1Scope").
+          # attribute (annexes, term notes) or the fmt-title/fmt-name
+          # caption-label's autonum semx ("1", "8.1", "3.1"). The delim
+          # between number and title is a <tab/>, which text extraction
+          # drops, so the caption-label span must be isolated —
+          # splitting the whole fmt-title text would glue number and
+          # title together ("1Scope").
           def extract_autonum(source_clause)
             if source_clause.class.method_defined?(:autonum) && source_clause.autonum
               return source_clause.autonum.to_s
             end
 
-            title_wrapper = source_clause.class.method_defined?(:fmt_title) ? source_clause.fmt_title : nil
+            title_wrapper = %i[fmt_title fmt_name].filter_map do |method|
+              source_clause.public_send(method) if source_clause.class.method_defined?(method)
+            end.first
+            title_wrapper = Array(title_wrapper).first
             return nil unless title_wrapper
 
             caption_label_text(title_wrapper)
