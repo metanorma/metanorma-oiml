@@ -23,10 +23,10 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "metanorma-document", "~> 0.2.13"
+  spec.add_dependency "metanorma-document", "~> 0.3.0"
   spec.add_dependency "lutaml-model", "~> 0.8.0"
   spec.add_dependency "liquid", ">= 5.0"
-  # Nokogiri powers the XSLT variant of the STS HTML renderer
+  # Nokogiri is used by the validator and parity tooling
   spec.add_dependency "nokogiri", ">= 1.16"
   spec.add_dependency "thor", ">= 1.2"
 end

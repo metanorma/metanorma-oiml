@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+require "fileutils"
 require "tmpdir"
 
 RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
@@ -46,9 +47,10 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
     html.gsub(/\s+/, " ")
   end
 
-  it "renders the meta header with title and doc id" do
-    expect(normalized).to include('<header><span class="doc-id">OIML X 999</span>' \
-                                  '<span class="title">Test Document</span></header>')
+  it "renders the meta header with title and doc id in fragment mode" do
+    fragment = renderer.render(xml, full_document: false).gsub(/\s+/, " ")
+    expect(fragment).to include('<header><span class="doc-id">OIML X 999</span>' \
+                                '<span class="title">Test Document</span></header>')
   end
 
   it "renders sections" do
@@ -98,13 +100,38 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
     expect(source).not_to include('require "nokogiri"')
   end
 
+  it "assembles a full document by default" do
+    expect(normalized).to include("<!DOCTYPE html>")
+  end
+
+  it "brands the document with the site header" do
+    expect(normalized).to include('class="site-brand"')
+  end
+
+  it "adds a site footer" do
+    expect(normalized).to include('class="site-footer"')
+  end
+
+  it "carries the doc id in the brand header" do
+    expect(normalized).to include('<span class="doc-id">OIML X 999</span>')
+  end
+
+  it "carries the title in the brand header" do
+    expect(normalized).to include('<span class="doc-title">Test Document</span>')
+  end
+
+  it "renders a bare fragment with full_document: false" do
+    fragment = renderer.render(xml, full_document: false)
+    expect(fragment).not_to include("<!DOCTYPE html>")
+  end
+
+  it "renders through the HtmlRenderer module entry point" do
+    expect(Metanorma::Oiml::Sts::HtmlRenderer.render(xml)).to include("<!DOCTYPE html>")
+  end
+
   it "supports template overrides via templates_dir" do
     Dir.mktmpdir do |dir|
-      %w[_element.html.liquid _img.html.liquid _link.html.liquid
-         _meta_header.html.liquid].each do |t|
-        src = File.join(described_class::TEMPLATES_DIR, t)
-        File.write(File.join(dir, t), File.read(src))
-      end
+      FileUtils.cp(Dir.glob(File.join(described_class::TEMPLATES_DIR, "*.liquid")), dir)
       File.write(File.join(dir, "_element.html.liquid"),
                  "<{{ tag }} data-x=\"1\">{{ content }}</{{ tag }}>\n")
       custom = described_class.new(templates_dir: dir).render(xml)

@@ -8,30 +8,58 @@ module Metanorma
   module Oiml
     module Sts
       module HtmlRenderer
-        # Ruby fallback renderer: walks the sts-ruby typed model and emits
-        # HTML through Liquid templates. No Nokogiri, no XSLT engine —
-        # STS XML is parsed once into the typed model (sts-ruby) and the
-        # output markup lives entirely in the Liquid templates under
-        # +templates/+, which an organization can override by passing a
-        # custom +templates_dir+.
+        # STS XML → HTML renderer. Parses the input once into the sts-ruby
+        # typed model and emits HTML through Liquid templates — no DOM
+        # library, no XSLT engine.
+        #
+        # Architecture:
+        #
+        #   render
+        #     ├── coerce_model      (XML string → Sts::IsoSts::Standard)
+        #     ├── render_node       (model tree → fragment, via DISPATCH)
+        #     └── assemble_document (fragment → full page via
+        #                            templates/document.html.liquid with
+        #                            assets/sts.css and the OIML logo)
+        #
+        # Element markup lives in templates/ and is overridable per
+        # organization with Ruby.new(templates_dir:, assets_dir:) — no
+        # code changes needed.
         class Ruby
           TEMPLATES_DIR = File.expand_path("templates", __dir__)
+          ASSETS_DIR = File.expand_path("assets", __dir__)
 
           ISO = ::Sts::IsoSts
           NISO = ::Sts::NisoSts
-          TBX = ::Sts::TbxIsoTml
 
-          # Containers that render their children with no wrapper element.
-          TRANSPARENT = [ISO::Standard, ISO::Front, ISO::Back, ISO::AppGroup,
-                         ISO::Permissions, ISO::TitleWrap, ISO::DefItem,
-                         ISO::FnGroup, ISO::StyledContent, ISO::Preformat,
-                         NISO::BoxedText, NISO::EditingInstruction].freeze
+          # demodulized model class name → handler method. Anything not
+          # listed renders its children transparently (see #render_children).
+          DISPATCH = {
+            "IsoMeta" => :meta, "RegMeta" => :meta, "NatMeta" => :meta,
+            "Body" => :main,
+            "Sec" => :section, "App" => :section, "TermSec" => :section,
+            "Label" => :label,
+            "Title" => :title,
+            "Paragraph" => :paragraph,
+            "List" => :list, "ListItem" => :list_item,
+            "DefList" => :def_list, "Term" => :term, "Def" => :def_item,
+            "TableWrap" => :table_wrap, "Table" => :table,
+            "Thead" => :thead, "Tbody" => :tbody, "Tr" => :tr,
+            "Td" => :td, "Th" => :th,
+            "Fig" => :figure, "Caption" => :caption, "Graphic" => :graphic,
+            "DispFormula" => :disp_formula, "InlineFormula" => :inline_formula,
+            "NonNormativeNote" => :note, "NonNormativeExample" => :example,
+            "DispQuote" => :quote,
+            "RefList" => :ref_list, "Ref" => :ref,
+            "MixedCitation" => :citation, "ElementCitation" => :citation,
+            "Std" => :std, "StdIdent" => :std_ident,
+            "DocIdentifier" => :doc_id, "DocIdent" => :doc_id,
+            "CopyrightStatement" => :copyright,
+            "Fn" => :fn, "Xref" => :xref,
+            "ExtLink" => :ext_link, "Uri" => :ext_link,
+            "Break" => :brk, "ProcessingMeta" => :skip
+          }.freeze
 
-          META = [ISO::IsoMeta, ISO::RegMeta, ISO::NatMeta].freeze
-
-          SECTION = [ISO::Sec, ISO::App, ISO::TermSec].freeze
-
-          # Inline phrase-level elements → HTML tag.
+          # Inline phrase-level elements → HTML tag (constant-keyed).
           INLINE_TAGS = {
             ISO::Bold => "strong",
             ISO::Italic => "em",
@@ -43,18 +71,34 @@ module Metanorma
             ISO::Underline => "u",
           }.freeze
 
-          def initialize(templates_dir: nil)
+          META_ID_NAMES = %w[DocIdentifier DocIdent StdIdent
+                             StandardIdentification
+                             DocumentIdentification].freeze
+
+          def initialize(templates_dir: nil, assets_dir: nil)
             @templates_dir = templates_dir || TEMPLATES_DIR
+            @assets_dir = assets_dir || ASSETS_DIR
             @liquid_env = Liquid::Environment.new
             @liquid_env.file_system = Liquid::LocalFileSystem.new(@templates_dir)
             @template_cache = {}
+            @mapping_cache = Hash.new { |h, klass| h[klass] = build_mapping(klass) }
           end
 
-          def render(model_or_xml)
-            render_node(coerce_model(model_or_xml))
+          # Render +model_or_xml+. With +full_document: true+ (default)
+          # the fragment is assembled into a complete branded page;
+          # with +full_document: false+ the bare fragment is returned.
+          def render(model_or_xml, full_document: true)
+            model = coerce_model(model_or_xml)
+            @assemble = full_document
+            body = render_node(model)
+            return body unless full_document
+
+            assemble_document(body, model)
           end
 
           private
+
+          attr_reader :templates_dir, :assets_dir
 
           def coerce_model(input)
             return input if input.is_a?(Lutaml::Model::Serializable)
@@ -62,82 +106,147 @@ module Metanorma
             ::Sts::IsoSts::Standard.from_xml(input.to_s)
           end
 
-          # ----------------------------------------------------------------
+          # --------------------------------------------------------------
           # Dispatch
-          # ----------------------------------------------------------------
+          # --------------------------------------------------------------
 
           def render_node(node)
             case node
             when String then escape(node)
-            when *TRANSPARENT then render_children(node)
-            when *META then render_meta(node)
-            when ISO::Body then render_element("main", render_children(node))
-            when *SECTION then render_element("section", render_children(node), id: node.id)
-            when ISO::Label then render_element("span", render_inline(node), css: "label")
-            when ISO::Title then render_element("h2", render_inline(node))
-            when ISO::Paragraph then render_element("p", render_inline(node), id: node.id)
-            when ISO::List then render_list(node)
-            when ISO::ListItem then render_element("li", render_children(node))
-            when ISO::DefList then render_element("dl", render_children(node))
-            when ISO::Fig then render_element("figure", render_children(node))
-            when ISO::Caption then render_element("figcaption", render_inline(node))
-            when ISO::Graphic then render_graphic(node)
-            when ISO::DispFormula then render_element("div", render_inline(node), css: "formula")
-            when ISO::InlineFormula then render_element("span", render_inline(node), css: "formula")
-            when ISO::NonNormativeNote then render_element("div", render_children(node), css: "note")
-            when ISO::NonNormativeExample then render_element("div", render_children(node), css: "example")
-            when NISO::DispQuote then render_element("blockquote", render_children(node))
-            when ISO::ExtLink, ISO::Uri then render_link(href: node.xlink_href, text: inline_or_content(node))
             when Mml::V3::Math then node.to_xml
-            else render_by_name(node)
+            when *INLINE_TAGS.keys then render_inline_tag(node)
+            else
+              handler = DISPATCH[node.class.name.split("::").last]
+              handler ? send(handler, node) : render_children(node)
             end
           end
 
-          # Secondary dispatch on the (demodulized) model class name for
-          # the long tail of elements that map onto plain markup.
-          def render_by_name(node)
-            case node.class.name.split("::").last
-            when "TableWrap" then render_element("div", render_children(node), css: "table-wrap")
-            when "Table" then render_element("table", render_children(node))
-            when "Thead" then render_element("thead", render_children(node))
-            when "Tbody" then render_element("tbody", render_children(node))
-            when "Tr" then render_element("tr", render_children(node))
-            when "Td" then render_element("td", render_inline(node))
-            when "Th" then render_element("th", render_inline(node))
-            when "Term" then render_element("dt", render_children(node))
-            when "Def" then render_element("dd", render_children(node))
-            when "Fig" then render_element("figure", render_children(node))
-            when "Caption" then render_element("figcaption", render_children(node))
-            when "List" then render_list(node)
-            when "RefList" then render_element("div", render_children(node), css: "ref-list")
-            when "Ref" then render_element("div", render_children(node), css: "ref")
-            when "MixedCitation", "ElementCitation" then render_element("span", render_inline(node), css: "citation")
-            when "Std" then render_element("span", render_inline(node), css: "std-ref")
-            when "StdIdent" then render_element("span", render_inline(node), css: "std-ident")
-            when "DocIdentifier", "DocIdent" then render_element("span", render_inline(node), css: "doc-id")
-            when "CopyrightStatement" then render_element("span", render_inline(node), css: "copyright")
-            when "Fn" then render_element("span", render_inline(node), css: "footnote")
-            when "Xref" then render_xref(node)
-            when "Break" then "<br/>"
-            when "ProcessingMeta" then ""
-            when *INLINE_TAGS.keys.map(&:name).map { |n| n.split("::").last } then render_inline_tag(node)
-            else render_children(node)
-            end
+          # --------------------------------------------------------------
+          # Handlers
+          # --------------------------------------------------------------
+
+          def main(node) = render_element("main", render_children(node))
+
+          def section(node) = render_element("section", render_children(node), id: node.id)
+
+          def label(node) = render_element("span", render_inline(node), css: "label")
+
+          def title(node) = render_element("h2", render_inline(node))
+
+          def paragraph(node) = render_element("p", render_inline(node), id: node.id)
+
+          def list(node)
+            tag = node.list_type == "order" ? "ol" : "ul"
+            render_element(tag, render_children(node))
           end
 
-          # ----------------------------------------------------------------
-          # Walking
-          # ----------------------------------------------------------------
+          def list_item(node) = render_element("li", render_children(node))
 
-          # Ordered children of a non-mixed container, using element_order
-          # so content renders in document order. Repeated elements of a
-          # collection appear as one element_order entry PER ITEM, so
-          # collection items are consumed one entry at a time (index
-          # counter per attribute); text nodes pass through (escaped).
+          def def_list(node) = render_element("dl", render_children(node))
+
+          def term(node) = render_element("dt", render_children(node))
+
+          def def_item(node) = render_element("dd", render_children(node))
+
+          def table_wrap(node) = render_element("div", render_children(node), css: "table-wrap")
+
+          def table(node) = render_element("table", render_children(node))
+
+          def thead(node) = render_element("thead", render_children(node))
+
+          def tbody(node) = render_element("tbody", render_children(node))
+
+          def tr(node) = render_element("tr", render_children(node))
+
+          def td(node) = render_element("td", render_children(node))
+
+          def th(node) = render_element("th", render_children(node))
+
+          def figure(node) = render_element("figure", render_children(node))
+
+          def caption(node) = render_element("figcaption", render_children(node))
+
+          def graphic(node)
+            render_liquid("_img.html.liquid", {
+                            "src" => node.xlink_href.to_s,
+                            "alt" => node.alttext.to_s,
+                          })
+          end
+
+          def disp_formula(node) = render_element("div", render_inline(node), css: "formula")
+
+          def inline_formula(node) = render_element("span", render_inline(node), css: "formula")
+
+          def note(node) = render_element("div", render_children(node), css: "note")
+
+          def example(node) = render_element("div", render_children(node), css: "example")
+
+          def quote(node) = render_element("blockquote", render_children(node))
+
+          def ref_list(node) = render_element("div", render_children(node), css: "ref-list")
+
+          def ref(node) = render_element("div", render_children(node), css: "ref")
+
+          def citation(node) = render_element("span", render_inline(node), css: "citation")
+
+          def std(node) = render_element("span", render_inline(node), css: "std-ref")
+
+          def std_ident(node) = render_element("span", render_inline(node), css: "std-ident")
+
+          def doc_id(node) = render_element("span", render_inline(node), css: "doc-id")
+
+          def copyright(node) = render_element("span", render_inline(node), css: "copyright")
+
+          def fn(node) = render_element("span", render_inline(node), css: "footnote")
+
+          def ext_link(node)
+            render_link(href: node.xlink_href, text: inline_or_content(node))
+          end
+
+          def xref(node)
+            rid = node.rid.to_s
+            text = render_inline(node).strip
+            text = "[#{rid}]" if text.empty?
+
+            render_link(href: "##{rid}", text: text)
+          end
+
+          def brk(_node) = "<br/>"
+
+          def skip(_node) = ""
+
+          def meta(node)
+            return "" if @assemble
+
+            title = find_text(node, ["TitleWrap", "Title"])
+            docid = find_text(node, META_ID_NAMES)
+            return "" if title.empty? && docid.empty?
+
+            render_liquid("_meta_header.html.liquid", {
+                            "docid" => docid, "title" => title
+                          })
+          end
+
+          def render_inline_tag(node)
+            tag = INLINE_TAGS[node.class]
+            inner = render_inline(node)
+            return render_element("span", inner, css: "small-caps") if tag == "span"
+
+            render_element(tag, inner)
+          end
+
+          # --------------------------------------------------------------
+          # Walking (document-order traversal of the typed model)
+          # --------------------------------------------------------------
+
+          # Children of a non-mixed container in document order.
+          # Repeated elements of a collection appear as one element_order
+          # entry PER ITEM, so collection items are consumed one entry at
+          # a time (per-attribute index counters).
           def render_children(node)
             return render_inline(node) if mixed_model?(node)
 
-            mapping = element_attr_map(node)
+            mapping = @mapping_cache[node.class][:elements]
             indices = Hash.new(0)
             node.element_order.filter_map do |entry|
               case entry.node_type
@@ -156,20 +265,8 @@ module Metanorma
             end.join
           end
 
-          # The next unconsumed item of +attr+ on +node+: for a collection
-          # attribute, the item at the per-attribute index (advanced on
-          # each call); for a single-value attribute, the value itself.
-          def collection_item_at(node, attr, indices)
-            value = node.public_send(attr)
-            return value unless value.is_a?(Array)
-
-            item = value[indices[attr]]
-            indices[attr] += 1
-            item
-          end
-
-          # Mixed-content (inline) walk: strings and inline models in order.
-          # Non-mixed models (block containers) route to the ordered walk.
+          # Mixed-content (inline) walk; non-mixed models route back to
+          # the ordered walk.
           def render_inline(node)
             return render_children(node) unless mixed_model?(node)
 
@@ -179,94 +276,101 @@ module Metanorma
             end.join
           end
 
-          # Whether the model's XML mapping declares mixed content
-          # (interleaved text + elements), meaning each_mixed_content is
-          # the correct walk.
           def mixed_model?(node)
-            node.class.mappings_for(:xml, node.lutaml_register).mixed_content?
+            @mapping_cache[node.class][:mixed]
           end
 
-          # element name → attribute name, per model class (cached).
-          def element_attr_map(node)
-            (@attr_maps ||= {})[node.class] ||= begin
-              xml_mapping = node.class.mappings_for(:xml, node.lutaml_register)
-              map = {}
-              xml_mapping.mapping_elements_hash.each_value do |rule_or_array|
-                Array(rule_or_array).each do |rule|
-                  map[rule.name.to_s] = rule.to
-                end
-              end
-              map
+          # element name → attribute name + mixed-content flag, per model
+          # class (cached).
+          def build_mapping(klass)
+            return { elements: {}, mixed: false } unless klass.respond_to?(:mappings_for)
+
+            instance = klass.allocate
+            xml_mapping = klass.mappings_for(:xml, instance.lutaml_register)
+            elements = {}
+            xml_mapping.mapping_elements_hash.each_value do |rule_or_array|
+              Array(rule_or_array).each { |rule| elements[rule.name.to_s] = rule.to }
             end
+            { elements: elements, mixed: xml_mapping.mixed_content? }
+          rescue Lutaml::Model::Error
+            { elements: {}, mixed: false }
           end
 
-          # ----------------------------------------------------------------
-          # Element emitters (via Liquid templates)
-          # ----------------------------------------------------------------
+          def collection_item_at(node, attr, indices)
+            value = node.public_send(attr)
+            return value unless value.is_a?(Array)
 
-          def render_element(tag, content, id: nil, css: nil)
-            render_liquid("_element.html.liquid", {
-                            "tag" => tag, "id" => id,
-                            "css" => css, "content" => content
+            item = value[indices[attr]]
+            indices[attr] += 1
+            item
+          end
+
+          # --------------------------------------------------------------
+          # Document assembly (full page)
+          # --------------------------------------------------------------
+
+          def assemble_document(body, model)
+            meta = meta_info(model)
+            render_liquid("document.html.liquid", {
+                            "lang" => "en",
+                            "title" => meta[:title],
+                            "css" => stylesheet,
+                            "logo" => logo_svg,
+                            "docid" => meta[:docid],
+                            "content" => body,
                           })
           end
 
-          def render_inline_tag(node)
-            tag = INLINE_TAGS[node.class]
-            inner = render_inline(node)
-            return render_element("span", inner, css: "small-caps") if tag == "span"
+          def meta_info(model)
+            meta_node = find_meta_node(model)
+            return { title: "", docid: "" } unless meta_node
 
-            render_element(tag, inner)
+            { title: find_text(meta_node, ["TitleWrap", "Title"]),
+              docid: find_text(meta_node, META_ID_NAMES) }
           end
 
-          def render_list(node)
-            tag = node.list_type == "order" ? "ol" : "ul"
-            render_element(tag, render_children(node))
+          # First meta block (iso-meta / std-meta / reg-meta / nat-meta)
+          # found under the document front matter.
+          def find_meta_node(node)
+            name = node.class.name.split("::").last
+            return node if %w[IsoMeta StdMeta RegMeta NatMeta].include?(name)
+            return nil unless node.is_a?(Lutaml::Model::Serializable)
+
+            node.class.attributes.each_value do |attr_def|
+              value = node.public_send(attr_def.name)
+              Array(value).compact.each do |child|
+                next unless child.is_a?(Lutaml::Model::Serializable)
+
+                found = find_meta_node(child)
+                return found if found
+              end
+            end
+            nil
           end
 
-          def render_graphic(node)
-            render_liquid("_img.html.liquid", {
-                            "src" => node.xlink_href.to_s,
-                            "alt" => node.alttext.to_s,
-                          })
+          def stylesheet
+            @stylesheet ||= File.read(File.join(assets_dir, "sts.css"))
           end
 
-          def render_xref(node)
-            rid = node.rid.to_s
-            text = render_inline(node).strip
-            text = "[#{rid}]" if text.empty?
-
-            render_link(href: "##{rid}", text: text)
+          def logo_svg
+            @logo_svg ||= File.read(File.join(assets_dir, "oiml-logo.svg"))
+              .sub(/\A<\?xml[^?]*\?>\s*/, "")
           end
 
-          def render_link(href:, text:)
-            render_liquid("_link.html.liquid", {
-                            "href" => href.to_s, "text" => text
-                          })
-          end
+          # --------------------------------------------------------------
+          # Text extraction
+          # --------------------------------------------------------------
 
-          def render_meta(node)
-            title = find_text(node, ["TitleWrap", "Title"])
-            docid = find_text(node, %w[DocIdentifier DocIdent StdIdent
-                                       StandardIdentification
-                                       DocumentIdentification])
-            return "" if title.empty? && docid.empty?
-
-            render_liquid("_meta_header.html.liquid", {
-                            "docid" => docid, "title" => title
-                          })
-          end
-
-          # First non-empty plain text found under the node whose class
-          # (demodulized) is one of +names+.
+          # First non-empty plain text under the node whose demodulized
+          # class name is in +names+.
           def find_text(node, names)
             if names.include?(node.class.name.split("::").last)
               text = plain_text(node).gsub(/\s+/, " ").strip
               return text unless text.empty?
             end
 
-            node.class.attributes.each_key do |attr|
-              value = node.public_send(attr)
+            node.class.attributes.each_value do |attr_def|
+              value = node.public_send(attr_def.name)
               Array(value).compact.each do |child|
                 next unless child.is_a?(Lutaml::Model::Serializable)
 
@@ -280,22 +384,14 @@ module Metanorma
           def plain_text(node)
             return node.to_s unless node.is_a?(Lutaml::Model::Serializable)
 
-            if mixed_model?(node)
-              node.each_mixed_content.map do |child|
-                child.is_a?(String) ? child : plain_text(child)
-              end.join
-            else
-              ordered_content_parts(node).map do |child|
-                child.is_a?(String) ? child : plain_text(child)
-              end.join
-            end
+            children = mixed_model?(node) ? node.each_mixed_content.to_a : ordered_content_parts(node)
+            children.map do |child|
+              child.is_a?(String) ? child : plain_text(child)
+            end.join
           end
 
-          # Ordered content parts (text nodes AND child items) of a
-          # non-mixed container — used by plain_text so inter-element
-          # whitespace is preserved for later normalization.
           def ordered_content_parts(node)
-            mapping = element_attr_map(node)
+            mapping = @mapping_cache[node.class][:elements]
             indices = Hash.new(0)
             node.element_order.filter_map do |entry|
               if entry.node_type == :text
@@ -314,16 +410,33 @@ module Metanorma
             rendered.empty? ? node.content.to_s : rendered
           end
 
-          def escape(text)
-            CGI.escapeHTML(text.to_s)
+          # --------------------------------------------------------------
+          # Liquid emitters
+          # --------------------------------------------------------------
+
+          def render_element(tag, content, id: nil, css: nil)
+            render_liquid("_element.html.liquid", {
+                            "tag" => tag, "id" => id,
+                            "css" => css, "content" => content
+                          })
+          end
+
+          def render_link(href:, text:)
+            render_liquid("_link.html.liquid", {
+                            "href" => href.to_s, "text" => text
+                          })
           end
 
           def render_liquid(template_name, assigns)
             template = @template_cache[template_name] ||= begin
-              path = File.join(@templates_dir, template_name)
+              path = File.join(templates_dir, template_name)
               Liquid::Template.parse(File.read(path), environment: @liquid_env)
             end
             template.render(assigns)
+          end
+
+          def escape(text)
+            CGI.escapeHTML(text.to_s)
           end
         end
       end
