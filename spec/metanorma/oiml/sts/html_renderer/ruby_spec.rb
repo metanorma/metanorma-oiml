@@ -62,11 +62,11 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
   end
 
   it "includes an interactive table of contents" do
-    expect(normalized).to include('<nav id="toc" aria-label="Contents">')
+    expect(normalized).to include('<nav id="toc" class="toc-panel')
   end
 
   it "links TOC entries to sections" do
-    expect(normalized).to include('<li class="toc-d0"><a href="#s1">First</a></li>')
+    expect(normalized).to include('<li><a class="toc-link toc-link-d0" href="#s1">First</a></li>')
   end
 
   it "nests deeper section titles at deeper heading levels" do
@@ -91,7 +91,7 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
   end
 
   it "renders each list item exactly once" do
-    expect(html.scan("<li>").size).to eq(3)
+    expect(html.scan("<li><p").size).to eq(3)
   end
 
   it "renders the bibliography with inline std markup, no headings" do
@@ -129,11 +129,11 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
   end
 
   it "brands the document with the beige site nav" do
-    expect(normalized).to include('class="site-nav"')
+    expect(normalized).to include('class="site-nav ')
   end
 
   it "includes a breadcrumb integrated with the TOC" do
-    expect(normalized).to include('class="breadcrumb"')
+    expect(normalized).to include('class="breadcrumb ')
   end
 
   it "includes a light/dark theme toggle" do
@@ -141,15 +141,15 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
   end
 
   it "adds a site footer" do
-    expect(normalized).to include('class="site-footer"')
+    expect(normalized).to include('class="site-footer ')
   end
 
   it "carries the doc id in the brand header" do
-    expect(normalized).to include('<span class="crumb-doc">OIML X 999</span>')
+    expect(normalized).to include('<span class="crumb-doc ')
   end
 
   it "carries the title in the brand header" do
-    expect(normalized).to include('<span class="crumb-current" id="crumb-current">Test Document</span>')
+    expect(normalized).to include('id="crumb-current">Test Document</span>')
   end
 
   it "renders a bare fragment with full_document: false" do

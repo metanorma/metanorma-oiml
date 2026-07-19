@@ -35,10 +35,11 @@ module Metanorma
           # listed renders its children transparently (see #render_children).
           DISPATCH = {
             "IsoMeta" => :meta, "RegMeta" => :meta, "NatMeta" => :meta,
-            "Body" => :main,
+            "Body" => :children,
             "Sec" => :section, "App" => :section, "TermSec" => :section,
             "Label" => :label,
             "Title" => :title,
+            "Standard" => :standard, "Adoption" => :standard,
             "Paragraph" => :paragraph,
             "List" => :list, "ListItem" => :list_item,
             "DefList" => :def_list, "Term" => :term, "Def" => :def_item,
@@ -130,17 +131,54 @@ module Metanorma
           # Handlers
           # --------------------------------------------------------------
 
-          def main(node) = render_element("main", render_children(node))
+          def children(node) = render_children(node)
+
+          # Renders the document: front matter first, then ONE <main>
+          # wrapping body AND back matter (annexes, bibliography), so
+          # back content stays in the main flow instead of becoming
+          # grid items behind the TOC.
+          def standard(node)
+            front = document_child(node, "Front")
+            body = document_child(node, "Body")
+            back = document_child(node, "Back")
+
+            parts = []
+            parts << render_children(front) if front
+            main_content = []
+            main_content << render_children(body) if body
+            main_content << render_children(back) if back
+            parts << render_element("main", main_content.join)
+            parts.join
+          end
+
+          # First child model of +node+ whose demodulized class name
+          # equals +demodulized+, in document order.
+          def document_child(node, demodulized)
+            mapping = @mapping_cache[node.class][:elements]
+            node.element_order.each do |entry|
+              next unless entry.node_type == :element
+
+              attr = mapping[entry.name.to_s]
+              next unless attr
+
+              item = node.public_send(attr)
+              item = item.first if item.is_a?(Array)
+              return item if item && item.class.name.split("::").last == demodulized
+            end
+            nil
+          end
 
           def section(node)
             sec_id = section_id(node)
             register_toc(node, sec_id)
+            previous_section_id = @current_section_id
             @depth += 1
             @current_section_id = sec_id
             inner = render_children(node)
             render_element("section", inner, id: sec_id)
           ensure
             @depth -= 1
+            @current_section_id = previous_section_id
           end
 
           # Sections built without an id (e.g. front-matter sections)
@@ -163,8 +201,13 @@ module Metanorma
             title_node = find_child(node, "Title")
             return unless sec_id && title_node
 
-            @toc << { id: sec_id, title: plain_text(title_node).gsub(/\s+/, " ").strip,
-                      depth: @depth }
+            register_toc_entry(id: sec_id,
+                               title: plain_text(title_node).gsub(/\s+/, " ").strip,
+                               depth: @depth)
+          end
+
+          def register_toc_entry(id:, title:, depth:)
+            @toc << { id: id, title: title, depth: depth }
           end
 
           # First direct child model whose demodulized class name matches.
@@ -241,7 +284,14 @@ module Metanorma
 
           def quote(node) = render_element("blockquote", render_children(node))
 
-          def ref_list(node) = render_element("div", render_children(node), css: "ref-list")
+          def ref_list(node)
+            register_toc_entry(id: "bibliography", title: "Bibliography", depth: @depth)
+            previous_section_id = @current_section_id
+            @current_section_id = "bibliography"
+            render_element("div", render_children(node), id: "bibliography", css: "ref-list")
+          ensure
+            @current_section_id = previous_section_id
+          end
 
           def ref(node) = render_element("div", render_children(node), css: "ref")
 
@@ -383,7 +433,8 @@ module Metanorma
                             "lang" => "en",
                             "title" => meta[:title],
                             "css" => stylesheet,
-                            "logo" => logo_svg,
+                            "logo_light" => logo_svg_light,
+                            "logo_dark" => logo_svg_dark,
                             "docid" => meta[:docid],
                             "toc" => toc_html,
                             "content" => body,
@@ -397,9 +448,9 @@ module Metanorma
             return "" if @toc.empty?
 
             items = @toc.map do |entry|
-              %(<li class="toc-d#{entry[:depth]}"><a href="##{entry[:id]}">#{escape(entry[:title])}</a></li>)
+              %(<li><a class="toc-link toc-link-d#{entry[:depth]}" href="##{entry[:id]}">#{escape(entry[:title])}</a></li>)
             end.join
-            %(<nav id="toc" aria-label="Contents"><p class="toc-heading">Contents</p><ol class="toc-list">#{items}</ol></nav>)
+            %(<nav id="toc" class="toc-panel sticky top-[68px] self-start max-h-[calc(100vh-5rem)] overflow-y-auto py-4 pr-3 text-sm [scrollbar-width:thin]" aria-label="Contents"><p class="toc-heading m-0 mb-2 ml-4 text-xs font-bold tracking-[0.14em] uppercase text-ink-faint">Contents</p><ol class="toc-list list-none m-0 p-0">#{items}</ol></nav>)
           end
 
           def meta_info(model)
@@ -430,11 +481,17 @@ module Metanorma
           end
 
           def stylesheet
-            @stylesheet ||= File.read(File.join(assets_dir, "sts.css"))
+            @stylesheet ||= File.read(File.join(assets_dir, "theme.css"))
           end
 
-          def logo_svg
-            @logo_svg ||= File.read(File.join(assets_dir, "oiml-logo.svg"))
+          # Light- and dark-mode logo variants (theme picks visibility).
+          def logo_svg_light
+            @logo_svg_light ||= File.read(File.join(assets_dir, "oiml-logo.svg"))
+              .sub(/\A<\?xml[^?]*\?>\s*/, "")
+          end
+
+          def logo_svg_dark
+            @logo_svg_dark ||= File.read(File.join(assets_dir, "oiml-logo-dark.svg"))
               .sub(/\A<\?xml[^?]*\?>\s*/, "")
           end
 
