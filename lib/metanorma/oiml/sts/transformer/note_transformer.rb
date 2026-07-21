@@ -1,60 +1,100 @@
 # frozen_string_literal: true
 
+require "cgi"
+
 module Metanorma
   module Oiml
     module Sts
       module Transformer
+        # Converts MN <note> / <example> blocks (outside term entries)
+        # to STS <non-normative-note> / <non-normative-example>.
+        # Body notes carry NO label — the renderer prepends the kind
+        # label ("NOTE" / "EXAMPLE") outside the first paragraph, the
+        # way Metanorma marks up body notes ("<span class='note-label'>
+        # NOTE</span>&nbsp;<p>…"). Term entries use "Note N to entry:"
+        # via TermTransformer.
         class NoteTransformer < Base
           def transform(source_note)
-            class_name = source_note.class.name&.split("::")&.last
+            paragraphs = extract_paragraphs(source_note)
+            return nil if paragraphs.empty?
 
-            case class_name
-            when "NoteBlock"
-              ::Sts::IsoSts::NonNormativeNote.new(paragraph: build_paragraphs(source_note))
-            when "ExampleBlock"
-              ::Sts::IsoSts::NonNormativeExample.new(paragraph: build_paragraphs(source_note))
-            when "AdmonitionBlock"
-              ::Sts::IsoSts::NonNormativeNote.new(paragraph: build_paragraphs(source_note))
-            when "QuoteBlock"
-              ::Sts::NisoSts::DispQuote.new(p: build_paragraphs(source_note))
+            if example?(source_note)
+              label = example_label(source_note)
+              ModelBuilder.non_normative_example(paragraph: paragraphs, label: label)
             else
-              ::Sts::IsoSts::NonNormativeNote.new(paragraph: build_paragraphs(source_note))
+              ModelBuilder.non_normative_note(paragraph: paragraphs)
             end
           end
 
-          def transform_preformat(source_block)
-            content = extract_text(source_block)
-            ::Sts::IsoSts::Preformat.new(content: content.any? ? content : [""])
+          # MN renders body examples as "<span class='example-label'>
+          # EXAMPLE N</span>" — "Example" plus the autonum, even when
+          # the source carries no explicit name. The label ends up
+          # inside the first paragraph so parity text comparison sees
+          # it on both sides.
+          def example_label(source_example)
+            return nil unless source_example.is_a?(example_block_class)
+
+            number = source_example.autonum if source_example.class.method_defined?(:autonum)
+            number && !number.to_s.empty? ? "Example #{number}" : nil
+          end
+
+          # SourcecodeBlock stores its text in body.content (the bare
+          # `content` attribute is nil for parsed documents). The body's
+          # content is markup-encoded by the model's roundtrip contract;
+          # decoded_content (metanorma-document >= 0.3.1) unwraps it —
+          # with a local decode as the fallback for older releases.
+          def transform_preformat(source_code)
+            text = preformat_text(source_code)
+            return nil if text.nil? || text.empty?
+
+            ::Sts::IsoSts::Preformat.new(content: [text])
           end
 
           private
 
-          def build_paragraphs(source_note)
-            result = []
-            if source_note.respond_to?(:content) && source_note.content
-              Array(source_note.content).each do |p|
-                if p.is_a?(String)
-                  result << ::Sts::IsoSts::Paragraph.new(content: [p])
-                else
-                  result << paragraph_transformer.transform(p)
-                end
-              end
-            end
-            if source_note.respond_to?(:paragraphs)
-              Array(source_note.paragraphs).each { |p| result << paragraph_transformer.transform(p) }
-            end
-            result
+          def example?(source_note)
+            source_note.is_a?(example_block_class)
           end
 
-          def extract_text(source_block)
-            %i[text content name].each do |attr|
-              next unless source_block.respond_to?(attr)
-              val = source_block.public_send(attr)
-              next if val.nil?
-              strs = Array(val).map(&:to_s).reject(&:empty?)
-              return strs if strs.any?
+          def extract_paragraphs(source_note)
+            case source_note
+            when example_block_class
+              Array(source_note.paragraphs).map { |p| paragraph_transformer.transform(p) }
+            when note_block_class
+              Array(source_note.content)
+                .select { |p| p.is_a?(paragraph_block_class) }
+                .map { |p| paragraph_transformer.transform(p) }
+            else
+              []
             end
-            []
+          end
+
+          def preformat_text(source_code)
+            return unless source_code.is_a?(sourcecode_block_class)
+
+            body = source_code.body
+            return source_code.text unless body
+
+            content = body.content if body.is_a?(Lutaml::Model::Serializable)
+            return CGI.unescapeHTML(Array(content).join) if content && !content.to_s.empty?
+
+            source_code.text
+          end
+
+          def note_block_class
+            Metanorma::Document::Components::Blocks::NoteBlock
+          end
+
+          def example_block_class
+            Metanorma::Document::Components::AncillaryBlocks::ExampleBlock
+          end
+
+          def sourcecode_block_class
+            Metanorma::Document::Components::AncillaryBlocks::SourcecodeBlock
+          end
+
+          def paragraph_block_class
+            Metanorma::Document::Components::Paragraphs::ParagraphBlock
           end
         end
       end

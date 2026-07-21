@@ -11,21 +11,27 @@ module Metanorma
         class Report
           attr_reader :missing_headings, :missing_paragraphs,
                       :missing_table_cells, :missing_list_items,
-                      :missing_images, :word_coverage_percent,
-                      :paragraph_coverage_percent
+                      :missing_images, :missing_notes,
+                      :word_coverage_percent, :paragraph_coverage_percent
 
           def initialize(mn_html:, sts_html:)
             @mn_html = Normaliser.strip_chrome(mn_html)
-            @sts_html = sts_html
+            # The STS side gets a lighter strip: its own heading anchors
+            # (.h-anchor) and non-content elements. The TOC/nav/footer
+            # stay — the MN side keeps its equivalents too, and removing
+            # them on one side only would manufacture mismatches.
+            @sts_html = Normaliser.strip_chrome(sts_html, selectors: STS_CHROME_SELECTORS)
             compute_missing_sets
             compute_coverage
           end
+
+          STS_CHROME_SELECTORS = %w[script style head .h-anchor .li-label].freeze
 
           def pass?
             [
               @missing_headings, @missing_paragraphs,
               @missing_table_cells, @missing_list_items,
-              @missing_images
+              @missing_images, @missing_notes
             ].all?(&:empty?)
           end
 
@@ -37,6 +43,7 @@ module Metanorma
               missing_table_cells: @missing_table_cells.to_a,
               missing_list_items: @missing_list_items.to_a,
               missing_images: @missing_images.to_a,
+              missing_notes: @missing_notes.to_a,
               word_coverage_percent: @word_coverage_percent,
               paragraph_coverage_percent: @paragraph_coverage_percent
             }
@@ -53,6 +60,7 @@ module Metanorma
             @missing_table_cells = mn[:table_cells] - sts[:table_cells]
             @missing_list_items = mn[:list_items] - sts[:list_items]
             @missing_images = mn[:images] - sts[:images]
+            @missing_notes = mn[:notes] - sts[:notes]
           end
 
           def extract_elements(html)
@@ -61,10 +69,17 @@ module Metanorma
               headings: extract_set(doc, "//h1 | //h2 | //h3 | //h4 | //h5 | //h6",
                                     method(:heading_normalised)),
               paragraphs: extract_set(doc, "//p", method(:paragraph_normalised)),
-              table_cells: extract_set(doc, "//td | //th",
+              # Cells that only carry a table note (class table-notes)
+              # compare in the notes set, not here.
+              table_cells: extract_set(doc, "//td[not(contains(@class,'table-notes'))] | //th",
                                        method(:Normaliser_paragraph)),
-              list_items: extract_set(doc, "//li", method(:Normaliser_paragraph)),
-              images: doc.xpath("//img/@src").map(&:value).to_set
+              list_items: extract_set(doc, "//li", method(:list_item_normalised)),
+              images: doc.xpath("//img/@src").map(&:value).to_set,
+              # Note bodies wherever they live (section flow or tfoot
+              # table-notes cells); the kind label is included by both
+              # renderers ("NOTE …").
+              notes: extract_set(doc, "//div[contains(@class,'note')] | //td[contains(@class,'table-notes')]",
+                                 method(:Normaliser_paragraph))
             }
           end
 
@@ -80,6 +95,10 @@ module Metanorma
 
           def paragraph_normalised(text)
             Normaliser.paragraph_text(text)
+          end
+
+          def list_item_normalised(text)
+            Normaliser.list_item_text(text)
           end
 
           def Normaliser_paragraph(text)

@@ -28,8 +28,7 @@ sts_path = out_dir + "r060-1.xml"
 html_path = out_dir + "r060-1.html"
 sts_path.write(sts_xml)
 
-renderer = Metanorma::Oiml::Sts::HtmlRenderer::Xslt.new
-html = renderer.render(sts_xml)
+html = Metanorma::Oiml::Sts::HtmlRenderer.render(sts_xml)
 html_path.write(html)
 
 puts "=== Wrote STS to #{sts_path} ==="

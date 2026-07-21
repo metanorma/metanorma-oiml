@@ -1,115 +1,101 @@
 # frozen_string_literal: true
 
-require "plurimath"
+# MathML passthrough helper.
+#
+# Design note: previously this module extracted plain text from MathML via
+# regex symbol rules, subscript/superscript rewriting, and asciimath
+# conversion. That approach was wrong — mnconvert (the production
+# Metanorma→STS converter) copies MathML verbatim into <inline-formula>.
+# We do the same via Mml::V3::Math.from_xml + Sts::IsoSts::InlineFormula.
+#
+# The text-extraction methods (asciimath_to_plain_text, mathml_to_plain_text,
+# apply_symbol_rules, apply_subscript_rules, apply_superscript_rules) were
+# removed. No code should reach back into this module for math rendering —
+# inline/dispatched formulas pass MathML through structurally.
+module Metanorma
+  module Oiml
+    module Sts
+      module MathmlBuilder
+        module_function
 
-module Metanorma::Oiml::Sts
-  # Converts asciimath strings to MathML fragments using Plurimath.
-  # Returns the inner MathML (without the wrapping <math> element) so
-  # it can be embedded inside <inline-formula> or <disp-formula>.
-  module MathmlBuilder
-    module_function
+        MATHML_NS = "http://www.w3.org/1998/Math/MathML"
 
-    def mathml_for(asciimath_text)
-      return nil if asciimath_text.nil? || asciimath_text.strip.empty?
+        def wrap_math_content(content)
+          "<math xmlns='#{MATHML_NS}'>#{content}</math>"
+        end
 
-      formula = Plurimath::Math.parse(asciimath_text, :asciimath)
-      full_mathml = formula.to_mathml.to_s
-      strip_math_wrapper(full_mathml)
-    rescue Parslet::ParseFailed, StandardError
-      nil
-    end
+        # The Math model class nominally paired with a formula wrapper
+        # class: NisoSts formulas take Sts::TbxIsoTml::Math, everything
+        # else (IsoSts, bare Mml) takes Mml::V3::Math. Note
+        # inline_formula_from_stem deliberately always uses Mml::V3::Math
+        # even for NisoSts targets — the mml gem preserves all MathML
+        # elements where TbxIsoTml::Math drops <mstyle> children.
+        def math_klass_for(formula_klass)
+          if formula_klass.to_s.include?("NisoSts")
+            ::Sts::TbxIsoTml::Math
+          else
+            Mml::V3::Math
+          end
+        end
 
-    def strip_math_wrapper(mathml)
-      mathml
-        .sub(%r{\A\s*<math[^>]*>\s*}m, "")
-        .sub(%r{\s*</math>\s*\z}m, "")
-        .strip
-    end
+        # Builds a math model instance from a stem-bearing typed model node.
+        # Handles StemInlineElement (.math), StemBlockElement (.math),
+        # and FmtStemElement (.semx[].math). Returns nil when the node
+        # carries no parseable MathML — callers should silently drop
+        # the formula in that case (mnconvert's behavior).
+        #
+        # `klass:` selects which typed Math model to instantiate.
+        # Defaults to Mml::V3::Math (used by Sts::IsoSts::* models).
+        # Pass ::Sts::TbxIsoTml::Math when targeting Sts::NisoSts::*
+        # models (e.g. Sts::TbxIsoTml::Td cells).
+        def math_from_stem(stem_node, klass: Mml::V3::Math)
+          math_el = first_math_element(stem_node)
+          return nil unless math_el
 
-    def asciimath_to_plain_text(asciimath)
-      return "" if asciimath.nil?
+          # The stem's `math` attribute already carries a typed MML model
+          # (SemanticMathElement inherits Mml::V3::Math). Passing it
+          # straight through avoids the earlier stringify-and-reparse
+          # roundtrip — which depended on `math_el.content` and broke
+          # when the typed model changed shape.
+          return math_el if math_el.is_a?(klass)
 
-      text = asciimath.to_s
-      text = apply_subscript_rules(text)
-      text = apply_superscript_rules(text)
-      text = apply_symbol_rules(text)
-      text = text.gsub(/"/, "").gsub(/\s+/, " ").strip
-      text
-    end
+          # Fallback for any future stem shape that isn't already an
+          # Mml::V3::Math subclass: build from its serialized XML.
+          string = math_el.to_s
+          return nil if string.empty?
 
-    def apply_subscript_rules(text)
-      text.gsub(/(\w)_\{"([^"]+)"\}/, '\1 \2')
-          .gsub(/(\w)_\{([^}]+)\}/, '\1 \2')
-          .gsub(/(\w)_\(([^)]+)\)/, '\1 \2')
-          .gsub(/(\w)_(\w)/, '\1 \2')
-    end
+          klass.from_xml(wrap_math_content(string))
+        rescue StandardError
+          nil
+        end
 
-    def apply_superscript_rules(text)
-      text.gsub(/(\w)\^\{"([^"]+)"\}/, '\1\2')
-          .gsub(/(\w)\^\{([^}]+)\}/, '\1\2')
-          .gsub(/(\w)\^\(([^)]+)\)/, '\1\2')
-          .gsub(/(\w)\^(\w)/, '\1\2')
-    end
+        # Wraps the stem's MathML in an InlineFormula for
+        # use inside paragraphs and table cells. Returns nil if the
+        # stem carries no parseable MathML.
+        #
+        # Always uses Mml::V3::Math — the mml gem preserves all
+        # MathML elements (mtext, mrow, msub, etc.) during roundtrip,
+        # unlike Sts::TbxIsoTml::Math which drops elements inside
+        # <mstyle>.
+        def inline_formula_from_stem(stem_node, klass: ::Sts::IsoSts::InlineFormula)
+          math = math_from_stem(stem_node, klass: Mml::V3::Math)
+          return nil unless math
 
-    def apply_symbol_rules(text)
-      text.gsub(/\bcdot\b/, "·")
-          .gsub(/\btimes\b/, "×")
-          .gsub(/\ble\b/, "≤")
-          .gsub(/\bge\b/, "≥")
-          .gsub(/\bne\b/, "≠")
-          .gsub(/\bapprox\b/, "≈")
-          # Two-char ASCII operators → Unicode. Order matters: match
-          # longer sequences (<=, >=, !=, =>) before single chars (-, =).
-          .gsub(/<=/, "≤")
-          .gsub(/>=/, "≥")
-          .gsub(/!=/, "≠")
-          .gsub(/=>/, "⇒")
-          .gsub(/<->/, "↔")
-          .gsub(/->/, "→")
-          .gsub(/<-/, "←")
-          .gsub(/\bsqrt\b/, "√")
-          .gsub(/\binfty\b/, "∞")
-          .gsub(/\bsum\b/, "∑")
-          .gsub(/\bprod\b/, "∏")
-          .gsub(/\bint\b/, "∫")
-    end
+          klass.new(math: math)
+        end
 
-    # Walks a MathML XML string and extracts visible text, preserving
-    # the original number formatting (decimal commas, thousands
-    # separators) that the semantic asciimath form loses.
-    #
-    # Operator conversions follow the asciimath rules above.
-    def mathml_to_plain_text(mathml_xml)
-      return "" if mathml_xml.nil? || mathml_xml.to_s.strip.empty?
-
-      text = extract_mathml_text(mathml_xml.to_s)
-      text = text.gsub(/\s+/, " ").strip
-      apply_symbol_rules(text)
-    end
-
-    # Extracts text content from <mi>, <mn>, <mo>, <mtext>, and <ms> elements
-    # within MathML. Joins adjacent elements with spaces. Preserves the
-    # original formatting (e.g. <mn>0,1</mn> → "0,1" with decimal comma).
-    def extract_mathml_text(xml)
-      # Strip XML comments and processing instructions
-      cleaned = xml.gsub(/<!--.*?-->/m, "").gsub(/<\?.*?\?>/m, "")
-      # Extract text content from math elements, joining with spaces
-      # between siblings. Removes element tags but keeps their text.
-      parts = []
-      scanner = StringScanner.new(cleaned)
-      until scanner.eos?
-        if scanner.scan(/<\/?[a-zA-Z:][^>]*>/m)
-          # Tag — insert a separator between siblings at element boundaries
-          parts << " " if scanner.matched =~ /\A<\/|\A<(?!mstyle|mrow|mfrac|mstyle|msub|msup|msubsup|munder|mover)\b/
-        else
-          text = scanner.scan(/[^<]+/)
-          break unless text
-          parts << text
+        # SemanticMathElement is a subclass of Mml::V3::Math — already
+        # a fully-typed Math model. The earlier stringify/re-parse path
+        # broke because SemanticMathElement doesn't expose a `.content`
+        # accessor at the Lutaml level.
+        def first_math_element(stem_node)
+          if stem_node.is_a?(Metanorma::Document::Components::Inline::FmtStemElement)
+            Array(stem_node.semx).flat_map { |semx| Array(semx.math) }.first
+          elsif stem_node.class.method_defined?(:math)
+            Array(stem_node.math).first
+          end
         end
       end
-      parts.join
-    rescue StandardError
-      ""
     end
   end
 end
