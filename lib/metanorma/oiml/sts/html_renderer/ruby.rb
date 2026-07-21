@@ -114,31 +114,12 @@ module Metanorma
 
           attr_reader :templates_dir, :assets_dir
 
-          # Placeholder used to shield "&lt;" entities from lutaml-model's
-          # mixed_content parser, which drops "&lt;" inside <mo> elements
-          # when parsing a full STS document (small fragments parse
-          # correctly). The Unicode private-use character U+E000 is a
-          # valid XML character that lutaml-model preserves verbatim
-          # through from_xml → to_xml roundtrips, and CGI.escapeHTML
-          # leaves it untouched.
-          LT_SENTINEL = ""
-
+          # Accept either a parsed model or a raw XML string; the
+          # latter is parsed via the sts-ruby typed model.
           def coerce_model(input)
             return input if input.is_a?(Lutaml::Model::Serializable)
 
-            encoded = shield_lt_entities(input.to_s)
-            ::Sts::IsoSts::Standard.from_xml(encoded)
-          end
-
-          # Replace "<mo>&lt;</mo>" with "<mo>{LT_SENTINEL}</mo>" so the
-          # less-than content survives the parse roundtrip; the renderer
-          # restores it via #restore_lt_entities during math emission.
-          def shield_lt_entities(xml)
-            xml.gsub(/(<(?:mml:)?mo>)&lt;(<\/(?:mml:)?mo>)/, "\\1#{LT_SENTINEL}\\2")
-          end
-
-          def restore_lt_entities(html)
-            html.gsub(LT_SENTINEL, "&lt;")
+            ::Sts::IsoSts::Standard.from_xml(input.to_s)
           end
 
           # --------------------------------------------------------------
@@ -160,14 +141,13 @@ module Metanorma
           # element spacing; MN HTML uses bare element names with
           # newlines between them. Strip the prefix and add newlines
           # so Nokogiri's text extraction produces the same whitespace
-          # between MathML leaf elements. The LT_SENTINEL placed by
-          # coerce_model is restored to "&lt;" here.
+          # between MathML leaf elements.
           def mathml_to_html(node)
-            restore_lt_entities(node.to_xml.to_s
+            node.to_xml.to_s
               .gsub(/<(\/?)mml:/, '<\1')
               .gsub(/\s+xmlns:mml="[^"]*"/, "")
               .gsub(/\s+xmlns:xlink="[^"]*"/, "")
-              .gsub(/></, ">\n<"))
+              .gsub(/></, ">\n<")
           end
 
           # --------------------------------------------------------------
