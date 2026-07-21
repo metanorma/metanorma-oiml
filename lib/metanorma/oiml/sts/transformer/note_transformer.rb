@@ -6,6 +6,13 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
+        # Converts MN <note> / <example> blocks (outside term entries)
+        # to STS <non-normative-note> / <non-normative-example>.
+        # Body notes carry NO label — the renderer prepends the kind
+        # label ("NOTE" / "EXAMPLE") outside the first paragraph, the
+        # way Metanorma marks up body notes ("<span class='note-label'>
+        # NOTE</span>&nbsp;<p>…"). Term entries use "Note N to entry:"
+        # via TermTransformer.
         class NoteTransformer < Base
           def transform(source_note)
             paragraphs = extract_paragraphs(source_note)
@@ -30,38 +37,51 @@ module Metanorma
             ::Sts::IsoSts::Preformat.new(content: [text])
           end
 
-          def preformat_text(source_code)
-            body = source_code.body if source_code.class.method_defined?(:body)
-            if body
-              return body.decoded_content if body.respond_to?(:decoded_content)
-              return CGI.unescapeHTML(Array(body.content).join) if body.class.method_defined?(:content)
-            end
-            text = source_code.content if source_code.class.method_defined?(:content)
-            text = source_code.text if (text.nil? || text.empty?) && source_code.class.method_defined?(:text)
-            text
-          end
-
           private
 
-          def extract_paragraphs(source_note)
-            if source_note.class.method_defined?(:paragraphs)
-              ps = Array(source_note.paragraphs)
-            elsif source_note.class.method_defined?(:content)
-              ps = Array(source_note.content).select { |p| p.is_a?(Metanorma::Document::Components::Paragraphs::ParagraphBlock) }
-            else
-              ps = []
-            end
-            ps.map { |p| paragraph_transformer.transform(p) }
-          end
-
-          def note_type(source_note)
-            source_note.class.name.split("::").last
-          end
-
-          # Returns :example for ExampleBlock, :note for everything else.
-          # Used to choose between NonNormativeExample and NonNormativeNote.
           def example?(source_note)
-            note_type(source_note) == "ExampleBlock"
+            source_note.is_a?(example_block_class)
+          end
+
+          def extract_paragraphs(source_note)
+            case source_note
+            when example_block_class
+              Array(source_note.paragraphs).map { |p| paragraph_transformer.transform(p) }
+            when note_block_class
+              Array(source_note.content)
+                .select { |p| p.is_a?(paragraph_block_class) }
+                .map { |p| paragraph_transformer.transform(p) }
+            else
+              []
+            end
+          end
+
+          def preformat_text(source_code)
+            return unless source_code.is_a?(sourcecode_block_class)
+
+            body = source_code.body
+            return source_code.text unless body
+
+            content = body.content if body.is_a?(Lutaml::Model::Serializable)
+            return CGI.unescapeHTML(Array(content).join) if content && !content.to_s.empty?
+
+            source_code.text
+          end
+
+          def note_block_class
+            Metanorma::Document::Components::Blocks::NoteBlock
+          end
+
+          def example_block_class
+            Metanorma::Document::Components::AncillaryBlocks::ExampleBlock
+          end
+
+          def sourcecode_block_class
+            Metanorma::Document::Components::AncillaryBlocks::SourcecodeBlock
+          end
+
+          def paragraph_block_class
+            Metanorma::Document::Components::Paragraphs::ParagraphBlock
           end
         end
       end

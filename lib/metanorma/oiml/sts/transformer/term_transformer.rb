@@ -43,14 +43,19 @@ module Metanorma
 
           private
 
-          # The term number ("3.1") from the term's fmt-name caption
-          # label, emitted as a leading paragraph the way Metanorma's
-          # TermNum renders it.
+          # The term number ("3.1") as a leading paragraph — the way
+          # Metanorma renders TermNum ("<p class='term-number'>3.1</p>",
+          # isodoc has used p.TermNum since ever; no Metanorma renderer
+          # emits it as a heading).
           def add_term_number(content, source_term)
-            number = section_transformer.extract_autonum(source_term)
+            number = extract_term_number(source_term)
             return unless number
 
             content << ::Sts::IsoSts::Paragraph.new(content: [number])
+          end
+
+          def extract_term_number(source_term)
+            section_transformer.extract_autonum(source_term)
           end
 
           def add_preferred_name(content, source_term)
@@ -122,19 +127,28 @@ module Metanorma
 
           # Term notes become <non-normative-note> carrying their own
           # label ("Note 1 to entry:") — plain "Note" notes leave the
-          # kind label to the renderer.
+          # kind label to the renderer. Nested <ul>/<ol> inside the
+          # termnote become sibling <list> children of the note so the
+          # renderer emits them after the paragraphs.
           def add_term_notes(content, source_term)
             Array(source_term.termnote).each do |tn|
               paragraphs = Array(tn.p).map { |p| paragraph_transformer.transform(p) }
-              next if paragraphs.empty?
+              lists = Array(tn.ul).map { |ul| list_transformer.transform(ul) } +
+                      Array(tn.ol).map { |ol| list_transformer.transform(ol) }
+              next if paragraphs.empty? && lists.empty?
 
               attrs = { paragraph: paragraphs }
+              attrs[:list] = lists if lists.any?
               label = term_note_label(tn)
-              attrs[:label] = ::Sts::IsoSts::Label.new(content: [label]) if label != "Note"
+              attrs[:label] = ::Sts::IsoSts::Label.new(content: [label]) if label
               content << ::Sts::IsoSts::NonNormativeNote.new(attrs)
             end
           end
 
+          # MN renders term notes "<span class='term-note-label'>
+          # Note 1 to entry: </span>" (numbered, "to entry:", label
+          # inside the note paragraph) — numbered when the termnote
+          # carries an autonum, plain "Note" otherwise.
           def term_note_label(note_obj)
             number = note_obj.autonum if note_obj.class.method_defined?(:autonum)
             number && !number.to_s.empty? ? "Note #{number} to entry:" : "Note"
