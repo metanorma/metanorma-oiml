@@ -10,18 +10,19 @@ module Metanorma
             body_model = build_body(source)
             back_model = build_back(source)
 
-            ModelBuilder.standard(
+            std = ModelBuilder.standard(
               lang: context.language,
               dtd_version: "1.2",
               front: front_model,
               body: body_model,
               back: back_model
             )
+            std
           end
 
           def transform_to_xml(source)
-            standard = transform(source)
-            xml = standard.to_xml
+            std = transform(source)
+            xml = std.to_xml
             inject_namespaces(xml)
               .then { |x| inject_processing_meta(x) }
               .then { |x| fix_lang_attribute(x) }
@@ -30,8 +31,8 @@ module Metanorma
           private
 
           def build_front(source)
-            return nil unless source.front? || source.has_metadata?
-            FrontTransformer.new(context).transform(source)
+            return nil unless source.has_metadata?
+            front_transformer.transform(source)
           end
 
           def build_body(source)
@@ -45,19 +46,17 @@ module Metanorma
 
           def inject_namespaces(xml)
             return xml if xml.include?("xmlns:xlink")
-
             xml.sub("<standard", '<standard xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"')
           end
 
           def inject_processing_meta(xml)
             return xml if xml.include?("<processing-meta")
-
             meta = '<processing-meta tagset-family="sts" base-tagset="interchange" table-model="xhtml" mathml="MathML 3.0" terminology-model="tbx"/>'
             xml.sub(/(<standard[^>]*>)/, "\\1\n  #{meta}")
           end
 
           def fix_lang_attribute(xml)
-            xml.gsub(/\slang="([a-z-]+)"/, ' xml:lang="\1"')
+            xml.gsub(/\slang="([a-z-]+)"/, ' xml:lang="\\1"')
           end
         end
       end

@@ -13,11 +13,11 @@ abort "Input not found: #{PRES_XML}" unless PRES_XML.exist?
 abort "MN HTML not found: #{MN_HTML}" unless MN_HTML.exist?
 
 sts_xml = Metanorma::Oiml::Sts.convert(PRES_XML.read)
-sts_html_ruby = Metanorma::Oiml::Sts::HtmlRenderer::Xslt.new.render(sts_xml)
+sts_html_ruby = Metanorma::Oiml::Sts::HtmlRenderer.render(sts_xml)
 
 # Try XSLT renderer
 begin
-  sts_html_xslt = Metanorma::Oiml::Sts::HtmlRenderer::Xslt.new.render(sts_xml)
+  sts_html_xslt = Metanorma::Oiml::Sts::HtmlRenderer.render(sts_xml)
 rescue StandardError => e
   sts_html_xslt = nil
   warn "XSLT renderer failed: #{e.message}"

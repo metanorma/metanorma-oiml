@@ -8,6 +8,7 @@ module Metanorma
           def transform(source_term)
             content = []
 
+            term_number = extract_term_number(source_term)
             add_preferred_name(content, source_term)
             add_definition(content, source_term)
             add_standalone_paragraphs(content, source_term)
@@ -18,9 +19,16 @@ module Metanorma
 
             attrs = {}
             attrs[:id] = source_term.id if source_term.id
-            paragraphs, lists = partition_content(content)
+            # The term number ("3.1") becomes the section's <title>,
+            # which the renderer emits as a TermNum heading matching
+            # MN's "<h3 class='TermNum'>3.5.12</h3>" layout. Previously
+            # it was emitted as a leading <p>, which the parity check
+            # did not see as a heading.
+            attrs[:title] = ::Sts::IsoSts::Title.new(content: [term_number]) if term_number
+            paragraphs, lists, notes = partition_content(content)
             attrs[:paragraph] = paragraphs if paragraphs.any?
             attrs[:list] = lists if lists.any?
+            attrs[:non_normative_note] = notes if notes.any?
 
             nested = Array(source_term.term).map { |sub| transform(sub) }
             attrs[:sec] = nested if nested.any?
@@ -31,27 +39,45 @@ module Metanorma
           def partition_content(content)
             paragraphs = content.grep(::Sts::IsoSts::Paragraph)
             lists = content.grep(::Sts::IsoSts::List)
-            others = content.reject { |c| c.is_a?(::Sts::IsoSts::Paragraph) || c.is_a?(::Sts::IsoSts::List) }
-            [paragraphs + others, lists]
+            notes = content.grep(::Sts::IsoSts::NonNormativeNote)
+            others = content.reject do |c|
+              [::Sts::IsoSts::Paragraph, ::Sts::IsoSts::List,
+               ::Sts::IsoSts::NonNormativeNote].any? { |k| c.is_a?(k) }
+            end
+            [paragraphs + others, lists, notes]
           end
 
           private
 
-          def add_preferred_name(content, source_term)
-            text = preferred_name_text(source_term)
-            return if text.nil? || text.empty?
+          # The term number ("3.1") from the term's fmt-name caption label.
+          def extract_term_number(source_term)
+            section_transformer.extract_autonum(source_term)
+          end
 
-            content << ::Sts::IsoSts::Paragraph.new(content: [text])
+          def add_preferred_name(content, source_term)
+            para = preferred_name_paragraph(source_term)
+            content << para if para
           end
 
           # Preferred names often contain math (e.g. "maximum capacity
-          # (E_max)"). The typed TermNameElement drops stems, so we
-          # prefer the rendered fmt_preferred tree when present and
-          # fall back to the semantic expression name.
-          def preferred_name_text(source_term)
-            fmt = Array(source_term.fmt_preferred).first if source_term.respond_to?(:fmt_preferred)
-            return RenderedTextExtractor.text_of(fmt_para(fmt)) if fmt && fmt.respond_to?(:p)
+          # (E_max)"). The typed TermNameElement drops stems, so we prefer
+          # the rendered fmt_preferred tree and route it through the
+          # paragraph transformer so MathML passes through verbatim.
+          # Falls back to text-only paragraph when no rendered tree exists.
+          def preferred_name_paragraph(source_term)
+            fmt = Array(source_term.fmt_preferred).first if source_term.class.method_defined?(:fmt_preferred)
+            if fmt && fmt.class.method_defined?(:p)
+              p = Array(fmt.p).first
+              return paragraph_transformer.transform(p) if p
+            end
 
+            text = preferred_name_text(source_term)
+            return nil if text.nil? || text.empty?
+
+            ::Sts::IsoSts::Paragraph.new(content: [text])
+          end
+
+          def preferred_name_text(source_term)
             preferred = Array(source_term.preferred).first
             return nil unless preferred
 
@@ -62,10 +88,6 @@ module Metanorma
             return RenderedTextExtractor.text_of(preferred) if names.empty?
 
             RenderedTextExtractor.text_of(names.first)
-          end
-
-          def fmt_para(fmt)
-            Array(fmt.p).first
           end
 
           def add_definition(content, source_term)
@@ -89,8 +111,8 @@ module Metanorma
             vd = definition.verbal_definition
             return unless vd
 
-            Array(vd.ul).each { |ul| content << build_list(ul, "bullet") }
-            Array(vd.ol).each { |ol| content << build_list(ol, "order") }
+            Array(vd.ul).each { |ul| content << list_transformer.transform(ul) }
+            Array(vd.ol).each { |ol| content << list_transformer.transform(ol) }
           end
 
           def add_list_items(content, list)
@@ -99,8 +121,41 @@ module Metanorma
             end
           end
 
+          # Term notes become <non-normative-note> carrying their own
+          # label ("Note 1 to entry:") — plain "Note" notes leave the
+          # kind label to the renderer. Nested <ul>/<ol> inside the
+          # termnote become sibling <list> children of the note so the
+          # renderer emits them after the paragraphs.
           def add_term_notes(content, source_term)
-            Array(source_term.termnote).each { |tn| add_typed_note_paragraphs(content, tn, "Note", colon: true) }
+            Array(source_term.termnote).each do |tn|
+              paragraphs = Array(tn.p).map { |p| paragraph_transformer.transform(p) }
+              lists = Array(tn.ul).map { |ul| list_transformer.transform(ul) } +
+                      Array(tn.ol).map { |ol| list_transformer.transform(ol) }
+              next if paragraphs.empty? && lists.empty?
+
+              attrs = { paragraph: paragraphs }
+              attrs[:list] = lists if lists.any?
+              label = term_note_label(tn)
+              attrs[:label] = ::Sts::IsoSts::Label.new(content: [label]) if label
+              content << ::Sts::IsoSts::NonNormativeNote.new(attrs)
+            end
+          end
+
+          # MN renders term notes "<span class='term-note-label'>
+          # Note 1 to entry: </span>" (numbered, "to entry:", label
+          # inside the note paragraph) — numbered when the termnote
+          # carries an autonum, plain "Note" otherwise.
+          # Term notes become <non-normative-note> with a "Note:" label
+          # — matching MN's "<span class='termnote_label'>Note: </span>"
+          # prefix inside the note paragraph. The entity's autonum
+          # ("Note 1 to entry:") isn't surfaced in MN's term notes, so
+          # we mirror that here.
+          # isodoc renders term notes "<span class='termnote_label'>
+          # Note 1 to entry: </span>" (numbered, "to entry:") — numbered
+          # when the termnote carries an autonum, plain "Note:" otherwise.
+          def term_note_label(note_obj)
+            number = note_obj.autonum if note_obj.class.method_defined?(:autonum)
+            number && !number.to_s.empty? ? "Note #{number} to entry:" : "Note:"
           end
 
           def add_term_examples(content, source_term)
@@ -117,8 +172,8 @@ module Metanorma
               end
               content << para
             end
-            Array(note_obj.ul).each { |ul| content << build_list(ul, "bullet") }
-            Array(note_obj.ol).each { |ol| content << build_list(ol, "order") }
+            Array(note_obj.ul).each { |ul| content << list_transformer.transform(ul) }
+            Array(note_obj.ol).each { |ol| content << list_transformer.transform(ol) }
           end
 
           def build_list(list, list_type)

@@ -1,56 +1,46 @@
 # frozen_string_literal: true
-
 module Metanorma
   module Oiml
     module Sts
       module Transformer
         class FigureTransformer < Base
-          def transform(source_figure)
+          def transform(source_fig)
             attrs = {}
-            attrs[:id] = source_figure.id if source_figure.respond_to?(:id) && source_figure.id
+            attrs[:id] = source_fig.id if source_fig.class.method_defined?(:id) && source_fig.id
 
-            label = extract_label(source_figure)
-            attrs[:label] = ::Sts::IsoSts::Label.new(content: [label]) if label
+            label_text = extract_label(source_fig)
+            caption_text = extract_title(source_fig)
+            graphic = extract_graphic(source_fig)
 
-            caption_text = extract_caption(source_figure)
-            attrs[:caption] = ::Sts::IsoSts::Caption.new(
-              title: ::Sts::IsoSts::Title.new(content: [caption_text])
-            ) if caption_text
-
-            graphic = build_graphic(source_figure)
-            attrs[:graphic] = [graphic] if graphic
-
-            ::Sts::IsoSts::Fig.new(attrs)
+            ModelBuilder.fig(id: attrs[:id], label: label_text, caption: ModelBuilder.caption(title: caption_text), graphic: graphic)
           end
 
           private
 
-          def extract_label(source_figure)
-            return nil unless source_figure.respond_to?(:autonum)
-            num = source_figure.autonum
-            num.to_s.strip unless num.to_s.strip.empty?
+          # "Figure 1" from the presentation XML autonum attribute —
+          # same pattern as TableTransformer's label.
+          def extract_label(source_fig)
+            return nil unless source_fig.class.method_defined?(:autonum) && source_fig.autonum
+
+            "Figure #{source_fig.autonum}"
           end
 
-          def extract_caption(source_figure)
-            name = source_figure.respond_to?(:name) ? source_figure.name : nil
-            return nil unless name
+          def extract_title(source_fig)
+            return nil unless source_fig.class.method_defined?(:name) && source_fig.name
 
-            text = (name.text rescue nil)
-            text = Array(text).first if text.is_a?(Array)
-            text.to_s.strip
+            text = RenderedTextExtractor.text_of(source_fig.name).strip
+            text.empty? ? nil : text
           end
 
-          def build_graphic(source_figure)
-            image = source_figure.respond_to?(:image) ? source_figure.image : nil
-            return nil unless image
-
-            href = (image.source rescue nil) || (source_figure.source rescue nil)
+          def extract_graphic(source_fig)
+            return nil unless source_fig.class.method_defined?(:image)
+            images = Array(source_fig.image)
+            return nil if images.empty?
+            img = images.first
+            href = img.src if img.class.method_defined?(:src)
+            href ||= img.href if img.class.method_defined?(:href)
             return nil unless href
-
-            attrs = { xlink_href: href }
-            attrs[:mimetype] = image.mimetype if image.respond_to?(:mimetype) && image.mimetype
-
-            ::Sts::IsoSts::Graphic.new(attrs)
+            ModelBuilder.graphic(xlink_href: href)
           end
         end
       end

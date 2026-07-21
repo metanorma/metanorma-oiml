@@ -1,23 +1,18 @@
-# frozen_string_literal: true
+# frozen_string: true
 
 # OIML Metanorma presentation XML → OIML NISO STS XML transformer.
 #
-# Architecture (mirrors `Metanorma::Iso::Sts::Transformer` from the
-# `metanorma-iso` gem):
-#
-# - {SourceDocument}: parsed-input façade that uses
-#   `Metanorma::OimlDocument::Root` (from the `metanorma-document` gem) for
-#   typed parsing, with Nokogiri fallbacks for elements the typed model
-#   does not yet cover.
+# Architecture:
+# - {SourceDocument}: parses input via Metanorma::Oiml::Document::Root
+#   (typed model, on the metanorma-document framework). Zero Nokogiri.
 # - {Context}: shared state during one conversion run.
-# - {StsXml}: Nokogiri-backed output builder.
-# - {DocumentTransformer}: orchestrator. Produces the `<standard>` root.
-# - {FrontTransformer}, {BodyTransformer}, {BackTransformer}: section-level
-#   orchestrators.
-# - Per-element transformers for individual Metanorma elements.
-#
-# Adding a new element = adding one transformer class and registering it
-# with {BlockDispatcher} (Open/Closed at the dispatch level).
+# - {ModelBuilder}: factory methods for sts-ruby model instances.
+# - {DocumentTransformer}: orchestrator. Produces a Sts::IsoSts::Standard
+#   root via sts-ruby models and serializes via lutaml-model.
+# - Per-element transformers walk typed-model source objects and emit
+#   sts-ruby model instances. Zero Nokogiri.
+# - {RenderedTextExtractor}: unified text extraction from typed models.
+# - {BlockDispatcher}: Open/Closed dispatch by typed model class name.
 module Metanorma::Oiml::Sts::Transformer
   autoload :SourceDocument, "metanorma/oiml/sts/transformer/source_document"
   autoload :Context, "metanorma/oiml/sts/transformer/context"
@@ -39,12 +34,10 @@ module Metanorma::Oiml::Sts::Transformer
   autoload :NoteTransformer, "metanorma/oiml/sts/transformer/note_transformer"
   autoload :ReferenceTransformer, "metanorma/oiml/sts/transformer/reference_transformer"
   autoload :TermTransformer, "metanorma/oiml/sts/transformer/term_transformer"
+  autoload :DlTransformer, "metanorma/oiml/sts/transformer/dl_transformer"
   autoload :BlockDispatcher, "metanorma/oiml/sts/transformer/block_dispatcher"
   autoload :RenderedTextExtractor, "metanorma/oiml/sts/transformer/rendered_text_extractor"
 
-  # Convert a Metanorma presentation XML input into OIML NISO STS XML.
-  # @param input [String, Pathname, #read] the source XML.
-  # @return [String] OIML NISO STS XML.
   def self.convert(input)
     source = SourceDocument.parse(input)
     context = Context.new(source)

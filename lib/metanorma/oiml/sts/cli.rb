@@ -20,7 +20,7 @@ module Metanorma
         method_option :validate, type: :boolean, default: false,
                                   desc: "Run the validator on the output and exit non-zero on errors"
         def convert(input, output = nil)
-          require "metanorma/oiml/sts"
+          require_relative "../sts"
           sts_xml = Sts.convert(read_input(input))
           output_path = output || default_output_for(input)
           write_output(output_path, sts_xml)
@@ -35,7 +35,7 @@ module Metanorma
         desc "convert-dir INPUT_DIR OUTPUT_DIR",
              "Batch convert every document.presentation.xml under INPUT_DIR"
         def convert_dir(input_dir, output_dir)
-          require "metanorma/oiml/sts"
+          require_relative "../sts"
           require "pathname"
 
           inputs = Pathname.new(input_dir).glob("**/document.presentation.xml")
@@ -55,7 +55,7 @@ module Metanorma
 
         desc "validate STS_XML", "Validate an OIML STS XML against OIML X 999 constraints"
         def validate(input)
-          require "metanorma/oiml/sts"
+          require_relative "../sts"
           report = Sts.validate(read_input(input))
           $stdout.puts report.to_s
           exit 1 unless report.valid?

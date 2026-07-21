@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 module Metanorma
   module Oiml
     module Sts
@@ -8,38 +7,61 @@ module Metanorma
           def transform(source_list)
             list_type = source_list.is_a?(Metanorma::Document::Components::Lists::OrderedList) ? "order" : "bullet"
             items = Array(source_list.listitem).map { |li| build_list_item(li) }
-
-            ::Sts::IsoSts::List.new(list_type: list_type, list_item: items)
-          end
-
-          # Like #transform but lets the caller specify the list type
-          # explicitly. Useful when the typed Ruby class of the source
-          # list is ambiguous (e.g. note's ul/ol accessors).
-          def transform_with_type(source_list, list_type)
-            items = Array(source_list.listitem).map { |li| build_list_item(li) }
-            ::Sts::IsoSts::List.new(list_type: list_type, list_item: items)
+            ModelBuilder.list(list_type: list_type, list_item: items)
           end
 
           def transform_def_list(source_dl)
             items = Array(source_dl.dt).zip(Array(source_dl.dd)).map do |dt, dd|
               build_def_item(dt, dd)
             end.compact
-
             ::Sts::IsoSts::DefList.new(def_item: items)
           end
 
           private
 
+          def build_list_item(li)
+            nested_lists = build_nested_lists(li)
+
+            ::Sts::IsoSts::ListItem.new do |item|
+              label = item_label(li)
+              item.label ::Sts::IsoSts::Label.new(content: [label]) if label
+              Array(li.paragraphs).each { |p| item.paragraph paragraph_transformer.transform(p) }
+              nested_lists.each { |l| item.list l }
+            end
+          end
+
+          # The item's marker from the presentation XML (its fmt-name /
+          # autonum, e.g. "—" or "1."), nil when absent.
+          def item_label(li)
+            return nil unless li.class.method_defined?(:fmt_name) && li.fmt_name
+
+            text = RenderedTextExtractor.text_of(li.fmt_name).strip
+            text.empty? ? nil : text
+          end
+
+          # Recurses into nested <ul>/<ol> children of a list item.
+          # MN stores them as typed collection attrs on ListItem.
+          def build_nested_lists(li)
+            results = []
+            [:unordered_lists, :ordered_lists].each do |attr|
+              next unless li.class.method_defined?(attr)
+              Array(li.public_send(attr)).each do |nested|
+                results << transform(nested)
+              end
+            end
+            results
+          end
+
           def build_def_item(dt, dd)
-            term = text_of(dt)
-            desc = extract_dd_text(dd)
-            return nil unless term || desc
+            term_text = RenderedTextExtractor.text_of(dt)
+            desc_text = extract_dd_text(dd)
+            return nil unless term_text || desc_text
 
             attrs = {}
-            attrs[:term] = ::Sts::IsoSts::Term.new(content: [term]) if term && !term.empty?
-            if desc && !desc.empty?
+            attrs[:term] = ::Sts::IsoSts::Term.new(content: [term_text]) if term_text && !term_text.empty?
+            if desc_text && !desc_text.empty?
               attrs[:def] = ::Sts::IsoSts::Def.new(
-                paragraph: [::Sts::IsoSts::Paragraph.new(content: [desc])]
+                paragraph: [::Sts::IsoSts::Paragraph.new(content: [desc_text])]
               )
             end
             ::Sts::IsoSts::DefItem.new(attrs)
@@ -47,49 +69,11 @@ module Metanorma
 
           def extract_dd_text(dd)
             return nil unless dd
-            return dd.to_s if dd.is_a?(String)
-
-            # DdElement stores content in .p (ParagraphBlock collection)
-            ps = Array(dd.p)
-            return text_of(dd) if ps.empty?
-
-            texts = ps.map { |p| text_of(p) }.reject(&:empty?)
+            ps = dd.p if dd.is_a?(Lutaml::Model::Serializable) && dd.class.method_defined?(:p)
+            ps = Array(ps)
+            return RenderedTextExtractor.text_of(dd) if ps.empty?
+            texts = ps.map { |p| RenderedTextExtractor.text_of(p) }.reject(&:empty?)
             texts.empty? ? nil : texts.join(" ")
-          end
-
-          def text_of(obj)
-            return obj.to_s if obj.is_a?(String)
-            return nil unless obj
-
-            val = (obj.text rescue nil) || (obj.content rescue nil)
-            val = Array(val).first if val.is_a?(Array)
-            val.to_s.strip
-          end
-
-          def build_list_item(li)
-            paragraphs = []
-            nested_lists = []
-
-            if li.respond_to?(:text)
-              text_strings = Array(li.text).map(&:to_s).reject(&:empty?)
-              if text_strings.any?
-                paragraphs << ::Sts::IsoSts::Paragraph.new(content: text_strings)
-              end
-            end
-            if li.respond_to?(:paragraphs)
-              Array(li.paragraphs).each { |p| paragraphs << paragraph_transformer.transform(p) }
-            end
-            if li.respond_to?(:unordered_lists)
-              Array(li.unordered_lists).each { |ul| nested_lists << transform(ul) }
-            end
-            if li.respond_to?(:ordered_lists)
-              Array(li.ordered_lists).each { |ol| nested_lists << transform(ol) }
-            end
-
-            attrs = {}
-            attrs[:paragraph] = paragraphs if paragraphs.any?
-            attrs[:list] = nested_lists if nested_lists.any?
-            ::Sts::IsoSts::ListItem.new(attrs)
           end
         end
       end

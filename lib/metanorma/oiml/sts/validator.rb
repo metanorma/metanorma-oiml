@@ -68,16 +68,21 @@ module Metanorma
             ),
             RuleImplementation.new(
               id: "oiml-x999-std-title-and-date",
-              message: "Every <std> shall carry <title> and <pub-date>.",
+              message: "Every <std> shall carry <title>, and every <std-ref> shall declare datedness via @type.",
               apply: ->(doc, report, rule) {
                 doc.xpath("//std").each do |node|
-                  missing = []
-                  missing << "title" unless node.at_xpath("./title")
-                  missing << "pub-date" unless node.at_xpath("./pub-date")
-                  next if missing.empty?
+                  problems = []
+                  problems << "missing required <title>" unless node.at_xpath("./title")
+                  node.xpath("./std-ref").each do |std_ref|
+                    type = std_ref["type"]
+                    if type.nil? || type.empty?
+                      problems << "<std-ref> does not declare @type (dated/undated)"
+                    end
+                  end
+                  next if problems.empty?
 
                   report.add(rule_id: rule.id,
-                             message: "<std> is missing required #{missing.join(' and ')} (OIML X 999 Clause 6.3).",
+                             message: "<std>: #{problems.join('; ')} (OIML X 999 Clause 5.4).",
                              xpath: node.path)
                 end
               }

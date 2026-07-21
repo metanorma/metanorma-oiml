@@ -4,10 +4,6 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
-        # Shared base for every transformer. Provides access to the
-        # conversion {Context} and factory methods for child transformers.
-        # Transformers RETURN model instances — they do not emit into a
-        # builder.
         class Base
           attr_reader :context
 
@@ -15,54 +11,58 @@ module Metanorma
             @context = context
           end
 
-          private
+          protected
 
           def source
             context.source
           end
 
           def dispatcher
-            BlockDispatcher.new(context)
-          end
-
-          def inline_transformer
-            InlineTransformer.new(context)
-          end
-
-          def section_transformer
-            SectionTransformer.new(context)
+            @dispatcher ||= BlockDispatcher.new(context)
           end
 
           def paragraph_transformer
-            ParagraphTransformer.new(context)
+            @paragraph_transformer ||= ParagraphTransformer.new(context)
           end
 
           def list_transformer
-            ListTransformer.new(context)
+            @list_transformer ||= ListTransformer.new(context)
           end
 
           def table_transformer
-            TableTransformer.new(context)
+            @table_transformer ||= TableTransformer.new(context)
           end
 
           def figure_transformer
-            FigureTransformer.new(context)
+            @figure_transformer ||= FigureTransformer.new(context)
           end
 
           def formula_transformer
-            FormulaTransformer.new(context)
+            @formula_transformer ||= FormulaTransformer.new(context)
           end
 
           def note_transformer
-            NoteTransformer.new(context)
+            @note_transformer ||= NoteTransformer.new(context)
           end
 
           def reference_transformer
-            ReferenceTransformer.new(context)
+            @reference_transformer ||= ReferenceTransformer.new(context)
+          end
+
+          def section_transformer
+            @section_transformer ||= SectionTransformer.new(context)
           end
 
           def term_transformer
-            TermTransformer.new(context)
+            @term_transformer ||= TermTransformer.new(context)
+          end
+
+          def dl_transformer
+            @dl_transformer ||= DlTransformer.new(context)
+          end
+
+          def front_transformer
+            @front_transformer ||= FrontTransformer.new(context)
           end
         end
       end
