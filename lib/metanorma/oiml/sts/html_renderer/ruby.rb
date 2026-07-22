@@ -204,17 +204,19 @@ module Metanorma
 
           def section(node)
             sec_id = section_id(node)
-            register_toc(node, sec_id)
+            title_text = extract_title(node)
+            register_toc(node, sec_id, title_text)
             previous_section_id = @current_section_id
             previous_label = @current_label
             label_node = own_label(node)
             suppress_label(label_node) if label_node
             raw_label = label_node ? plain_text(label_node).gsub(/\s+/, " ").strip : nil
             @current_label = display_label(node, raw_label)
-            # Unnumbered top-level sections (Copyright, Feedback,
-            # Foreword, Introduction) get muted front-matter cards
-            # instead of the numbered-section heading band.
-            frontmatter = @depth.zero? && @current_label.nil?
+            # Boilerplate front-matter (Copyright, Feedback) renders as
+            # a muted card; every other section renders uniformly with
+            # its own heading — including unnumbered prose sections like
+            # Foreword and Introduction.
+            frontmatter = frontmatter_section?(sec_id, title_text)
             @depth += 1
             @current_section_id = sec_id
             inner = render_children(node)
@@ -224,6 +226,22 @@ module Metanorma
             @current_section_id = previous_section_id
             @current_label = previous_label
           end
+
+          # Only the boilerplate front-matter sections (copyright,
+          # feedback) get the muted-card treatment. Other unnumbered
+          # sections (Foreword, Introduction) render as normal sections.
+          def frontmatter_section?(sec_id, title_text)
+            return false unless @depth.zero? && @current_label.nil?
+            return true if sec_id && %w[copyright feedback].include?(sec_id.downcase)
+
+            title_match = TITLE_DOWNCASE_MAP[title_text.to_s.downcase]
+            title_match == :frontmatter
+          end
+
+          TITLE_DOWNCASE_MAP = {
+            "copyright" => :frontmatter,
+            "feedback" => :frontmatter,
+          }.freeze
 
           # The section's/list item's own <label> child model (nil when
           # absent or a bare string, e.g. TableWrap#label).
@@ -247,6 +265,44 @@ module Metanorma
 
           def suppressed_labels
             @suppressed_labels ||= {}.compare_by_identity
+          end
+
+          # Section's <title> child text, nil when absent.
+          def extract_title(node)
+            title_node = find_child(node, "Title")
+            return nil unless title_node
+
+            text = plain_text(title_node).gsub(/\s+/, " ").strip
+            text.empty? ? nil : text
+          end
+
+          # Term sections (id starts with "term-") carry the term
+          # number in <title> and the preferred name as the bold run
+          # of the first <p>. For the TOC entry, append the preferred
+          # name so the entry reads "3.1 NISO STS".
+          def append_term_name(node, sec_id, title_text)
+            return title_text unless sec_id&.start_with?("term-")
+            return title_text if title_text.to_s.match?(/\s/)
+
+            name = preferred_term_name(node)
+            return title_text if name.nil? || name.empty?
+
+            "#{title_text} #{name}"
+          end
+
+          # The preferred name is the bold run of the section's first
+          # <p> child (the term heading paragraph). Returns nil when
+          # the section is not a term section or the heading paragraph
+          # is absent / has no bold run.
+          def preferred_term_name(node)
+            paragraph = find_child(node, "Paragraph")
+            return nil unless paragraph
+
+            bold = find_child(paragraph, "Bold")
+            return nil unless bold
+
+            text = plain_text(bold).gsub(/\s+/, " ").strip
+            text.empty? ? nil : text
           end
 
           # Sections built without an id (e.g. front-matter sections)
@@ -275,14 +331,18 @@ module Metanorma
           # Records the section in the interactive table of contents.
           # Apps are sections too; their titles come from the same walk.
           # The entry text carries the section number ("1 Scope").
-          def register_toc(node, sec_id)
+          # Term sections (id starts with "term-") append the preferred
+          # name (the bold text of the first <p>) so the entry reads
+          # "3.1 NISO STS" instead of just "3.1".
+          def register_toc(node, sec_id, title_text = nil)
             title_node = find_child(node, "Title")
             return unless sec_id && title_node
 
             label_node = own_label(node)
             label_text = display_label(node, label_node ? plain_text(label_node).gsub(/\s+/, " ").strip : nil)
-            title_text = plain_text(title_node).gsub(/\s+/, " ").strip
+            title_text ||= plain_text(title_node).gsub(/\s+/, " ").strip
             title_text = "#{label_text} #{title_text}" if label_text
+            title_text = append_term_name(node, sec_id, title_text)
             register_toc_entry(id: sec_id, title: title_text, depth: @depth)
           end
 
@@ -292,11 +352,19 @@ module Metanorma
 
           # First direct child model whose demodulized class name matches.
           def find_child(node, demodulized_name)
-            return nil unless node.class.method_defined?(:title)
+            return nil unless node.is_a?(Lutaml::Model::Serializable)
 
-            title = node.title
-            return title if title && title.class.name.split("::").last == demodulized_name
+            mapping = @mapping_cache[node.class][:elements]
+            node.element_order.each do |entry|
+              next unless entry.node_type == :element
 
+              attr = mapping[entry.name.to_s]
+              next unless attr
+
+              value = node.public_send(attr)
+              value = value.first if value.is_a?(Array)
+              return value if value && value.class.name.split("::").last == demodulized_name
+            end
             nil
           end
 
