@@ -63,6 +63,11 @@ module Metanorma
           }.freeze
 
           # Inline phrase-level elements → HTML tag (constant-keyed).
+          # Both IsoSts and NisoSts variants appear in real STS docs:
+          # top-level paragraphs parse as IsoSts (the parser's default),
+          # but inline tags inside table cells (TbxIsoTml::Td/Th, which
+          # inherit from NisoSts) parse as NisoSts. Both are listed so
+          # the dispatch catches every namespace variant.
           INLINE_TAGS = {
             ISO::Bold => "strong",
             ISO::Italic => "em",
@@ -72,6 +77,12 @@ module Metanorma
             ISO::Sc => "span",
             ISO::Strike => "s",
             ISO::Underline => "u",
+            NISO::Monospace => "code",
+            NISO::Sub => "sub",
+            NISO::Sup => "sup",
+            NISO::Sc => "span",
+            NISO::Strike => "s",
+            NISO::Underline => "u",
           }.freeze
 
           META_ID_NAMES = %w[DocIdentifier DocIdent StdIdent
