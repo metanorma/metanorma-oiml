@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+# Load the parent namespace before the CLI so `Metanorma::Oiml::Sts`
+# (with its `.convert`/`.validate` module methods) is defined when
+# Cli's command handlers reference it.
+require "metanorma/oiml/sts"
 require "metanorma/oiml/sts/cli"
 
 Metanorma::Oiml::Sts::Cli.start(ARGV)
