@@ -37,13 +37,13 @@ module Metanorma
           .then { |x| fix_lang_attribute(x) }
       end
 
-      # Convert input to the typed Sts::IsoSts::Standard model.
+      # Convert input to the typed Sts::NisoSts::Standard model.
       # Use this when you need the model directly (e.g. passing to the
       # HTML renderer) to avoid the serialize→deserialize roundtrip
       # that can drop XML entities like &lt; in mixed_content contexts.
       #
       # @param input [String, Pathname, #read] the source XML.
-      # @return [Sts::IsoSts::Standard] the typed STS model.
+      # @return [Sts::NisoSts::Standard] the typed STS model.
       def self.convert_to_model(input)
         source = Transformer::SourceDocument.parse(input)
         context = Transformer::Context.new(source)
