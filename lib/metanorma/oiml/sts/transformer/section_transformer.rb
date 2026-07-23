@@ -40,28 +40,28 @@ module Metanorma
 
             attrs = {}
             attrs[:id] = id_val if id_val
-            attrs[:title] = ::Sts::IsoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
+            attrs[:title] = ::Sts::NisoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
             autonum = extract_autonum(source_clause)
-            attrs[:label] = ::Sts::IsoSts::Label.new(content: [autonum]) if autonum
+            attrs[:label] = ::Sts::NisoSts::Label.new(content: [autonum]) if autonum
 
             paragraphs, lists, figs, tables, notes, examples, formulas, def_lists, preformats, sub_secs = [], [], [], [], [], [], [], [], [], []
             content.each do |item|
               case item
-              when ::Sts::IsoSts::Paragraph then paragraphs << item
-              when ::Sts::IsoSts::List then lists << item
-              when ::Sts::IsoSts::Fig then figs << item
+              when ::Sts::NisoSts::Paragraph then paragraphs << item
+              when ::Sts::NisoSts::List then lists << item
+              when ::Sts::NisoSts::Figure then figs << item
               when ::Sts::TbxIsoTml::TableWrap then tables << item
-              when ::Sts::IsoSts::NonNormativeNote then notes << item
-              when ::Sts::IsoSts::NonNormativeExample then examples << item
-              when ::Sts::IsoSts::DispFormula then formulas << item
-              when ::Sts::IsoSts::DefList then def_lists << item
-              when ::Sts::IsoSts::Preformat then preformats << item
-              when ::Sts::IsoSts::Sec then sub_secs << item
+              when ::Sts::NisoSts::NonNormativeNote then notes << item
+              when ::Sts::NisoSts::NonNormativeExample then examples << item
+              when ::Sts::NisoSts::DisplayFormula then formulas << item
+              when ::Sts::NisoSts::DefList then def_lists << item
+              when ::Sts::NisoSts::Preformat then preformats << item
+              when ::Sts::NisoSts::Section then sub_secs << item
               end
             end
             nested_clauses.concat(sub_secs)
 
-            attrs[:paragraph] = paragraphs if paragraphs.any?
+            attrs[:paragraphs] = paragraphs if paragraphs.any?
             attrs[:list] = lists if lists.any?
             attrs[:fig] = figs if figs.any?
             attrs[:table_wrap] = tables if tables.any?
@@ -72,7 +72,7 @@ module Metanorma
             attrs[:preformat] = preformats if preformats.any?
             attrs[:sec] = nested_clauses if nested_clauses.any?
 
-            ::Sts::IsoSts::Sec.new(attrs)
+            ::Sts::NisoSts::Section.new(attrs)
           end
 
           # Build a Sec for a nested terms-section (e.g. "3.1 General
@@ -87,12 +87,12 @@ module Metanorma
 
             attrs = {}
             attrs[:id] = terms_section.id if terms_section.class.method_defined?(:id) && terms_section.id
-            attrs[:title] = ::Sts::IsoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
-            attrs[:label] = ::Sts::IsoSts::Label.new(content: [autonum]) if autonum
+            attrs[:title] = ::Sts::NisoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
+            attrs[:label] = ::Sts::NisoSts::Label.new(content: [autonum]) if autonum
             attrs[:sec] = nested if nested.any?
             return nil unless title_text || autonum || nested.any?
 
-            ::Sts::IsoSts::Sec.new(attrs)
+            ::Sts::NisoSts::Section.new(attrs)
           end
 
           # Section number from the presentation XML: the autonum

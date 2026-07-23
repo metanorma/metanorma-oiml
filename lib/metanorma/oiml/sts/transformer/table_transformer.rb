@@ -105,7 +105,7 @@ module Metanorma
           end
 
           # Fn#p is typed as Sts::NisoSts::Paragraph (uses :text attr).
-          # Our paragraph_transformer produces Sts::IsoSts::Paragraph.
+          # Our paragraph_transformer produces Sts::NisoSts::Paragraph.
           # Convert by extracting text — footnote bodies in MN table
           # cells lose their inline math (Sts::TbxIsoTml::Math drops
           # msub/mrow content during parse), so we accept text-only.
@@ -209,10 +209,10 @@ module Metanorma
                 entries << [:monospace, ::Sts::NisoSts::Monospace.new(content: [text])]
               when :bold
                 flush.call
-                entries << [:bold, ::Sts::TbxIsoTml::Bold.new(content: [text])]
+                entries << [:bold, ::Sts::TbxIsoTml::Bold.new(value: [text])]
               when :italic
                 flush.call
-                entries << [:italic, ::Sts::TbxIsoTml::Italic.new(content: [text])]
+                entries << [:italic, ::Sts::TbxIsoTml::Italic.new(value: [text])]
               end
             end
             flush.call

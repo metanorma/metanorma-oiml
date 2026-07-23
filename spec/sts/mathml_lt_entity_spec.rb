@@ -15,7 +15,7 @@ require "mml"
 # lutaml-model 0.8.17 + nokogiri 1.19.2 that no such bug exists — the
 # round-trip preserves the entity correctly. These specs lock that
 # contract in at the OIML STS layer.
-RSpec.describe "MathML <mo>&lt;</mo> round-trip through Sts::IsoSts::Standard" do
+RSpec.describe "MathML <mo>&lt;</mo> round-trip through Sts::NisoSts::Standard" do
   let(:document_with_lt) do
     <<~XML.freeze
       <?xml version="1.0" encoding="UTF-8"?>
@@ -44,7 +44,7 @@ RSpec.describe "MathML <mo>&lt;</mo> round-trip through Sts::IsoSts::Standard" d
   end
 
   it "preserves the &lt; entity as the mo element's content" do
-    parsed = Sts::IsoSts::Standard.from_xml(document_with_lt)
+    parsed = Sts::NisoSts::Standard.from_xml(document_with_lt)
     roundtripped = parsed.to_xml
     expect(mo_content(roundtripped)).to eq("&lt;")
   end
@@ -64,7 +64,7 @@ RSpec.describe "MathML <mo>&lt;</mo> round-trip through Sts::IsoSts::Standard" d
         </p></sec></body>
       </standard>
     XML
-    parsed = Sts::IsoSts::Standard.from_xml(doc)
+    parsed = Sts::NisoSts::Standard.from_xml(doc)
     roundtripped = parsed.to_xml
     # Extract all mo contents
     contents = roundtripped.scan(/<(?:mml:)?mo[^>]*>([^<]*)<\/(?:mml:)?mo>/).flatten
@@ -80,7 +80,7 @@ RSpec.describe "MathML <mo>&lt;</mo> round-trip through Sts::IsoSts::Standard" d
         </inline-formula> after</p></sec></body>
       </standard>
     XML
-    parsed = Sts::IsoSts::Standard.from_xml(doc)
+    parsed = Sts::NisoSts::Standard.from_xml(doc)
     expect(mo_content(parsed.to_xml)).to eq("&lt;")
   end
 end

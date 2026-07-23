@@ -24,25 +24,25 @@ module Metanorma
             # MN's "<h3 class='TermNum'>3.5.12</h3>" layout. Previously
             # it was emitted as a leading <p>, which the parity check
             # did not see as a heading.
-            attrs[:title] = ::Sts::IsoSts::Title.new(content: [term_number]) if term_number
+            attrs[:title] = ::Sts::NisoSts::Title.new(content: [term_number]) if term_number
             paragraphs, lists, notes = partition_content(content)
-            attrs[:paragraph] = paragraphs if paragraphs.any?
+            attrs[:paragraphs] = paragraphs if paragraphs.any?
             attrs[:list] = lists if lists.any?
             attrs[:non_normative_note] = notes if notes.any?
 
             nested = Array(source_term.term).map { |sub| transform(sub) }
             attrs[:sec] = nested if nested.any?
 
-            ::Sts::IsoSts::Sec.new(attrs)
+            ::Sts::NisoSts::Section.new(attrs)
           end
 
           def partition_content(content)
-            paragraphs = content.grep(::Sts::IsoSts::Paragraph)
-            lists = content.grep(::Sts::IsoSts::List)
-            notes = content.grep(::Sts::IsoSts::NonNormativeNote)
+            paragraphs = content.grep(::Sts::NisoSts::Paragraph)
+            lists = content.grep(::Sts::NisoSts::List)
+            notes = content.grep(::Sts::NisoSts::NonNormativeNote)
             others = content.reject do |c|
-              [::Sts::IsoSts::Paragraph, ::Sts::IsoSts::List,
-               ::Sts::IsoSts::NonNormativeNote].any? { |k| c.is_a?(k) }
+              [::Sts::NisoSts::Paragraph, ::Sts::NisoSts::List,
+               ::Sts::NisoSts::NonNormativeNote].any? { |k| c.is_a?(k) }
             end
             [paragraphs + others, lists, notes]
           end
@@ -74,7 +74,7 @@ module Metanorma
             text = preferred_name_text(source_term)
             return nil if text.nil? || text.empty?
 
-            ::Sts::IsoSts::Paragraph.new(content: [text])
+            ::Sts::NisoSts::Paragraph.new(content: [text])
           end
 
           def preferred_name_text(source_term)
@@ -133,11 +133,11 @@ module Metanorma
                       Array(tn.ol).map { |ol| list_transformer.transform(ol) }
               next if paragraphs.empty? && lists.empty?
 
-              attrs = { paragraph: paragraphs }
+              attrs = { p: paragraphs }
               attrs[:list] = lists if lists.any?
               label = term_note_label(tn)
-              attrs[:label] = ::Sts::IsoSts::Label.new(content: [label]) if label
-              content << ::Sts::IsoSts::NonNormativeNote.new(attrs)
+              attrs[:label] = ::Sts::NisoSts::Label.new(content: [label]) if label
+              content << ::Sts::NisoSts::NonNormativeNote.new(attrs)
             end
           end
 
@@ -199,7 +199,7 @@ module Metanorma
               text << " "
             end
             text << "]"
-            ::Sts::IsoSts::Paragraph.new(content: [text])
+            ::Sts::NisoSts::Paragraph.new(content: [text])
           end
 
           def extract_locality(origin)

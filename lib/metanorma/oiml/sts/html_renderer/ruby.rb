@@ -15,7 +15,7 @@ module Metanorma
         # Architecture:
         #
         #   render
-        #     ├── coerce_model      (XML string → Sts::IsoSts::Standard)
+        #     ├── coerce_model      (XML string → Sts::NisoSts::Standard)
         #     ├── render_node       (model tree → fragment, via DISPATCH)
         #     └── assemble_document (fragment → full page via
         #                            templates/document.html.liquid with
@@ -28,15 +28,17 @@ module Metanorma
           TEMPLATES_DIR = File.expand_path("templates", __dir__)
           ASSETS_DIR = File.expand_path("assets", __dir__)
 
-          ISO = ::Sts::IsoSts
           NISO = ::Sts::NisoSts
+          TBX = ::Sts::TbxIsoTml
 
           # demodulized model class name → handler method. Anything not
           # listed renders its children transparently (see #render_children).
+          # NisoSts is the canonical NISO STS namespace; TbxIsoTml covers
+          # the terminology model and table cells.
           DISPATCH = {
-            "IsoMeta" => :meta, "RegMeta" => :meta, "NatMeta" => :meta,
+            "MetadataIso" => :meta, "RegMeta" => :meta, "NatMeta" => :meta,
             "Body" => :children,
-            "Sec" => :section, "App" => :section, "TermSec" => :section,
+            "Section" => :section, "App" => :section, "TermSection" => :section,
             "Label" => :label,
             "Title" => :title,
             "Standard" => :standard, "Adoption" => :standard,
@@ -46,37 +48,27 @@ module Metanorma
             "TableWrap" => :table_wrap, "Table" => :table,
             "Thead" => :thead, "Tbody" => :tbody, "Tr" => :tr,
             "Td" => :td, "Th" => :th,
-            "Fig" => :figure, "Caption" => :caption, "Graphic" => :graphic,
-            "DispFormula" => :disp_formula, "InlineFormula" => :inline_formula,
+            "Figure" => :figure, "Caption" => :caption, "Graphic" => :graphic,
+            "DisplayFormula" => :disp_formula, "InlineFormula" => :inline_formula,
             "Preformat" => :preformat,
             "NonNormativeNote" => :note, "NonNormativeExample" => :example,
             "DispQuote" => :quote,
-            "RefList" => :ref_list, "Ref" => :ref,
+            "ReferenceList" => :ref_list, "Reference" => :ref,
             "MixedCitation" => :citation, "ElementCitation" => :citation,
-            "Std" => :std, "StdIdent" => :std_ident,
+            "ReferenceStandard" => :std, "StandardIdentification" => :std_ident,
             "Originator" => :originator,
-            "DocIdentifier" => :doc_id, "DocIdent" => :doc_id,
             "CopyrightStatement" => :copyright,
             "Fn" => :fn, "Xref" => :xref,
             "ExtLink" => :ext_link, "Uri" => :ext_link,
-            "Break" => :brk, "ProcessingMeta" => :skip
+            "Break" => :brk, "ProcessingMeta" => :skip,
           }.freeze
 
           # Inline phrase-level elements → HTML tag (constant-keyed).
-          # Both IsoSts and NisoSts variants appear in real STS docs:
-          # top-level paragraphs parse as IsoSts (the parser's default),
-          # but inline tags inside table cells (TbxIsoTml::Td/Th, which
-          # inherit from NisoSts) parse as NisoSts. Both are listed so
-          # the dispatch catches every namespace variant.
+          # NisoSts for Monospace/Sub/Sup/Sc/Strike/Underline;
+          # TbxIsoTml for Bold/Italic (terminology namespace).
           INLINE_TAGS = {
-            ISO::Bold => "strong",
-            ISO::Italic => "em",
-            ISO::Monospace => "code",
-            ISO::Sub => "sub",
-            ISO::Sup => "sup",
-            ISO::Sc => "span",
-            ISO::Strike => "s",
-            ISO::Underline => "u",
+            TBX::Bold => "strong",
+            TBX::Italic => "em",
             NISO::Monospace => "code",
             NISO::Sub => "sub",
             NISO::Sup => "sup",
@@ -85,8 +77,8 @@ module Metanorma
             NISO::Underline => "u",
           }.freeze
 
-          META_ID_NAMES = %w[DocIdentifier DocIdent StdIdent
-                             StandardIdentification
+          META_ID_NAMES = %w[StandardIdentification
+                             StandardRef
                              DocumentIdentification].freeze
 
           PUBLISHER_NAME = "International Organization of Legal Metrology"
@@ -130,7 +122,7 @@ module Metanorma
           def coerce_model(input)
             return input if input.is_a?(Lutaml::Model::Serializable)
 
-            ::Sts::IsoSts::Standard.from_xml(input.to_s)
+            ::Sts::NisoSts::Standard.from_xml(input.to_s)
           end
 
           # --------------------------------------------------------------
@@ -490,7 +482,7 @@ module Metanorma
 
           def graphic(node)
             render_liquid("_img.html.liquid", {
-                            "src" => node.xlink_href.to_s,
+                            "src" => node.href.to_s,
                             "alt" => node.alttext.to_s,
                           })
           end
@@ -557,7 +549,10 @@ module Metanorma
           # repeating the same reference three times. The label sits
           # inside the body <p> — a reference reads "[1] Citation…".
           def ref(node)
-            std_node = find_model(node, "Std")
+            # Prefer the structured <std> child (std-ref + title joined
+            # by ", " — the NISO STS citation idiom) when present; it
+            # carries the same text as mixed-citation without duplication.
+            std_node = find_model(node, "ReferenceStandard")
             content = std_node ? render_node(std_node) : render_children(node, skip: %w[label])
             body = render_element("p", ref_label(node) + content, css: "ref-body")
             render_element("div", body, css: "ref")
@@ -584,14 +579,16 @@ module Metanorma
 
           # <std> inside a bibliography ref: keep everything inline —
           # titles become <em>, never headings. std-ref and title join
-          # with the NISO STS citation idiom ", ".
+          # with the NISO STS citation idiom ", ". NisoSts stores
+          # title as a bare String on ReferenceStandard (not as a
+          # separate Title model), so we read it via #title and escape.
           def std(node)
             @in_std = true
             parts = []
-            ref_node = find_model(node, "StdRef")
+            ref_node = find_model(node, "StandardRef")
             parts << render_element("span", render_inline(ref_node), css: "std-ref") if ref_node
-            title_node = find_model(node, "Title")
-            parts << render_element("em", render_inline(title_node)) if title_node
+            title_str = node.title if node.class.method_defined?(:title)
+            parts << render_element("em", escape(title_str.to_s)) if title_str && !title_str.to_s.empty?
             render_element("span", parts.join(", "), css: "std")
           ensure
             @in_std = false
@@ -636,7 +633,7 @@ module Metanorma
           end
 
           def ext_link(node)
-            render_link(href: node.xlink_href, text: inline_or_content(node))
+            render_link(href: node.href, text: inline_or_content(node))
           end
 
           def xref(node)

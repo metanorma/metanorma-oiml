@@ -86,10 +86,10 @@ module Metanorma
             end
             flush_text.call
 
-            ::Sts::IsoSts::Paragraph.new(id: id_val) do |p|
+            ::Sts::NisoSts::Paragraph.new(id: id_val) do |p|
               entries.each do |kind, value|
                 case kind
-                when :text then p.content value
+                when :text then p.text value
                 when :bold then p.bold value
                 when :italic then p.italic value
                 when :sub then p.sub value
@@ -184,15 +184,15 @@ module Metanorma
               walk_inline(node, &counting)
               walk_semx_named_children(node, &counting) if yield_count.zero?
             when "EmRawElement", "EmElement"
-              yield(:italic, node, build_inline_container(node, ::Sts::IsoSts::Italic))
+              yield(:italic, node, build_inline_container(node, ::Sts::TbxIsoTml::Italic))
             when "StrongRawElement", "StrongElement"
-              yield(:bold, node, build_inline_container(node, ::Sts::IsoSts::Bold))
+              yield(:bold, node, build_inline_container(node, ::Sts::TbxIsoTml::Bold))
             when "SubElement"
-              yield(:sub, node, build_inline_container(node, ::Sts::IsoSts::Sub))
+              yield(:sub, node, build_inline_container(node, ::Sts::NisoSts::Sub))
             when "SupElement"
-              yield(:sup, node, build_inline_container(node, ::Sts::IsoSts::Sup))
+              yield(:sup, node, build_inline_container(node, ::Sts::NisoSts::Sup))
             when "TtElement", "MonospaceElement"
-              yield(:tt, node, build_inline_container(node, ::Sts::IsoSts::Monospace))
+              yield(:tt, node, build_inline_container(node, ::Sts::NisoSts::Monospace))
             when "StemInlineElement", "StemBlockElement"
               yield(:stem, node, nil)
             when "AsciimathElement"
@@ -256,14 +256,15 @@ module Metanorma
           end
 
           # Routes a child to the matching typed-collection attribute on
-          # the container. Bold / Italic / Monospace declare the full
-          # inline-collection set; Sub / Sup only declare `content`, so
-          # any non-string child degrades to its #to_s form (sub/sup
-          # wrap plain-text subscripts in practice — never math).
+          # the container. NisoSts stores text on a different attribute
+          # per class (Paragraph#text, TbxIsoTml::Bold/Italic#value,
+          # everything else has #content). Sub/Sup only declare content,
+          # so non-string children degrade to their #to_s form.
           def attach_inline_child(container, child)
             case container
-            when ::Sts::IsoSts::Bold, ::Sts::IsoSts::Italic,
-                 ::Sts::IsoSts::Monospace
+            when ::Sts::NisoSts::Paragraph
+              attach_to_paragraph(container, child)
+            when ::Sts::TbxIsoTml::Bold, ::Sts::TbxIsoTml::Italic
               attach_to_rich_inline(container, child)
             else
               container.content child.to_s
@@ -272,17 +273,34 @@ module Metanorma
 
           def attach_to_rich_inline(container, child)
             case child
-            when String                          then container.content child
-            when ::Sts::IsoSts::InlineFormula    then container.inline_formula child
-            when ::Sts::IsoSts::Bold             then container.bold child
-            when ::Sts::IsoSts::Italic           then container.italic child
-            when ::Sts::IsoSts::Sub              then container.sub child
-            when ::Sts::IsoSts::Sup              then container.sup child
-            when ::Sts::IsoSts::Monospace        then container.monospace child
+            when String                          then container.value child
+            when ::Sts::NisoSts::InlineFormula    then container.inline_formula child
+            when ::Sts::TbxIsoTml::Bold             then container.bold child
+            when ::Sts::TbxIsoTml::Italic           then container.italic child
+            when ::Sts::NisoSts::Sub              then container.sub child
+            when ::Sts::NisoSts::Sup              then container.sup child
+            when ::Sts::NisoSts::Monospace        then container.monospace child
             when ::Sts::TbxIsoTml::Xref          then container.xref child
-            when ::Sts::IsoSts::ExtLink          then container.ext_link child
+            when ::Sts::NisoSts::ExtLink          then container.ext_link child
             else
-              container.content child.to_s
+              container.value child.to_s
+            end
+          end
+
+          def attach_to_paragraph(container, child)
+            case child
+            when String                          then container.text child
+            when ::Sts::NisoSts::InlineFormula    then container.inline_formula child
+            when ::Sts::TbxIsoTml::Bold             then container.bold child
+            when ::Sts::TbxIsoTml::Italic           then container.italic child
+            when ::Sts::NisoSts::Sub              then container.sub child
+            when ::Sts::NisoSts::Sup              then container.sup child
+            when ::Sts::NisoSts::Monospace        then container.monospace child
+            when ::Sts::TbxIsoTml::Xref          then container.xref child
+            when ::Sts::NisoSts::ExtLink          then container.ext_link child
+            when ::Sts::NisoSts::Fn              then container.fn child
+            else
+              container.text child.to_s
             end
           end
 

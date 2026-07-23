@@ -17,8 +17,8 @@ RSpec.describe Metanorma::Oiml::Sts::MathmlBuilder do
       expect(result).to eq(Sts::TbxIsoTml::Math)
     end
 
-    it "returns Mml::V3::Math for IsoSts::InlineFormula targets" do
-      result = described_class.math_klass_for(Sts::IsoSts::InlineFormula)
+    it "returns Mml::V3::Math for non-NisoSts targets" do
+      result = described_class.math_klass_for(Mml::V3::Math)
       expect(result).to eq(Mml::V3::Math)
     end
   end
