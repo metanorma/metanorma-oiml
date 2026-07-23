@@ -25,17 +25,12 @@ module Metanorma
         end
 
         # The Math model class nominally paired with a formula wrapper
-        # class: NisoSts formulas take Sts::TbxIsoTml::Math, everything
-        # else (IsoSts, bare Mml) takes Mml::V3::Math. Note
-        # inline_formula_from_stem deliberately always uses Mml::V3::Math
-        # even for NisoSts targets — the mml gem preserves all MathML
-        # elements where TbxIsoTml::Math drops <mstyle> children.
-        def math_klass_for(formula_klass)
-          if formula_klass.to_s.include?("NisoSts")
-            ::Sts::TbxIsoTml::Math
-          else
-            Mml::V3::Math
-          end
+        # class. sts >= 0.6.0 unified all MathML on Mml::V3::Math across
+        # IsoSts, NisoSts, and TbxIsoTml, so this is always Mml::V3::Math
+        # regardless of the formula wrapper's namespace. Kept as a
+        # method (not a constant) so callers don't hard-code the class.
+        def math_klass_for(_formula_klass)
+          Mml::V3::Math
         end
 
         # Builds a math model instance from a stem-bearing typed model node.
@@ -45,9 +40,8 @@ module Metanorma
         # the formula in that case (mnconvert's behavior).
         #
         # `klass:` selects which typed Math model to instantiate.
-        # Defaults to Mml::V3::Math (used by Sts::NisoSts::* models).
-        # Pass ::Sts::TbxIsoTml::Math when targeting Sts::NisoSts::*
-        # models (e.g. Sts::TbxIsoTml::Td cells).
+        # Defaults to Mml::V3::Math — the canonical MathML model used
+        # by sts >= 0.6.0 across IsoSts, NisoSts, and TbxIsoTml.
         def math_from_stem(stem_node, klass: Mml::V3::Math)
           math_el = first_math_element(stem_node)
           return nil unless math_el
@@ -73,10 +67,8 @@ module Metanorma
         # use inside paragraphs and table cells. Returns nil if the
         # stem carries no parseable MathML.
         #
-        # Always uses Mml::V3::Math — the mml gem preserves all
-        # MathML elements (mtext, mrow, msub, etc.) during roundtrip,
-        # unlike Sts::TbxIsoTml::Math which drops elements inside
-        # <mstyle>.
+        # Always uses Mml::V3::Math — the canonical MathML model,
+        # unified across all STS namespaces in sts >= 0.6.0.
         def inline_formula_from_stem(stem_node, klass: ::Sts::NisoSts::InlineFormula)
           math = math_from_stem(stem_node, klass: Mml::V3::Math)
           return nil unless math
