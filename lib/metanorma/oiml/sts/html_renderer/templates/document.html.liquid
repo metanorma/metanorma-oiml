@@ -13,10 +13,11 @@
 <header class="site-nav sticky top-0 z-40 flex items-center gap-3 min-h-[56px] px-5 py-2 bg-nav-bg border-b border-nav-border text-nav-text shadow-sm">
   <span class="brand-logo-light shrink-0 [&>svg]:h-[34px] [&>svg]:w-auto [&>svg]:block">{{ logo_light }}</span>
   <span class="brand-logo-dark shrink-0 [&>svg]:h-[34px] [&>svg]:w-auto [&>svg]:block">{{ logo_dark }}</span>
-  <nav class="breadcrumb flex items-baseline gap-2 min-w-0 text-sm whitespace-nowrap overflow-hidden" aria-label="Breadcrumb">
-    <span class="crumb-doc font-mono text-xs font-bold tracking-wider uppercase text-accent">{{ docid | escape }}</span><span class="crumb-title hidden md:inline overflow-hidden text-ellipsis text-ink-faint" title="{{ title | escape }}">{{ title | escape }}</span><span class="crumb-sep text-ink-faint" aria-hidden="true">›</span><span class="crumb-current overflow-hidden text-ellipsis text-nav-text font-semibold" id="crumb-current"></span>
+  <span class="nav-doc-title font-semibold text-nav-text truncate min-w-0">{{ title | escape }}</span>
+  <nav class="breadcrumb hidden md:flex items-baseline gap-2 min-w-0 text-sm whitespace-nowrap overflow-hidden ml-auto" aria-label="Breadcrumb">
+    <span class="crumb-doc font-mono text-xs font-bold tracking-wider uppercase text-accent">{{ docid | escape }}</span><span class="crumb-sep text-ink-faint" aria-hidden="true">›</span><span class="crumb-current overflow-hidden text-ellipsis text-ink-faint" id="crumb-current"></span>
   </nav>
-  <span class="nav-actions ml-auto flex gap-2">
+  <span class="nav-actions ml-auto md:ml-0 flex gap-2">
     <button id="theme-toggle" class="nav-btn inline-flex items-center justify-center w-9 h-9 rounded-md border border-nav-btn-border bg-nav-btn-bg text-nav-text hover:border-accent hover:text-accent transition-colors cursor-pointer" aria-label="Toggle light and dark mode" title="Toggle light / dark mode">
       <svg class="icon-sun hidden dark:block" viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><line x1="8" y1="1" x2="8" y2="3"/><line x1="8" y1="13" x2="8" y2="15"/><line x1="1" y1="8" x2="3" y2="8"/><line x1="13" y1="8" x2="15" y2="8"/><line x1="3.05" y1="3.05" x2="4.46" y2="4.46"/><line x1="11.54" y1="3.05" x2="12.95" y2="4.46"/><line x1="3.05" y1="12.95" x2="4.46" y2="11.54"/><line x1="11.54" y1="12.95" x2="12.95" y2="11.54"/></svg>
       <svg class="icon-moon dark:hidden" viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5 5.5 5.5 0 1 0 13.5 9.5z"/></svg>

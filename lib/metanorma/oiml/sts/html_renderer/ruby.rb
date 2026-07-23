@@ -925,13 +925,17 @@ module Metanorma
           end
 
           # Light- and dark-mode logo variants (theme picks visibility).
+          # Uses the OIML SMART logos (distinct from the legacy OIML logo).
           def logo_svg_light
-            @logo_svg_light ||= File.read(File.join(assets_dir, "oiml-logo.svg"))
-              .sub(/\A<\?xml[^?]*\?>\s*/, "")
+            @logo_svg_light ||= read_asset("oiml-smart-logo.svg")
           end
 
           def logo_svg_dark
-            @logo_svg_dark ||= File.read(File.join(assets_dir, "oiml-logo-dark.svg"))
+            @logo_svg_dark ||= read_asset("oiml-smart-logo-dark.svg")
+          end
+
+          def read_asset(name)
+            File.read(File.join(assets_dir, name))
               .sub(/\A<\?xml[^?]*\?>\s*/, "")
           end
 
