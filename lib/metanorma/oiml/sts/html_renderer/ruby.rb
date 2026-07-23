@@ -844,12 +844,30 @@ module Metanorma
             meta_node = find_meta_node(model)
             return { title: "", docid: "" } unless meta_node
 
-            { title: find_text(meta_node, ["TitleWrap", "Title"]),
+            { title: title_text(meta_node),
               docid: doc_id(meta_node),
               year: find_text(meta_node, ["CopyrightYear", "PubDate", "Year"]),
               series: doc_series(meta_node),
               copyright: find_text(meta_node, ["CopyrightStatement"]),
               holder: find_text(meta_node, ["CopyrightHolder"]) }
+          end
+
+          # NisoSts TitleWrap stores the title parts as bare Strings
+          # (main:, intro:, compl:, full:) rather than as typed Title
+          # model children, so plain_text on the wrap returns "".
+          # Prefer main, then fall back to compl / full / intro, then
+          # fall back to the generic find_text walk for older layouts.
+          def title_text(meta_node)
+            wrap = find_model(meta_node, "TitleWrap")
+            return find_text(meta_node, ["Title"]) unless wrap
+
+            %i[main compl full intro].each do |attr|
+              next unless wrap.class.method_defined?(attr)
+              val = wrap.public_send(attr)
+              val = val.text if val.respond_to?(:text) && !val.text.nil?
+              return val.to_s.strip unless val.to_s.strip.empty?
+            end
+            find_text(meta_node, ["Title"])
           end
 
           # Display form of the document identifier, rebuilt from the
@@ -901,11 +919,12 @@ module Metanorma
             end
           end
 
-          # First meta block (iso-meta / std-meta / reg-meta / nat-meta)
-          # found under the document front matter.
+          # First meta block (iso-meta / std-meta / reg-meta / nat-meta
+          # — NisoSts calls it MetadataIso) found under the document
+          # front matter.
           def find_meta_node(node)
             name = node.class.name.split("::").last
-            return node if %w[IsoMeta StdMeta RegMeta NatMeta].include?(name)
+            return node if %w[MetadataIso IsoMeta StdMeta RegMeta NatMeta].include?(name)
             return nil unless node.is_a?(Lutaml::Model::Serializable)
 
             node.class.attributes.each_value do |attr_def|
