@@ -36,7 +36,8 @@ module Metanorma
           # NisoSts is the canonical NISO STS namespace; TbxIsoTml covers
           # the terminology model and table cells.
           DISPATCH = {
-            "MetadataIso" => :meta, "RegMeta" => :meta, "NatMeta" => :meta,
+            "MetadataIso" => :meta, "MetadataStd" => :meta,
+            "RegMeta" => :meta, "NatMeta" => :meta,
             "Body" => :children,
             "Section" => :section, "App" => :section, "TermSection" => :section,
             "Label" => :label,
@@ -748,7 +749,6 @@ module Metanorma
 
           def assemble_document(body, model)
             meta = meta_info(model)
-            title_p = body_title_paragraph(meta)
             footnotes = deferred_footnotes_html
             render_liquid("document.html.liquid", {
                             "lang" => "en",
@@ -759,7 +759,7 @@ module Metanorma
                             "docid" => meta[:docid],
                             "toc" => toc_html,
                             "hero" => hero_html(meta),
-                            "content" => title_p + body + footnotes,
+                            "content" => body + footnotes,
                             "footer" => footer_html(meta),
                             "js" => javascript,
                           })
@@ -774,16 +774,6 @@ module Metanorma
               render_element("p", escape(fn["body"]), css: "footnote")
             end
             parts.join("\n")
-          end
-
-          # MN renders the document title as a <p> at the start of the
-          # body (class "zzSTDTitle1"). This matches that pattern so
-          # the title text appears as a paragraph alongside the body
-          # content.
-          def body_title_paragraph(meta)
-            return "" if meta[:title].empty?
-
-            render_element("p", escape(meta[:title]), css: "doc-title")
           end
 
           def hero_html(meta)
