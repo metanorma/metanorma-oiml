@@ -24,9 +24,13 @@ module Metanorma
                 value = sec.public_send(attr)
                 next if value.nil? || (value.is_a?(Array) && value.empty?)
 
-                attrs[attr] = value
+                # Section stores body paragraphs as `paragraphs` (plural);
+                # App stores them as `paragraph` (singular). Map across
+                # the boundary so the annex intro paragraphs survive.
+                key = (attr == :paragraphs) ? :paragraph : attr
+                attrs[key] = value
               end
-              ::Sts::IsoSts::App.new(attrs)
+              ::Sts::NisoSts::App.new(attrs)
             end
             ModelBuilder.app_group(app: apps)
           end
@@ -36,7 +40,7 @@ module Metanorma
           # (e.g. the Element map annex's table — or the annex letter
           # label, "Annex A").
           APP_CONTENT_ATTRS = %i[
-            id label title paragraph list fig table_wrap def_list disp_formula
+            id label title paragraphs list fig table_wrap def_list disp_formula
             non_normative_note non_normative_example ref_list sec preformat
           ].freeze
 

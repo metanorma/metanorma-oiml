@@ -53,7 +53,7 @@ RSpec.describe Metanorma::Oiml::Sts::Transformer::DlTransformer do
       expect(dl).not_to be_nil
       result = transformer.transform(dl)
 
-      expect(result).to be_a(Sts::IsoSts::DefList)
+      expect(result).to be_a(Sts::NisoSts::DefList)
       expect(result.def_item.size).to eq(2)
     end
 
@@ -62,9 +62,9 @@ RSpec.describe Metanorma::Oiml::Sts::Transformer::DlTransformer do
       result = transformer.transform(dl)
       first = result.def_item.first
 
-      expect(first.term.content.join).to eq("AC")
-      expect(first.def.paragraph.size).to eq(1)
-      expect(first.def.paragraph.first.content.join).to eq("Alternating Current")
+      expect(first.term.text.join).to eq("AC")
+      expect(first.definition.paragraph.size).to eq(1)
+      expect(first.definition.paragraph.first.text.join).to eq("Alternating Current")
     end
 
     it "emits valid STS XML" do

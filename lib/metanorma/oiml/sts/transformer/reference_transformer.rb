@@ -25,11 +25,11 @@ module Metanorma
             ref_list = ModelBuilder.ref_list(content_type: "normative-refs", title: nil, ref: refs)
             attrs = {}
             attrs[:id] = ref_section.id if ref_section.class.method_defined?(:id) && ref_section.id
-            attrs[:label] = ::Sts::IsoSts::Label.new(content: [label]) if label
-            attrs[:title] = ::Sts::IsoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
-            attrs[:paragraph] = paragraphs if paragraphs.any?
+            attrs[:label] = ::Sts::NisoSts::Label.new(content: [label]) if label
+            attrs[:title] = ::Sts::NisoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
+            attrs[:paragraphs] = paragraphs if paragraphs.any?
             attrs[:ref_list] = [ref_list] if ref_list
-            ::Sts::IsoSts::Sec.new(attrs)
+            ::Sts::NisoSts::Section.new(attrs)
           end
 
           def transform_bibitem(bibitem, ordinal = nil)
@@ -61,13 +61,9 @@ module Metanorma
 
             type = identifier.to_s.match?(/(:\d{4}|-\d{4}\b)/) ? "dated" : "undated"
             attrs = { type: type }
-            if identifier
-              attrs[:std_ref] = [::Sts::IsoSts::StdRef.new(type: type, content: [identifier])]
-            end
-            if formattedref
-              attrs[:title] = ::Sts::IsoSts::Title.new(content: [formattedref])
-            end
-            ::Sts::IsoSts::Std.new(attrs)
+            attrs[:std_ref] = ::Sts::NisoSts::StandardRef.new(type: type, value: identifier) if identifier
+            attrs[:title] = formattedref.to_s if formattedref
+            ::Sts::NisoSts::ReferenceStandard.new(attrs)
           end
 
           def extract_bibitems(ref_section)

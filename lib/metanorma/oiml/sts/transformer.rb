@@ -7,7 +7,7 @@
 #   (typed model, on the metanorma-document framework). Zero Nokogiri.
 # - {Context}: shared state during one conversion run.
 # - {ModelBuilder}: factory methods for sts-ruby model instances.
-# - {DocumentTransformer}: orchestrator. Produces a Sts::IsoSts::Standard
+# - {DocumentTransformer}: orchestrator. Produces a Sts::NisoSts::Standard
 #   root via sts-ruby models and serializes via lutaml-model.
 # - Per-element transformers walk typed-model source objects and emit
 #   sts-ruby model instances. Zero Nokogiri.

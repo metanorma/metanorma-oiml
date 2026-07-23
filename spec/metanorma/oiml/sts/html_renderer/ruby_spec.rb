@@ -162,7 +162,7 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
   end
 
   it "accepts a parsed sts-ruby model without re-parsing" do
-    model = Sts::IsoSts::Standard.from_xml(xml)
+    model = Sts::NisoSts::Standard.from_xml(xml)
     expect(renderer.render(model)).to eq(html)
   end
 

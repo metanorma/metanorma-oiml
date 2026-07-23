@@ -6,7 +6,7 @@
 # regex symbol rules, subscript/superscript rewriting, and asciimath
 # conversion. That approach was wrong — mnconvert (the production
 # Metanorma→STS converter) copies MathML verbatim into <inline-formula>.
-# We do the same via Mml::V3::Math.from_xml + Sts::IsoSts::InlineFormula.
+# We do the same via Mml::V3::Math.from_xml + Sts::NisoSts::InlineFormula.
 #
 # The text-extraction methods (asciimath_to_plain_text, mathml_to_plain_text,
 # apply_symbol_rules, apply_subscript_rules, apply_superscript_rules) were
@@ -45,7 +45,7 @@ module Metanorma
         # the formula in that case (mnconvert's behavior).
         #
         # `klass:` selects which typed Math model to instantiate.
-        # Defaults to Mml::V3::Math (used by Sts::IsoSts::* models).
+        # Defaults to Mml::V3::Math (used by Sts::NisoSts::* models).
         # Pass ::Sts::TbxIsoTml::Math when targeting Sts::NisoSts::*
         # models (e.g. Sts::TbxIsoTml::Td cells).
         def math_from_stem(stem_node, klass: Mml::V3::Math)
@@ -77,7 +77,7 @@ module Metanorma
         # MathML elements (mtext, mrow, msub, etc.) during roundtrip,
         # unlike Sts::TbxIsoTml::Math which drops elements inside
         # <mstyle>.
-        def inline_formula_from_stem(stem_node, klass: ::Sts::IsoSts::InlineFormula)
+        def inline_formula_from_stem(stem_node, klass: ::Sts::NisoSts::InlineFormula)
           math = math_from_stem(stem_node, klass: Mml::V3::Math)
           return nil unless math
 

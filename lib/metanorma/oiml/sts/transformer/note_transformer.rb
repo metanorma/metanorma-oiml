@@ -47,7 +47,7 @@ module Metanorma
             text = preformat_text(source_code)
             return nil if text.nil? || text.empty?
 
-            ::Sts::IsoSts::Preformat.new(content: [text])
+            ::Sts::NisoSts::Preformat.new(content: [text])
           end
 
           private

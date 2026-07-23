@@ -14,7 +14,7 @@ module Metanorma
             items = Array(source_dl.dt).zip(Array(source_dl.dd)).map do |dt, dd|
               build_def_item(dt, dd)
             end.compact
-            ::Sts::IsoSts::DefList.new(def_item: items)
+            ::Sts::NisoSts::DefList.new(def_item: items)
           end
 
           private
@@ -22,10 +22,10 @@ module Metanorma
           def build_list_item(li)
             nested_lists = build_nested_lists(li)
 
-            ::Sts::IsoSts::ListItem.new do |item|
+            ::Sts::NisoSts::ListItem.new do |item|
               label = item_label(li)
-              item.label ::Sts::IsoSts::Label.new(content: [label]) if label
-              Array(li.paragraphs).each { |p| item.paragraph paragraph_transformer.transform(p) }
+              item.label ::Sts::NisoSts::Label.new(content: [label]) if label
+              Array(li.paragraphs).each { |p| item.p paragraph_transformer.transform(p) }
               nested_lists.each { |l| item.list l }
             end
           end
@@ -58,13 +58,13 @@ module Metanorma
             return nil unless term_text || desc_text
 
             attrs = {}
-            attrs[:term] = ::Sts::IsoSts::Term.new(content: [term_text]) if term_text && !term_text.empty?
+            attrs[:term] = ::Sts::NisoSts::Term.new(text: [term_text]) if term_text && !term_text.empty?
             if desc_text && !desc_text.empty?
-              attrs[:def] = ::Sts::IsoSts::Def.new(
-                paragraph: [::Sts::IsoSts::Paragraph.new(content: [desc_text])]
+              attrs[:def] = ::Sts::NisoSts::Def.new(
+                paragraph: [::Sts::NisoSts::Paragraph.new(content: [desc_text])]
               )
             end
-            ::Sts::IsoSts::DefItem.new(attrs)
+            ::Sts::NisoSts::DefItem.new(attrs)
           end
 
           def extract_dd_text(dd)
