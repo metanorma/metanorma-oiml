@@ -919,12 +919,13 @@ module Metanorma
             end
           end
 
-          # First meta block (iso-meta / std-meta / reg-meta / nat-meta
-          # — NisoSts calls it MetadataIso) found under the document
-          # front matter.
+          # First metadata block found under the document front matter.
+          # Recognises any subclass of the NisoSts metadata containers
+          # (MetadataIso → <iso-meta>, MetadataStd → <std-meta>) via
+          # is_a?, so OIML (or any other future subclass) is picked up
+          # without extending a hard-coded class-name list.
           def find_meta_node(node)
-            name = node.class.name.split("::").last
-            return node if %w[MetadataIso IsoMeta StdMeta RegMeta NatMeta].include?(name)
+            return node if meta_node?(node)
             return nil unless node.is_a?(Lutaml::Model::Serializable)
 
             node.class.attributes.each_value do |attr_def|
@@ -937,6 +938,11 @@ module Metanorma
               end
             end
             nil
+          end
+
+          def meta_node?(node)
+            node.is_a?(::Sts::NisoSts::MetadataIso) ||
+              node.is_a?(::Sts::NisoSts::MetadataStd)
           end
 
           def stylesheet

@@ -5,8 +5,8 @@ module Metanorma
       module Transformer
         class FrontTransformer < Base
           def transform(source)
-            iso_meta = build_iso_meta(source)
-            ModelBuilder.front(iso_meta: iso_meta)
+            std_meta = build_std_meta(source)
+            ModelBuilder.front(std_meta: std_meta)
           end
 
           def preface_sections(source)
@@ -19,9 +19,9 @@ module Metanorma
 
           private
 
-          def build_iso_meta(source)
+          def build_std_meta(source)
             title = source.formatted_title || source.title(type: "main") || source.title
-            ModelBuilder.iso_meta(
+            ModelBuilder.std_meta(
               doc_identifier: source.docidentifier,
               title: title,
               pub_date: source.pub_date,

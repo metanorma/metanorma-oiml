@@ -20,8 +20,8 @@ module Metanorma
             end
           end
 
-          def front(iso_meta: nil)
-            ::Sts::NisoSts::Front.new.tap { |f| f.iso_meta = iso_meta if iso_meta }
+          def front(std_meta: nil)
+            ::Sts::NisoSts::Front.new.tap { |f| f.std_meta = std_meta if std_meta }
           end
 
           def body(sec: [])
@@ -213,14 +213,21 @@ module Metanorma
             end
           end
 
-          def iso_meta(doc_identifier: nil, title: nil, pub_date: nil,
+          # Builds the OIML front-matter metadata block. OIML is not
+          # ISO — the NISO-STS-correct container for an OIML publication
+          # is <std-meta> (the generic catch-all for non-ISO / non-
+          # national / non-regional SDOs). MetadataStd ships the same
+          # attribute set as MetadataIso (title_wrap, std_ident,
+          # permissions, pub_date, custom_meta_group), but several
+          # are collections where MetadataIso's were singular.
+          def std_meta(doc_identifier: nil, title: nil, pub_date: nil,
                        permissions: nil, custom_meta_group: nil)
-            ::Sts::NisoSts::MetadataIso.new.tap do |m|
-              m.title_wrap = ::Sts::NisoSts::TitleWrap.new(main: title) if title
+            ::Sts::NisoSts::MetadataStd.new.tap do |m|
+              m.title_wrap = [::Sts::NisoSts::TitleWrap.new(main: title)] if title
               m.std_ident = std_ident_for(doc_identifier) if doc_identifier
-              m.permissions = permissions if permissions
+              m.permissions = [permissions] if permissions
               m.pub_date = pub_date.to_s if pub_date
-              m.custom_meta_group = custom_meta_group if custom_meta_group
+              m.custom_meta_group = [custom_meta_group] if custom_meta_group
             end
           end
 
