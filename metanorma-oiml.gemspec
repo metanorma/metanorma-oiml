@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "metanorma-document", ">= 0.4.0"
   spec.add_dependency "lutaml-model", "~> 0.8.0"
-  spec.add_dependency "sts", "~> 0.5"
+  spec.add_dependency "sts", ">= 0.6"
   spec.add_dependency "mml", "~> 2.3"
   spec.add_dependency "liquid", ">= 5.0"
   # Nokogiri is used by the validator and parity tooling

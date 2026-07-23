@@ -132,7 +132,7 @@ module Metanorma
           def render_node(node)
             case node
             when String then escape(node)
-            when Mml::V3::Math, ::Sts::TbxIsoTml::Math then mathml_to_html(node)
+            when Mml::V3::Math then mathml_to_html(node)
             when *INLINE_TAGS.keys then render_inline_tag(node)
             else
               handler = DISPATCH[node.class.name.split("::").last]

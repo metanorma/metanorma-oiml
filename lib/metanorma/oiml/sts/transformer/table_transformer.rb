@@ -107,10 +107,9 @@ module Metanorma
           # Fn#p is typed as Sts::NisoSts::Paragraph (uses :text attr).
           # Our paragraph_transformer produces Sts::NisoSts::Paragraph.
           # Convert by extracting text — footnote bodies in MN table
-          # cells lose their inline math (Sts::TbxIsoTml::Math drops
-          # msub/mrow content during parse), so we accept text-only.
-          # The fn's reference letter prefixes the first paragraph to
-          # match MN's "<sup>a</sup> body" rendering.
+          # cells drop inline math, so we accept text-only. The fn's
+          # reference letter prefixes the first paragraph to match
+          # MN's "<sup>a</sup> body" rendering.
           def build_fn_paragraph(mn_p, fn_element, first:)
             iso_p = paragraph_transformer.transform(mn_p)
             text = extract_paragraph_text(iso_p)
