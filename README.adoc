@@ -171,10 +171,12 @@ For every OIML publication the converter:
 . Emits a `<processing-meta>` block declaring the OIML-default modeling
   choices (STS interchange tag set, XHTML table model, MathML 3.0, TBX
   terminology model).
-. Builds an `<iso-meta>` block from the source `<bibdata>`: identifier,
+. Builds a `<std-meta>` block from the source `<bibdata>`: identifier,
   title group, publication date, release version, permissions,
   contributors, and a `<custom-meta>` recording the OIML document-series
-  letter (R/B/D/G/E/X).
+  letter (R/B/D/G/E/X). OIML uses `<std-meta>` (the NISO STS generic
+  container) — not `<iso-meta>` — because OIML is an intergovernmental
+  organisation, not ISO.
 . Walks the source `<sections>` into `<body><sec>` (nested), preserving
   labels, titles, and `@id` values.
 . Dispatches per-element transformers for paragraphs, lists, tables,
@@ -192,11 +194,74 @@ The transformer mirrors `Metanorma::Iso::Sts::Transformer`:
   `Metanorma::Oiml::Document::Root` (this gem's document model, built on the
   `metanorma-document` framework).
 * `Metanorma::Oiml::Sts::Transformer::Context` — shared state per conversion.
-* `Metanorma::Oiml::Sts::Transformer::StsXml` — Nokogiri-backed output
-  builder; every transformer emits through it.
+* `Metanorma::Oiml::Sts::Transformer::ModelBuilder` — factory methods for
+  constructing sts-ruby typed model instances (Sts::NisoSts::*).
 * Per-element transformers under `Metanorma::Oiml::Sts::Transformer::*`.
+* `Metanorma::Oiml::Sts::HtmlRenderer` — Liquid-based STS XML → HTML
+  renderer. Parses STS XML via `Sts::NisoSts::Standard.from_xml`, walks
+  the typed model, and emits a complete branded HTML page through Liquid
+  templates (no Nokogiri, no XSLT engine). Templates and assets (CSS,
+  SVG logos, JS) live under `lib/metanorma/oiml/sts/html_renderer/`.
+* `Metanorma::Oiml::Sts::ParityValidator` — compares the STS HTML output
+  against metanorma-document's HTML output at 100% content coverage
+  (headings, paragraphs, table cells, list items, notes, images).
 * `Metanorma::Oiml::Sts::Validator` — applies the Schematron ruleset and
   reports violations.
+
+== Rendering STS HTML
+
+The STS HTML renderer produces a standalone, branded HTML page from any
+OIML NISO STS XML.
+
+=== CLI
+
+```sh
+oiml-sts convert document.presentation.xml document.sts.xml
+```
+
+Then render the HTML:
+
+```ruby
+require "metanorma/oiml/sts"
+
+sts_xml = File.read("document.sts.xml")
+html = Metanorma::Oiml::Sts::HtmlRenderer.render(sts_xml)
+File.write("document.sts.html", html)
+```
+
+=== From Metanorma presentation XML (one-shot)
+
+```ruby
+require "metanorma/oiml/document"
+require "metanorma/oiml/html"
+require "metanorma/oiml/sts"
+
+# Step 1: presentation XML → STS XML
+presentation_xml = File.read("document.presentation.xml")
+sts_xml = Metanorma::Oiml::Sts.convert(presentation_xml)
+
+# Step 2: STS XML → branded STS HTML
+sts_html = Metanorma::Oiml::Sts::HtmlRenderer.render(sts_xml)
+File.write("document.sts.html", sts_html)
+```
+
+=== Renderer features
+
+* Tailwind 4 CSS (via CDN) with OIML-branded theme variables.
+* OIML SMART logos (light + dark variants, toggled with the page theme).
+* Sticky header nav with document title and breadcrumb (section-aware).
+* Interactive table of contents with scroll-spy (auto-highlights the
+  current section; auto-scrolls the TOC panel to keep the active entry
+  visible).
+* Front-matter sections (Copyright, Feedback) as muted cards; Foreword
+  and Introduction as normal sections.
+* Bibliography citations rendered with structured std-ref + title.
+* Term sections with heading-number + preferred-name in the TOC
+  ("3.1 NISO STS").
+* Table cells with monospace preservation, table footnotes routed to
+  `<tfoot>`, body footnotes deferred to end-of-document.
+* Dark / light / sepia / OLED theme toggle with localStorage persistence.
+* Back-to-top button.
 
 == Validation rules
 
