@@ -274,7 +274,7 @@ module Metanorma
           def attach_to_rich_inline(container, child)
             case child
             when String                          then container.value child
-            when ::Sts::NisoSts::InlineFormula    then container.inline_formula child
+            when ::Sts::NisoSts::InlineFormula    then container.value inline_formula_text(child)
             when ::Sts::TbxIsoTml::Bold             then container.bold child
             when ::Sts::TbxIsoTml::Italic           then container.italic child
             when ::Sts::NisoSts::Sub              then container.sub child
@@ -285,6 +285,25 @@ module Metanorma
             else
               container.value child.to_s
             end
+          end
+
+          # sts 0.6.0's TbxIsoTml::Bold/Italic don't declare an
+          # inline_formula collection, so a formula nested inside a
+          # <strong>/<em>wider container</strong> can't keep its MathML.
+          # Fall back to the formula's visible text — matches what a
+          # text-only reader sees in the source (e.g. "E_max" inside
+          # "<strong>max capacity (<stem>E_max</stem>)</strong>").
+          # Leading/trailing whitespace is preserved so "(<stem>v</stem>)"
+          # renders as "( v )" matching MN's text extraction.
+          def inline_formula_text(formula)
+            math = formula.math
+            return "" unless math
+
+            text = math.to_xml.to_s
+                         .gsub(/<[^>]+>/, " ")
+                         .gsub(/\s+/, " ")
+            text = " #{text.strip} " unless text.strip.empty?
+            text
           end
 
           def attach_to_paragraph(container, child)
@@ -381,10 +400,10 @@ module Metanorma
             end
             return nil if paragraphs.empty?
 
-            attrs = { id: fn_element.id, p: paragraphs }
+            attrs = { id: fn_element.id, paragraph: paragraphs }
             label = fn_element.reference if fn_element.is_a?(Metanorma::Document::Components::Inline::FnElement)
             attrs[:label] = ::Sts::NisoSts::Label.new(content: [label]) if label && !label.to_s.empty?
-            ::Sts::TbxIsoTml::Fn.new(attrs)
+            ::Sts::NisoSts::Fn.new(attrs)
           end
 
           def build_fn_paragraph_text(mn_p, fn_element, first:)

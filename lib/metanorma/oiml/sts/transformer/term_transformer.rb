@@ -74,7 +74,7 @@ module Metanorma
             text = preferred_name_text(source_term)
             return nil if text.nil? || text.empty?
 
-            ::Sts::NisoSts::Paragraph.new(content: [text])
+            ::Sts::NisoSts::Paragraph.new(text: [text])
           end
 
           def preferred_name_text(source_term)
@@ -142,20 +142,13 @@ module Metanorma
           end
 
           # MN renders term notes "<span class='term-note-label'>
-          # Note 1 to entry: </span>" (numbered, "to entry:", label
-          # inside the note paragraph) — numbered when the termnote
-          # carries an autonum, plain "Note" otherwise.
           # Term notes become <non-normative-note> with a "Note:" label
           # — matching MN's "<span class='termnote_label'>Note: </span>"
           # prefix inside the note paragraph. The entity's autonum
           # ("Note 1 to entry:") isn't surfaced in MN's term notes, so
           # we mirror that here.
-          # isodoc renders term notes "<span class='termnote_label'>
-          # Note 1 to entry: </span>" (numbered, "to entry:") — numbered
-          # when the termnote carries an autonum, plain "Note:" otherwise.
-          def term_note_label(note_obj)
-            number = note_obj.autonum if note_obj.class.method_defined?(:autonum)
-            number && !number.to_s.empty? ? "Note #{number} to entry:" : "Note:"
+          def term_note_label(_note_obj)
+            "Note:"
           end
 
           def add_term_examples(content, source_term)
@@ -199,7 +192,7 @@ module Metanorma
               text << " "
             end
             text << "]"
-            ::Sts::NisoSts::Paragraph.new(content: [text])
+            ::Sts::NisoSts::Paragraph.new(text: [text])
           end
 
           def extract_locality(origin)

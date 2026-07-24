@@ -621,7 +621,17 @@ module Metanorma
             suppress_label(label_node) if label_node
             label_text = label_node ? plain_text(label_node).strip : ""
             display_label = label_text.match?(/\A\d+\z/) ? "#{label_text})" : label_text
-            body_parts = Array(node.p).map { |para| plain_text(para) }
+            # NisoSts::Fn stores paragraphs in #paragraph; TbxIsoTml::Fn
+            # stores them in #p. Accept either so the renderer handles
+            # footnotes from paragraphs and table cells uniformly.
+            fn_paragraphs = if node.class.method_defined?(:paragraph)
+                               Array(node.paragraph)
+                             elsif node.class.method_defined?(:p)
+                               Array(node.p)
+                             else
+                               []
+                             end
+            body_parts = fn_paragraphs.map { |para| plain_text(para) }
             body_text = body_parts.join(" ")
             unless body_text.empty?
               if @table_fns&.last
@@ -750,6 +760,7 @@ module Metanorma
           def assemble_document(body, model)
             meta = meta_info(model)
             footnotes = deferred_footnotes_html
+            title_p = body_title_paragraph(meta)
             render_liquid("document.html.liquid", {
                             "lang" => "en",
                             "title" => meta[:title],
@@ -759,10 +770,19 @@ module Metanorma
                             "docid" => meta[:docid],
                             "toc" => toc_html,
                             "hero" => hero_html(meta),
-                            "content" => body + footnotes,
+                            "content" => title_p + body + footnotes,
                             "footer" => footer_html(meta),
                             "js" => javascript,
                           })
+          end
+
+          # MN renders the document title as a <p class="zzSTDTitle1">
+          # at the start of the body. Emitting a matching paragraph
+          # keeps the title in the parity check's paragraph set.
+          def body_title_paragraph(meta)
+            return "" if meta[:title].to_s.empty?
+
+            render_element("p", escape(meta[:title]), css: "doc-title")
           end
 
           # Deferred footnotes collected from fn() calls during rendering.
