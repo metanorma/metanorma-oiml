@@ -15,6 +15,7 @@
 # - {BlockDispatcher}: Open/Closed dispatch by typed model class name.
 module Metanorma::Oiml::Sts::Transformer
   autoload :SourceDocument, "metanorma/oiml/sts/transformer/source_document"
+  autoload :Standard, "metanorma/oiml/sts/transformer/standard"
   autoload :Context, "metanorma/oiml/sts/transformer/context"
   autoload :ModelBuilder, "metanorma/oiml/sts/transformer/model_builder"
   autoload :IdGenerator, "metanorma/oiml/sts/transformer/id_generator"
