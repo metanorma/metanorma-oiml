@@ -20,6 +20,7 @@ module Metanorma
         method_option :validate, type: :boolean, default: false,
                                   desc: "Run the validator on the output and exit non-zero on errors"
         def convert(input, output = nil)
+          warn_oiml_sts_deprecated
           sts_xml = Sts.convert(read_input(input))
           output_path = output || default_output_for(input)
           write_output(output_path, sts_xml)
@@ -34,6 +35,7 @@ module Metanorma
         desc "convert-dir INPUT_DIR OUTPUT_DIR",
              "Batch convert every document.presentation.xml under INPUT_DIR"
         def convert_dir(input_dir, output_dir)
+          warn_oiml_sts_deprecated
           require "pathname"
 
           inputs = Pathname.new(input_dir).glob("**/document.presentation.xml")
@@ -59,6 +61,15 @@ module Metanorma
         end
 
         private
+
+        # oiml-sts is superseded by the metanorma pipeline (metanorma-core#12):
+        # `metanorma compile -t oiml -x oimlsts <file>.adoc`. Retained for one
+        # release cycle; scheduled for removal.
+        def warn_oiml_sts_deprecated
+          $stderr.puts "[DEPRECATED] `oiml-sts` is superseded by " \
+                       "`metanorma compile -t oiml -x oimlsts <file>.adoc` " \
+                       "and will be removed in a future release."
+        end
 
         def read_input(path)
           Pathname.new(path).read

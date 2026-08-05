@@ -18,6 +18,20 @@ gem "metanorma-oiml"
 
 == CLI
 
+[CAUTION]
+====
+The `oiml-sts` CLI is *deprecated*. OIML STS output is now produced through the
+Metanorma pipeline as a taste output format (see metanorma-core#12):
+
+[source,sh]
+----
+metanorma compile -t oiml -x oimlsts document.adoc   # => document.oiml.sts.xml
+----
+
+`oiml-sts` is retained for one release cycle, then removed. The reusable library
+API (`Metanorma::Oiml::Sts.convert` / `.validate`) is unaffected.
+====
+
 ```sh
 oiml-sts convert <input.presentation.xml> [output.sts.xml]
 oiml-sts convert-dir <input-dir> <output-dir>
