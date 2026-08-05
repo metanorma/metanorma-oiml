@@ -16,6 +16,12 @@ module Metanorma
             new(typed)
           end
 
+          # Reader entry point for the metanorma-core document_transformers
+          # contract (+reader.from_xml(String) -> model+); an alias of {.parse}.
+          def self.from_xml(input)
+            parse(input)
+          end
+
           def initialize(typed_root)
             @typed_root = typed_root
           end
