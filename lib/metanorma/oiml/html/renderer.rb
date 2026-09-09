@@ -3,32 +3,11 @@
 module Metanorma
   module Oiml
     module Html
-      class Renderer < Metanorma::Html::IsoRenderer
-        register_render Metanorma::Oiml::Document::Root, :render_document
-
-        DOCTYPE_ID_PATTERN = /\b([RGBDEVS])\s*\d/
-
-        def extract_doctype(bibdata)
-          oiml_doctype_from_doc_id(bibdata) || super
-        end
-
-        def extract_stage(bibdata)
-          oiml_doctype_from_doc_id(bibdata) || super
-        end
-
-        private
-
-        def oiml_doctype_from_doc_id(bibdata)
-          labels = theme.doctype_labels
-          return nil if labels.empty?
-
-          doc_id = formatted_doc_id(bibdata).to_s
-          return nil if doc_id.empty?
-
-          if (match = doc_id.match(DOCTYPE_ID_PATTERN))
-            labels[match[1]]
-          end
-        end
+      # OIML documents render iso-style; the OIML root uses the ISO
+      # section classes the parent renderer already registers — only
+      # the root itself needs dispatch (exact-class, OGC pattern).
+      class Renderer < Metanorma::Iso::Html::Renderer
+        register_render "Metanorma::Oiml::Document::Root", :render_document
       end
     end
   end
