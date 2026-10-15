@@ -28,20 +28,8 @@ end
 
 Metanorma::Registers::Setup.setup_oiml_register
 
-require "metanorma-core"
-
-# OCP adoption: ONE registration in the metanorma-core flavor table
-# (metanorma-core#18). Lazy: the table exists only on the flavor-table
-# line of metanorma-core; skip silently on resolutions without it.
-if defined?(Metanorma::Core::Flavors)
-  Metanorma::Core::Flavors.register(Metanorma::Core::Flavor.new(
-                                      name: :oiml,
-                                      gem: "metanorma-oiml",
-                                      model_root: Metanorma::Oiml::Document::Root,
-                                      pubid_module: nil,
-                                      renderers: { html: lambda do |_document, **_options|
-                                        require "metanorma/oiml/html"
-                                        Metanorma::Oiml::Html::Renderer
-                                      end },
-                                    ))
-end
+# The flavor-table entry for :oiml is owned by the oiml taste
+# (metanorma-taste, base-flavor: iso). Registering a bare entry here as
+# well made Core::Flavors.find(:oiml) resolve to it once this gem loads
+# (the table walks reverse order), which broke the taste's
+# base-flavor resolution and fatal-aborted compiles of the taste.
