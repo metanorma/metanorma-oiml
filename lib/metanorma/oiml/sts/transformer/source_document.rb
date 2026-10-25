@@ -69,7 +69,10 @@ module Metanorma
 
           def formatted_title
             return title unless bibdata
-            iso_title = bibdata.title
+            # The composed model #title can raise on documents whose front
+            # lacks the title structure it expects; fall back to the
+            # generic wrapper title rather than failing the transform.
+            iso_title = (bibdata.title rescue nil)
             return title unless iso_title
             main = abstract_title_value(iso_title.title_main)
             part_prefix = abstract_title_value(iso_title.title_part_prefix)
