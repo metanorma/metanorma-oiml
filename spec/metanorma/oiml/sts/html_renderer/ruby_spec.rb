@@ -53,13 +53,15 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
                                 '<span class="title">Test Document</span></header>')
   end
 
-  it "renders sections" do
-    expect(html).to include('<section id="s1" class="frontmatter">')
+  it "renders sections with their ids and headings" do
+    expect(html).to include('<section id="s1">')
+    expect(html).to include("<h2>First")
+    expect(html).to include('<section id="s2">')
+    expect(html).to include("<h2>Second")
   end
 
-  it "marks unnumbered top-level sections as front matter" do
-    expect(html).to include('<section id="s1" class="frontmatter">')
-    expect(html).to include('<section id="s2" class="frontmatter">')
+  it "renders unnumbered top-level sections uniformly (frontmatter is copyright/feedback only)" do
+    expect(html).not_to include('class="frontmatter"')
   end
 
   it "prefixes numbered section headings with their label" do
@@ -195,8 +197,8 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
     expect(normalized).to include('<span class="crumb-doc ')
   end
 
-  it "carries the title in the brand header" do
-    expect(normalized).to include('class="crumb-title ')
+  it "carries the title in the hero" do
+    expect(normalized).to include('class="hero-title"')
   end
 
   it "renders a bare fragment with full_document: false" do
