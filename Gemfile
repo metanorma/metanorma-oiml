@@ -14,9 +14,7 @@ gem "metanorma-standoc", github: "metanorma/metanorma-standoc", branch: "feat/te
 gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "feat/model-validation-migration"
 gem "metanorma-core", github: "metanorma/metanorma-core", branch: "feat/flavor-table"
 gem "isodoc", github: "metanorma/isodoc", branch: "main"
-# TEMPORARY: each_mixed_content scalar fix (lutaml-model#1023) — flip to
-# released on the next lutaml-model version.
-gem "lutaml-model", github: "lutaml/lutaml-model", branch: "fix/mixed-content-scalar-elements"
+gem "lutaml-model", ">= 0.8.133"
 
 group :development do
   gem "pry"
