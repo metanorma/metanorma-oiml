@@ -12,7 +12,7 @@ gem "mml", ">= 2.0"
 gem "metanorma-document", github: "metanorma/metanorma-document", branch: "fix/base-root-bibdata"
 gem "metanorma-standoc", github: "metanorma/metanorma-standoc", branch: "feat/term-grammar-coverage"
 gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "feat/model-validation-migration"
-gem "metanorma-core", github: "metanorma/metanorma-core", branch: "feat/flavor-table"
+gem "metanorma-core", "~> 0.2.5.pre.alpha" # published flavor/taste table (metanorma-core#18)
 gem "isodoc", github: "metanorma/isodoc", branch: "main"
 gem "lutaml-model", ">= 0.8.133"
 
