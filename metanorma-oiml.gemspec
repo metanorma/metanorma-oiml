@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.authors = ["OIML"]
   spec.email = ["info@oiml.org"]
 
-  spec.summary = "OIML NISO STS toolkit: Metanorma presentation XML → OIML STS XML " \
-                 "transformer, validator, and Schematron rules per OIML X 999:2026."
-  spec.description = spec.summary
+  spec.summary       = "Metanorma for the OIML"
+  spec.description   = "Metanorma for the OIML."
+
   spec.homepage = "https://github.com/metanorma/metanorma-oiml"
   spec.license = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 3.0.0")
