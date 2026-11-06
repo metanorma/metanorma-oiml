@@ -4,13 +4,10 @@ source "https://rubygems.org"
 
 gemspec
 gem "metanorma-mirror", "~> 1.0"
-
-# TEMPORARY audit chain — flip each to main on merge, version on release
-gem "metanorma-document", github: "metanorma/metanorma-document", branch: "main"
-gem "metanorma-standoc", github: "metanorma/metanorma-standoc", branch: "feat/term-grammar-coverage"
-gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "feat/model-validation-migration"
+gem "metanorma-standoc", "~> 3.5"
+gem "metanorma-iso", "~> 3.5"
 gem "metanorma-core", "~> 0.2.7" # published flavor/taste table (metanorma-core#18)
-gem "isodoc", github: "metanorma/isodoc", branch: "main"
+gem "isodoc", "~> 3.7"
 gem "lutaml-model", ">= 0.8.133"
 
 group :development do
