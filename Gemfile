@@ -9,7 +9,7 @@ gem "metanorma-mirror", "~> 1.0"
 gem "metanorma-document", github: "metanorma/metanorma-document", branch: "main"
 gem "metanorma-standoc", github: "metanorma/metanorma-standoc", branch: "feat/term-grammar-coverage"
 gem "metanorma-iso", github: "metanorma/metanorma-iso", branch: "feat/model-validation-migration"
-gem "metanorma-core", "~> 0.2.5.pre.alpha" # published flavor/taste table (metanorma-core#18)
+gem "metanorma-core", "~> 0.2.7" # published flavor/taste table (metanorma-core#18)
 gem "isodoc", github: "metanorma/isodoc", branch: "main"
 gem "lutaml-model", ">= 0.8.133"
 
