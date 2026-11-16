@@ -5,7 +5,7 @@ require_relative "lib/metanorma/oiml/sts/version"
 Gem::Specification.new do |spec|
   spec.name = "metanorma-oiml"
   spec.version = Metanorma::Oiml::Sts::VERSION
-  spec.authors = ["OIML"]
+  spec.authors       = ["Ribose Inc."]
   spec.email = ["info@oiml.org"]
 
   spec.summary       = "Metanorma for the OIML"
