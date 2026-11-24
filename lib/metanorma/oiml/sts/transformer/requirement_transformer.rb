@@ -25,33 +25,33 @@ module Metanorma
         class RequirementTransformer < Base
           # Component attribute → row label, mirroring the HTML renderer.
           REQ_COMPONENTS = {
-            description: "Description",
-            specification: "Statement",
-            measurement_target: "Measurement target",
-            verification: "Verification",
-            inherit: "Inheritance",
-            import: "Imported",
+            description: 'Description',
+            specification: 'Statement',
+            measurement_target: 'Measurement target',
+            verification: 'Verification',
+            inherit: 'Inheritance',
+            import: 'Imported'
           }.freeze
 
           # Requirement type → NISO STS table-wrap @content-type, the
           # mnconvert vocabulary (recommend / recommendtest /
           # recommendclass).
           TYPE_TO_CONTENT_TYPE = {
-            "class" => "recommendclass",
-            "conformanceclass" => "recommendclass",
-            "abstractclass" => "recommendclass",
-            "verification" => "recommendtest",
-            "test" => "recommendtest",
+            'class' => 'recommendclass',
+            'conformanceclass' => 'recommendclass',
+            'abstractclass' => 'recommendclass',
+            'verification' => 'recommendtest',
+            'test' => 'recommendtest'
           }.freeze
 
           # Requirement type → mn-requirements vocabulary key, for the
           # synthesized label ("Requirements class", "Conformance class",
           # "Requirement test", …).
           TYPE_TO_LABEL_KEY = {
-            "class" => "requirementclass",
-            "abstractclass" => "requirementclass",
-            "verification" => "requirementtest",
-            "test" => "requirementtest",
+            'class' => 'requirementclass',
+            'abstractclass' => 'requirementclass',
+            'verification' => 'requirementtest',
+            'test' => 'requirementtest'
           }.freeze
 
           # @return [Array<::Sts::TbxIsoTml::TableWrap>] the requirement's
@@ -134,7 +134,7 @@ module Metanorma
             end
 
             cls_cell = classification_cell(source_req)
-            rows << ["Classification", cls_cell] if cls_cell
+            rows << ['Classification', cls_cell] if cls_cell
             rows
           end
 
@@ -195,8 +195,6 @@ module Metanorma
           end
 
           def classification_cell(source_req)
-            
-
             cls = Array(source_req.classification).filter_map do |c|
               next unless c.respond_to?(:value)
 
@@ -205,7 +203,7 @@ module Metanorma
             return nil if cls.empty?
 
             ::Sts::TbxIsoTml::Td.new do |c|
-              c.content cls.join("; ")
+              c.content cls.join('; ')
             end
           end
 
@@ -219,8 +217,6 @@ module Metanorma
           end
 
           def requirement_identifier(source_req)
-            
-
             RenderedTextExtractor.text_of(source_req.identifier).to_s.strip
           end
 
@@ -234,11 +230,9 @@ module Metanorma
           end
 
           def title_text_of(source_req)
-            
-
             title = source_req.title
             text = if title.is_a?(Lutaml::Model::Serializable) &&
-                title.respond_to?(:value) && !title.respond_to?(:each_mixed_content)
+                      title.respond_to?(:value) && !title.respond_to?(:each_mixed_content)
                      Array(title.value).join
                    else
                      RenderedTextExtractor.text_of(title)
@@ -251,8 +245,8 @@ module Metanorma
             vocabulary = reqt_labels
             key = TYPE_TO_LABEL_KEY[type] || type
             vocabulary[key] ||
-              vocabulary[source_req.class.name.split("::").last.delete_suffix("Model").downcase] ||
-              source_req.class.name.split("::").last.delete_suffix("Model").capitalize
+              vocabulary[source_req.class.name.split('::').last.delete_suffix('Model').downcase] ||
+              source_req.class.name.split('::').last.delete_suffix('Model').capitalize
           end
 
           # mn-requirements' vocabulary (the strings the native isodoc
@@ -260,12 +254,12 @@ module Metanorma
           # the gem is absent — the class-name fallback covers it.
           def reqt_labels
             @reqt_labels ||= begin
-              require "isodoc-i18n"
-              gem_path = Gem.loaded_specs["mn-requirements"]&.full_gem_path
-              gem_path && require(File.join(gem_path, "lib/isodoc/i18n"))
+              require 'isodoc-i18n'
+              gem_path = Gem.loaded_specs['mn-requirements']&.full_gem_path
+              gem_path && require(File.join(gem_path, 'lib/isodoc/i18n'))
               i18n = IsoDoc::MnRequirementsI18n.new(context.language, nil)
-              req = Hash(i18n.get["requirements"])
-              Hash(req["default"]).merge(Hash(req["modspec"]))
+              req = Hash(i18n.get['requirements'])
+              Hash(req['default']).merge(Hash(req['modspec']))
             rescue StandardError
               {}
             end
@@ -276,21 +270,19 @@ module Metanorma
           # xs:ID for the requirement's table: its anchor (what xrefs
           # target — "rc-…", "cc-…", "r-…"), else the source id.
           def requirement_sts_id(source_req)
-            
-
             anchor = source_req.anchor
             anchor.nil? || anchor.empty? ? source_req.id : anchor
           end
 
           def content_type_for(source_req)
             type = source_req.type.to_s
-            TYPE_TO_CONTENT_TYPE[type] || "recommend"
+            TYPE_TO_CONTENT_TYPE[type] || 'recommend'
           end
 
           # modspec-model requirements render under specific-use="modspec".
           def specific_use_for(source_req)
             model = source_req.model.to_s
-            model.empty? ? nil : "modspec"
+            model.empty? ? nil : 'modspec'
           end
         end
       end

@@ -4,13 +4,15 @@ module Metanorma
     module Sts
       module Transformer
         class TableTransformer < Base
-          # +opts+: provision-table overrides passed by RequirementTransformer
-          # (table-wrap id, content-type / specific-use, bold header cells).
+          # +opts+: provision-table overrides passed by
+          # RequirementTransformer — the table-wrap id (the requirement's
+          # anchor, what xrefs target), the mnconvert content-type /
+          # specific-use vocabulary, and header-row bolding per the
+          # guidelines' table-cell styling.
           def transform(source_table, id: nil, content_type: nil,
                         specific_use: nil, bold_header: false)
             attrs = {}
-            own_id = source_table.id if source_table.class.method_defined?(:id)
-            attrs[:id] = id || own_id if id || own_id
+            attrs[:id] = id || source_id_of(source_table)
             attrs[:content_type] = content_type if content_type
             attrs[:specific_use] = specific_use if specific_use
             label = table_label(source_table)
@@ -24,25 +26,27 @@ module Metanorma
 
           private
 
+          def source_id_of(source_table)
+            return nil unless source_table.id
+
+            source_table.id
+          end
+
           # "Table 2" from the presentation XML autonum attribute.
           def table_label(source_table)
-            return nil unless source_table.class.method_defined?(:autonum) && source_table.autonum
+            return nil unless source_table.autonum
 
             "Table #{source_table.autonum}"
           end
 
           # Provision-table captions prefer the fully-rendered fmt-name
-          # (it carries the "Table N — Requirement M: ..." composition);
+          # (it carries the "Table N — Requirement M: …" composition);
           # data tables use the semantic <name>.
           def table_caption(source_table)
             text = nil
-            if source_table.class.method_defined?(:fmt_name) && source_table.fmt_name
-              text = RenderedTextExtractor.text_of(source_table.fmt_name)
-            end
-            if (text.nil? || text.empty?) && source_table.class.method_defined?(:name) && source_table.name
-              text = RenderedTextExtractor.text_of(source_table.name)
-            end
-            return nil if text.nil? || text.strip.empty?
+            text = RenderedTextExtractor.text_of(source_table.fmt_name) if source_table.fmt_name
+            text = RenderedTextExtractor.text_of(source_table.name) if (text.nil? || text.empty?) && source_table.name
+            return nil if text.nil? || text.empty?
 
             ::Sts::NisoSts::Caption.new(
               title: ::Sts::NisoSts::Title.new(content: [text.strip])
@@ -51,10 +55,10 @@ module Metanorma
 
           def build_table(source_table, bold_header: false)
             attrs = {}
-            if source_table.class.method_defined?(:thead) && source_table.thead
+            if source_table.thead
               attrs[:thead] = build_section(source_table.thead, ::Sts::TbxIsoTml::Thead, bold_header: bold_header)
             end
-            if source_table.class.method_defined?(:tbody) && source_table.tbody
+            if source_table.tbody
               attrs[:tbody] = build_section(source_table.tbody, ::Sts::TbxIsoTml::Tbody, bold_header: bold_header)
             end
             ::Sts::TbxIsoTml::Table.new(attrs)
@@ -65,9 +69,9 @@ module Metanorma
             klass.new(tr: trs)
           end
 
-          def build_tr(tr, bold_header: false)
-            th_cells = Array(tr.th).map { |c| build_cell(c, ::Sts::TbxIsoTml::Th, bold: bold_header) }
-            td_cells = Array(tr.td).map { |c| build_cell(c, ::Sts::TbxIsoTml::Td) }
+          def build_tr(row, bold_header: false)
+            th_cells = Array(row.th).map { |c| build_cell(c, ::Sts::TbxIsoTml::Th, bold: bold_header) }
+            td_cells = Array(row.td).map { |c| build_cell(c, ::Sts::TbxIsoTml::Td) }
             attrs = {}
             attrs[:th] = th_cells if th_cells.any?
             attrs[:td] = td_cells if td_cells.any?
@@ -77,25 +81,70 @@ module Metanorma
           def build_cell(cell, klass, bold: false)
             entries = cell_entries(cell)
             fns = cell_footnotes(cell)
+            notes = cell_notes(cell)
             klass.new do |c|
-              bold_text = +""
+              bold_text = ""
               entries.each do |kind, value|
                 case kind
                 when :text
                   # Header cells carry their text as <bold> (guidelines
                   # 6.3 table-cell styling); body cells keep bare text.
-                  bold ? bold_text << value : c.content(value)
+                  if bold
+                    bold_text += value
+                  else
+                    c.content value
+                  end
                 when :inline_formula then c.inline_formula value
                 when :monospace then c.monospace value
                 when :bold then c.bold value
                 when :italic then c.italic value
+                when :paragraph
+                  paragraph = paragraph_transformer.transform(value)
+                  c.paragraph paragraph if paragraph
+                  # MN nests trailing notes/examples inside the cell
+                  # paragraph's last <p>; the cell carries them as
+                  # all-notes.class members.
+                  if value.class.attributes.key?(:note)
+                    Array(value.note).each do |n|
+                      model = note_transformer.transform(n)
+                      c.non_normative_note model if model
+                    end
+                  end
+                  if value.class.attributes.key?(:example)
+                    Array(value.example).each do |e|
+                      model = note_transformer.transform(e)
+                      c.non_normative_example model if model
+                    end
+                  end
+                when :list
+                  c.list list_transformer.transform(value)
+                when :dl
+                  c.def_list dl_transformer.transform(value)
+                when :example
+                  model = note_transformer.transform(value)
+                  c.non_normative_example model if model
+                when :note
+                  model = note_transformer.transform(value)
+                  c.non_normative_note model if model
                 end
               end
-              unless bold_text.empty?
-                c.bold ::Sts::TbxIsoTml::Bold.new(value: [bold_text])
-              end
+              c.bold ::Sts::TbxIsoTml::Bold.new(value: [bold_text]) if bold && !bold_text.empty?
               fns.each { |fn| c.fn fn }
+              notes.each do |kind, model|
+                case kind
+                when :note then c.non_normative_note model
+                when :example then c.non_normative_example model
+                end
+              end
             end
+          end
+
+          # Cell-level notes and examples (MN <td>/<th> children) carry
+          # over as the STS all-notes.class members of the cell.
+          def cell_notes(cell)
+            notes = Array(cell.note).filter_map { |n| note_transformer.transform(n) }
+            examples = Array(cell.example).filter_map { |e| note_transformer.transform(e) }
+            notes.map { |n| [:note, n] } + examples.map { |e| [:example, e] }
           end
 
           # Extracts <fn> footnotes from the cell. MN table cells with
@@ -104,7 +153,7 @@ module Metanorma
           # the footnote as a sibling <fn> element inside the cell so
           # the renderer can show its content.
           def cell_footnotes(cell)
-            return [] unless cell.class.method_defined?(:each_mixed_content)
+
 
             cell.each_mixed_content.filter_map do |node|
               next if node.is_a?(String)
@@ -155,6 +204,7 @@ module Metanorma
             Array(iso_paragraph.inline_formula).map do |f|
               math = f.math
               next "" unless math
+
               extract_math_text(math.to_xml)
             end.join
           end
@@ -184,6 +234,7 @@ module Metanorma
               result << str[pos, open_idx - pos]
               close_idx = str.index("-->", open_idx + 4)
               break if close_idx.nil?
+
               pos = close_idx + 3
             end
             result << str[pos..] unless pos.nil? || pos >= str.length
@@ -206,6 +257,7 @@ module Metanorma
             current_text = nil
             flush = lambda do
               return if current_text.nil?
+
               entries << [:text, current_text]
               current_text = nil
             end
@@ -232,14 +284,69 @@ module Metanorma
               when :italic
                 flush.call
                 entries << [:italic, ::Sts::TbxIsoTml::Italic.new(value: [text])]
+              when :paragraph, :list, :dl
+                flush.call
+                entries << [kind, node]
+              when :example, :note
+                flush.call
+                entries << [kind, node]
               end
             end
             flush.call
             entries
           end
 
+          # Ordered block children of a whole-cell <semx> wrapper:
+          # paragraphs, lists, then trailing notes/examples. Plain
+          # attribute reads keep a fixed emission order — the rendered
+          # cells sequence p*, list, example.
+          def semx_block_entries(semx)
+            entries = []
+            %i[p ul ol].each do |attr|
+              next unless semx.class.attributes.key?(attr)
+
+              Array(semx.public_send(attr)).each do |block|
+                entries << (attr == :p ? [:paragraph, block] : [:list, block])
+              end
+            end
+            %i[example_child note_child].each do |attr|
+              next unless semx.class.attributes.key?(attr)
+
+              Array(semx.public_send(attr)).each do |block|
+                entries << [attr == :example_child ? :example : :note, block]
+              end
+            end
+            entries
+          end
+
+          # Notes/examples of a requirement tree nested inside a cell:
+          # the requirement's direct examples plus its components'.
+          def nested_requirement_extras(source_req)
+            extras = []
+            %i[example note].each do |attr|
+              next unless source_req.class.attributes.key?(attr)
+
+              Array(source_req.public_send(attr)).each do |block|
+                extras << [attr == :example ? :example : :note, block]
+              end
+            end
+            return extras unless source_req.class.attributes.key?(:component)
+
+            Array(source_req.component).each do |comp|
+              next unless comp.is_a?(Lutaml::Model::Serializable)
+
+              %i[example note].each do |attr|
+                next unless comp.class.attributes.key?(attr)
+
+                Array(comp.public_send(attr)).each do |block|
+                  extras << [attr == :example ? :example : :note, block]
+                end
+              end
+            end
+            extras
+          end
+
           def walk_cell(cell)
-            return unless cell.class.method_defined?(:each_mixed_content)
 
             @cell_stem_mirrors = build_cell_stem_mirrors(cell)
 
@@ -262,6 +369,32 @@ module Metanorma
                 yield(:bold, node, RenderedTextExtractor.text_of(node))
               when "EmRawElement", "EmElement"
                 yield(:italic, node, RenderedTextExtractor.text_of(node))
+              # Block children (provision-table cells carry paragraphs,
+              # lists, definition lists): dispatched to typed slots, not
+              # flattened to text. Notes/examples stay with cell_notes.
+              when "ParagraphBlock", "ParagraphWithFootnote"
+                yield(:paragraph, node, nil)
+              when "UnorderedList", "OrderedList"
+                yield(:list, node, nil)
+              when "DefinitionList"
+                yield(:dl, node, nil)
+              # Provision-table cells wrap their whole content in one
+              # <semx>; its block children dispatch through the same slots.
+              when "SemxElement"
+                blocks = semx_block_entries(node)
+                if blocks.any?
+                  blocks.each { |kind, child| yield(kind, child, nil) }
+                else
+                  text = RenderedTextExtractor.text_of(node)
+                  yield(:text, node, text) if text && !text.empty?
+                end
+              # Rendered cells may carry a nested requirement tree; its
+              # components' notes/examples become cell-level notes/examples
+              # (the STS cell model has no nested-table slot).
+              when "RequirementModel", "RecommendationModel", "PermissionModel"
+                nested_requirement_extras(node).each do |kind, child|
+                  yield(kind, child, nil)
+                end
               else
                 text = RenderedTextExtractor.text_of(node)
                 yield(:text, node, text) if text && !text.empty?
@@ -280,10 +413,11 @@ module Metanorma
 
           def build_cell_stem_mirrors(cell)
             map = {}
-            return map unless cell.class.method_defined?(:each_mixed_content)
+
 
             cell.each_mixed_content do |node|
               next unless node.is_a?(Metanorma::Document::Components::Inline::FmtStemElement)
+
               Array(node.semx).each do |semx|
                 source = semx.source if semx.is_a?(Metanorma::Document::Components::Inline::SemxElement)
                 map[source] = node if source && !source.empty?
@@ -298,6 +432,7 @@ module Metanorma
 
             Array(mirror.semx).map do |semx|
               next nil unless semx.is_a?(Metanorma::Document::Components::Inline::SemxElement)
+
               semx.text
             end.compact.join
           rescue StandardError

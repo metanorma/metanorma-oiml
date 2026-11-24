@@ -41,6 +41,7 @@ module Metanorma::Oiml::Sts::Transformer
 
   autoload :SourceOrder, "metanorma/oiml/sts/transformer/source_order"
 
+  autoload :NbspProcessor, "metanorma/oiml/sts/transformer/nbsp_processor"
   autoload :RequirementTransformer, "metanorma/oiml/sts/transformer/requirement_transformer"
   autoload :ProvisionIndex, "metanorma/oiml/sts/transformer/provision_index"
   autoload :QuoteTransformer, "metanorma/oiml/sts/transformer/quote_transformer"

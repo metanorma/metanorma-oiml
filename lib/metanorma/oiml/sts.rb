@@ -35,6 +35,7 @@ module Metanorma
         inject_namespaces(xml)
           .then { |x| inject_processing_meta(x) }
           .then { |x| fix_lang_attribute(x) }
+          .then { |x| Transformer::NbspProcessor.apply_to_text(x) }
       end
 
       # Convert input to the typed Sts::NisoSts::Standard model.
@@ -47,7 +48,7 @@ module Metanorma
       # A presentation-typed document carries the rendered requirement
       # provision tables (<fmt-provision>); wiring them into the context
       # makes requirement tables emit 1:1 with the rendered output.
-      PRESENTATION_TYPE_RE = /<metanorma\b[^>]*\btype="presentation"/.freeze
+      PRESENTATION_TYPE_RE = /<metanorma\b[^>]*\btype="presentation"/
       def self.presentation_input?(xml_string)
         PRESENTATION_TYPE_RE.match?(xml_string)
       end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "spec_helper"
+require 'spec_helper'
 
 # Requirement / recommendation / permission blocks → STS formal tables
 # (<table-wrap>), matching the HTML/PDF rendering:
@@ -82,73 +82,85 @@ RSpec.describe Metanorma::Oiml::Sts::Transformer::RequirementTransformer do
   end
 
   def wraps(doc)
-    doc.xpath("//body//table-wrap")
+    doc.xpath('//body//table-wrap')
   end
 
-  describe "provision path (sibling presentation XML)" do
+  describe 'provision path (sibling presentation XML)' do
     let(:doc) { Nokogiri::XML(convert_with_presentation(semantic_xml, presentation_xml)) }
 
     it "maps the provision table 1:1 as the parent's table-wrap" do
       wrap = wraps(doc).first
-      expect(wrap["id"]).to eq("rc-1")
-      expect(wrap["content-type"]).to eq("recommendclass")
-      expect(wrap["specific-use"]).to eq("modspec")
-      expect(wrap.at("./label").text.strip.tr("\u00A0", " ")).to eq("Table 5")
-      expect(wrap.at("./caption/title").text.strip.tr("\u00A0", " ")).to eq("Table 5 — Requirements class 1: Class one")
+      expect(wrap['id']).to eq('rc-1')
+      expect(wrap['content-type']).to eq('recommendclass')
+      expect(wrap['specific-use']).to eq('modspec')
+      expect(wrap.at('./label').text.strip.tr("\u00A0", ' ')).to eq('Table 5')
+      expect(wrap.at('./caption/title').text.strip.tr("\u00A0", ' ')).to eq('Table 5 — Requirements class 1: Class one')
     end
 
-    it "carries the provision rows with bold headers" do
+    it 'carries the provision rows with bold headers' do
       wrap = wraps(doc).first
-      ths = wrap.xpath("./table/tbody/tr/th")
+      ths = wrap.xpath('./table/tbody/tr/th')
       expect(ths.map(&:text).map(&:strip)).to eq(%w[Identifier Description])
-      expect(ths.first.at("./bold")).not_to be_nil
-      expect(wrap.at("./table/tbody/tr[1]/td/monospace").text).to eq("/req/one")
-      expect(wrap.at("./table/tbody/tr[2]/td").text).to include("Desc rendered.")
+      expect(ths.first.at('./bold')).not_to be_nil
+      expect(wrap.at('./table/tbody/tr[1]/td/monospace').text).to eq('/req/one')
+      expect(wrap.at('./table/tbody/tr[2]/td').text).to include('Desc rendered.')
     end
 
-    it "renders the nested test after the parent table" do
-      ids = wraps(doc).map { |w| w["id"] }
-      expect(ids.first).to eq("rc-1")
-      expect(ids).to include("r-2")
+    it 'renders the nested test after the parent table' do
+      ids = wraps(doc).map { |w| w['id'] }
+      expect(ids.first).to eq('rc-1')
+      expect(ids).to include('r-2')
     end
 
-    it "keeps the tables XSD-valid" do
+    it 'turns examples of a nested requirement in a cell into cell examples' do
+      xml = presentation_xml.sub(
+        '<tr><th>Identifier</th>',
+        '<tr><th>Nested</th><td><requirement id="_n1" anchor="n-1" model="ogc">' \
+        '<example id="_nn1"><p id="_np1">Nested example text.</p></example></requirement></td></tr>' \
+        '<tr><th>Identifier</th>'
+      )
+      doc = Nokogiri::XML(convert_with_presentation(semantic_xml, xml))
+      examples = wraps(doc).first.xpath('./table/tbody/tr[1]/td//non-normative-example')
+      expect(examples.map(&:text).join).to include('Nested example text.')
+    end
+
+    it 'keeps the tables XSD-valid' do
       output = convert_with_presentation(semantic_xml, presentation_xml)
-      expect(output).to include("<table-wrap")
+      expect(output).to include('<table-wrap')
     end
   end
 
-  describe "fallback path (no presentation XML)" do
+  describe 'fallback path (no presentation XML)' do
     let(:doc) { Nokogiri::XML(Metanorma::Oiml::Sts.convert(semantic_xml)) }
 
-    it "synthesizes one table-wrap per requirement, nested tests after the parent" do
-      ids = wraps(doc).map { |w| w["id"] }
+    it 'synthesizes one table-wrap per requirement, nested tests after the parent' do
+      ids = wraps(doc).map { |w| w['id'] }
       expect(ids).to eq(%w[rc-1 r-2])
-      expect(wraps(doc).first["content-type"]).to eq("recommendclass")
-      expect(wraps(doc).last["content-type"]).to eq("recommendtest")
-      expect(wraps(doc).last["specific-use"]).to eq("modspec")
+      expect(wraps(doc).first['content-type']).to eq('recommendclass')
+      expect(wraps(doc).last['content-type']).to eq('recommendtest')
+      expect(wraps(doc).last['specific-use']).to eq('modspec')
     end
 
-    it "labels the table from the requirement type vocabulary" do
-      expect(wraps(doc).first.at("./label").text).to eq("Requirements class /req/one")
-      expect(wraps(doc).last.at("./label").text).to eq("Requirement test /req/one/t1")
+    it 'labels the table from the requirement type vocabulary' do
+      expect(wraps(doc).first.at('./label').text).to eq('Requirements class /req/one')
+      expect(wraps(doc).last.at('./label').text).to eq('Requirement test /req/one/t1')
     end
 
-    it "carries the requirement title as the caption" do
-      expect(wraps(doc).first.at("./caption/title").text).to eq("Class one")
+    it 'carries the requirement title as the caption' do
+      expect(wraps(doc).first.at('./caption/title').text).to eq('Class one')
     end
 
-    it "synthesizes a row per populated component with bold row labels" do
-      labels = wraps(doc).first.xpath("./table/tbody/tr/th/bold").map(&:text)
+    it 'synthesizes a row per populated component with bold row labels' do
+      labels = wraps(doc).first.xpath('./table/tbody/tr/th/bold').map(&:text)
       expect(labels).to eq(%w[Description Statement Inheritance Classification])
     end
 
-    it "carries description paragraphs, specification lists, and monospace inheritance" do
+    it 'carries description paragraphs, specification lists, and monospace inheritance' do
       wrap = wraps(doc).first
-      expect(wrap.at("./table/tbody/tr[1]/td/p").text).to eq("Desc text.")
+      expect(wrap.at('./table/tbody/tr[1]/td/p').text).to eq('Desc text.')
       expect(wrap.at("./table/tbody/tr[2]/td/list[@list-type='arabic']")).not_to be_nil
-      expect(wrap.at("./table/tbody/tr[3]/td/monospace").text).to eq("/req/base")
-      expect(wrap.at("./table/tbody/tr[4]/td").text).to eq("target-type register")
+      expect(wrap.at('./table/tbody/tr[3]/td/monospace').text).to eq('/req/base')
+      expect(wrap.at('./table/tbody/tr[4]/td').text).to eq('target-type register')
     end
   end
 end

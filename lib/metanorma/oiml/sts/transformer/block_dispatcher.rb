@@ -175,11 +175,15 @@ module Metanorma
             model = quote_transformer.transform(obj)
             [model, *quote_trailing_lists(obj)].compact
           end
+
           # The single seam for requirement / recommendation / permission
           # blocks (STS formal tables). Matches ISO's native STS engine
           # (option 2 of metanorma-iso#1760: mirrored trees); if the ruling
           # moves to a shared engine, only this method changes.
-          def dispatch_via_requirement(obj); requirement_transformer.transform(obj); end
+          def dispatch_via_requirement(obj)
+            requirement_transformer.transform(obj)
+          end
+
           def dispatch_via_sourcecode(obj); note_transformer.transform_preformat(obj); end
           def dispatch_via_references(obj); reference_transformer.transform_section(obj); end
 

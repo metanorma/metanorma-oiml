@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "nokogiri"
+require 'nokogiri'
 
 module Metanorma
   module Oiml
@@ -57,7 +57,6 @@ module Metanorma
               tables = {}
               anchor_stack = []
               capture_anchor = nil
-              capture_depth = 0
 
               reader = Nokogiri::XML::Reader(xml)
               reader.each do |node|
@@ -65,18 +64,18 @@ module Metanorma
                 if type == Nokogiri::XML::Reader::TYPE_ELEMENT
                   name = node.local_name
                   if REQ_ELEMENTS.include?(name)
-                    anchor = node.attribute("anchor")
+                    anchor = node.attribute('anchor')
                     anchor_stack.push(anchor) if anchor && !anchor.empty?
-                  elsif name == "fmt-provision"
+                  elsif name == 'fmt-provision'
                     capture_anchor = current_anchor(anchor_stack)
-                    capture_depth = node.depth
+                    node.depth
                     table = parse_provision_table(node.outer_xml)
                     tables[capture_anchor] = table if capture_anchor && table
                   end
                 elsif type == Nokogiri::XML::Reader::TYPE_END_ELEMENT
                   name = node.local_name
                   anchor_stack.pop if REQ_ELEMENTS.include?(name)
-                  capture_anchor = nil if name == "fmt-provision"
+                  capture_anchor = nil if name == 'fmt-provision'
                 end
               end
               tables
@@ -91,10 +90,10 @@ module Metanorma
             # rows with full inline content).
             def parse_provision_table(fragment)
               table_xml = fragment
-                .sub(/\A<fmt-provision\b[^>]*>/, "")
-                .sub(%r{</fmt-provision>\z}, "")
-                .strip
-              return nil unless table_xml.start_with?("<table")
+                          .sub(/\A<fmt-provision\b[^>]*>/, '')
+                          .sub(%r{</fmt-provision>\z}, '')
+                          .strip
+              return nil unless table_xml.start_with?('<table')
 
               Metanorma::Document::Components::Tables::TableBlock.from_xml(table_xml)
             rescue StandardError
