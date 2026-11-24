@@ -9,7 +9,7 @@ module Metanorma
 
           def initialize(source)
             @source = source
-            @id_generator = IdGenerator.new
+            @id_generator = IdGenerator.new.pre_register(source)
             @footnote_collector = FootnoteCollector.new
           end
 

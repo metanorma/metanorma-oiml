@@ -219,4 +219,38 @@ RSpec.describe Metanorma::Oiml::Sts::HtmlRenderer::Ruby do
       expect(custom).to include('<p data-x="1">')
     end
   end
+  it "renders graphic accessibility text from the typed alt-text child" do
+    output = renderer.render(<<~XML)
+      <standard><body><sec id="s"><title>Figure</title>
+        <fig id="f"><graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="diagram.svg"><alt-text>Accessible diagram</alt-text></graphic></fig>
+      </sec></body></standard>
+    XML
+    expect(output).to include('alt="Accessible diagram"')
+    expect(output).to include('src="diagram.svg"')
+  end
+
+  it "renders mapped children when a programmatic model has no element order" do
+    node = Sts::NisoSts::Reference.new(
+      label: Sts::NisoSts::Label.from_xml("<label>[1]</label>"),
+      mixed_citation: Sts::NisoSts::MixedCitation.from_xml("<mixed-citation>A reference</mixed-citation>")
+    )
+    node.element_order = nil
+    expect(renderer.send(:render_children, node)).to include("A reference")
+  end
+
+  it "renders every repeated child when a parsed container has no element order" do
+    node = Sts::NisoSts::Body.from_xml(<<~XML)
+      <body><sec id="a"><title>First</title><p>One</p></sec>
+        <sec id="b"><title>Second</title><p>Two</p></sec></body>
+    XML
+    node.element_order = nil
+    output = renderer.send(:render_children, node)
+    expect(output).to include("First", "Second", "One", "Two")
+  end
+
+  it "renders mirrored STS numbering schemes as ordered HTML lists" do
+    output = renderer.render('<standard><body><sec><title>List</title><list list-type="alpha-lower"><list-item><label>a)</label><p>First</p></list-item></list></sec></body></standard>')
+    expect(output).to include('<ol class="mn-labeled-list">')
+  end
+
 end

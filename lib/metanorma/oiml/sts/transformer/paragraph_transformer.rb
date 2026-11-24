@@ -12,12 +12,15 @@ module Metanorma
             BrElement TabElement Bookmark
           ].freeze
 
-          def transform(source_para)
-            id_val = nil
-            if source_para.is_a?(Lutaml::Model::Serializable) && source_para.class.method_defined?(:id)
-              id_val = source_para.id
-            end
-
+          # Collects the paragraph's inline content as [kind, value]
+          # entries, consecutive text runs already merged. Shared by the
+          # paragraph path and the TBX/def appenders
+          # (InlineTransformer#apply_inline_content).
+          #
+          # inline_std: true lets a citation of a normative reference
+          # come out as a [:std, model] entry (text-flow containers that
+          # carry <std>); other callers keep the <xref> form.
+          def entries_for(source_para, inline_std: false)
             @seen_nodes = {}
             @stem_mirrors = build_stem_mirror_map(source_para)
             entries = []
@@ -57,10 +60,10 @@ module Metanorma
                   current_text = (current_text || "") + text if text && !text.empty?
                 end
               when :xref
-                x = build_xref(node)
-                if x
+                citations = build_citation_entries(node, inline_std: inline_std)
+                unless citations.empty?
                   flush_text.call
-                  entries << [:xref, x]
+                  entries.concat(citations)
                 end
               when :link
                 l = build_link(node)
@@ -68,6 +71,11 @@ module Metanorma
                   flush_text.call
                   entries << [:ext_link, l]
                 end
+              when :ext_link
+                # An already-built ExtLink model (the eref+fmt-link mirror
+                # pair emits the whole link with the semantic citeas).
+                flush_text.call
+                entries << [:ext_link, node]
               when :eref
                 if text && !text.empty?
                   current_text = (current_text || "") + text
@@ -85,8 +93,13 @@ module Metanorma
               end
             end
             flush_text.call
+            entries
+          end
 
-            ::Sts::NisoSts::Paragraph.new(id: id_val) do |p|
+          def transform(source_para)
+            entries = entries_for(source_para, inline_std: true)
+
+            ::Sts::NisoSts::Paragraph.new(id: id_val_of(source_para)) do |p|
               entries.each do |kind, value|
                 case kind
                 when :text then p.text value
@@ -97,6 +110,7 @@ module Metanorma
                 when :monospace then p.monospace value
                 when :inline_formula then p.inline_formula value
                 when :xref then p.xref value
+                when :std then p.std value
                 when :ext_link then p.ext_link value
                 when :fn then p.fn value
                 end
@@ -106,9 +120,11 @@ module Metanorma
 
           private
 
-          def walk_inline(obj, &block)
-            return unless obj.class.method_defined?(:each_mixed_content)
+          def id_val_of(source_para)
+            source_para.id
+          end
 
+          def walk_inline(obj, &block)
             nodes = obj.each_mixed_content.to_a
             nodes.each_with_index do |node, index|
               following = nodes[index + 1]
@@ -129,13 +145,40 @@ module Metanorma
           # @ref-type maps from Metanorma's @type/@style).
           def semantic_with_mirror?(node, following)
             return false if node.is_a?(String)
+            # <identifier> + <fmt-identifier> mirrors render as ONE
+            # monospace run (Guidelines: requirement paths in <tt>).
+            if node.is_a?(Metanorma::Document::Components::Inline::IdentifierElement)
+              return following.is_a?(Metanorma::Document::Components::Inline::FmtIdentifierElement)
+            end
             return false unless following.is_a?(Metanorma::Document::Components::Inline::SemxElement)
-            return false unless following.class.method_defined?(:source) && following.source
+            return false if following.source.nil? || following.source.empty?
 
-            node.class.method_defined?(:id) && node.id && node.id == following.source
+            !node.id.nil? && !node.id.empty? && node.id == following.source
           end
 
           def emit_mirror(node, mirror, &block)
+            # Eref + fmt-link mirror: the LinkElement reader loses the
+            # span texts (delimiter fragments only) — the reference text
+            # lives in the semantic eref's citeas, the URL in the mirror
+            # link's target. Emit the pair as ONE ext-link.
+            if node.is_a?(Metanorma::Document::Components::Inline::ErefElement) &&
+                (link = Array(mirror.fmt_link).first) && link.target
+              ext = ModelBuilder.ext_link(xlink_href: link.target,
+                                          content: [node.citeas])
+              @seen_nodes[mirror.object_id] = true
+              yield(:ext_link, ext, nil)
+              return
+            end
+
+            # Identifier + fmt-identifier: emit the mirror's <tt> runs as
+            # monospace (matches ISO HTML's tt rendering of /req/ paths).
+            if node.is_a?(Metanorma::Document::Components::Inline::IdentifierElement) &&
+                mirror.is_a?(Metanorma::Document::Components::Inline::FmtIdentifierElement)
+              @seen_nodes[mirror.object_id] = true
+              Array(mirror.tt).each { |tt| walk_node(tt, &block) }
+              return
+            end
+
             @mirror_style = node_style(node)
             walk_node(mirror, &block)
           ensure
@@ -144,7 +187,7 @@ module Metanorma
 
           def node_style(node)
             %i[style type].each do |attr|
-              next unless node.class.method_defined?(attr)
+              next unless node.class.attributes.key?(attr)
 
               val = node.public_send(attr).to_s
               return val unless val.empty?
@@ -235,7 +278,7 @@ module Metanorma
 
           def walk_semx_named_children(semx, &block)
             SEMX_NAMED_CHILDREN.each do |attr|
-              next unless semx.class.method_defined?(attr)
+              next unless semx.class.attributes.key?(attr)
               val = semx.public_send(attr)
               next if val.nil?
               Array(val).each { |v| walk_node(v, &block) }
@@ -323,16 +366,29 @@ module Metanorma
             end
           end
 
+          def plain_text_children(node)
+            text = [node.content, *Array(node.sub).flat_map { |s| plain_text_children(s) }].join
+            text.empty? ? [] : [clean_text(text)]
+          end
+
           # Recursively walks node's children, returning an array of
           # strings and Sts inline model instances (InlineFormula, Xref,
           # ExtLink, Bold, Italic, Sub, Sup) in document order. Stems
           # become InlineFormula via MathML passthrough; nested strong/
           # em become nested Bold/Italic.
           def build_inline_children(node)
-            return [] unless node.class.method_defined?(:each_mixed_content)
+            # SubElement is not a mixed-content model: its text sits on
+            # +content+ (nested <sub> on +sub+), which walk_inline never
+            # yields — it would emit an empty <sub/>.
+            return plain_text_children(node) if node.is_a?(Metanorma::Document::Components::Inline::SubElement)
 
             entries = []
             current_text = nil
+            # SubElement keeps its text in a plain +content+ string, not in
+            # mixed content, so the walk below never yields it.
+            if node.is_a?(Metanorma::Document::Components::Inline::SubElement)
+              current_text = node.content
+            end
 
             walk_inline(node) do |kind, child, payload|
               case kind
@@ -418,12 +474,12 @@ module Metanorma
           # inner semx carries a `source` matching the original stem's id.
           def build_stem_mirror_map(paragraph)
             map = {}
-            return map unless paragraph.class.method_defined?(:each_mixed_content)
+
 
             walk_all(paragraph) do |node|
               next unless node.is_a?(Metanorma::Document::Components::Inline::FmtStemElement)
               Array(node.semx).each do |semx|
-                source = semx.source if semx.class.method_defined?(:source)
+                source = semx.source
                 map[source] = node if source && !source.empty?
               end
             end
@@ -431,7 +487,7 @@ module Metanorma
           end
 
           def lookup_stem_mirror(stem_node)
-            return nil unless stem_node.class.method_defined?(:id)
+
             return nil unless stem_node.id
 
             @stem_mirrors ? @stem_mirrors[stem_node.id] : nil
@@ -468,7 +524,7 @@ module Metanorma
               end
               block.call(node)
               node.class.attributes.each do |attr_name, _|
-                next unless node.class.method_defined?(attr_name)
+                next unless node.class.attributes.key?(attr_name)
                 val = node.public_send(attr_name) rescue next
                 next if val.nil?
                 Array(val).each { |v| queue << v if v.is_a?(Lutaml::Model::Serializable) }
@@ -476,35 +532,134 @@ module Metanorma
             end
           end
 
+          # <xref> for a bibliography or other target; for a normative
+          # reference whose URN identity is known, an inline <std> (NISO STS
+          # idiom: guidelines 10.1.7 and 10.2) followed by the citation's
+          # locality as paragraph text. No bibr xref may target a norm-refs
+          # entry (guidelines 10.1.6).
+          def build_citation_entries(node, inline_std:)
+            x = build_xref(node)
+            return [] unless x
+
+            identity = inline_std && id_generator.normative_ref_for(x.rid)
+            return [[:xref, x]] unless identity
+
+            std, locality = build_inline_std(x, identity)
+            entries = [[:std, std]]
+            entries << [:text, clean_text(locality)] if locality
+            entries
+          end
+
+          # The inline <std> for a cited normative reference, and the
+          # locality after its designation (", Clause 5"), or nil. <std-ref>
+          # carries the designation as the reference names it; <std-id>
+          # carries the reference's own URN, the link that guidelines 10.1.7
+          # matches against the norm-refs <std-id>. The locality stays
+          # outside <std>: the sts model serializes a <std>'s mixed text
+          # before its child elements, which would reorder "Designation,
+          # Clause 5" to ", Clause 5Designation".
+          def build_inline_std(xref, identity)
+            designation = identity[:identifier]
+            visible = xref.value.to_s
+            plain_visible = visible.tr("\u00a0", " ")
+            plain_designation = designation.tr("\u00a0", " ")
+
+            if plain_visible.start_with?(plain_designation)
+              std_ref = designation
+              locality = plain_visible[plain_designation.length..]
+            else
+              std_ref = visible.empty? || visible == xref.rid ? designation : visible
+              locality = nil
+            end
+            locality = nil if locality.to_s.empty?
+
+            type = identity[:type]
+            std = ReferenceTransformer::ReferenceStandardWithId.new(
+              type: type,
+              std_ref: [::Sts::NisoSts::StandardRef.new(type: type, value: std_ref)],
+              std_id_element: [::Sts::NisoSts::StdId.new(
+                std_id_link_type: "urn", std_id_type: type,
+                content: identity[:urn]
+              )],
+            )
+            [std, locality]
+          end
+
           def build_xref(node)
             rid = nil
             [:target, :refid, :to].each do |attr|
-              next unless node.class.method_defined?(attr)
+              next unless node.class.attributes.key?(attr)
               val = node.public_send(attr)
               rid = val if val.is_a?(String) && !val.empty?
               break if rid
             end
             return nil unless rid
 
+            # rid is xs:IDREF: remap through the id registry so targets
+            # renamed by the id derivation (annex apps, terms sections,
+            # terms, figures) stay resolvable. Unregistered ids pass
+            # through unchanged.
+            rid = id_generator.remap(rid)
+
             visible = xref_visible_text(node, rid)
-            ModelBuilder.xref(rid: rid, ref_type: ref_type_for(node), value: visible)
+            ModelBuilder.xref(rid: rid, ref_type: ref_type_for(node, rid), value: visible)
           end
 
           def xref_visible_text(node, rid)
             explicit = text_of(node)
             return explicit unless explicit.empty?
-            case rid
+            raw = node.target.to_s
+            case raw
             when /\Asec-(.+)\z/, /\Afig-(.+)\z/, /\Atable-(.+)\z/, /\Afn-(.+)\z/
-              Regexp.last_match(1)
+              "#{Regexp.last_match(1)} "
             else
-              rid
+              explicit.empty? ? rid : explicit
             end
           end
 
-          def ref_type_for(node)
-            style = node.style if node.class.method_defined?(:style)
-            style = style.to_s if style
-            style = @mirror_style if (style.nil? || style.empty?) && @mirror_style
+          # @ref-type per the guidelines 10.1.1 enumeration, derived from
+          # the target: the engine's own id scheme prefixes (sec_/tab_/fig_/
+          # formula_) and the requirement-model anchors preserved inside
+          # requirement tables (r-/rc-/cc-/ct-/action- prefixes, clause
+          # anchors) map by inspecting the remapped rid.
+          def ref_type_for(node, rid)
+            kind = id_generator.kind_for(rid)
+            mapped = case kind
+                     # "norm-ref" reaches here only when no inline <std>
+                     # is possible (no URN identity, or a TBX container).
+                     when "ref", "norm-ref" then "bibr"
+                     when "annex" then "app"
+                     when "table" then "table"
+                     when "figure" then "fig"
+                     when "formula" then "disp-formula"
+                     when "clause", "terms" then "sec"
+                     end
+            return mapped if mapped
+
+            case rid
+            when /\Asec_[A-Z]+\z/ then "app"
+            when /\Asec_/ then "sec"
+            when /\Atab_/ then "table"
+            when /\Afig_/ then "fig"
+            when /\Aformula_/ then "disp-formula"
+            when /\Afn_/ then "fn"
+            else style_ref_type(node)
+            end
+          end
+
+          def style_ref_type(node)
+            # FmtXrefElement#type is the DISPLAY form ("inline"), not the
+            # reference kind — mirrors always take the semantic original's
+            # style via @mirror_style.
+            style =
+              if node.is_a?(Metanorma::Document::Components::Inline::FmtXrefElement)
+                ""
+              else
+                node.style.to_s
+              end
+            # The presentation mirror carries no kind of its own: the
+            # semantic original (the emit_mirror pair) lends its style.
+            style = @mirror_style.to_s if style.empty? && @mirror_style
             case style
             when "clause", "section" then "sec"
             when "table" then "table"
@@ -517,36 +672,42 @@ module Metanorma
           def build_link(node)
             href = nil
             [:target, :href].each do |attr|
-              next unless node.class.method_defined?(attr)
+              next unless node.class.attributes.key?(attr)
               val = node.public_send(attr)
               href = val if val.is_a?(String) && !val.empty?
               break if href
             end
+            visible = link_text(node)
+            if href.nil? || href.empty?
+              # The presentation mirror carries no target: the visible URL
+              # is the link (Guidelines 10.1.9 requires @xlink:href).
+              href = visible.to_s.empty? ? nil : visible
+            end
             return nil unless href
 
-            visible = href.start_with?("mailto:") ? href.sub("mailto:", "") : link_text(node)
+            visible = href.start_with?("mailto:") ? href.sub("mailto:", "") : visible
             ModelBuilder.ext_link(xlink_href: href, content: [visible])
           end
 
           def link_text(node)
-            c = node.content if node.class.method_defined?(:content)
+            c = node.content
             c = Array(c) unless c.is_a?(Array)
             joined = c.map(&:to_s).join.strip
             joined.empty? ? text_of(node) : joined
           end
 
           def eref_text(node)
-            citeas = node.citeas if node.class.method_defined?(:citeas)
+            citeas = node.citeas
             return citeas.to_s if citeas && !citeas.to_s.empty?
             text_of(node)
           end
 
           def concept_text(node)
-            renderterm = Array(node.renderterm).first.to_s if node.class.method_defined?(:renderterm)
-            xref_node = Array(node.xref).first if node.class.method_defined?(:xref)
+            renderterm = Array(node.renderterm).first.to_s
+            xref_node = Array(node.xref).first
             return renderterm unless xref_node
 
-            rid = xref_node.target if xref_node.class.method_defined?(:target)
+            rid = xref_node.target
             autonum = source.term_autonum_for(rid) if rid
             return "#{renderterm} (#{autonum})" if autonum && !autonum.empty?
             "#{renderterm} (#{rid})"

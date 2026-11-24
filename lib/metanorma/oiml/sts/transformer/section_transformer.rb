@@ -7,119 +7,155 @@ module Metanorma
         class SectionTransformer < Base
           def transform(source_clause)
             title_text = extract_title(source_clause)
-            id_val = source_clause.id if source_clause.is_a?(Lutaml::Model::Serializable) && source_clause.class.method_defined?(:id) && source_clause.id
-
-            content = dispatcher.dispatch_section_blocks(source_clause)
-
-            # Dispatch nested clauses for any section type carrying a
-            # clause collection (IsoClauseSection AND IsoAnnexSection —
-            # annex subsections like the Examples annex's entries).
-            nested_clauses = []
-            if source_clause.is_a?(Lutaml::Model::Serializable) && source_clause.class.method_defined?(:clause)
-              nested_clauses = Array(source_clause.clause).map { |sub| transform(sub) }.compact
-            end
-
-            # Dispatch terms sections (a top-level <terms> carries its
-            # entries directly in .term; a clause's nested terms section
-            # appears in .terms). Each nested terms-section (e.g.
-            # "3.1 General definitions") is preserved as its own Sec so
-            # its heading renders for parity; only the top-level section
-            # whose .term collection we're flattening skips the wrapper.
-            if source_clause.class.method_defined?(:term) && Array(source_clause.term).any?
-              Array(source_clause.term).each do |term|
-                term_sec = term_transformer.transform(term)
-                nested_clauses << term_sec if term_sec
-              end
-            end
-            if source_clause.class.method_defined?(:terms)
-              Array(source_clause.terms).each do |terms_section|
-                terms_sec = transform_terms_section(terms_section)
-                nested_clauses << terms_sec if terms_sec
-              end
-            end
-
-            attrs = {}
-            attrs[:id] = id_val if id_val
-            attrs[:title] = ::Sts::NisoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
+            id_val = id_for_section(source_clause)
+            content = content_of(source_clause)
             autonum = extract_autonum(source_clause)
-            attrs[:label] = ::Sts::NisoSts::Label.new(content: [autonum]) if autonum
 
-            paragraphs, lists, figs, tables, notes, examples, formulas, def_lists, preformats, sub_secs = [], [], [], [], [], [], [], [], [], []
+            # Built through the block form so lutaml-model's order
+            # tracking records setter-call order — the document order of
+            # the annex/clause body (the App hash-init form would emit in
+            # mapping-declaration order instead).
+            ::Sts::NisoSts::Section.new do |sec|
+              sec.id = id_val if id_val
+              sec.label = ::Sts::NisoSts::Label.new(content: [autonum]) if autonum
+              sec.title = ::Sts::NisoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
+              sec_type = section_type(source_clause)
+              sec.type = sec_type if sec_type
+              append_section_content(sec, content)
+            end
+          end
+
+          # Appends the section's ordered content onto the target model
+          # (a Section here, the App for annex bodies via BackTransformer).
+          def append_section_content(target, content)
             content.each do |item|
               case item
-              when ::Sts::NisoSts::Paragraph then paragraphs << item
-              when ::Sts::NisoSts::List then lists << item
-              when ::Sts::NisoSts::Figure then figs << item
-              when ::Sts::TbxIsoTml::TableWrap then tables << item
-              when ::Sts::NisoSts::NonNormativeNote then notes << item
-              when ::Sts::NisoSts::NonNormativeExample then examples << item
-              when ::Sts::NisoSts::DisplayFormula then formulas << item
-              when ::Sts::NisoSts::DefList then def_lists << item
-              when ::Sts::NisoSts::Preformat then preformats << item
-              when ::Sts::NisoSts::Section then sub_secs << item
+              when ::Sts::NisoSts::Paragraph then target.paragraphs item
+              when ::Sts::NisoSts::List then target.list item
+              when ::Sts::NisoSts::Figure then target.fig item
+              when ::Sts::TbxIsoTml::TableWrap then target.table_wrap item
+              when ::Sts::NisoSts::NonNormativeNote then target.non_normative_note item
+              when ::Sts::NisoSts::NonNormativeExample then target.non_normative_example item
+              when ::Sts::NisoSts::DisplayFormula then target.disp_formula item
+              when ::Sts::NisoSts::DefList then target.def_list item
+              when ::Sts::NisoSts::Preformat then target.preformat item
+              when ::Sts::NisoSts::DispQuote then target.disp_quote item
+              when ::Sts::NisoSts::TermSection then target.term_sec item
+              when ::Sts::NisoSts::Section then target.sec item
               end
             end
-            nested_clauses.concat(sub_secs)
-
-            attrs[:paragraphs] = paragraphs if paragraphs.any?
-            attrs[:list] = lists if lists.any?
-            attrs[:fig] = figs if figs.any?
-            attrs[:table_wrap] = tables if tables.any?
-            attrs[:non_normative_note] = notes if notes.any?
-            attrs[:non_normative_example] = examples if examples.any?
-            attrs[:disp_formula] = formulas if formulas.any?
-            attrs[:def_list] = def_lists if def_lists.any?
-            attrs[:preformat] = preformats if preformats.any?
-            attrs[:sec] = nested_clauses if nested_clauses.any?
-
-            ::Sts::NisoSts::Section.new(attrs)
           end
+
+          # Ordered block content of a section: dispatched blocks, nested
+          # clauses, and term entries. Shared with BackTransformer so the
+          # annex body lands in the <app> in the same order.
+          def content_of(source_clause)
+            content = []
+            attrs = BlockDispatcher::TYPED_ATTR_DISPATCH.keys + NESTED_ATTRS
+
+            SourceOrder.entries(source_clause, attrs).each do |attr, item|
+              case attr
+              when :clause then append(content, transform(item))
+              when :term then append(content, term_transformer.transform(item))
+              when :terms then append(content, transform_terms_section(item))
+              else dispatcher.dispatch_block(attr, item, content)
+              end
+            end
+
+            content
+          end
+
+          # Nested clauses (IsoClauseSection and IsoAnnexSection — annex
+          # subsections), a top-level <terms>' own term entries, and a
+          # clause's nested terms sections. Each nested terms-section
+          # (e.g. "3.1 General definitions") is preserved as its own Sec
+          # so its heading renders for parity.
+          NESTED_ATTRS = %i[clause term terms].freeze
+
+          def append(content, item)
+            content << item if item
+          end
+          private :append
 
           # Build a Sec for a nested terms-section (e.g. "3.1 General
           # definitions") that wraps its term entries. The wrapper's
           # title and autonum are emitted so the renderer produces the
           # "3.1 General definitions" heading that appears in MN HTML.
+          # Terms sections carry sec-type="terms" (the NISO STS marker
+          # mnconvert emits) and a claimed fallback id per section.
           def transform_terms_section(terms_section)
             title_text = extract_title(terms_section)
             autonum = extract_autonum(terms_section)
+            terms_id = id_generator.id_for_terms(terms_section, autonum)
 
             nested = Array(terms_section.term).map { |term| term_transformer.transform(term) }.compact
-
-            attrs = {}
-            attrs[:id] = terms_section.id if terms_section.class.method_defined?(:id) && terms_section.id
-            attrs[:title] = ::Sts::NisoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
-            attrs[:label] = ::Sts::NisoSts::Label.new(content: [autonum]) if autonum
-            attrs[:sec] = nested if nested.any?
             return nil unless title_text || autonum || nested.any?
 
-            ::Sts::NisoSts::Section.new(attrs)
+            ::Sts::NisoSts::Section.new do |sec|
+              sec.id = terms_id if terms_id
+              sec.type = "terms"
+              sec.label = ::Sts::NisoSts::Label.new(content: [autonum]) if autonum
+              sec.title = ::Sts::NisoSts::Title.new(content: [title_text]) if title_text && !title_text.empty?
+              nested.each { |ts| sec.sec ts }
+            end
           end
 
-          # Section number from the presentation XML: the autonum
-          # attribute (annexes, term notes) or the fmt-title/fmt-name
-          # caption-label's autonum semx ("1", "8.1", "3.1"). The delim
-          # between number and title is a <tab/>, which text extraction
-          # drops, so the caption-label span must be isolated —
-          # splitting the whole fmt-title text would glue number and
-          # title together ("1Scope").
-          def extract_autonum(source_clause)
-            if source_clause.class.method_defined?(:autonum) && source_clause.autonum
-              return source_clause.autonum.to_s
+          # Annexes renumber to sec_A/sec_B (…), terms sections to their
+          # number or the claimed sec_terms fallback; plain clauses keep
+          # their source id (identity-claimed so generated ids cannot
+          # collide with it).
+          def id_for_section(section)
+            case section.class.name&.split("::")&.last
+            when "IsoAnnexSection", "AnnexSection"
+              id_generator.id_for_annex(section, extract_autonum(section))
+            when "IsoTermsSection", "TermsSection"
+              id_generator.id_for_terms(section, extract_autonum(section))
+            else
+              id_generator.id_for_clause(section)
             end
+          end
 
-            title_wrapper = %i[fmt_title fmt_name].filter_map do |method|
-              source_clause.public_send(method) if source_clause.class.method_defined?(method)
-            end.first
-            title_wrapper = Array(title_wrapper).first
-            return nil unless title_wrapper
+          # Clause-type marker per Guidelines 4.2/4.4.2: scope, norm-refs,
+          # intro and terms flag @sec-type. OIML keeps its preface
+          # sections in the body via BodyTransformer.
+          def section_type(clause)
+            return "terms" if terms_section?(clause)
 
-            caption_label_text(title_wrapper)
+            t = clause.type if clause.class.attributes.key?(:type)
+            marked = case t
+                     when "scope" then "scope"
+                     when "norm-ref", "norm-refs" then "norm-refs"
+                     when "intro" then "intro"
+                     end
+            return marked if marked
+
+            # Title fallback: the known clause titles flag @sec-type even
+            # when the presentation clause carries no type attribute
+            # (Guidelines 4.2).
+            title = extract_title(clause).to_s
+            case title
+            when /\Ascope\z/i then "scope"
+            when /\Anormative references\z/i then "norm-refs"
+            when /\Aintroduction\z/i then "intro"
+            when /\Aterms and definitions\z/i, /\Aterms, definitions/i then "terms"
+            end
+          end
+
+          def terms_section?(section)
+            %w[IsoTermsSection TermsSection].include?(section.class.name&.split("::")&.last)
+          end
+
+          # Section number from the presentation XML — delegates to the
+          # shared extractor (single source of truth shared with the id
+          # derivation).
+          def extract_autonum(source_clause)
+            RenderedTextExtractor.autonum_of(source_clause)
           end
 
           private
 
           def extract_title(source_clause)
-            return nil unless source_clause.class.method_defined?(:title) && source_clause.title
+            return nil unless source_clause.title
             title = source_clause.title
             return extract_with_stems(title) if title_is_mixed_with_stems?(title)
             RenderedTextExtractor.text_of(title)
@@ -138,12 +174,12 @@ module Metanorma
           end
 
           def title_is_mixed_with_stems?(title)
-            title.class.method_defined?(:each_mixed_content)
+            title.respond_to?(:each_mixed_content)
           end
 
           def collect_title_parts(node, parts)
             return parts unless node.is_a?(Lutaml::Model::Serializable)
-            return parts unless node.class.method_defined?(:each_mixed_content)
+            return parts unless node.respond_to?(:each_mixed_content)
 
             node.each_mixed_content do |child|
               if child.is_a?(String)
@@ -206,25 +242,6 @@ module Metanorma
             else
               txt
             end
-          end
-
-          # Text of the <span class="fmt-caption-label"> inside a
-          # fmt-title — the bare section number.
-          def caption_label_text(fmt_title)
-            return nil unless fmt_title.class.method_defined?(:each_mixed_content)
-
-            label_span = nil
-            fmt_title.each_mixed_content do |child|
-              if child.is_a?(Metanorma::Document::Components::Inline::SpanElement) &&
-                  child.class_attr == "fmt-caption-label"
-                label_span = child
-                break
-              end
-            end
-            return nil unless label_span
-
-            text = RenderedTextExtractor.text_of(label_span).strip
-            text.empty? ? nil : text
           end
         end
       end

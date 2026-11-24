@@ -40,14 +40,15 @@ module Metanorma
             ::Sts::NisoSts::AppGroup.new(app: Array(app))
           end
 
-          def sec(id: nil, label: nil, title: nil, content: [], paragraph: [], sec: [],
-                  list: [], table_wrap: [], fig: [], non_normative_note: [],
-                  non_normative_example: [])
+          def sec(id: nil, label: nil, title: nil, sec_type: nil, content: [],
+                  paragraph: [], sec: [], list: [], table_wrap: [], fig: [],
+                  non_normative_note: [], non_normative_example: [], disp_quote: [])
             all_content = Array(content) + Array(paragraph)
             distributed = distribute_sec_content(all_content)
 
             attrs = {}
             attrs[:id] = id if id
+            attrs[:type] = sec_type if sec_type
             attrs[:title] = ::Sts::NisoSts::Title.new(content: [title]) if title
             attrs[:paragraphs] = distributed[:paragraph] if distributed[:paragraph].any?
             attrs[:sec] = Array(sec) if sec&.any?
@@ -56,6 +57,7 @@ module Metanorma
             attrs[:fig] = (Array(fig) + distributed[:fig]) if (fig&.any? || distributed[:fig].any?)
             attrs[:non_normative_note] = (Array(non_normative_note) + distributed[:note]) if (non_normative_note&.any? || distributed[:note].any?)
             attrs[:non_normative_example] = (Array(non_normative_example) + distributed[:example]) if (non_normative_example&.any? || distributed[:example].any?)
+            attrs[:disp_quote] = (Array(disp_quote) + distributed[:disp_quote]) if (disp_quote&.any? || distributed[:disp_quote].any?)
             ::Sts::NisoSts::Section.new(attrs)
           end
 
@@ -69,6 +71,7 @@ module Metanorma
               when ::Sts::TbxIsoTml::TableWrap then result[:table_wrap] << item
               when ::Sts::NisoSts::NonNormativeNote then result[:note] << item
               when ::Sts::NisoSts::NonNormativeExample then result[:example] << item
+              when ::Sts::NisoSts::DispQuote then result[:disp_quote] << item
               when ::Sts::NisoSts::DisplayFormula then result[:formula] << item
               when ::Sts::NisoSts::DefList then result[:def_list] << item
               end
@@ -162,7 +165,7 @@ module Metanorma
           end
 
           def graphic(href: nil)
-            ::Sts::NisoSts::Graphic.new(href: xlink_href)
+            ::Sts::NisoSts::Graphic.new(href: href)
           end
 
           def caption(title: nil)
@@ -183,17 +186,30 @@ module Metanorma
             ::Sts::NisoSts::InlineFormula.new(math: math)
           end
 
-          def non_normative_note(paragraph: [], label: nil)
-            ::Sts::NisoSts::NonNormativeNote.new.tap do |n|
-              n.p = Array(paragraph) if paragraph&.any?
+          def non_normative_note(paragraph: [], list: [], label: nil)
+            # Block form: lutaml-model records setter-call order, so the
+            # label lands before the content (the XSD's label? position).
+            ::Sts::NisoSts::NonNormativeNote.new do |n|
               n.label = ::Sts::NisoSts::Label.new(content: [label]) if label
+              n.p = Array(paragraph) if paragraph&.any?
+              n.list = Array(list) if list&.any?
             end
           end
 
-          def non_normative_example(paragraph: [], label: nil)
-            ::Sts::NisoSts::NonNormativeExample.new.tap do |e|
-              e.p = Array(paragraph) if paragraph&.any?
+          def non_normative_example(paragraph: [], list: [], preformat: [], label: nil)
+            ::Sts::NisoSts::NonNormativeExample.new do |e|
               e.label = ::Sts::NisoSts::Label.new(content: [label]) if label
+              e.p = Array(paragraph) if paragraph&.any?
+              e.list = Array(list) if list&.any?
+              e.preformat = Array(preformat) if preformat&.any?
+            end
+          end
+
+          def disp_quote(id: nil, paragraph: [], attribution: nil)
+            ::Sts::NisoSts::DispQuote.new do |q|
+              q.id = id if id
+              q.attribution = attribution if attribution
+              Array(paragraph).each { |p| q.paragraphs p }
             end
           end
 
@@ -205,8 +221,16 @@ module Metanorma
             end
           end
 
-          def ref(label: nil, mixed_citation: nil, std: nil)
-            ::Sts::NisoSts::Reference.new.tap do |r|
+          def standard_ref(type: nil, value: nil)
+            ::Sts::NisoSts::StandardRef.new do |sr|
+              sr.type = type if type
+              sr.value = value if value
+            end
+          end
+
+          def ref(id: nil, label: nil, mixed_citation: nil, std: nil)
+            ::Sts::NisoSts::Reference.new do |r|
+              r.id = id if id
               r.label = ::Sts::NisoSts::Label.new(content: [label]) if label
               r.mixed_citation = ::Sts::NisoSts::MixedCitation.new(content: [mixed_citation]) if mixed_citation
               r.std = std if std
@@ -256,11 +280,13 @@ module Metanorma
             ::Sts::NisoSts::StandardIdentification.new(originator: doc_identifier)
           end
 
-          def permissions(holder: nil, year: nil)
+          def permissions(holder: nil, year: nil, copyright_statement: nil)
+            holders = Array(holder).compact
             attrs = {}
-            attrs[:copyright_statement] = "© #{year} #{holder}" if year && holder
+            attrs[:copyright_statement] = copyright_statement ||
+              (year && holders.any? ? "© #{year} #{holders.first}" : nil)
             attrs[:copyright_year] = year.to_s if year
-            attrs[:copyright_holder] = holder.to_s if holder
+            attrs[:copyright_holder] = holders if holders.any?
             ::Sts::NisoSts::Permissions.new(attrs)
           end
 
@@ -293,9 +319,19 @@ module Metanorma
           end
 
           def ext_link(xlink_href: nil, content: [])
+            # Guidelines 10.1.9: an ext-link carries @xlink:href. When the
+            # presentation mirror lost the target, the visible URL is the
+            # href (the common boilerplate form "see www.iso.org/...").
+            href = xlink_href
+            if href.nil? || href.empty?
+              text = Array(content).join.strip
+              href = text if text.match?(/\A(https?:\/\/|www\.)/i)
+            end
+            # The typed attribute is `href` (type :xlink_href) — the old
+            # xlink_href: kwarg was silently dropped by hash-init.
             ::Sts::NisoSts::ExtLink.new(
               ext_link_type: "uri",
-              xlink_href: xlink_href,
+              href: href,
               content: Array(content)
             )
           end

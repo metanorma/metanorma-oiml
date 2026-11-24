@@ -24,7 +24,7 @@ module Metanorma
             "NoteBlock"                    => :dispatch_via_note,
             "ExampleBlock"                 => :dispatch_via_note,
             "AdmonitionBlock"              => :dispatch_via_note,
-            "QuoteBlock"                   => :dispatch_via_note,
+            "QuoteBlock"                   => :dispatch_via_quote,
             "SourcecodeBlock"              => :dispatch_via_sourcecode,
             "StandardReferencesSection"    => :dispatch_via_references,
             "BibliographySection"          => :dispatch_via_references
@@ -54,7 +54,8 @@ module Metanorma
             IsoAnnexSection AnnexSection
           ].freeze
 
-          # Typed attribute → handler method mapping for ContentSection.
+          # Typed attribute → handler method mapping for ContentSection and
+          # IsoTermsSection.
           # These are NOT yielded by each_mixed_content; we iterate them
           # explicitly to dispatch tables, lists, notes, etc.
           TYPED_ATTR_DISPATCH = {
@@ -68,49 +69,63 @@ module Metanorma
             examples: :dispatch_via_note,
             admonitions: :dispatch_via_note,
             sourcecode_blocks: :dispatch_via_sourcecode,
-            quote_blocks: :dispatch_via_note,
+            quote_blocks: :dispatch_via_quote,
             definition_lists: :dispatch_via_dl,
             definitions: :dispatch_via_section,
+            # IsoTermsSection names its block collections by element
+            # (p, ul, example, admonition, dl) instead of the
+            # ContentSection names above.
+            p: :dispatch_via_paragraph,
+            ul: :dispatch_via_list,
+            example: :dispatch_via_note,
+            admonition: :dispatch_via_note,
+            dl: :dispatch_via_dl,
           }.freeze
 
+          # Blocks of a section in source order. Each typed collection
+          # maps to one handler; SourceOrder interleaves the collections
+          # by the element order recorded at parse time, so a formula
+          # keeps its place before its "where" paragraph and notes stay
+          # after the block they follow.
           def dispatch_section_blocks(section)
             results = []
-
-            # Walk typed collection attributes for all content types.
-            # each_mixed_content is NOT used because it overlaps with
-            # typed attributes (causing duplication) and misses some
-            # content types (tables, lists, notes).
-            TYPED_ATTR_DISPATCH.each do |attr, handler|
-              next unless section.class.method_defined?(attr)
-              collection = section.public_send(attr)
-              Array(collection).each do |item|
-                result = send(handler, item)
-                results << result if result
-                dispatch_paragraph_siblings(item, results)
-              end
+            SourceOrder.entries(section, TYPED_ATTR_DISPATCH.keys).each do |attr, item|
+              dispatch_block(attr, item, results)
             end
-
             results
+          end
+
+          # Dispatches one typed-collection item into +results+ together
+          # with the sibling blocks MN attaches to it.
+          def dispatch_block(attr, item, results)
+            result = send(TYPED_ATTR_DISPATCH.fetch(attr), item)
+            Array(result).each { |r| results << r } if result
+            dispatch_paragraph_siblings(item, results)
           end
 
           # MN's typed model attaches "block siblings" as attributes on
           # the preceding block (ParagraphBlock.note holds notes that
-          # semantically follow the paragraph; TableBlock.note holds
-          # table notes, which render right after the table). Walk those
-          # sibling collections and dispatch each, preserving document
-          # order. Restricted to ParagraphBlock and TableBlock to avoid
-          # firing for lists/etc. that have their own note sub-collections
-          # with different semantics.
+          # semantically follow the paragraph; TableBlock.note and
+          # List#note hold the same kind of trailing notes for their
+          # carriers). Walk those sibling collections and dispatch each,
+          # preserving document order. Restricted to the block carriers
+          # whose note/example sub-collections have that semantics —
+          # lists that carry their own note sub-collections with
+          # different semantics are excluded case by case.
           def dispatch_paragraph_siblings(item, results)
-            return unless paragraph_block?(item) || table_block?(item)
+            return unless sibling_block?(item)
 
             SIBLING_ATTRS.each do |attr, handler|
-              next unless item.class.method_defined?(attr)
+              next unless item.class.attributes.key?(attr)
               Array(item.public_send(attr)).each do |sibling|
                 result = send(handler, sibling)
-                results << result if result
+                Array(result).each { |r| results << r } if result
               end
             end
+          end
+
+          def sibling_block?(item)
+            paragraph_block?(item) || table_block?(item) || list_block?(item)
           end
 
           def paragraph_block?(item)
@@ -119,6 +134,10 @@ module Metanorma
 
           def table_block?(item)
             item.is_a?(Metanorma::Document::Components::Tables::TableBlock)
+          end
+
+          def list_block?(item)
+            item.is_a?(Metanorma::Document::Components::Lists::List)
           end
 
           SIBLING_ATTRS = {
@@ -135,9 +154,40 @@ module Metanorma
           def dispatch_via_table(obj);    table_transformer.transform(obj);    end
           def dispatch_via_figure(obj);   figure_transformer.transform(obj);   end
           def dispatch_via_formula(obj);  formula_transformer.transform(obj);  end
-          def dispatch_via_note(obj);     note_transformer.transform(obj);     end
+          # MN binds a note following a list's last item as List.note; the
+          # STS note/example models have no nested-note slot, so those
+          # notes surface as siblings after their carrier.
+          def dispatch_via_note(obj)
+            model = note_transformer.transform(obj)
+            [model, *list_trailing_notes(obj)].compact
+          end
+
+          # A quote renders as <disp-quote>; its unordered/ordered lists
+          # have no disp-quote slot and surface as sibling <list>
+          # elements after it, preserving document order.
+          def dispatch_via_quote(obj)
+            model = quote_transformer.transform(obj)
+            [model, *quote_trailing_lists(obj)].compact
+          end
           def dispatch_via_sourcecode(obj); note_transformer.transform_preformat(obj); end
           def dispatch_via_references(obj); reference_transformer.transform_section(obj); end
+
+          def list_trailing_notes(obj)
+            %i[ul ol].flat_map do |attr|
+              next [] unless obj.class.attributes.key?(attr)
+              Array(obj.public_send(attr)).flat_map do |list|
+                next [] unless list.class.attributes.key?(:note)
+                Array(list.note).filter_map { |n| note_transformer.transform(n) }
+              end
+            end
+          end
+
+          def quote_trailing_lists(obj)
+            %i[ul ol].flat_map do |attr|
+              next [] unless obj.class.attributes.key?(attr)
+              Array(obj.public_send(attr)).map { |l| list_transformer.transform(l) }
+            end
+          end
         end
       end
     end
