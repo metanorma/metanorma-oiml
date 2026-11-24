@@ -39,6 +39,10 @@ module Metanorma::Oiml::Sts::Transformer
   autoload :BlockDispatcher, "metanorma/oiml/sts/transformer/block_dispatcher"
   autoload :RenderedTextExtractor, "metanorma/oiml/sts/transformer/rendered_text_extractor"
 
+  autoload :SourceOrder, "metanorma/oiml/sts/transformer/source_order"
+
+  autoload :QuoteTransformer, "metanorma/oiml/sts/transformer/quote_transformer"
+
   def self.convert(input)
     source = SourceDocument.parse(input)
     context = Context.new(source)

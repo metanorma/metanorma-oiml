@@ -17,12 +17,20 @@ module Metanorma
             context.source
           end
 
+          def id_generator
+            context.id_generator
+          end
+
           def dispatcher
             @dispatcher ||= BlockDispatcher.new(context)
           end
 
           def paragraph_transformer
             @paragraph_transformer ||= ParagraphTransformer.new(context)
+          end
+
+          def inline_transformer
+            @inline_transformer ||= InlineTransformer.new(context)
           end
 
           def list_transformer
@@ -43,6 +51,10 @@ module Metanorma
 
           def note_transformer
             @note_transformer ||= NoteTransformer.new(context)
+          end
+
+          def quote_transformer
+            @quote_transformer ||= QuoteTransformer.new(context)
           end
 
           def reference_transformer

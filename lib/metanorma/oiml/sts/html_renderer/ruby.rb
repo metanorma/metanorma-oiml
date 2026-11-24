@@ -239,7 +239,7 @@ module Metanorma
           # The section's/list item's own <label> child model (nil when
           # absent or a bare string, e.g. TableWrap#label).
           def own_label(node)
-            return nil unless node.class.method_defined?(:label)
+            return nil unless node.class.attributes.key?(:label)
 
             label = node.label
             label if label.is_a?(Lutaml::Model::Serializable)
@@ -302,7 +302,7 @@ module Metanorma
           # get a slug from their title so they are linkable and can
           # appear in the TOC.
           def section_id(node)
-            return node.id if node.class.method_defined?(:id) && node.id
+            return node.id if node.id
 
             title_node = find_child(node, "Title")
             return nil unless title_node
@@ -394,13 +394,14 @@ module Metanorma
           # marker (mn-labeled-list); otherwise the browser's bullets
           # would duplicate the source's markers.
           def list(node)
-            tag = node.list_type == "order" ? "ol" : "ul"
+            ordered_types = %w[order arabic alpha-lower alpha-upper roman-lower roman-upper]
+            tag = ordered_types.include?(node.list_type) ? "ol" : "ul"
             css = labeled_list?(node) ? "mn-labeled-list" : nil
             render_element(tag, render_children(node), css: css)
           end
 
           def labeled_list?(node)
-            return false unless node.class.method_defined?(:list_item)
+            return false unless node.class.attributes.key?(:list_item)
 
             Array(node.list_item).any? { |item| own_label(item) }
           end
@@ -431,9 +432,9 @@ module Metanorma
           end
 
           def table_caption_line(node)
-            label_text = node.class.method_defined?(:label) ? node.label.to_s.strip : ""
-            caption_node = node.caption if node.class.method_defined?(:caption)
-            title_node = caption_node.title if caption_node&.class&.method_defined?(:title)
+            label_text = node.class.attributes.key?(:label) ? node.label.to_s.strip : ""
+            caption_node = node.caption if node.class.attributes.key?(:caption)
+            title_node = caption_node.title if caption_node && caption_node.class.attributes.key?(:title)
             title_html = title_node ? render_inline(title_node) : ""
             return "" if label_text.empty? && title_html.empty?
 
@@ -482,9 +483,15 @@ module Metanorma
           def caption(node) = render_element("figcaption", render_children(node))
 
           def graphic(node)
+            # NISO STS carries a graphic's accessibility text as the
+            # <alt-text> child element (access.class); the element has
+            # no @alttext attribute (metanorma-iso#1793).
+            alt = Array(node.alt_text)
+              .flat_map { |a| Array(a.content) }
+              .compact.join(" ")
             render_liquid("_img.html.liquid", {
                             "src" => node.href.to_s,
-                            "alt" => node.alttext.to_s,
+                            "alt" => alt,
                           })
           end
 
@@ -588,7 +595,7 @@ module Metanorma
             parts = []
             ref_node = find_model(node, "StandardRef")
             parts << render_element("span", render_inline(ref_node), css: "std-ref") if ref_node
-            title_str = node.title if node.class.method_defined?(:title)
+            title_str = node.title if node.class.attributes.key?(:title)
             parts << render_element("em", escape(title_str.to_s)) if title_str && !title_str.to_s.empty?
             render_element("span", parts.join(", "), css: "std")
           ensure
@@ -599,8 +606,6 @@ module Metanorma
 
           # <originator> inside std-ref: separated, quieter.
           def originator(node) = render_element("span", render_inline(node), css: "originator")
-
-          def doc_id(node) = render_element("span", render_inline(node), css: "doc-id")
 
           def copyright(node) = render_element("span", render_inline(node), css: "copyright")
 
@@ -624,9 +629,9 @@ module Metanorma
             # NisoSts::Fn stores paragraphs in #paragraph; TbxIsoTml::Fn
             # stores them in #p. Accept either so the renderer handles
             # footnotes from paragraphs and table cells uniformly.
-            fn_paragraphs = if node.class.method_defined?(:paragraph)
+            fn_paragraphs = if node.class.attributes.key?(:paragraph)
                                Array(node.paragraph)
-                             elsif node.class.method_defined?(:p)
+                             elsif node.class.attributes.key?(:p)
                                Array(node.p)
                              else
                                []
@@ -694,7 +699,11 @@ module Metanorma
 
             mapping = @mapping_cache[node.class][:elements]
             indices = Hash.new(0)
-            node.element_order.filter_map do |entry|
+            # Parsed models of non-mixed elements carry no element_order
+            # (lutaml-model fills it only under mixed_content); fall back
+            # to the mapped elements in declaration order.
+            entries = node.element_order || declared_element_order(node, mapping)
+            entries.filter_map do |entry|
               case entry.node_type
               when :text
                 escape(entry.text_content.to_s)
@@ -872,7 +881,7 @@ module Metanorma
             return find_text(meta_node, ["Title"]) unless wrap
 
             %i[main compl full intro].each do |attr|
-              next unless wrap.class.method_defined?(attr)
+              next unless wrap.class.attributes.key?(attr)
               val = wrap.public_send(attr)
               val = val.text if val.respond_to?(:text) && !val.text.nil?
               return val.to_s.strip unless val.to_s.strip.empty?
@@ -910,8 +919,8 @@ module Metanorma
             walk_models(meta_node) do |model|
               next unless model.instance_of?(::Sts::NisoSts::CustomMeta)
 
-              name = model.class.method_defined?(:meta_name) ? model.meta_name.to_s : ""
-              value = model.class.method_defined?(:meta_value) ? model.meta_value.to_s : ""
+              name = model.class.attributes.key?(:meta_name) ? model.meta_name.to_s : ""
+              value = model.class.attributes.key?(:meta_value) ? model.meta_value.to_s : ""
               series = value if name == "oiml-doc-series" && !value.empty?
             end
             series
@@ -1016,7 +1025,8 @@ module Metanorma
           def ordered_content_parts(node)
             mapping = @mapping_cache[node.class][:elements]
             indices = Hash.new(0)
-            node.element_order.filter_map do |entry|
+            entries = node.element_order || declared_element_order(node, mapping)
+            entries.filter_map do |entry|
               if entry.node_type == :text
                 entry.text_content.to_s
               else
@@ -1024,6 +1034,20 @@ module Metanorma
                 next unless attr
 
                 collection_item_at(node, attr, indices)
+              end
+            end
+          end
+
+          # Declaration-order entries for models whose parse produced no
+          # element_order: one entry per collection item.
+          DeclaredEntry = Struct.new(:node_type, :name, :text_content)
+
+          def declared_element_order(node, mapping)
+            return [] if node.nil?
+
+            mapping.flat_map do |name, attr|
+              Array(node.public_send(attr)).compact.map do
+                DeclaredEntry.new(:element, name, nil)
               end
             end
           end
