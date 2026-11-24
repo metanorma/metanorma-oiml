@@ -158,12 +158,8 @@ module Metanorma
           def add_typed_note_paragraphs(content, note_obj, label, colon: false)
             suffix = colon ? ": " : "  "
             Array(note_obj.p).each_with_index do |p, i|
-              para = paragraph_transformer.transform(p)
-              if i.zero?
-                existing = para.content.to_a
-                para.content = ["#{label}#{suffix}#{existing.first || ''}"] + existing[1..]
-              end
-              content << para
+              prefix = i.zero? ? "#{label}#{suffix}" : nil
+              content << paragraph_transformer.transform(p, prefix: prefix)
             end
             Array(note_obj.ul).each { |ul| content << list_transformer.transform(ul) }
             Array(note_obj.ol).each { |ol| content << list_transformer.transform(ol) }

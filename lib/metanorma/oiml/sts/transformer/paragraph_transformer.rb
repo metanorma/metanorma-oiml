@@ -12,7 +12,9 @@ module Metanorma
             BrElement TabElement Bookmark
           ].freeze
 
-          def transform(source_para)
+          # prefix: literal text emitted before the paragraph's own content
+          # (e.g. the "Note:" label of a term note).
+          def transform(source_para, prefix: nil)
             id_val = nil
             if source_para.is_a?(Lutaml::Model::Serializable) && source_para.class.method_defined?(:id)
               id_val = source_para.id
@@ -21,7 +23,7 @@ module Metanorma
             @seen_nodes = {}
             @stem_mirrors = build_stem_mirror_map(source_para)
             entries = []
-            current_text = nil
+            current_text = prefix
             flush_text = lambda do
               return if current_text.nil?
               entries << [:text, clean_text(current_text)]
