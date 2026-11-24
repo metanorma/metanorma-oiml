@@ -41,6 +41,8 @@ module Metanorma::Oiml::Sts::Transformer
 
   autoload :SourceOrder, "metanorma/oiml/sts/transformer/source_order"
 
+  autoload :RequirementTransformer, "metanorma/oiml/sts/transformer/requirement_transformer"
+  autoload :ProvisionIndex, "metanorma/oiml/sts/transformer/provision_index"
   autoload :QuoteTransformer, "metanorma/oiml/sts/transformer/quote_transformer"
 
   def self.convert(input)
