@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "metanorma-document", ">= 0.4.0"
+  spec.add_dependency "metanorma-document", "~> 0.5.8"
   spec.add_dependency "metanorma-standoc", ">= 3.4.2" # the model tree uses Standoc::Document
   spec.add_dependency "lutaml-model", "~> 0.8.0"
   spec.add_dependency "sts", ">= 0.5.6" # relaxed until glossarist supports 0.6
