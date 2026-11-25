@@ -82,8 +82,8 @@ RSpec.describe Metanorma::Oiml::Sts::Transformer do
     end
 
     it "keeps only the presentation mirror of a semantic xref" do
-      expect(output).to include('<xref ref-type="sec" rid="s_one">Clause 1</xref>')
-      expect(output.scan("Clause 1").size).to eq(1)
+      expect(output).to include("<xref ref-type=\"sec\" rid=\"s_one\">Clause\u00A01</xref>")
+      expect(output.scan("Clause\u00A01").size).to eq(1)
     end
   end
 

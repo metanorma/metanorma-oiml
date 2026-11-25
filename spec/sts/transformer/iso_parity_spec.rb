@@ -29,7 +29,7 @@ RSpec.describe "reconciled OIML STS mirrors" do
     XML
     expect(doc.at_xpath('//sec[@id="s"]').element_children.map(&:name))
       .to eq(%w[title p list p non-normative-note sec p])
-    expect(doc.at_xpath('//non-normative-note/label').text).to eq("NOTE 2")
+    expect(doc.at_xpath('//non-normative-note/label').text).to eq("NOTE\u00A02")
   end
 
   it "keeps ordered item designations and note labels ahead of content" do
@@ -73,7 +73,7 @@ RSpec.describe "reconciled OIML STS mirrors" do
     expect(doc.at_xpath('//front/sec')).to be_nil
     app = doc.at_xpath('//back/app-group/app')
     expect(app['id']).to eq("sec_A")
-    expect(app.at_xpath('p').text).to eq("Annex body")
+    expect(app.at_xpath("p").text).to eq("Annex\u00A0body")
     expect(doc.at_xpath('//xref')['rid']).to eq(app['id'])
     expect(doc.at_xpath('//xref')['ref-type']).to eq("app")
   end

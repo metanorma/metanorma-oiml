@@ -25,6 +25,9 @@ module Metanorma
             "ExampleBlock"                 => :dispatch_via_note,
             "AdmonitionBlock"              => :dispatch_via_note,
             "QuoteBlock"                   => :dispatch_via_quote,
+            "RequirementModel"             => :dispatch_via_requirement,
+            "RecommendationModel"          => :dispatch_via_requirement,
+            "PermissionModel"              => :dispatch_via_requirement,
             "SourcecodeBlock"              => :dispatch_via_sourcecode,
             "StandardReferencesSection"    => :dispatch_via_references,
             "BibliographySection"          => :dispatch_via_references
@@ -59,6 +62,9 @@ module Metanorma
           # These are NOT yielded by each_mixed_content; we iterate them
           # explicitly to dispatch tables, lists, notes, etc.
           TYPED_ATTR_DISPATCH = {
+            requirement: :dispatch_via_requirement,
+            recommendation: :dispatch_via_requirement,
+            permission: :dispatch_via_requirement,
             paragraphs: :dispatch_via_paragraph,
             unordered_lists: :dispatch_via_list,
             ordered_lists: :dispatch_via_list,
@@ -169,6 +175,15 @@ module Metanorma
             model = quote_transformer.transform(obj)
             [model, *quote_trailing_lists(obj)].compact
           end
+
+          # The single seam for requirement / recommendation / permission
+          # blocks (STS formal tables). Matches ISO's native STS engine
+          # (option 2 of metanorma-iso#1760: mirrored trees); if the ruling
+          # moves to a shared engine, only this method changes.
+          def dispatch_via_requirement(obj)
+            requirement_transformer.transform(obj)
+          end
+
           def dispatch_via_sourcecode(obj); note_transformer.transform_preformat(obj); end
           def dispatch_via_references(obj); reference_transformer.transform_section(obj); end
 
