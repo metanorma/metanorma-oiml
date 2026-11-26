@@ -15,7 +15,7 @@ module Metanorma
       # Each rule corresponds to one Schematron pattern; the rule ids
       # match the `<assert id="...">` / `<report id="...">` attributes in
       # the .sch file so output is comparable.
-      class Validator
+      class Validator < Metanorma::Document::Sts::Validator
         SCHEMATRON_PATH = File.expand_path("../schematron/oiml-sts.sch", __dir__).freeze
 
         # @param xml [String, Pathname, #read] OIML STS XML.

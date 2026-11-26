@@ -1,24 +1,18 @@
 # frozen_string_literal: true
 
+require "metanorma/oiml/sts/profile"
+
 module Metanorma
   module Oiml
     module Sts
       module Transformer
-        class Context
-          attr_reader :source, :id_generator, :footnote_collector
-
-          def initialize(source)
-            @source = source
-            @id_generator = IdGenerator.new
-            @footnote_collector = FootnoteCollector.new
-          end
-
-          def language
-            source.language || "en"
-          end
-
-          def docidentifier
-            source.docidentifier
+        # Delegates to the shared engine (metanorma-document 0.5.15,
+        # Metanorma::Document::Sts) per metanorma-iso#1760 /
+        # metanorma-document#165 — defaulting the context to the OIML
+        # profile so class_overrides resolve the OIML subclasses.
+        class Context < Metanorma::Document::Sts::Transformer::Context
+          def initialize(source, presentation_xml: nil, profile: Metanorma::Oiml::Sts::Profile.instance)
+            super
           end
         end
       end

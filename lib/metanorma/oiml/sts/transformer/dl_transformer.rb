@@ -8,7 +8,7 @@ module Metanorma
         # Follows mnconvert's pattern (mn2xml.xsl lines 5327-5528): each
         # dt/dd pair becomes a def-item with term + def children. Notes
         # inside dl are extracted as siblings after the def-list.
-        class DlTransformer < Base
+        class DlTransformer < Metanorma::Document::Sts::Transformer::DlTransformer
           def transform(source_dl)
             def_items = pair_dt_dd(source_dl)
             ModelBuilder.def_list(id: source_dl.id, def_items: def_items)

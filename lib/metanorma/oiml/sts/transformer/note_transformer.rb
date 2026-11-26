@@ -13,7 +13,7 @@ module Metanorma
         # way Metanorma marks up body notes ("<span class='note-label'>
         # NOTE</span>&nbsp;<p>…"). Term entries use "Note N to entry:"
         # via TermTransformer.
-        class NoteTransformer < Base
+        class NoteTransformer < Metanorma::Document::Sts::Transformer::NoteTransformer
           def transform(source_note)
             paragraphs = extract_paragraphs(source_note)
             return nil if paragraphs.empty?

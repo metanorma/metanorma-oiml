@@ -4,7 +4,7 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
-        class SectionTransformer < Base
+        class SectionTransformer < Metanorma::Document::Sts::Transformer::SectionTransformer
           def transform(source_clause)
             title_text = extract_title(source_clause)
             id_val = source_clause.id if source_clause.is_a?(Lutaml::Model::Serializable) && source_clause.class.method_defined?(:id) && source_clause.id

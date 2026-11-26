@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "metanorma/document"
+require "metanorma/oiml/sts/profile"
 require "metanorma/oiml/document"
 
 module Metanorma
@@ -10,7 +11,7 @@ module Metanorma
         class SourceDocument
           attr_reader :typed_root
 
-          def self.parse(input)
+          def self.parse(input, profile: Metanorma::Oiml::Sts::Profile.instance)
             xml_string = input.class.method_defined?(:read) ? input.read : input.to_s
             typed = Metanorma::Oiml::Document::Root.from_xml(xml_string)
             new(typed)
@@ -18,7 +19,7 @@ module Metanorma
 
           # Reader entry point for the metanorma-core document_transformers
           # contract (+reader.from_xml(String) -> model+); an alias of {.parse}.
-          def self.from_xml(input)
+          def self.from_xml(input, profile: Metanorma::Oiml::Sts::Profile.instance)
             parse(input)
           end
 

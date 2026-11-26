@@ -1,12 +1,13 @@
 # frozen_string_literal: true
+
+# Delegates to the shared engine (metanorma-document 0.5.15, Metanorma::Document::Sts)
+# per metanorma-iso#1760 / metanorma-document#165.
+
 module Metanorma
   module Oiml
     module Sts
       module Transformer
-        class InlineTransformer < Base
-          def transform(source_node)
-            paragraph_transformer.transform(source_node)
-          end
+        class InlineTransformer < Metanorma::Document::Sts::Transformer::InlineTransformer
         end
       end
     end
