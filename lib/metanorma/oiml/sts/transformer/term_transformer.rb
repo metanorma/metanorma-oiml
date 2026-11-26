@@ -160,8 +160,17 @@ module Metanorma
             Array(note_obj.p).each_with_index do |p, i|
               para = paragraph_transformer.transform(p)
               if i.zero?
-                existing = para.content.to_a
-                para.content = ["#{label}#{suffix}#{existing.first || ''}"] + existing[1..]
+                # The designation prefixes the first paragraph's text.
+                # Rebuild the paragraph instead of writing the text
+                # attribute in place: a parsed-and-transformed model
+                # serializes its captured raw content, so an attribute
+                # write both appends and duplicates (the visible text
+                # would come out doubled). A fresh model serializes from
+                # its attributes alone.
+                para = ::Sts::NisoSts::Paragraph.new(
+                  id: para.id,
+                  text: ["#{label}#{suffix}", *para.text.to_a],
+                )
               end
               content << para
             end
