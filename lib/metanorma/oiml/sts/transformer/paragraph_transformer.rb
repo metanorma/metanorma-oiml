@@ -7,6 +7,20 @@ module Metanorma
         class ParagraphTransformer < Metanorma::Document::Sts::Transformer::ParagraphTransformer
           private
 
+          # Serializable#to_s is #inspect: degrading a model child (e.g. a
+          # nested Xref inside a <sup>) through to_s leaked object addresses
+          # into the output, so degrade to the visible text instead.
+          def attach_inline_child(container, child)
+            case container
+            when ::Sts::NisoSts::Paragraph
+              attach_to_paragraph(container, child)
+            when ::Sts::TbxIsoTml::Bold, ::Sts::TbxIsoTml::Italic
+              attach_to_rich_inline(container, child)
+            else
+              container.content RenderedTextExtractor.text_of(child).to_s
+            end
+          end
+
           # The OIML stem models expose their MathML through a method, not a
           # declared attribute; the OIML MathmlBuilder reads either form.
           def build_inline_formula(stem_node)
