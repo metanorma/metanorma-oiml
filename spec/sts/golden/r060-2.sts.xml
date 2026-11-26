@@ -1,0 +1,2035 @@
+<standard xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" dtd-version="1.2">
+  <processing-meta tagset-family="sts" base-tagset="interchange" table-model="xhtml" mathml="MathML 3.0" terminology-model="tbx"/>
+  <front>
+    <std-meta>
+      <title-wrap>
+        <main>Metrological regulation for load cells — Part 2:Metrological controls and performance tests</main>
+      </title-wrap>
+      <std-ident>
+        <originator>OIML</originator>
+        <doc-type>r</doc-type>
+        <doc-number>60</doc-number>
+        <part-number>2</part-number>
+      </std-ident>
+      <pub-date>2021</pub-date>
+      <permissions>
+        <copyright-statement>© 2021 OIML</copyright-statement>
+        <copyright-year>2021</copyright-year>
+        <copyright-holder>OIML</copyright-holder>
+      </permissions>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>oiml-doc-series</meta-name>
+          <meta-value>R</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </std-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Copyright</title>
+      <p id="_1d37d283-b53c-595e-4f5b-96140619aae7">© OIML 2021</p>
+      <p id="_6711e67c-7bc3-b668-a67f-ec68c6b24d99">Bureau International de Métrologie Légale 11, rue Turgot – 75009 Paris – France Telephone: 33 (0)1 48 78 12 82 Fax: 33 (0)1 42 82 17 27 E-mail: biml@oiml.org Internet:  <ext-link ext-link-type="uri" xlink:href="https://www.oiml.org">www.oiml.org</ext-link></p>
+    </sec>
+    <sec>
+      <title>Feedback</title>
+      <p id="_d0a674b7-3667-12e4-81ba-deec26ebe4bb">OIML Publications may be downloaded from the OIML web site in the form of PDF files. Additional information on OIML Publications may be obtained from the Organisation’s headquarters:</p>
+      <p id="_f0f7fd17-e1fc-5b10-60ff-c6d972b4eaa1">Bureau International de Métrologie Légale 11, rue Turgot – 75009 Paris – France Telephone: 33 (0)1 48 78 12 82 Fax: 33 (0)1 42 82 17 27 E-mail:  <ext-link ext-link-type="uri" xlink:href="mailto:biml@oiml.org">biml@oiml.org</ext-link> Internet:  <ext-link ext-link-type="uri" xlink:href="https://www.oiml.org">www.oiml.org</ext-link></p>
+    </sec>
+    <sec>
+      <title>Foreword</title>
+      <p id="_562d2fb6-d63e-84ae-e97e-5078e3b7b4a7">The International Organisation of Legal Metrology (OIML) is a worldwide, intergovernmental organisation whose primary aim is to harmonise the regulations and metrological controls applied by the national metrological services, or related organisations, of its Member States. The main categories of OIML publications are:</p>
+      <p id="_0be69df8-5ff3-5678-8945-66a921bc4e81">OIML Draft Recommendations, Documents and Guides are developed by Project Groups linked to Technical Committees or Subcommittees which comprise representatives from OIML Member States. Certain international and regional institutions also participate on a consultation basis. Cooperative agreements have been established between the OIML and certain institutions, such as ISO and the IEC, with the objective of avoiding contradictory requirements. Consequently, manufacturers and users of measuring instruments, test laboratories, etc. may simultaneously apply OIML publications and those of other institutions.</p>
+      <p id="_ba13e892-20b5-80a9-312e-a25da604a959">International Recommendations, Documents, Guides and Basic Publications are published in English (E) and translated into French (F) and are subject to periodic revision.</p>
+      <p id="_b7af99b1-4765-8464-90e3-8626b04b84de">Additionally, the OIML publishes or participates in the publication of <bold>Vocabularies (OIML V)</bold> and periodically commissions legal metrology experts to write <bold>Expert Reports (OIML E)</bold>. Expert Reports are intended to provide information and advice, and are written solely from the viewpoint of their author, without the involvement of a Technical Committee or Subcommittee, nor that of the CIML. Thus, they do not necessarily represent the views of the OIML.</p>
+      <p id="_bfc0f75e-42fc-ca8e-97cc-53af83130083">This publication — reference OIML R 60-2:2021 — is an updated edition (developed by the OIML Certification System Management Committee) of R 60-2:2017 (developed by Project Group 1 of OIML Technical Committee TC 9 <italic>Instruments for measuring mass and density</italic>). This updated edition consolidates the Amendment (2019-12-23) to R 60:2017, and includes other editorial and minor technical changes. It was approved for final publication by the International Committee of Legal Metrology at its 56th meeting in October 2021 and was sanctioned by the 16th International Conference on Legal Metrology in 2021. It supersedes the previous edition of R 60 dated 2017.</p>
+      <p id="_f38c1156-6177-3ef5-50b8-864745ac082c">OIML Publications may be downloaded from the OIML web site in the form of PDF files. Additional information on OIML Publications may be obtained from the Organisation’s headquarters:</p>
+      <p id="_fca1deab-c64c-5a08-d2a0-6a518de88e2e">Bureau International de Métrologie Légale 11, rue Turgot — 75009 Paris – France Telephone: 33 (0)1 48 78 12 82 Fax: 33 (0)1 42 82 17 27 E-mail:  <ext-link ext-link-type="uri" xlink:href="mailto:biml@oiml.org">biml@oiml.org</ext-link> Internet: www.oiml.org</p>
+      <list list-type="bullet">
+        <list-item>
+          <p id="_d372c31f-bfd7-7fbb-535a-ed45152cf8ca"><bold>International Recommendations (OIML R),</bold> which are model regulations that establish the metrological characteristics required of certain measuring instruments and which specify methods and equipment for checking their conformity. OIML Member States shall implement these Recommendations to the greatest possible extent;</p>
+        </list-item>
+        <list-item>
+          <p id="_82dedfa9-31e2-ffd7-34db-ed3d3913cc6b"><bold>International Documents (OIML D),</bold> which are informative in nature and which are intended to harmonise and improve work in the field of legal metrology;</p>
+        </list-item>
+        <list-item>
+          <p id="_12fb4c73-5c12-16b9-03ab-4fabaf852c47"><bold>International Guides (OIML G),</bold> which are also informative in nature and which are intended to give guidelines for the application of certain requirements to legal metrology;</p>
+        </list-item>
+        <list-item>
+          <p id="_a958a960-842a-d89c-8ca5-3ec04ac73868"><bold>International Basic Publications (OIML B),</bold> which define the operating rules of the various OIML structures and systems; and</p>
+        </list-item>
+      </list>
+    </sec>
+    <sec id="_39a2b3da-b528-8d44-0a7d-8c102d290c2b">
+      <label>1</label>
+      <title>Metrological controls</title>
+      <sec id="sec-1.1">
+        <label>1.1</label>
+        <title>Liability to legal metrological controls</title>
+        <sec id="sec-1.1.1">
+          <label>1.1.1</label>
+          <title>Imposition of controls</title>
+          <p id="_3039e4e0-5514-7d47-da46-4ab97ca322ae">This Recommendation prescribes performance requirements for load cells used in devices or systems subjected to legal metrological control. National legislation may impose metrological controls that verify compliance with this Recommendation. Such controls, when imposed, may include type evaluation.</p>
+        </sec>
+      </sec>
+      <sec id="sec-1.2">
+        <label>1.2</label>
+        <title>Measurement standards</title>
+        <p id="_f67bbe8e-bfcf-cf86-5d7d-de7fb30f81a3">The expanded uncertainty, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>U</mml:mi></mml:mstyle></mml:math></inline-formula> (for coverage factor <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:mstyle></mml:math></inline-formula>), for the combination of the force-generating system and the indicating instrument used during the tests to observe the load cell output shall be less than 1/3 times the MPE of the load cell under test [OIML G 1-100  <italic>Guide to the Expression of Uncertainty in Measurement</italic>] [7].</p>
+      </sec>
+    </sec>
+    <sec id="sec-2">
+      <label>2</label>
+      <title>Type evaluation</title>
+      <sec id="sec-2.1" sec-type="scope">
+        <label>2.1</label>
+        <title>Scope</title>
+        <p id="_21709bff-ddd7-cb82-9bf0-fb3ba52de4cf">This section provides test procedures for type evaluation testing of load cells.</p>
+        <p id="_b1478220-7dcd-0781-6619-d80218d8ac36">Wherever possible, test procedures have been established to apply as broadly as possible to all load cells within the scope of OIML R 60.</p>
+        <p id="_5924da82-e937-5639-91a1-d54444f09639">The procedures apply to the testing of load cells only. No attempt has been made to cover testing of complete systems that include load cells.</p>
+      </sec>
+      <sec id="sec-2.2">
+        <label>2.2</label>
+        <title>Test requirements</title>
+        <p id="_5c43df6c-ea0b-cd7f-82c7-2313c5724fb1">Test procedures for the type evaluation of load cells are provided in <xref ref-type="sec" rid="sec-2.10">2.10</xref> and the Test Report Format is provided in OIML R 60-3. Initial and subsequent verification of load cells independent of the measuring system in which they are used is normally considered inappropriate if the complete system performance is verified by other means.</p>
+      </sec>
+      <sec id="sec-2.3">
+        <label>2.3</label>
+        <title>Selection of specimens for evaluation</title>
+        <p id="_ea6738aa-4158-cf25-d93b-76739364343f">Type evaluation shall be carried out on at least one specimen, which represents the type. The evaluation shall consist of the examination and tests specified in  <xref ref-type="sec" rid="sec-2.10">2.10</xref>.</p>
+        <p id="_746d4fb7-a1e5-6330-162a-0368b5e10f6e">In case the applicant wants to have several versions or measuring ranges approved, the issuing authority decides which version(s) and range(s) shall be supplied.</p>
+        <p id="_08d43b9d-9b7b-205d-2025-3d70724930a4">If a specimen does not pass a specific test as a result of the design of the type and therefore has to be modified, the applicant shall carry out this modification to all the specimens supplied for test. If the modification has been applied to all sub-types of the family which have the common design defect that required modification, it is then required that the other specimens that have been submitted shall be re-tested. Depending on the modification this may involve a repeat of the specific test or a complete re-test.</p>
+        <p id="_52286edc-85df-0c38-f3e3-43f87034b6ea">If during the evaluation the specimen experiences malfunction or breakage that necessitates a repair in order to complete the test, the applicant shall verify whether this repair concerns an incident or whether a modification will need be made to the design. In the latter case the modification shall be applied to all specimens supplied for the test and the applicable documentation shall be updated accordingly.</p>
+        <p id="_8bffb860-4130-e7dd-0245-e1946a5f2ff5">If the issuing authority has reason to believe that a modification or repair could cause a different outcome for test result(s) than the result(s) which was observed prior to any modification, these tests shall be repeated. The reason for repeating a test shall be given within the scope of the test report.</p>
+        <sec id="sec-2.3.1">
+          <label>2.3.1</label>
+          <title>Number of load cells to be tested</title>
+          <p id="_d611ff72-5b39-817b-465a-f3022e4b2cc2">The selection of load cells to be tested shall be such that the number of load cells to be tested is minimised (see practical example in Annex D).</p>
+        </sec>
+      </sec>
+      <sec id="sec-2.4">
+        <label>2.4</label>
+        <title>Selection of load cells within a family</title>
+        <p id="_d09137d3-a3cb-95b0-29fd-db59118850e6">In order to accelerate the test procedure, the test laboratory may carry out different tests simultaneously on different units. In this case, the issuing authority decides which version or measuring range will be subjected to a specific test.</p>
+        <p id="_5a299cdc-3793-fa58-dc15-887168d8c9c0">All accuracy and influence tests, including a span stability test for digital load cells, shall be performed on the same unit. Disturbance tests on digital load cells may be (simultaneously) carried out on not more than two additional load cells.</p>
+        <p id="_93d232c2-c01f-a3fe-1421-2802a6c8a45f">Where a family composed of one or more groups of load cells of various capacities and characteristics is presented for type evaluation, the following provisions shall apply.</p>
+        <p id="_6b0d0cbb-ebd2-a4bb-1b47-189be3be99ae">When classifying load cells on the basis of the shape design, additional consideration should be given to design criteria such as the geometrical characteristics of the areas of the load cell created during fabrication. Examples of strain gauge-type load cells with identical outer dimensions but different geometries are shown below.</p>
+        <fig id="fig_1">
+          <label>Figure 1</label>
+          <caption>
+            <title>Examples of strain gauge-type load cell design shapes</title>
+          </caption>
+          <graphic xlink:href="images/figure-1.svg"/>
+        </fig>
+        <sec id="sec-2.4.1">
+          <label>2.4.1</label>
+          <title>Load cells of the same capacity belonging to different groups</title>
+          <p id="_98be40b6-70f8-b534-a0e9-6532691f3972">Where load cells of the same family and same capacity belong to different groups, the selection of a load cell for testing requires a choice between characteristics of the load cells. In this case, the load cell requiring the most onerous tests shall be selected. This selection will result in the load cell with the most stringent metrological characteristics being tested.</p>
+        </sec>
+        <sec id="sec-2.4.2">
+          <label>2.4.2</label>
+          <title>Load cells with a capacity in between the capacities tested</title>
+          <p id="_c6699170-618f-decc-0b99-0393ccbe932b">Load cells of the same family with a capacity in between the capacities tested, as well as those above the largest capacity tested, but not over 5 times the largest capacity tested, may be included in the certificate and are deemed to fulfil the requirements of this Recommendation. This is under the provision that along with the change of capacity there is no change of measurement principle or material used in the construction of the load cell (e.g. from bending beam to shear beam or stainless steel replacing aluminium).</p>
+        </sec>
+        <sec id="sec-2.4.3">
+          <label>2.4.3</label>
+          <title>Smallest capacity load cell from the group</title>
+          <p id="_a0a38d87-2153-28f1-5fd0-e269a363f291">For any family, the smallest capacity load cell from the group with the best characteristics shall be selected for testing. For any group, the smallest capacity load cell in the group shall always be selected for test unless that capacity falls within the range of allowed capacities of selected load cells having better metrological characteristics according to the requirements of  <xref ref-type="sec" rid="sec-2.4.1">2.4.1</xref>
+ and <xref ref-type="sec" rid="sec-2.4.2">2.4.2</xref>
+.</p>
+        </sec>
+        <sec id="sec-2.4.4">
+          <label>2.4.4</label>
+          <title>Ratio of largest capacity to the nearest smaller capacity</title>
+          <p id="_b90d115d-0495-e3a7-863a-9741478bb5c9">When the ratio of the largest capacity load cell in each group to the nearest smaller capacity having been selected for test is greater than 5, then another load cell shall be selected. The selected load cell shall have a capacity between 5 and 10 times that of the nearest smaller capacity load cell which has been selected. When no capacity meets this criterion, the selected load cell shall be that having the smallest capacity exceeding 10 times that of the nearest smaller capacity load cell which has been selected.</p>
+        </sec>
+        <sec id="sec-2.4.5">
+          <label>2.4.5</label>
+          <title>Humidity test</title>
+          <p id="_3696ad18-61ed-020b-3391-dea507bf7fda">If more than one load cell of a family has been submitted for testing, only one load cell shall be tested for humidity when applicable.</p>
+        </sec>
+        <sec id="sec-2.4.6">
+          <label>2.4.6</label>
+          <title>Selection of analogue-active and digital load cells</title>
+          <p id="_c6205148-85c0-ee2a-e2e4-cbf1cd0ddc32">For analogue-active load cells (R 60-1, 3.1.3.2) with active electronics that do not differ between load cells and family and for digital load cells (R 60-1, 3.1.3.3) with an additional digital converter that does not differ between load cells and family all applicable tests shall be performed on the load cell with the minimum, <italic>μV/v</italic>min as input for the analogue to digital converter (same principle as OIML R 76  <italic>Non-automatic weighing instruments</italic> [1], Annex C, Table 12).</p>
+          <p id="_3bfe8c83-3482-b7f8-980d-d58bf38111b9">Notwithstanding this requirement, the criteria for assignment of a load cell to a family and the selection of test specimens found in  <xref ref-type="sec" rid="sec-2.4.1">2.4.1</xref>
+ to <xref ref-type="sec" rid="sec-2.4.5">2.4.5</xref>
+ shall be observed.</p>
+        </sec>
+      </sec>
+      <sec id="sec-2.5">
+        <label>2.5</label>
+        <title>Documentation</title>
+        <p id="_9aebf666-02db-2f8c-8753-2aa7c6ad9dbc">The documentation submitted with the application for type evaluation shall include:</p>
+        <list list-type="alpha-lower">
+          <list-item>
+            <label>a)</label>
+            <p id="_e751def0-f6da-692d-59f1-fc161a9d071b">a description of its general principle of measurement;</p>
+          </list-item>
+          <list-item>
+            <label>b)</label>
+            <p id="_8210ecc3-5f1d-f5c4-f4e9-b26d468ae9b8">mechanical drawings (including documents on the load transmission(s) as per Annex E);</p>
+          </list-item>
+          <list-item>
+            <label>c)</label>
+            <p id="_ad8253c7-0472-3810-e540-84c9b26c53c0">electric/electronic diagrams;</p>
+          </list-item>
+          <list-item>
+            <label>d)</label>
+            <p id="_80fc3068-0a98-682b-de87-b1529fbb9184">installation requirements (physical and electrical) if appropriate;</p>
+          </list-item>
+          <list-item>
+            <label>e)</label>
+            <p id="_2fb0bf95-3d2d-46b9-a5d5-6b788368753f">operating instructions that shall be provided to the user if appropriate;</p>
+          </list-item>
+          <list-item>
+            <label>f)</label>
+            <p id="_1753e5ba-5690-b98f-232a-5f22e0672c92">documents or other evidence to support and demonstrate the manufacturer’s belief that the design and characteristics of the load cell will comply with the requirements of this Recommendation; and</p>
+          </list-item>
+          <list-item>
+            <label>g)</label>
+            <p id="_6636ea8f-aef4-35cd-33f1-a86b74895be0">documentation relative to software if appropriate.</p>
+          </list-item>
+        </list>
+        <p id="_7efb5e9e-a11a-1f87-a29c-96ab5c6c059e">If the test laboratory deems this necessary, it can require more detailed documentation; either to be able to study the quality of the instrument, or to be able to fully define the approved type, or both.</p>
+        <p id="_32ac02e6-812e-6aea-6fc1-03a544eb5207">If the manufacturer does not prescribe a specific load transmission, it will be the responsibility of the test laboratory to decide what kind of load transmission is to be used for testing (also see Annex E).</p>
+      </sec>
+      <sec id="sec-2.6">
+        <label>2.6</label>
+        <title>Examinations</title>
+        <p id="_5f0f9699-6926-40c2-4c2b-0501be60b6ee">Examinations and testing of load cells are intended to verify compliance with the requirements of R 60-1.</p>
+        <p id="_55a9cef4-e76a-e786-d646-28c8793c9013">The load cell shall be given a visual inspection to obtain a general appraisal of its design and construction and the documentation shall be studied.</p>
+        <p id="_9e0d790a-fe7c-a811-ecdc-ace75920baa4">In particular, the following aspects shall be examined:</p>
+        <list list-type="alpha-lower">
+          <list-item>
+            <label>a)</label>
+            <p id="_6c23a6cd-2089-9ddb-ac1f-e4be5e9bc170">accuracy classes and their symbols (R 60-1, 5.1.1 and 6.2.4.1);</p>
+          </list-item>
+          <list-item>
+            <label>b)</label>
+            <p id="_75307fa6-fb3f-01b6-bcbb-29e7eb96b207">maximum number of load cell verification intervals (R 60-1, 5.1.2 and 6.2.4.5);</p>
+          </list-item>
+          <list-item>
+            <label>c)</label>
+            <p id="_db61355a-c37e-2004-319b-d1ed516b2a72">load cell measuring ranges (R 60-1, 3.5.2);</p>
+          </list-item>
+          <list-item>
+            <label>d)</label>
+            <p id="_0d1fccaa-4977-5ef0-e533-f638f3bb5c3d">apportioning of errors (R 60-1, 5.3.2 and 3.7.2);</p>
+          </list-item>
+          <list-item>
+            <label>e)</label>
+            <p id="_393ca426-a608-73bf-ee57-e8209dbda16b">construction of load cells (R 60-1, 3.3);</p>
+          </list-item>
+          <list-item>
+            <label>f)</label>
+            <p id="_1b896ff8-5981-5a4b-9a54-9ec6f47937b8">software (R 60-1, 6.1) (if applicable);</p>
+          </list-item>
+          <list-item>
+            <label>g)</label>
+            <p id="_86ba0812-76fb-643f-f418-998238d0f7a4">inscriptions and presentation of load cell information (R 60-1, 6.2); and</p>
+          </list-item>
+          <list-item>
+            <label>h)</label>
+            <p id="_ff55e319-4bb7-bddd-aab8-5db36388058d">installation instructions/recommendations.</p>
+          </list-item>
+        </list>
+      </sec>
+      <sec id="sec-2.7">
+        <label>2.7</label>
+        <title>Performance tests</title>
+        <sec id="sec-2.7.1">
+          <label>2.7.1</label>
+          <title>Purpose</title>
+          <p id="_1b675482-160f-77dd-1492-8695f5beea87">The following test procedures for the quantitative determination of load cell performance characteristics are established to ensure uniform type evaluation.</p>
+        </sec>
+        <sec id="sec-2.7.2">
+          <label>2.7.2</label>
+          <title>Test equipment</title>
+          <p id="_23ce8cab-55a4-69f0-142a-c072b67bca52">The basic equipment for type evaluation tests consists of a force-generating system and a suitable indicating instrument, which measures the output of the load cell (see  <xref ref-type="sec" rid="sec-1.2">1.2</xref>).</p>
+        </sec>
+        <sec id="sec-2.7.3">
+          <label>2.7.3</label>
+          <title>General considerations for environmental and test conditions</title>
+          <sec id="sec-2.7.3.1">
+            <label>2.7.3.1</label>
+            <title>Environmental conditions</title>
+            <p id="_aee4bedc-9ff9-556e-e939-a3724c222b24">Tests shall be performed under stable environmental conditions. The ambient temperature
+is deemed to be stable when the difference between extreme temperatures noted during
+the test does not exceed one fifth of the temperature range of the load cell under
+test, without being greater than <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>.</p>
+            <p id="_ec95d4d6-844e-4199-36c3-2b17e0122c1c">Conditions involving electrical power supplies, electromagnetic fields and radio frequency fields are to be measured/controlled when the load cell is being evaluated against the effects of these influences, and must also be considered when there is a potential for these types of conditions to impart effects on other tests.</p>
+          </sec>
+          <sec id="_d4c45015-e555-c331-e557-d6fa5ec5e4ec">
+            <label>2.7.3.2</label>
+            <title>Acceleration of gravity</title>
+            <p id="_1a903cd6-a79c-9b3e-c0ce-2c66d800a6b7">The mass standards used to generate the force applied during testing shall be corrected,
+if necessary, for the site of testing and the value of the gravity constant, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>g</mml:mi></mml:mstyle></mml:math></inline-formula>, at the test site shall be recorded with the test results. The value of the mass standards used to generate the force shall be traceable to the appropriate national or international standard of mass.</p>
+          </sec>
+          <sec id="sec-2.7.3.3">
+            <label>2.7.3.3</label>
+            <title>Loading conditions</title>
+            <p id="_6c08aea0-9367-8a49-1f45-969d128ecf1a">Particular attention shall be paid to loading conditions to prevent the introduction of errors not inherent to the load cell. Factors such as surface roughness, flatness, corrosion, scratches, eccentricity, etc., should be taken into consideration. Loading conditions shall be in accordance with the specifications of the load cell manufacturer. The loads shall be applied and removed along the sensitive axis of the load cell without introducing shock to the load cell.</p>
+            <p id="_7dd1d917-27bd-38d5-018c-246fb0759a5c">Since the aim of this test is not to measure the influence on the metrological performances of mounting/dismounting the load cell on/from the force-generating system, the installation of the load cell in the force-generating system shall be done with particular care. In addition, the installation shall be done with consideration given to the intended use of the load cell and the load transmission. The effect on the metrological performance caused by mounting/dismounting the load cell on/from the force-generating system should be negligible in order to establish the magnitude of the test parameter. If possible, the load cell should not be dismounted from the force-generation system during the entire period of the test.</p>
+          </sec>
+          <sec id="_359b8ac6-9345-7136-8d85-3648e1b75433">
+            <label>2.7.3.4</label>
+            <title>Measuring range limits</title>
+            <p id="_7a63ab73-b35b-e5fc-9717-25a83ecadbdb">With consideration given to the capability of the force-generating system, the minimum
+load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, shall be as near as possible to but not less than the minimum
+dead load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, and shall not be higher than a value equal to 10 % of
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>. The maximum load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, shall be not less than 90 %
+of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, nor shall it be greater than <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (refer to R 60-1, Figure 3).</p>
+          </sec>
+          <sec id="_e11bcbf0-1f97-81d6-bcc2-63b9ff1fffae">
+            <label>2.7.3.5</label>
+            <title>Reference standards</title>
+            <p id="_ece365e4-2b5c-cabc-ddab-43e6808fc685">All standards and measuring instruments used for the tests shall be traceable to national or international standards.</p>
+          </sec>
+          <sec id="_c5a33d71-25dd-1852-d642-802d0fcd4ae7">
+            <label>2.7.3.6</label>
+            <title>Stabilisation period</title>
+            <p id="_42e564b4-53f2-adf9-0dcd-c05a23dc8d37">A stabilisation period for the load cell under test and the indicating instrument shall be provided, as recommended by the manufacturers of the equipment used.</p>
+          </sec>
+          <sec id="_17902b2a-c5c3-92b3-5e6d-be2cee8c55eb">
+            <label>2.7.3.7</label>
+            <title>Temperature conditions</title>
+            <p id="_12aa46df-8861-5ce7-4f0b-84c668b40d7f">It is important to allow sufficient time for temperature stabilisation of the load cell to be achieved. Particular attention shall be paid to this requirement for large load cells. The loading system shall be of a design which will not introduce significant thermal gradients within the load cell. The load cell and its connecting means (cables, tubes, etc.) which are integral or contiguous shall be at the same test temperature. The indicating instrument shall be maintained at room temperature. The temperature effect on auxiliary connecting means shall be considered in determining the results.</p>
+          </sec>
+          <sec id="sec-2.7.3.8">
+            <label>2.7.3.8</label>
+            <title>Barometric pressure effects</title>
+            <p id="_a5ed88d4-3fc5-1b07-0b73-286f0c3ab50e">Where changes in barometric pressure may significantly affect the load cell output, such changes shall be considered.</p>
+          </sec>
+          <sec id="_33dae0c6-02cb-95bd-6c65-9745e42cedf9">
+            <label>2.7.3.9</label>
+            <title>Humidity effects</title>
+            <p id="_22c3cf76-04c5-dcc8-de24-d7d7157b009e">When a load cell is marked with the symbol CH or is not marked with a humidity symbol, it shall be subjected to the humidity test, as specified in 2.10.5.</p>
+            <p id="_6d3a6598-bda2-2327-9f6b-d23ea03fad59">When a load cell is marked with the symbol SH, it shall be subjected to the humidity test, as specified in  <xref ref-type="sec" rid="sec-2.10.6">2.10.6</xref>.</p>
+            <p id="_a33f4f71-d093-7c4a-7d0b-d0de7190dddb">Load cells marked with the symbol NH shall not be subjected to the humidity tests as described in  <xref ref-type="sec" rid="sec-2.10.5">2.10.5</xref>
+ and <xref ref-type="sec" rid="sec-2.10.6">2.10.6</xref>
+.</p>
+          </sec>
+          <sec id="sec-2.7.3.10">
+            <label>2.7.3.10</label>
+            <title>Indicating instrument checking</title>
+            <p id="_06886e01-6539-3361-a61a-f0ac976acdf4">Some indicating instruments are provided with a convenient means for checking the indicating instrument itself. When such features are provided, they shall be utilised frequently to ensure that the indicating instrument is within the accuracy required by the test being performed. Periodic checks on the calibration status of the indicating instrument shall be performed.</p>
+          </sec>
+          <sec id="_79c5c18c-9a95-9b4e-e810-031ebc6f05e7">
+            <label>2.7.3.11</label>
+            <title>Other conditions</title>
+            <p id="_1ee1ff62-354d-6111-8e15-f909e215018e">Other conditions specified by the manufacturer such as input/output voltage, electrical sensitivity, input impedance of the indicator, etc. shall be taken into consideration during the test(s).</p>
+          </sec>
+          <sec id="_ef29a531-f14e-b91a-b254-09ef6d7958f8">
+            <label>2.7.3.12</label>
+            <title>Time and date format</title>
+            <p id="_48104324-cd6f-c369-c744-46be972191dd">All time and date points shall be recorded such that the data can later be presented in test reports in
+absolute, not relative, units of local time and date. The date shall be recorded in the ISO 8601
+<italic>Data elements and interchange formats — Information interchange — Representation of dates and times</italic> [9]
+(Representation of dates and times) format of ccyy-mm-dd.</p>
+            <non-normative-note>
+              <label>NOTE</label>
+              <p id="_260812ad-e659-8bd1-823f-5941bbf70a96">”cc” may be omitted in cases where there is no possible confusion as to the century.</p>
+            </non-normative-note>
+          </sec>
+        </sec>
+      </sec>
+      <sec id="sec-2.8">
+        <label>2.8</label>
+        <title>Rules concerning the determination of errors</title>
+        <sec id="sec-2.8.1">
+          <label>2.8.1</label>
+          <title>Conditions</title>
+          <p id="_419e899b-b9ac-cd80-72ec-e622a8168076">The limits of error shown in Table 4 in OIML R 60-1 shall apply to all load cell measuring ranges complying with the following conditions:</p>
+          <disp-formula id="_56869fe3-82c4-5b2d-e71d-8bbfe5493fa7">
+            <mml:math>
+              <mml:mstyle displaystyle="true">
+                <mml:mi>n</mml:mi>
+                <mml:mo>≤</mml:mo>
+                <mml:msub>
+                  <mml:mi>n</mml:mi>
+                  <mml:mtext>LC</mml:mtext>
+                </mml:msub>
+              </mml:mstyle>
+            </mml:math>
+          </disp-formula>
+          <disp-formula id="_5178f26b-6b2c-73ad-1713-d76eb61f3e0e">
+            <mml:math>
+              <mml:mstyle displaystyle="true">
+                <mml:mi>v</mml:mi>
+                <mml:mi>⇒</mml:mi>
+                <mml:msub>
+                  <mml:mi>v</mml:mi>
+                  <mml:mtext>min</mml:mtext>
+                </mml:msub>
+              </mml:mstyle>
+            </mml:math>
+          </disp-formula>
+        </sec>
+        <sec id="sec-2.8.2">
+          <label>2.8.2</label>
+          <title>Limits of error</title>
+          <p id="_709a98b3-e966-3e02-f0ba-d609dbbeec4b">The limits of error shown in Table 4 in OIML R 60-1 shall refer to the error envelope
+defined in R 60-1, 2.2 and R 60-1, 5.3.2 which is referenced to the straight line
+that passes through the minimum load output and the load cell output for a load of
+75 % of the measuring range taken on ascending load at <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>.
+This is based upon the initial <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> load test. See OIML R 60-3 <italic>Test report format for type evaluation</italic>.</p>
+        </sec>
+        <sec id="sec-2.8.3">
+          <label>2.8.3</label>
+          <title>Initial readings</title>
+          <p id="_c5627054-55df-59e5-9c03-6541e83f1ec9">During the conduct of the tests, the initial reading shall be taken at a time interval after the initiation of loading or unloading, whichever is applicable, as specified in  <xref ref-type="table" rid="table-1">Table 1</xref>.</p>
+          <table-wrap id="table-1">
+            <label>Table 1</label>
+            <caption>
+              <title>Table 1 — Combined loading and stabilisation times to be achieved prior to reading</title>
+            </caption>
+            <table>
+              <thead>
+                <tr>
+                  <th>Change in load</th>
+                  <th>Time allowed for loading and stabilisation</th>
+                </tr>
+                <tr>
+                  <th>
+                    <p id="_ca8a8d70-25eb-0b63-3895-09d647312906">Greater than</p>
+                  </th>
+                  <th>
+                    <p id="_393c68a5-74cb-2936-1fe4-30d6e1b0d79d">Up to and including</p>
+                  </th>
+                  <th>
+                    <p id="_8e241b8c-f5d8-25d5-476f-484cb84950c4">Classes C and D</p>
+                  </th>
+                  <th>
+                    <p id="_527416db-59d4-be64-0934-7cf6f8d6a7e4">Class B</p>
+                  </th>
+                  <th>
+                    <p id="_a66c9a77-7a6d-f476-79fd-74dcad0f7250">Class A</p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <p id="_5e6f83a1-d6ed-6020-5e62-7e5b4d713597">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mn>0</mml:mn>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_NISTu2">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kg</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_581d9441-e918-8132-69d8-ec19753c3f63">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mn>10</mml:mn>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_NISTu2">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kg</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_89a5af0d-4f5a-b5dc-4b39-1bc1fdd1b641">10 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_8d829cbf-7cbc-61d6-5715-e90a2443ae20">15 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_6bd7d29e-c071-a340-303d-518218583103">20 seconds</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_55b4db2d-b156-c4d5-1c61-db561a39d995">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mn>10</mml:mn>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_NISTu2">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kg</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_4e850c9c-69c1-a5f6-7e27-af7bb1dfa82a">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mn>100</mml:mn>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_NISTu2">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kg</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_ac835adb-fd43-e907-54f6-6e56edcef615">20 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_19ba5069-2987-9acd-aa94-6c4695bd5435">30 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_4e7399fc-3e87-b109-e0f0-9e9dc9db3059">40 seconds</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_37cb41a1-3760-e5f7-6d52-73338f54074c">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mn>100</mml:mn>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_NISTu2">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kg</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_b1df08bd-6685-4ba5-2c5c-fbe81e840d92">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mn>1 000</mml:mn>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_NISTu2">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kg</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_7b832b7c-6832-c037-510e-e0a160e9cd66">30 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_7ac886da-e750-a15c-8bd6-78526abc08b8">45 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_57823be3-1109-1961-8a25-cc032ef845b9">60 seconds</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_31d984b1-5309-57b3-5cc6-dcf2238ee63e">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mn>1 000</mml:mn>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_NISTu2">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kg</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_0c97f670-2fcd-edfd-7bff-ea9cd31dd061">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mn>10 000</mml:mn>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_NISTu2">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kg</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_0d70fbb6-1901-70f4-62d3-bebb012a88c8">40 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_b8673ed4-4cf7-9936-8bec-a75759796e95">60 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_95af487d-a8da-2ca7-42e9-02b3c5342430">80 seconds</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_b70357ae-2960-3e0b-2aa5-d317ef1a5ba6">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mn>10 000</mml:mn>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_NISTu2">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kg</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_80567d44-694b-98a0-f848-d7b098edb764">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mn>100 000</mml:mn>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_NISTu2">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kg</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_99b0e45a-9440-5b42-dd59-682f7140ccd3">50 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_efcc1475-e7af-c4a8-2b57-46dc5182308a">75 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_23fa84da-0877-38c8-435f-9d745a25c601">100 seconds</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_069f03ac-25d6-dba4-1020-0a32822cea83">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mn>100 000</mml:mn>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_NISTu2">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kg</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td/>
+                  <td>
+                    <p id="_182e82b9-1dae-d9c4-0a46-96d0e4d0bdcc">60 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_9ea5a8d7-bca8-2c11-7cf1-d04041f4eaf1">90 seconds</p>
+                  </td>
+                  <td>
+                    <p id="_046ad787-d202-88fd-f07d-e2df9301306d">120 seconds</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </table-wrap>
+          <sec id="_261d851f-5105-1518-0dd3-6d17d880bb5a">
+            <label>2.8.3.1</label>
+            <title>Loading/unloading times</title>
+            <p id="_3e1c6581-56cc-8a63-221d-6b2bf7ea7bf7">The loading or unloading times shall be approximately half the time specified in <xref ref-type="table" rid="table-1">Table 1</xref>. The remaining time shall be utilised for stabilisation. The tests shall be conducted under constant conditions. The loading or unloading time and the stabilising time shall be recorded in the test report in absolute, not relative values.</p>
+          </sec>
+          <sec id="_c90a5941-d3a9-8a7b-3f82-ffa85a96efbe">
+            <label>2.8.3.2</label>
+            <title>Adherence to loading/unloading times</title>
+            <p id="_454745be-88c8-c613-e875-fb93580b37c4">When the specified loading or unloading times cannot be achieved, the applicant for evaluation should be consulted and the following shall apply:</p>
+            <list list-type="alpha-lower">
+              <list-item>
+                <label>a)</label>
+                <p id="_7df68a55-15c6-4808-0473-b5aaa08cecae">In the case of the minimum dead load output return test, the time may be increased from 100 % to a limit of 150 % of the specified time provided that the permissible variation of the result is proportionally reduced from 100 % to 50 % of the allowable difference between the initial reading of the minimum load output upon unloading and the reading before loading.</p>
+                <p id="_ba647bb7-a633-9559-bcd5-6050cf115b56">For example:</p>
+                <list list-type="arabic">
+                  <list-item>
+                    <label>1)</label>
+                    <p id="_8ab76ebb-e292-ac3e-d6df-ec5742061eca">A change in load of 10 kg for class C and D load cells, loading (or unloading) time (approximately 5 s) is increased to 7.5 s (150 % of 5 s), MPE is reduced to 50 %; or</p>
+                  </list-item>
+                  <list-item>
+                    <label>2)</label>
+                    <p id="_d96a7aa5-7376-f4c9-fcc6-28fcec37626a">A change in load of 1500 kg for class C and D load cells, loading (or unloading) time (approximately 20 s) is increased to 25 s (125 % of 20 s), MPE is reduced to 75 %.</p>
+                  </list-item>
+                </list>
+              </list-item>
+              <list-item>
+                <label>b)</label>
+                <p id="_88a0318b-0ff2-0f84-1192-e905f32b45a4">In all cases, the actual times shall be recorded in the Test report.</p>
+              </list-item>
+            </list>
+          </sec>
+        </sec>
+      </sec>
+      <sec id="sec-2.9">
+        <label>2.9</label>
+        <title>Variation of results under reference conditions</title>
+        <sec id="sec-2.9.1">
+          <label>2.9.1</label>
+          <title>Creep</title>
+          <p id="_c95e0235-b47b-ed67-2852-f3a3956dc495">A load of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> shall be applied as specified in <xref ref-type="sec" rid="sec-2.10.2.1">2.10.2.1</xref>
+ to <xref ref-type="sec" rid="sec-2.10.2.7">2.10.2.7</xref>
+,
+at which time an initial reading shall be taken. The variation between the initial
+reading and subsequent readings of the load <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, taken as specified in  <xref ref-type="sec" rid="sec-2.10.2.8">2.10.2.8</xref>, shall comply with the limits specified in R 60-1, 5.5.1.</p>
+        </sec>
+        <sec id="sec-2.9.2">
+          <label>2.9.2</label>
+          <title>Minimum dead load output return</title>
+          <p id="_036ef7ae-ec44-a532-35fb-b4da68e86baa">The difference between an initial reading at a load of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (as specified in  <xref ref-type="sec" rid="sec-2.10.3.1">2.10.3.1</xref>
+ to <xref ref-type="sec" rid="sec-2.10.3.6">2.10.3.6</xref>
+) and a subsequent reading also of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>
+(taken after the application of a load of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> as specified in <xref ref-type="sec" rid="sec-2.10.3.7">2.10.3.7</xref>
+ to <xref ref-type="sec" rid="sec-2.10.3.10">2.10.3.8</xref>
+) shall not exceed the value in specified in R 60-1, 5.5.2.</p>
+        </sec>
+      </sec>
+      <sec id="sec-2.10">
+        <label>2.10</label>
+        <title>Test procedures</title>
+        <p id="_c9e0a8ec-ee7f-45c7-f5d6-29f2f5335530">Each of the tests below is presented as a “stand alone” individual test. However, for the efficient conduct of the load cell tests, it is acceptable that the increasing and decreasing load, creep, repeatability, and minimum dead load output return tests can be conducted concurrently at the given test temperature before changing to the next test temperature (see  <xref ref-type="sec" rid="sec-2.11">2.11</xref>, <xref ref-type="fig" rid="fig_2">Figures 2</xref>
+ and <xref ref-type="fig" rid="fig_3">3</xref>
+). The barometric pressure and the humidity tests are conducted individually following completion of the above tests.</p>
+        <sec id="sec-2.10.1">
+          <label>2.10.1</label>
+          <title>Determination of measurement error, repeatability error and temperature effect on minimum dead load output</title>
+          <p id="_3664a851-0efa-9f73-5145-aad396dd97b8">This test is applied to verify compliance with the provisions in R 60-1, 5.3, 5.4, and R 60-1, 5.6.1.3.</p>
+          <sec id="sec-2.10.1.1">
+            <label>2.10.1.1</label>
+            <title>Check test conditions</title>
+            <p id="_48d3ccb9-8ad5-485f-1e2f-f994d4a70a71">Refer to the test conditions in <xref ref-type="sec" rid="sec-2.7.3">2.7.3</xref> to ensure that proper consideration has been given to those conditions, prior to performing the following tests.</p>
+          </sec>
+          <sec id="_15ff9ec4-6c9a-09b5-fc17-7262e59f2206">
+            <label>2.10.1.2</label>
+            <title>Insert load cell</title>
+            <p id="_e19cec77-9a4b-b033-f29a-5b593c97cebb">Insert the load cell into the force-generating system, load to the minimum test load,
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, and stabilise at <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>±</mml:mo><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>).</p>
+          </sec>
+          <sec id="sec-2.10.1.3">
+            <label>2.10.1.3</label>
+            <title>Preload load cell</title>
+            <p id="_4dbfef92-4348-c0bc-72a3-6f71bd0ce499">Preload the load cell by applying the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>,
+three times, returning to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, after each load application. Wait 5 minutes before commencing with further tests.</p>
+          </sec>
+          <sec id="_d59d4116-6324-3412-dbac-1b98eb686fb3">
+            <label>2.10.1.4</label>
+            <title>Check indicating instrument</title>
+            <p id="_4c240ee0-c33f-aed3-c3ab-889e272532b9">Check the indicating instrument according to <xref ref-type="sec" rid="sec-2.7.3.10">2.7.3.10</xref>.</p>
+          </sec>
+          <sec id="_cb69753a-d84b-43db-dfaf-731d62737b0f">
+            <label>2.10.1.5</label>
+            <title>Monitor load cell</title>
+            <p id="_2a5f1f20-fb78-4e45-43cb-0a8d8b17dad2">Monitor the minimum test load output until stable.</p>
+          </sec>
+          <sec id="_30a64c42-55a1-0bba-bba8-047f4927d61a">
+            <label>2.10.1.6</label>
+            <title>Record indication</title>
+            <p id="_19e0f6c7-3a90-9215-03bb-d8dae053612f">Record the indicating instrument indication at the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+          </sec>
+          <sec id="sec-2.10.1.7">
+            <label>2.10.1.7</label>
+            <title>Test load points</title>
+            <p id="_67638ace-30c6-60c3-9c71-64cc3eb368db">All test load points in a loading and unloading sequence shall be spaced at approximately equal time intervals. The readings shall be taken at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>. These two time intervals shall be recorded.</p>
+          </sec>
+          <sec id="sec-2.10.1.8">
+            <label>2.10.1.8</label>
+            <title>Apply loads</title>
+            <p id="_45dbcc90-d11b-cbf2-5de8-729b22d91221">Apply increasing loads up to the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>. There shall be at least five increasing load points, which shall include values at or near those at which the maximum permissible error changes, as listed in Table 4 in R 60-1, 5.3.2.</p>
+          </sec>
+          <sec id="_c00c5549-a509-af0e-16e1-80691b955065">
+            <label>2.10.1.9</label>
+            <title>Record indications</title>
+            <p id="_4634b15a-ed79-c1c7-5581-bbfec42368fe">Record the indicating instrument indications at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>. These two time intervals shall be recorded.</p>
+          </sec>
+          <sec id="_94c8928d-ab42-bee9-fe4f-5391b98956c0">
+            <label>2.10.1.10</label>
+            <title>Decrease test loads</title>
+            <p id="_10e06d89-beeb-7f82-553a-97f1b316f82c">Decrease the test loads to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, using the same load points as described in  <xref ref-type="sec" rid="sec-2.10.1.8">2.10.1.8</xref>.</p>
+          </sec>
+          <sec id="sec-2.10.1.11">
+            <label>2.10.1.11</label>
+            <title>Record indications</title>
+            <p id="_ee46e67e-3c41-dc0d-a38d-9e8d40eae475">Record the indicating instrument indications at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>. These two time intervals shall be recorded.</p>
+          </sec>
+          <sec id="sec-2.10.1.12">
+            <label>2.10.1.12</label>
+            <title>Repeat procedures for different accuracy classes</title>
+            <p id="_7cf7ac4c-e709-25e4-8d0e-b41989411f17">Repeat the operations described in <xref ref-type="sec" rid="sec-2.10.1.7">2.10.1.7</xref>
+ to <xref ref-type="sec" rid="sec-2.10.1.11">2.10.1.11</xref>
+ four more times for accuracy classes A and B or two more times for accuracy classes C and D.</p>
+          </sec>
+          <sec id="_9973327c-4737-3e7e-de50-6145496f2b32">
+            <label>2.10.1.13</label>
+            <title>Repeat procedures for different temperatures</title>
+            <p id="_d1360b41-c601-34c8-8686-d8057c31c6de">Repeat the operations described in <xref ref-type="sec" rid="sec-2.10.1.3">2.10.1.3</xref>
+ to <xref ref-type="sec" rid="sec-2.10.1.12">2.10.1.12</xref>
+, first at the higher temperature, then at the lower temperature, in accordance with R 60-1, 5.6.1; then perform the operations in  <xref ref-type="sec" rid="sec-2.10.1.3">2.10.1.3</xref>
+ to <xref ref-type="sec" rid="sec-2.10.1.12">2.10.1.12</xref>
+ at <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>
+(<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>±</mml:mo><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>).</p>
+          </sec>
+          <sec id="_aacd6421-eb98-86e9-6230-634e14e20a80">
+            <label>2.10.1.14</label>
+            <title>Determine magnitude of measurement error</title>
+            <p id="_aa983274-845d-7fd4-833c-2a963980603f">The magnitude of the measurement error shall be determined based on the average of the results of the tests conducted at each temperature level and compared with the maximum permissible measurement errors in R 60-1, 5.3.2 (see Table 4 in OIML R 60-1).</p>
+          </sec>
+          <sec id="_ce8fea61-1ecc-f5f9-6116-633e75f49be5">
+            <label>2.10.1.15</label>
+            <title>Determine repeatability error</title>
+            <p id="_e4cf254c-94f5-cbd8-a5e8-249a5e7c092d">From the resulting data, the repeatability error may be determined and compared with the limits specified in R 60-1, 5.4.</p>
+          </sec>
+          <sec id="_79474f7f-0800-7ebe-9194-c1de08e4bd23">
+            <label>2.10.1.16</label>
+            <title>Determine temperature effect on minimum dead load output</title>
+            <p id="_ef13d247-dab8-94bb-486a-97693276a8aa">From the resulting data, the temperature effect on minimum dead load output may be determined and compared with the limits specified in R 60-1, 5.6.1.3.</p>
+          </sec>
+        </sec>
+        <sec id="sec-2.10.2">
+          <label>2.10.2</label>
+          <title>Determination of creep error.</title>
+          <p id="_a058f529-0a9b-a84b-6e1e-8b6d3cf56d81">This test is applied to verify compliance with the provisions in R 60-1, 5.5.1.</p>
+          <sec id="sec-2.10.2.1">
+            <label>2.10.2.1</label>
+            <title>Check test conditions</title>
+            <p id="_e6f7606d-567b-66e3-fafd-50158f5f074b">Refer to the test conditions in <xref ref-type="sec" rid="sec-2.7.3">2.7.3</xref> to ensure that proper consideration has been given to those conditions prior to performing the following tests.</p>
+          </sec>
+          <sec id="sec-2.10.2.3">
+            <label>2.10.2.2</label>
+            <title>Insert load cell</title>
+            <p id="_e9f1e22f-e98a-6e54-9d97-8de57638837a">Insert the load cell into the force-generating system, load to the minimum test load,
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, and stabilise at <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>±</mml:mo><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>).</p>
+          </sec>
+          <sec id="_28603b86-f458-fb10-2b65-d99894017ada">
+            <label>2.10.2.3</label>
+            <title>Preload load cell</title>
+            <p id="_f100d5a7-5d3f-0ef3-f8ae-1b7f512ee5ad">Preload the load cell by applying the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, three
+times, returning to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, after each load application. Wait one hour.</p>
+          </sec>
+          <sec id="_bc146018-a9d6-2026-bdfe-02a1ec85a48e">
+            <label>2.10.2.4</label>
+            <title>Check indicating instrument</title>
+            <p id="_c68370a7-80ce-5267-1a23-b3c37d0dae0a">Check the indicating instrument according to <xref ref-type="sec" rid="sec-2.7.3.10">2.7.3.10</xref>.</p>
+          </sec>
+          <sec id="_de5c1738-b1e4-ac42-ef2e-8023ab3ed121">
+            <label>2.10.2.5</label>
+            <title>Monitor load cell</title>
+            <p id="_6fa341a8-206a-8884-f405-1747547738f9">Monitor the minimum test load output until stable.</p>
+          </sec>
+          <sec id="_6f443ce1-50d9-92aa-1576-4042817487f9">
+            <label>2.10.2.6</label>
+            <title>Record indication</title>
+            <p id="_a3003a7f-fed5-fbb4-ab1e-121814593189">Record the indicating instrument indication at the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+          </sec>
+          <sec id="sec-2.10.2.7">
+            <label>2.10.2.7</label>
+            <title>Apply load</title>
+            <p id="_a6a032fc-3af4-ff7a-ae2c-a39e550d9353">Apply a constant maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (between 90 % and 100 % of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>).</p>
+          </sec>
+          <sec id="sec-2.10.2.8">
+            <label>2.10.2.8</label>
+            <title>Record indications</title>
+            <p id="_0fbaf15b-ff2b-434d-c48f-85204b8e22fd">Record the initial indicating instrument indication at the time intervals specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>. Continue to record periodically thereafter, at recorded time intervals over a 30-minute period, ensuring that a reading is taken at 20 minutes.</p>
+          </sec>
+          <sec id="_bc1f0f1d-94d1-8cf1-a7b4-ee7db565f373">
+            <label>2.10.2.9</label>
+            <title>Repeat procedures for different temperatures</title>
+            <p id="_94dc09f1-574c-db86-8aa6-8079372d55b7">Repeat the operations described in <xref ref-type="sec" rid="sec-2.10.2.3">2.10.2.2</xref>
+ to <xref ref-type="sec" rid="sec-2.10.2.8">2.10.2.8</xref>
+, first at the higher temperature, then at the lower temperature, in accordance with R 60-1, 5.6.1.</p>
+          </sec>
+          <sec id="_ed023d17-30ac-569d-eb5b-d73f9f1037d4">
+            <label>2.10.2.10</label>
+            <title>Determine creep error</title>
+            <p id="_fc6ed0d5-9915-4b0f-ae04-9fbdf85db49c">With the resulting data, and taking into account the effect of barometric pressure changes according to  <xref ref-type="sec" rid="sec-2.7.3.8">2.7.3.8</xref>, the magnitude of the creep error can be determined and compared with the permissible variation specified in R 60-1, 5.5.1.</p>
+          </sec>
+        </sec>
+        <sec id="sec-2.10.3">
+          <label>2.10.3</label>
+          <title>Determination of minimum dead load output return (DR)</title>
+          <p id="_53258720-e455-30a1-0f42-e541345076ed">This test is applied to verify compliance with the provisions in R 60-1, 5.5.2.</p>
+          <sec id="sec-2.10.3.1">
+            <label>2.10.3.1</label>
+            <title>Check test conditions</title>
+            <p id="_214cc483-c9a6-6d90-950a-aec79fbe0943">Refer to the test conditions in <xref ref-type="sec" rid="sec-2.7.3">2.7.3</xref> to ensure that proper consideration has been given to those conditions prior to performing the following test.</p>
+          </sec>
+          <sec id="_99ef2010-3633-6a82-ead8-f345369db443">
+            <label>2.10.3.2</label>
+            <title>Insert load cell</title>
+            <p id="_8e9794fe-d34f-7fe9-33d3-580d166a6e0f">Insert the load cell into the force-generating system, load to the minimum test load,
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, and stabilise at <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>±</mml:mo><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>).</p>
+          </sec>
+          <sec id="sec-2.10.3.3">
+            <label>2.10.3.3</label>
+            <title>Preload load cell</title>
+            <p id="_8fd37d86-6253-6e9d-159e-e37a6332758a">Preload the load cell by applying the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>,
+three times, returning to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, after each load application. Wait one hour before commencing any further tests.</p>
+          </sec>
+          <sec id="_23599f58-9081-cdae-f24d-bfb009d072bb">
+            <label>2.10.3.4</label>
+            <title>Check indicating instrument</title>
+            <p id="_0520b9d8-4260-792a-cb36-75df29e2ddd0">Check the indicating instrument according to <xref ref-type="sec" rid="sec-2.7.3.10">2.7.3.10</xref>.</p>
+          </sec>
+          <sec id="_03ac9a5d-028e-5a1a-443e-37181ab9e880">
+            <label>2.10.3.5</label>
+            <title>Monitor load cell</title>
+            <p id="_739e74a0-200b-98d7-5280-28d26275afac">Monitor the minimum test load output until stable.</p>
+          </sec>
+          <sec id="sec-2.10.3.6">
+            <label>2.10.3.6</label>
+            <title>Record indication</title>
+            <p id="_907a5a33-9aec-647c-e6fc-ba12945965e4">Record the indicating instrument indication at the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+          </sec>
+          <sec id="sec-2.10.3.7">
+            <label>2.10.3.7</label>
+            <title>Apply load</title>
+            <p id="_fdccb188-6d90-2d43-1641-6b7bfdcda958">Apply a constant maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (between 90 % and 100 % of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>).</p>
+          </sec>
+          <sec id="sec-2.10.3.10">
+            <label>2.10.3.8</label>
+            <title>Record indications</title>
+            <p id="_6e1c23ef-7693-f86e-2292-1cc40bb03d9d">Record the initial indicating instrument indication at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>. These two time intervals shall be recorded. Record the time at which the load is fully applied and maintain the load for a 30-minute period.</p>
+          </sec>
+          <sec id="_07bb910b-4f5b-43cd-aa01-9b8e9d2fd5f2">
+            <label>2.10.3.9</label>
+            <title>Record data</title>
+            <p id="_cfbf8f67-8985-e042-889f-a0171529a940">Record the time of initiation of unloading and return to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+          </sec>
+          <sec id="_7c42c347-7d28-7966-489f-1f6a7742490c">
+            <label>2.10.3.10</label>
+            <title>Record indication</title>
+            <p id="_8073e4aa-4c92-221b-fadf-73f919e4a321">Record the indicating instrument indication at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>. These two time intervals shall be recorded.</p>
+          </sec>
+          <sec id="_0451ff0f-1db6-03f8-597a-2a9d13ea4d03">
+            <label>2.10.3.11</label>
+            <title>Repeat procedures for different temperatures</title>
+            <p id="_0d58fd22-8d8b-120c-cb9b-fb42079e2efd">Repeat the operations described in <xref ref-type="sec" rid="sec-2.10.3.3">2.10.3.3</xref>
+ to <xref ref-type="sec" rid="sec-2.10.3.10">2.10.3.8</xref>
+, first at the higher temperature, then at the lower temperature in accordance with R 60-1, 5.6.1.</p>
+          </sec>
+          <sec id="_094692c1-1af5-2230-9176-54b3671ec5a7">
+            <label>2.10.3.12</label>
+            <title>Determine minimum dead load output return (DR)</title>
+            <p id="_29c3e586-48a7-840f-8699-f965d183b898">With the resulting data, the magnitude of the minimum dead load output return (DR) can be determined and compared with the permissible variation specified in 2.9.2.</p>
+          </sec>
+        </sec>
+        <sec id="sec-2.10.4">
+          <label>2.10.4</label>
+          <title>Determination of barometric pressure effects (atmospheric pressure)</title>
+          <p id="_a8a977dc-06e8-972f-bc84-ac988289e1b3">This test is applied to verify compliance with the provisions in R 60-1, 5.6.2.</p>
+          <sec id="_e13131a3-2fa2-4114-81b3-65754fc92118">
+            <label>2.10.4.1</label>
+            <title>Check test conditions</title>
+            <p id="_d1406a6c-78fa-1589-599a-8c7a0419050b">Refer to the test conditions in <xref ref-type="sec" rid="sec-2.7.3">2.7.3</xref> to ensure that proper consideration has been given to those conditions prior to performing the following test.</p>
+          </sec>
+          <sec id="_11c728f5-5937-322e-b169-91ddc9529ad0">
+            <label>2.10.4.2</label>
+            <title>Insert load cell</title>
+            <p id="_7c008297-0833-a582-6b8b-6d91cf138d27">At room temperature, insert the unloaded load cell into the pressure chamber at atmospheric pressure.</p>
+          </sec>
+          <sec id="_1d03eb90-f997-947e-4146-c852bf88a10e">
+            <label>2.10.4.3</label>
+            <title>Check indicating instrument</title>
+            <p id="_a598b5b2-5575-6c7c-1109-f25f682e327e">Check the indicating instrument according to <xref ref-type="sec" rid="sec-2.7.3.10">2.7.3.10</xref>.</p>
+          </sec>
+          <sec id="_fb17657b-939e-75cc-8ac2-89929dfdfa9d">
+            <label>2.10.4.4</label>
+            <title>Monitor load cell</title>
+            <p id="_5b1c0d22-93a1-6600-fe0f-19f830c4bec5">Monitor the output until stable.</p>
+          </sec>
+          <sec id="_ee219813-dbc0-9033-95d7-c7a9f0c701bc">
+            <label>2.10.4.5</label>
+            <title>Record indication</title>
+            <p id="_cc9a40db-5656-2004-a370-5d10c6a3e01f">Record the indicating instrument indication.</p>
+          </sec>
+          <sec id="_d7b9d2a6-4162-504a-dd7d-4e75d692169f">
+            <label>2.10.4.6</label>
+            <title>Change barometric pressure</title>
+            <p id="_bbfcfa0a-51e5-2721-8012-2a2be5c853fe">Change the barometric pressure by a minimum of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>1</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kPa"><mml:mstyle mathvariant="normal"><mml:mi>kPa</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> greater than atmospheric pressure and record the indicating instrument indication.</p>
+          </sec>
+          <sec id="_966f0812-09d3-1542-e128-f65d1be0715d">
+            <label>2.10.4.7</label>
+            <title>Determine barometric pressure error</title>
+            <p id="_80a60204-23ed-d4e9-6991-ba615df3bfe5">With the resulting data, the magnitude of the barometric pressure influence can be determined and compared with the limits specified in R 60-1, 5.6.2.</p>
+          </sec>
+        </sec>
+        <sec id="sec-2.10.5">
+          <label>2.10.5</label>
+          <title>Determination of humidity effects for load cells marked CH or not marked</title>
+          <p id="_0965fd18-a133-9899-e722-23c0d4500a1c">This test is applied to verify compliance with the provisions in R 60-1, 5.6.3.1.</p>
+          <sec id="sec-2.10.5.1">
+            <label>2.10.5.1</label>
+            <title>Check test conditions</title>
+            <p id="_6f36e4f1-0791-a29b-8a83-751086337ca4">Refer to the test conditions in <xref ref-type="sec" rid="sec-2.7.3">2.7.3</xref> to ensure that proper consideration has been given to those conditions prior to performing the following test.</p>
+          </sec>
+          <sec id="_778f514e-a1eb-f42d-720b-2de5c49dfa59">
+            <label>2.10.5.2</label>
+            <title>Insert load cell</title>
+            <p id="_4c877677-80d7-e300-e591-d6fc6640f428">Insert the load cell into the force-generating system, load to the minimum test load,
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, and stabilise at <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>±</mml:mo><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>).</p>
+          </sec>
+          <sec id="_b62c8a7f-3c36-b42d-d5b3-2432dd714437">
+            <label>2.10.5.3</label>
+            <title>Preload load cell</title>
+            <p id="_5bfedbc2-af4e-2082-f92c-070caacab5a0">Preload the load cell by applying the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>,
+three times, returning to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, after each application. Wait 5 minutes before commencing any further tests.</p>
+          </sec>
+          <sec id="_876034a5-169c-3b2b-0d19-26faff5f317b">
+            <label>2.10.5.4</label>
+            <title>Check indicating instrument</title>
+            <p id="_287330cd-67ce-9734-d323-62fb32d25091">Check the indicating instrument according to <xref ref-type="sec" rid="sec-2.7.3.10">2.7.3.10</xref>.</p>
+          </sec>
+          <sec id="_51cea55f-524f-573c-e73c-6a9aa3455c23">
+            <label>2.10.5.5</label>
+            <title>Monitor load cell</title>
+            <p id="_6ce04988-08ee-223e-f901-25057e2c2737">Monitor the minimum test load output until stable.</p>
+          </sec>
+          <sec id="_673d7095-e771-2768-6554-ac70a3265309">
+            <label>2.10.5.6</label>
+            <title>Record indication</title>
+            <p id="_0b51fb15-9d08-7629-f737-537b437b160d">Record the indicating instrument indication at the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+          </sec>
+          <sec id="sec-2.10.5.7">
+            <label>2.10.5.7</label>
+            <title>Apply load</title>
+            <p id="_8a171ad1-9a4c-cde1-cf4f-43c2cd64b8c7">Apply a maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+          </sec>
+          <sec id="_476880bb-62eb-31d7-cea1-af625ee42a59">
+            <label>2.10.5.8</label>
+            <title>Record indications</title>
+            <p id="_c4f5b746-410b-f0b4-3ed3-2577009c6389">Record the initial indicating instrument indication at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>. These two time intervals shall be recorded.</p>
+          </sec>
+          <sec id="_58c22762-24ee-6656-cc44-f8d2000ae573">
+            <label>2.10.5.9</label>
+            <title>Remove load</title>
+            <p id="_9834ba21-7ed4-6967-c36b-cfe853fa9611">Remove the test load to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+          </sec>
+          <sec id="sec-2.10.5.10">
+            <label>2.10.5.10</label>
+            <title>Record indication</title>
+            <p id="_f9a667e9-a543-5b2e-cbe9-e8f79d9316f5">Record the indicating instrument indication at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>. These two time intervals shall be recorded.</p>
+          </sec>
+          <sec id="sec-2.10.5.11">
+            <label>2.10.5.11</label>
+            <title>Repeat procedures for different accuracy classes</title>
+            <p id="_5a9cf04c-c5bd-1fb2-c0b5-741755818585">Repeat the operations described in <xref ref-type="sec" rid="sec-2.10.5.7">2.10.5.7</xref>
+ to <xref ref-type="sec" rid="sec-2.10.5.10">2.10.5.10</xref>
+ four more times for accuracy classes A and B or two more times for accuracy classes C and D.</p>
+          </sec>
+          <sec id="_942c99e5-c3ee-d60f-bfe0-b870c2a1ef2e">
+            <label>2.10.5.12</label>
+            <title>Conduct damp heat, cyclic test (CH)</title>
+            <p id="_71bc774a-77ae-8ab1-d98b-77407b08b22b">This test is conducted to verify compliance with the provisions in R 60-1, 5.6.3.1 under conditions of high humidity combined with cyclic temperature changes</p>
+            <p id="_58ac4aac-9c37-24aa-15b5-3e8efd97e076">Applicable standards:</p>
+            <p id="_5aa72b3c-b8e1-e1e9-7722-e1ec42ded4b5">IEC 60068-2-30 [10]: <italic>Environmental testing – Part 2: Tests</italic></p>
+            <p id="_1b3cec70-0e86-3dd2-600d-1122a073f1e1">Test Db and guidance: Damp heat cyclic (12 + 12-hour) cycle</p>
+            <p id="_a4536cbb-72c7-a362-9ec6-dece81aa89c1">IEC 60068-3-4 [11]: <italic>Environmental testing — Part 2: Tests. Guidance for damp heat tests</italic></p>
+            <table-wrap id="_02e46bb6-3218-d6be-0f61-a6f4507f592f">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p id="_0cdb1904-9d88-a435-1ed1-aeb7f2b57c4b">Test method</p>
+                    </td>
+                    <td>
+                      <p id="_1de76caf-41c4-5b4f-be11-ddd4f7959fd0">Exposure to damp heat with cyclic temperature variation</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_4eff5709-ad83-4677-fd9a-4ee0f81895d9">Test conditions</p>
+                    </td>
+                    <td>
+                      <p id="_ae45d09c-1de1-d48f-5755-4f62416ad380">The relative humidity is between 80 % and 96 % and the temperature is varied from
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>25</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> to <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>40</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, in accordance with the specified cycle.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_6d3891be-c571-8c9f-18ca-c1217266977e">Preconditioning of load cell</p>
+                    </td>
+                    <td>
+                      <p id="_83b8d54f-37bb-70a2-efcb-723c5949c9de">Load cell placed in the chamber with the output connection external to the chamber, and switched off.</p>
+                      <p id="_f084ebe6-1857-7ebc-b198-69dee0bbddcd">Use variant 2 of IEC 60068-2-30 Ed. 3.0 (2005-08) when lowering the temperature.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_b9bc26e0-2c8d-e11a-edc1-f08302f40f80">Initial measurements</p>
+                    </td>
+                    <td>
+                      <p id="_7a0906e9-7822-a4e1-e4fa-86e580b57fd1">Made according to <xref ref-type="sec" rid="sec-2.10.5.1">2.10.5.1</xref>
+ to <xref ref-type="sec" rid="sec-2.10.5.11">2.10.5.11</xref>
+</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_b9d83a40-9140-4799-10a4-f5ee093dc3c9">Test procedure in brief</p>
+                    </td>
+                    <td>
+                      <p id="_80839910-300b-3c08-58df-f2b198023406">This test consists of exposure to 12 temperature cycles of 24-hour duration each.</p>
+                      <p id="_4535e640-7ccf-e1fb-970b-836588bcf49c">Condensation is expected to occur on the load cell during the temperature rise.</p>
+                      <p id="_9d37fce8-160c-a5dc-b10c-2e93c6a2c699">The 24 h cycle comprises:</p>
+                      <list list-type="bullet">
+                        <list-item>
+                          <p id="_30dadccc-fb3c-950d-96a9-3153841f6627">temperature rise during 3 hours,</p>
+                        </list-item>
+                        <list-item>
+                          <p id="_c5288786-925d-7bea-889e-d465a9299094">temperature maintained at upper value until 12 hours from the start of the cycle,</p>
+                        </list-item>
+                        <list-item>
+                          <p id="_89a93e3e-042f-e50a-370a-b294ef087d40">temperature lowered to lower temperature level within a period of 3 to 6 hours, the declination (rate of fall) during the first hour and a half being such that the lower temperature level would be reached in a 3 hour period,</p>
+                        </list-item>
+                        <list-item>
+                          <p id="_9e4ffee8-732c-d88f-5701-f0bb27184ec6">temperature maintained at the lower level until the 24 h period is completed.</p>
+                        </list-item>
+                      </list>
+                      <p id="_32bb2a19-124f-97e1-1089-e85093345e9f">The stabilising period before and recovery period after the cyclic exposure shall
+be such that the temperature of all parts of the load cell is within <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>3</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> of its final value.</p>
+                      <p id="_bff05a51-9dbd-4160-cb66-6bae7665cca8">Recovery conditions and final measurements: According to <xref ref-type="sec" rid="sec-2.10.5.13">2.10.5.13</xref>
+ to <xref ref-type="sec" rid="sec-2.10.5.15">2.10.5.15</xref>
+.</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <sec id="sec-2.10.5.13">
+            <label>2.10.5.13</label>
+            <title>Remove load cell from chamber</title>
+            <p id="_f96056d1-7622-9685-d638-3486a9373073">Remove the load cell from the humidity chamber, carefully remove surface moisture, and maintain the load cell at standard atmospheric conditions for a period sufficient to attain temperature stability (normally 1 to 2 hours).</p>
+          </sec>
+          <sec id="_ee53266c-84bf-bd76-ddaf-4b86c2d29cee">
+            <label>2.10.5.14</label>
+            <title>Repeat test procedures</title>
+            <p id="_7155e0a4-9bfb-354c-0219-6556a93783d2">Repeat <xref ref-type="sec" rid="sec-2.10.5.1">2.10.5.1</xref>
+ to <xref ref-type="sec" rid="sec-2.10.5.11">2.10.5.11</xref>
+ ensuring that the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>,
+and the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, applied are the same as previously used.</p>
+          </sec>
+          <sec id="sec-2.10.5.15">
+            <label>2.10.5.15</label>
+            <title>Determine the magnitude of humidity-induced variations</title>
+            <p id="_461a844d-9193-74ea-4ee6-da3cae6eeb41">The difference between the average of the reading of the minimum load output and of the maximum output attributed to cyclic changes in humidity as determined using test procedures in  <xref ref-type="sec" rid="sec-2.10.5">2.10.5</xref> shall not exceed the limits specified in R 60-1, 5.6.3.1.</p>
+            <p id="_c1a605dc-2894-e0b1-aa29-4dad55fed080">The difference between the average of the reading of the maximum load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, attributed to cyclic changes in humidity as determined using test procedures in  <xref ref-type="sec" rid="sec-2.10.5">2.10.5</xref> shall not exceed the limits specified in R 60-1, 5.6.3.1.</p>
+          </sec>
+        </sec>
+        <sec id="sec-2.10.6">
+          <label>2.10.6</label>
+          <title>Determination of humidity effects for load cells marked SH</title>
+          <p id="_18d18346-56c5-1b03-05f5-f900bbe1aec2">This test is applied to verify compliance with the provisions in R 60-1, 5.6.3.2.</p>
+          <sec id="sec-2.10.6.1">
+            <label>2.10.6.1</label>
+            <title>Check test conditions</title>
+            <p id="_bf45ddac-1f38-91c1-7968-adb3c30450b0">Refer to the test conditions in <xref ref-type="sec" rid="sec-2.7.3">2.7.3</xref> to ensure that proper consideration has been given to those conditions prior to performing the following tests.</p>
+          </sec>
+          <sec id="_95e7e105-02ea-7123-3821-f0ef78d6e5b6">
+            <label>2.10.6.2</label>
+            <title>Insert load cell</title>
+            <p id="_ea1b1cec-68f1-8a27-6351-0d67b66f48d1">Insert the load cell into the force-generating system, load to the minimum test load,
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, and stabilise at <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>±</mml:mo><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>).</p>
+          </sec>
+          <sec id="_d4a9d615-2400-a83f-42ff-97ac2afdffbf">
+            <label>2.10.6.3</label>
+            <title>Preload load cell</title>
+            <p id="_da792e5f-d634-7a2c-e388-89382d7a9094">Preload the load cell by applying the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>,
+three times, returning to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, after each load application. Wait 5 minutes before commencing any further tests.</p>
+          </sec>
+          <sec id="_9fbb95a2-a1ed-5b53-2dcc-0b698e955526">
+            <label>2.10.6.4</label>
+            <title>Check indicating instrument</title>
+            <p id="_a4c771f0-e35e-e75e-367e-fa8b89d3daf7">Check the indicating instrument according to <xref ref-type="sec" rid="sec-2.7.3.10">2.7.3.10</xref>.</p>
+          </sec>
+          <sec id="_6250be8e-9fd6-e33a-0f69-f7def67c5677">
+            <label>2.10.6.5</label>
+            <title>Monitor load cell</title>
+            <p id="_f3465496-c96b-05a8-98ea-43fab3f48559">Monitor the minimum test load output until stable.</p>
+          </sec>
+          <sec id="_6ee75920-46c9-5ae4-6474-81b3cb4faed6">
+            <label>2.10.6.6</label>
+            <title>Record indication</title>
+            <p id="_ee620506-e511-df72-bba5-33cedfc6cc75">Record the indicating instrument indication at the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+          </sec>
+          <sec id="_cb156762-34b1-1620-3de2-6b545fbb3a7b">
+            <label>2.10.6.7</label>
+            <title>Test load points</title>
+            <p id="_4ad7375d-7cc7-9f82-272d-67a6629d5c94">All test load points in a loading and unloading sequence shall be spaced at approximately equal time intervals. The readings shall be taken at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>. These two time intervals shall be recorded.</p>
+          </sec>
+          <sec id="sec-2.10.6.8">
+            <label>2.10.6.8</label>
+            <title>Apply loads</title>
+            <p id="_1ba8ae16-6823-b2f9-1459-fc18abbe3413">Apply increasing loads up to the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:msub><mml:mtext>max</mml:mtext><mml:mi>x</mml:mi></mml:msub></mml:msub></mml:mstyle></mml:math></inline-formula>. There shall be at least five increasing load points which shall include loads approximating to the highest values in the applicable steps of maximum permissible measurement errors, as listed in Table 4 in R 60-1, 5.3.2.</p>
+          </sec>
+          <sec id="_3aa4139c-9d04-edcd-77f3-106744ff8ea1">
+            <label>2.10.6.9</label>
+            <title>Record indications</title>
+            <p id="_a157a283-c550-9693-9a89-aa0deb999c14">Record the indicating instrument indications at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>. These two time intervals shall be recorded.</p>
+          </sec>
+          <sec id="sec-2.10.6.10">
+            <label>2.10.6.10</label>
+            <title>Decrease load</title>
+            <p id="_d068d83b-e12a-3d7f-232d-7c8ccc250d23">Decrease the test load to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, using the same load points as described in  <xref ref-type="sec" rid="sec-2.10.6.8">2.10.6.8</xref>.</p>
+          </sec>
+          <sec id="_3d344db6-25e9-eb2b-9339-da11db14b55c">
+            <label>2.10.6.11</label>
+            <title>Conduct damp heat, steady state test</title>
+            <p id="_3337a041-d1f9-a282-b124-e29a001cf243">This test is conducted to verify compliance with the provisions in R 60-1, 5.6.1 or R 60-1, 5.6.3 under conditions of high humidity and constant temperature.</p>
+            <p id="_e9d75712-6e79-8d79-9e6d-b61280c2d545">Applicable standards:</p>
+            <p id="_f743d4f3-502d-13a1-0a9f-d357026384a7">IEC 60068-2-78: <italic>Environmental testing — Part 2: Tests. Test Ca: Damp heat, steady state,</italic></p>
+            <p id="_e7244c79-9101-794a-c777-3dd95f8b4381"><italic>Environmental testing — Part 2: Tests.</italic> Test Cb: Damp heat, steady state, primarily for equipment [12].</p>
+            <p id="_63a83df5-c105-a859-bba7-716b7b80395c">IEC 60068-3-4: <italic>Environmental testing — Part 2: Tests. Guidance for damp heat tests</italic> [11].</p>
+            <table-wrap id="_7369987d-b8b9-382c-cee7-7cfc02887ad1">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p id="_a5b38716-887a-59eb-076d-795afb61546d">Test method</p>
+                    </td>
+                    <td>
+                      <p id="_85b10b39-e6e9-1425-b338-5f1221f78e31">Exposure to damp heat in steady state</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_5cf35001-5f5d-c6db-7052-167552f81fb7">Test conditions</p>
+                    </td>
+                    <td>
+                      <p id="_cd56e1fa-d500-b86a-a5ac-785fa909c8ab">Relative humidity of 85 %</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_2abf7cc3-50d5-7650-1232-3d7c04028d60">Preconditioning of load cell</p>
+                    </td>
+                    <td>
+                      <p id="_a78f815e-e268-e075-d023-05c7dbf651e1">Place the load cell in the chamber with the output connection external to the chamber, and switched on.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_bccd913f-252b-768d-d66e-7cfedf479352">Test procedure in brief</p>
+                    </td>
+                    <td>
+                      <p id="_e42be64d-6181-5edb-0f39-d613cf58e725">This test involves exposure of the load cell to a constant temperature and a constant relative humidity. The load cell shall be tested as specified in  <xref ref-type="sec" rid="sec-2.10.6.1">2.10.6.1</xref> to <xref ref-type="sec" rid="sec-2.10.6.10">2.10.6.10</xref>:</p>
+                      <list list-type="alpha-lower">
+                        <list-item>
+                          <label>a)</label>
+                          <p id="_f495e7df-405a-cc86-c4f8-cf5acd7baf3d">at a reference temperature (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> or the mean value of the
+temperature range whenever <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> is outside this range) and a relative humidity of 50 % following conditioning;</p>
+                        </list-item>
+                        <list-item>
+                          <label>b)</label>
+                          <p id="_609a881a-6b49-a3aa-06ac-2445f8ef9061">at the high temperature of the range specified in R 60-1, 5.6.1 for the load cell and a relative humidity of 85 %, 48 hours following temperature and humidity stabilisation; and</p>
+                        </list-item>
+                        <list-item>
+                          <label>c)</label>
+                          <p id="_f1c1d390-e51d-03f2-7758-6dceda869d4e">at the reference temperature and relative humidity of 50 %. The load cell shall be handled such that no condensation of water occurs on it.</p>
+                        </list-item>
+                      </list>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <sec id="_f76b1708-77f2-b3a3-ce2d-7192f7cc494c">
+            <label>2.10.6.12</label>
+            <title>Recording indications</title>
+            <p id="_d40ffc3f-344e-dece-11a4-c711b2e6ab60">Record the indicating instrument indications at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>. These two time intervals shall be recorded.</p>
+          </sec>
+          <sec id="_9010fe54-f4b9-4923-2105-ae7f01cac4d9">
+            <label>2.10.6.13</label>
+            <title>Determine the magnitude of humidity-induced variations</title>
+            <p id="_c0d7087f-e9a8-0514-6920-a45d9dba140e">With the resulting data, the magnitude of humidity-induced variations can be determined and compared with the limits specified in R 60-1, 5.6.3.2.</p>
+          </sec>
+        </sec>
+        <sec id="sec-2.10.7">
+          <label>2.10.7</label>
+          <title>Additional test for analogue-active load cells (disturbances)</title>
+          <p id="_5e4b9951-37c9-5117-9a89-02bcce6c3be4">These tests are applied to verify compliance with the provisions in R 60-1, 5.7.2.5, and R 60-1, 5.7.2.6.</p>
+          <sec id="_2b74fabd-8554-26ee-1b76-6ed9a13c43c6">
+            <label>2.10.7.1</label>
+            <title>Performance and stability tests</title>
+            <p id="_8d199b9a-0925-8cd8-b64d-50521bfe3514">An analogue-active load cell shall pass the performance and stability tests according to  <xref ref-type="sec" rid="sec-2.10.7.2">2.10.7.2</xref>
+ to <xref ref-type="sec" rid="sec-2.10.7.11">2.10.7.11</xref>
+ for the tests given in R 60-1, Table 5.</p>
+          </sec>
+          <sec id="sec-2.10.7.2">
+            <label>2.10.7.2</label>
+            <title>Evaluation of error for digital load cells</title>
+            <p id="_5d3ac72a-20b2-bec7-013a-88022c76c6cc">For load cells possessing a digital output interval greater than <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>0,20</mml:mn><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>,
+the changeover points are to be used in the evaluation of errors, prior to rounding
+as follows. At a certain load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>L</mml:mi></mml:mstyle></mml:math></inline-formula>, the digital output value, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>I</mml:mi></mml:mstyle></mml:math></inline-formula>, is noted.
+Additional loads, for example <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>0,1</mml:mn><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>, are successively added until the output
+of the load cell is increased unambiguously by one digital output increment
+(<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>I</mml:mi><mml:mo>+</mml:mo><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>). The additional amount of load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Δ</mml:mi><mml:mi>L</mml:mi></mml:mstyle></mml:math></inline-formula>, added to the load
+cell gives the digital output value prior to rounding, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>P</mml:mi></mml:mstyle></mml:math></inline-formula>, by using the following formula:</p>
+            <disp-formula id="_ce3a3503-f796-2271-15b0-6ffddec3277d">
+              <mml:math>
+                <mml:mstyle displaystyle="true">
+                  <mml:mi>P</mml:mi>
+                  <mml:mo>=</mml:mo>
+                  <mml:mi>I</mml:mi>
+                  <mml:mo>+</mml:mo>
+                  <mml:mn>1</mml:mn>
+                  <mml:mo>/</mml:mo>
+                  <mml:mn>2</mml:mn>
+                  <mml:mi>v</mml:mi>
+                  <mml:mo>−</mml:mo>
+                  <mml:mi>Δ</mml:mi>
+                  <mml:mi>L</mml:mi>
+                </mml:mstyle>
+              </mml:math>
+            </disp-formula>
+            <p id="_37a5ecca-6f84-f8ba-c33d-5da9e43d0880">where:</p>
+            <p id="_2abc7c59-8304-87c9-bd48-89e040f9f18c"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>I</mml:mi><mml:mo>=</mml:mo></mml:mstyle></mml:math></inline-formula> the indication or digital output value;</p>
+            <p id="_76f3e01c-3e79-f904-114f-6ff2c5833a47"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi><mml:mo>=</mml:mo></mml:mstyle></mml:math></inline-formula> the load cell verification interval; and</p>
+            <p id="_8aa51b83-879f-d0b9-d271-a861944c9b9c"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Δ</mml:mi><mml:mi>L</mml:mi><mml:mo>=</mml:mo></mml:mstyle></mml:math></inline-formula> additional load added to the load cell.</p>
+            <p id="_6239ba57-018f-6a00-92c8-9e8161e32f8a">The error, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>E</mml:mi></mml:mstyle></mml:math></inline-formula>, prior to rounding is:</p>
+            <disp-formula id="_c71403e9-ee30-86d8-3980-f5043a16c0ab">
+              <mml:math>
+                <mml:mstyle displaystyle="true">
+                  <mml:mi>E</mml:mi>
+                  <mml:mo>=</mml:mo>
+                  <mml:mi>P</mml:mi>
+                  <mml:mo>−</mml:mo>
+                  <mml:mi>L</mml:mi>
+                  <mml:mo>=</mml:mo>
+                  <mml:mi>I</mml:mi>
+                  <mml:mo>+</mml:mo>
+                  <mml:mfrac>
+                    <mml:mn>1</mml:mn>
+                    <mml:mn>2</mml:mn>
+                  </mml:mfrac>
+                  <mml:mi>v</mml:mi>
+                  <mml:mo>−</mml:mo>
+                  <mml:mi>Δ</mml:mi>
+                  <mml:mi>L</mml:mi>
+                  <mml:mo>−</mml:mo>
+                  <mml:mi>L</mml:mi>
+                </mml:mstyle>
+              </mml:math>
+            </disp-formula>
+            <p id="_c65080fe-476d-796a-13c0-1ae59ebe3e75">and the corrected error, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mi>c</mml:mi></mml:msub></mml:mstyle></mml:math></inline-formula>, prior to rounding is:</p>
+            <disp-formula id="_b7f08326-f32e-e587-ba9d-83d177c181db">
+              <mml:math>
+                <mml:mstyle displaystyle="true">
+                  <mml:msub>
+                    <mml:mi>E</mml:mi>
+                    <mml:mi>C</mml:mi>
+                  </mml:msub>
+                  <mml:mo>=</mml:mo>
+                  <mml:mi>E</mml:mi>
+                  <mml:mo>−</mml:mo>
+                  <mml:msub>
+                    <mml:mi>E</mml:mi>
+                    <mml:mn>0</mml:mn>
+                  </mml:msub>
+                  <mml:mo>≤</mml:mo>
+                  <mml:mi>M</mml:mi>
+                  <mml:mi>P</mml:mi>
+                  <mml:mi>E</mml:mi>
+                </mml:mstyle>
+              </mml:math>
+            </disp-formula>
+            <p id="_13869213-e87c-246d-b8f6-ea20616c4cee">where <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:mstyle></mml:math></inline-formula> is the error calculated at the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+          </sec>
+          <sec id="_1bbf4134-33cd-387b-bd5a-6e8a2d4229c9">
+            <label>2.10.7.3</label>
+            <title>Warm-up time</title>
+            <p id="_bd58bf1b-e1b1-c037-a32d-48c3004cbd99">Test procedure in brief:</p>
+            <p id="_1ec2cf6d-38a7-6f88-7eb1-0a1dc607c4dc">Stabilise the load cell at <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>±</mml:mo><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>) and disconnect from any electrical supply for a period of at least 8 hours prior to the test.</p>
+            <p id="_f4f9f325-5e69-bf08-41b5-11c77606f5d3">Insert the load cell into the force-generating system.</p>
+            <p id="_3e76c822-1630-7544-5625-b3913e36d3d1">Preload the load cell by applying a maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, then, returning
+to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, three times.</p>
+            <p id="_27bb5a28-c339-7638-ba40-885bbeb9d13d">Allow the load cell to rest for 5 minutes. Connect the load cell to the power supply and switch on.</p>
+            <p id="_c733d528-f6c9-aba3-d4e1-d3de7ebcd5b9">Record data:</p>
+            <p id="_fe55bc81-33c2-e477-d468-f785744994b4">As soon as a measurement result can be obtained, record the minimum test load output
+and the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, applied.</p>
+            <p id="_1baabf4d-1b8a-74f7-d851-dd6e19b2d5ad">Loading and unloading:</p>
+            <p id="_7d4e587c-52e1-839d-9db1-1c7b90bd4514">The maximum test load output shall be determined at time intervals as close as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref> and recorded and the load should
+be returned to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>. These measurements shall be repeated after 5, 15 and 30 minutes.</p>
+            <p id="_632f747c-1059-bae4-9aa8-d0ed918ba5e8">For load cells of class A, the provisions of the operating manual for the time following connection to electrical supply shall be observed.</p>
+          </sec>
+          <sec id="_df3bb0e3-41e2-3d83-63c2-69ac139ac556">
+            <label>2.10.7.4</label>
+            <title>Power voltage variations</title>
+            <p id="_96f127ad-399d-3098-bf26-ab377b4757a5">This test is applied to verify compliance with R 60-1, 5.7.2.2, R 60-1, 5.7.2.3, and R 60-1, 5.7.2.4 under conditions of variations in voltage to the load cell’s power supply.</p>
+            <p id="_2f6d8d8b-0c92-320c-195c-e65a31e1c5ad">Applicable standards:</p>
+            <p id="_17fe984a-1a4f-a509-6cbb-65427cde6b59">For load cells powered by AC mains: IEC/TR3 61000-2-1 [13], IEC 61000-4-1 (set-up) [14]</p>
+            <p id="_da3ba5fd-dc77-db1f-345d-0dc6168d8499">For load cells powered by DC mains: IEC 61000-4-29 [15], IEC 61000-4-1 (set-up) [14]</p>
+            <table-wrap id="_bf8061d6-5286-097e-5ee0-1b0c373c0e46">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p id="_ab0ae420-3c15-e899-dddf-558b86fe6d83">Test method</p>
+                    </td>
+                    <td>
+                      <p id="_c582c1f1-5998-8951-c853-6c85b52402df">Subject load cell to variations of power supply voltage</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_fdbebe0d-7f66-2e77-539d-d8ee53145085">Test conditions</p>
+                    </td>
+                    <td>
+                      <p id="_0d742290-c9f2-f4d1-ec1d-eef8f97ac465">In accordance with <xref ref-type="sec" rid="sec-2.7.3.1">2.7.3.1</xref> Environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_0f50de69-546d-5030-d47f-e894e8d28dce">Preconditioning of load cell</p>
+                    </td>
+                    <td>
+                      <p id="_229137c0-44e1-59da-2dab-3b5f653dbd3c">Stabilise load cell under constant environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_1bd4740e-44f1-8641-59d7-a602c8bd5202">Test level</p>
+                    </td>
+                    <td>
+                      <p id="_58ea3298-4152-34b2-2434-fbf7afe3bb7e">Mains power voltage variations:</p>
+                      <list list-type="bullet">
+                        <list-item>
+                          <p id="_8f4ade9e-3297-7d1b-8394-fe1cfd8cf5dd">upper voltage limit (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>V</mml:mi><mml:mo>+</mml:mo><mml:mn>10</mml:mn><mml:mi>%</mml:mi></mml:mstyle></mml:math></inline-formula>);</p>
+                        </list-item>
+                        <list-item>
+                          <p id="_901f540f-3651-454a-b8af-434a5d8a1f7c">lower voltage limit (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>V</mml:mi><mml:mo>−</mml:mo><mml:mn>15</mml:mn><mml:mi>%</mml:mi></mml:mstyle></mml:math></inline-formula>)</p>
+                        </list-item>
+                      </list>
+                      <p id="_256b53c6-0120-29fd-ca33-e947db0ca974">Battery power voltage variations:</p>
+                      <list list-type="bullet">
+                        <list-item>
+                          <p id="_bb79ce6e-7dfa-6c6f-dd95-10b050a14dfa">upper voltage limit (not applicable);</p>
+                        </list-item>
+                        <list-item>
+                          <p id="_d90189b0-3118-d1d6-9f71-11234b797332">lower power voltage: (specified by the manufacturer, below <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mrow xref="U_NISTu16"><mml:mstyle mathvariant="normal"><mml:mi>V</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>)</p>
+                        </list-item>
+                      </list>
+                      <p id="_737d1f2f-0859-ada8-5796-82a36daf2e7c">The voltage, (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mrow xref="U_NISTu16"><mml:mstyle mathvariant="normal"><mml:mi>V</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>) is the value specified by the manufacturer. If a
+range of reference mains power voltage (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>V</mml:mi><mml:mtext>min</mml:mtext></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>) is specified,
+then the test shall be performed at an upper voltage limit of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>V</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> and
+a lower voltage limit of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>V</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_35ee976f-98f1-d0b7-068c-7c4d0df96990">Test procedure in brief</p>
+                    </td>
+                    <td>
+                      <p id="_b48bc4a8-b832-5348-8171-e52053ef722e">This test consists of subjecting the load cell to variations of power voltage.</p>
+                      <p id="_ccf7fa8d-573c-317b-bd5c-91079ac3e833">A load test is performed in accordance with <xref ref-type="sec" rid="sec-2.10.1.1">2.10.1.1</xref>
+ to <xref ref-type="sec" rid="sec-2.10.1.12">2.10.1.12</xref>
+ at
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>±</mml:mo><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, with the load cell powered at reference voltage. The test is repeated with the load cell powered at the upper limit and at the lower limit of power voltage.</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <sec id="_62645da8-7e77-a9ed-05d2-fbbd1182a450">
+            <label>2.10.7.5</label>
+            <title>Short-time power reductions (see R 60-1, 5.7.2.5 Disturbances)</title>
+            <p id="_65b6e70f-51c1-faa9-5e2d-9c2e9f4df39c">This test is conducted to verify compliance with R 60-1, 5.7.2.2, R 60-1, 5.7.2.3, and R 60-1, 5.7.2.4 under conditions of short-time power reductions</p>
+            <p id="_632523fd-a1e6-a04f-378a-73981e0253de">Applicable standards:</p>
+            <p id="_1607b224-8497-8e80-2036-2b38af867489">For load cells powered by DC mains: IEC 61000-4-29 [15]; IEC 61000-4-1 [14]</p>
+            <p id="_8f354b6f-6d42-068c-16a4-ee333272fa39">For load cells powered by AC mains; IEC 61000-4-11 [16]; IEC 61000-6-1 [17]; IEC 61000-6-2 [18]</p>
+            <table-wrap id="_b80c0aa9-343c-3a20-2a6b-03de6c54f710">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p id="_00d817b0-a17c-2f84-ee23-d1e854c44e90">Test method</p>
+                    </td>
+                    <td>
+                      <p id="_875597bc-dd2b-42cb-c75c-b197d570a4e0">Expose load cell to specified short-timer power reductions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_eb7968fb-9fc2-7050-d735-0506b33ad272">Test conditions</p>
+                    </td>
+                    <td>
+                      <p id="_6454a68f-5a37-cfa4-73d2-c8bc32fba239">In accordance with <xref ref-type="sec" rid="sec-2.7.3.1">2.7.3.1</xref> Environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_e1e07fdf-3880-ca06-0b0e-e36a94ba9b86">Preconditioning of load cell</p>
+                    </td>
+                    <td>
+                      <p id="_76887f54-5d2b-92ca-6215-adca58259be3">Stabilise load cell under constant environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_fc8a01ef-1317-30b0-56cf-576d003d1448">Test load</p>
+                    </td>
+                    <td>
+                      <p id="_92c43338-97cf-9b43-41b6-d9622be7d864">The test shall be performed with no load or with one small test load (10 v).</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_5397a628-acbf-d29b-829f-46caaf1bbd71">Test level</p>
+                    </td>
+                    <td>
+</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_6d7811eb-07ec-cf47-4064-ee21bee701dc">Test procedure in brief</p>
+                    </td>
+                    <td>
+                      <p id="_a56e5ff2-dbd0-77c5-8b75-020c23a94247">A test generator capable of reducing the amplitude of one or more half cycles (at zero crossings) of the AC mains voltage shall be used. The test generator shall be adjusted before connecting to the load cell. The load cell shall be exposed to short interruptions of power. The mains voltage reductions shall be repeated ten times at intervals of at least 10 seconds.</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <sec id="_d39400d0-decf-6ad3-6982-6ba4478e5590">
+            <label>2.10.7.6</label>
+            <title>Bursts (electrical fast transients) (see R 60-1, 5.7.2.5 Disturbances)</title>
+            <p id="_468ec582-d70f-f8e1-621a-939d555e611e">This test is conducted to verify compliance with the provisions in R 60-1, 5.7.2.5 during conditions where electrical bursts are superimposed on the mains voltage.</p>
+            <p id="_f564c505-c284-fd7f-0a2e-138c91b6ae1e">Applicable standards:</p>
+            <p id="_600c5a92-35f3-a436-5306-447ba254d115">IEC 61000-4-4 [19]: No. 5 (Test 2+| severity), No. 6 (Test instrumentation), No. 7 (Test set-up), No. 8 (Test procedure).</p>
+            <table-wrap id="_7dc2172f-96e5-e1bd-10e5-1781d0d297bd">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p id="_698f686e-2288-1684-995f-3d0490881b41">Test method</p>
+                    </td>
+                    <td>
+                      <p id="_c6135c7b-cf59-aa1b-9c46-40169df0d389">Introducing transients on the mains power lines</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_ce21b6de-27fa-7192-ceec-8ab27768fc82">Test conditions</p>
+                    </td>
+                    <td>
+                      <p id="_0b4b7470-513b-d86c-2aa4-8177da99565c">In accordance with <xref ref-type="sec" rid="sec-2.7.3.1">2.7.3.1</xref> Environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_80c0a5ff-3aa2-9287-f218-4384aafae266">Preconditioning of load cell</p>
+                    </td>
+                    <td>
+                      <p id="_1aa19aad-b76b-6ae3-77e5-df322f1a11b0">Stabilise load cell under constant environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_21b6ed40-9a4b-ab1d-7e71-3cec2ce2a05c">Test level</p>
+                    </td>
+                    <td>
+                      <p id="_7b239eb6-245d-d2d0-4232-aa29178f969c">Level 3 in accordance with referenced standard: IEC 61000-4-4 No.5</p>
+                      <p id="_c4670b56-2ca7-9d9a-0bc8-965f635901b6">Open circuit output test voltage for:</p>
+                      <list list-type="bullet">
+                        <list-item>
+                          <p id="_de7a9aa3-c1a0-d57a-f3a0-b1cc06f8c3de">power supply lines: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kV"><mml:mstyle mathvariant="normal"><mml:mi>kV</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>;</p>
+                        </list-item>
+                        <list-item>
+                          <p id="_c0a10cad-fd2f-20a0-7eb3-8ac10fdf8d96">I/O signal, data, and control lines: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>1</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kV"><mml:mstyle mathvariant="normal"><mml:mi>kV</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>.</p>
+                        </list-item>
+                      </list>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_998251fc-4004-07d9-7ee3-a43be1d92467">Test load</p>
+                    </td>
+                    <td>
+                      <p id="_587fc80f-2b02-9606-0621-dbc2bd55563c">The test shall be performed with no load or with one small test load</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_568b498f-a65d-6e56-c688-c8568c36bdad">(10 v).</p>
+                    </td>
+                    <td>
+                      <p id="_afacf0fe-0d17-8d35-42b8-528b39f4c298">Test procedure in brief</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_e4e62b0f-f63e-8caf-653c-a382f76d85ad">This test consists of exposing the load cell to specified bursts of voltage spikes.</p>
+                      <p id="_5f5fd2a7-f68d-c050-b54d-7decd9696e44">A burst generator as defined in the referred standard [IEC 61000-4-4 Ed 3.0 (2012-04)] shall be used. The characteristics of the generator shall be verified before connecting the EUT.</p>
+                      <p id="_745103c3-e56f-082f-7227-188cad90f475">The test shall be applied separately to:</p>
+                      <list list-type="alpha-lower">
+                        <list-item>
+                          <label>a)</label>
+                          <p id="_9c78159e-6d7e-4a83-0190-eb82b1557350">power supply lines;</p>
+                        </list-item>
+                        <list-item>
+                          <label>b)</label>
+                          <p id="_18b94b23-487c-14ff-ed33-88bab5c4d577">I/O circuits and communication lines, if any.</p>
+                        </list-item>
+                      </list>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <sec id="_60f95de3-0ad8-6bbf-99fa-d4f0b0d82707">
+            <label>2.10.7.7</label>
+            <title>Surge (see R 60-1, 5.7.2.5 Disturbances)</title>
+            <p id="_7f6c35b8-708d-bbb2-7e49-0860fae46a9c">This test is conducted to verify compliance with the provisions in R 60-1, 5.7.2.5 during conditions where electrical surges are superimposed on the mains voltage and I/O and communication ports.</p>
+            <p id="_d152690e-744c-4521-6b72-3c47e180c3c0">Applicable standards:</p>
+            <p id="_c58d2706-9f3d-0a60-4b99-3ba53a4a6fde">IEC 61000-4-5 [20]</p>
+            <table-wrap id="_ae4fc0c8-df2c-4a40-f115-0fd6042ffbdf">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p id="_98525def-a6e9-6a89-243f-36b17bf9f5de">Test method</p>
+                    </td>
+                    <td>
+                      <p id="_aeee700f-7993-06d2-b3d3-a61e6c135b2f">Exposing the load cell(s) to electrical surges on the mains power lines or on signal, data and control lines</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_ce4b66b9-c3c1-098e-c520-ff20e1cb7d41">Test conditions</p>
+                    </td>
+                    <td>
+                      <p id="_0eff1bb4-3c06-321b-deae-a43ef621080f">In accordance with <xref ref-type="sec" rid="sec-2.7.3.1">2.7.3.1</xref> Environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_662f6071-2914-bf30-132f-377e4938e27d">Preconditioning of load cell</p>
+                    </td>
+                    <td>
+                      <p id="_c7d07e01-e750-5a2c-0ccb-6f8cd63e5a61">Stabilise load cell under constant environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_6f7fbca0-cad7-4548-21c1-49e6932c476a">Test level</p>
+                    </td>
+                    <td>
+                      <p id="_32123baf-b968-7c01-8063-1747fdff6492">Level 3</p>
+                      <p id="_301e9333-6f39-569c-8805-664c0693c130">Amplitude (peak value) Power supply lines: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>1</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kV"><mml:mstyle mathvariant="normal"><mml:mi>kV</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> (line to line)
+and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kV"><mml:mstyle mathvariant="normal"><mml:mi>kV</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> (line to earth)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_62021e09-ee8c-c0dd-2e4a-65eb59fd9bfe">Test load</p>
+                    </td>
+                    <td>
+                      <p id="_1bf53a76-bfc2-a55d-51df-9ed0c1193a0c">The test shall be performed with no load or with one small test load (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>10</mml:mn><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>).</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_d8519710-9e22-50c9-eade-26d0d151fe71">Test procedure in brief</p>
+                    </td>
+                    <td>
+                      <p id="_2763eadd-3ca5-8813-0c03-6c6c25cd9655">This test is only applicable in those cases where, based on typical situations of installation, the risk of a significant influence of surges can be expected. This is especially relevant in cases of outdoor installations and/or indoor installations connected to long signal lines (lines longer than 10 m or those lines partially or fully installed outside the buildings regardless of their length).</p>
+                      <p id="_d9a4582b-160c-3c39-8954-38b87a9f56b1">This test shall be conducted unless there is justification provided regarding the specific details of the intended use and installation which would render this test unnecessary. The justification for not conducting this test shall be noted in the test report.</p>
+                      <p id="_dee7c468-72be-1f50-0748-58b651bb83f4">The test is applicable to power lines, communication lines (internet, dial up modem, etc.), and other lines for control, data or signal mentioned above (lines to temperature sensors, gas or liquid flow sensors, etc.).</p>
+                      <p id="_f41781f5-e654-0db3-7432-3fb5723ecdad">The test consists of exposing the load cell to surges for which the rise time, pulse width, peak values of the output voltage/current on high/low impedance load and minimum time interval between two successive pulses are defined in the referenced standard. The characteristics of the generator shall be adjusted before connecting the load cell.</p>
+                      <p id="_ea585f19-a317-4c49-6261-06ebc54cdb38">The test shall be applied to power supply lines, communication lines (internet, dial-up modem, etc.), and other lines for control, data or signal mentioned above (lines to temperature sensors, gas or liquid flow sensors, etc.).</p>
+                      <p id="_1bbb77f4-b9c5-b6da-ef50-bfcefbdfb653">On AC mains supply lines at least 3 positive and 3 negative surges shall be applied synchronously with AC supply voltage in angles 0°, 90°, 180° and 270°. On any other kind of power supply, at least three positive and three negative surges shall be applied.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_21f69a4b-72a8-8ebf-d49e-dddcf10177aa">Notes</p>
+                    </td>
+                    <td>
+                      <p id="_f4b4391b-0e80-71e1-bbfe-103bb868c542">Both positive and negative polarity of the surges shall be applied. The duration of the test shall not be less than one minute for each amplitude and polarity.</p>
+                      <p id="_38cdd6f0-9b8c-af64-4c0f-2e6b7460691b">The injection network on the mains shall contain blocking filters to prevent the surge energy being dissipated in the mains.</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <sec id="_348ab4ca-13e6-13f9-7d3a-f3a83a8d9882">
+            <label>2.10.7.8</label>
+            <title>Electrostatic discharge (see R 60-1, 5.7.2.5 Disturbances)</title>
+            <p id="_31ac2bac-a10c-dd97-f827-4ee4b270fbf9">This test is conducted to verify compliance with the provisions in R 60-1, 5.7.2.5 in case of direct exposure to electrostatic discharges or such discharges in the neighbourhood of the load cell.</p>
+            <p id="_58ecd078-9d0a-3ab3-1673-0293ff3c677a">Applicable standard:</p>
+            <p id="_5f3c3e8d-3a2e-9da2-c66b-a54d57672da1">IEC 61000-4-2 [21]: No. 6 (test generator), No. 7 (set-up), No. 8 (test procedure).</p>
+            <table-wrap id="_b3bd882b-eb6e-4f73-d759-ba7949017a50">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p id="_f884d384-dbf1-a7bf-ef21-ffa27619a20a">Test method</p>
+                    </td>
+                    <td>
+                      <p id="_1be7fa23-5b81-d559-2943-a32698bb7001">Exposure to electrostatic discharge (ESD)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_b3ac09bd-2984-9e65-3774-d6e9ac197f34">Test conditions</p>
+                    </td>
+                    <td>
+                      <p id="_8c3872bd-9305-680c-183c-9190aa4ff537">In accordance with <xref ref-type="sec" rid="sec-2.7.3.1">2.7.3.1</xref> Environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_54faecdd-b228-3c61-8852-dc85d9327c0a">Preconditioning of the load cell</p>
+                    </td>
+                    <td>
+                      <p id="_cc75e1bb-a6fe-bdfb-2e08-031e50e1a2af">Stabilise the load cell under constant environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_1d636db9-3e4f-2528-2fb3-c0f370509007">Test procedure in brief</p>
+                    </td>
+                    <td>
+                      <p id="_675f6cac-378b-499b-2699-fecc3d3d2334">The test comprises exposure of the load cell to electrical discharges.</p>
+                      <p id="_7b79e3c4-3063-27eb-4b47-994f0ca10b5e">An ESD generator as defined in the referred standard shall be used and the test set-up shall comply with the dimensions, materials used and conditions as specified in the referred standard. Before starting the tests, the performance of the generator shall be verified.</p>
+                      <p id="_3f2fe69b-285d-3b91-0c15-2164a05fffe1">At least 10 discharges per preselected discharge location shall be applied. The time interval between successive discharges shall be at least 10 seconds.</p>
+                      <p id="_81d727e6-1b68-2280-4d0f-a7ced34828e5">This test includes the paint penetration method, if appropriate;</p>
+                      <p id="_8ae6a3cf-43bc-2d4e-2696-e5689802d1cc">For direct discharges, the air discharge shall be used where the contact discharge method cannot be applied.</p>
+                      <p id="_4c27234f-f504-fcaa-fad8-ca2981833ea9">Contact discharge is the preferred test method. Air discharge is far less defined and reproducible and therefore shall be used only where contact discharge cannot be applied.</p>
+                      <p id="_9617f560-4dbc-c249-7041-c76fcb3d1194">Direct application:</p>
+                      <p id="_42a07d9d-5391-36a9-b1e2-ae1e11fc792a">In the contact discharge mode to be carried out on conductive surfaces, the electrode shall be in contact with the EUT before activation of the discharge. In such case the discharge spark occurs in the vacuum relays of the contact discharge tip.</p>
+                      <p id="_317b3bca-4004-4348-a89f-5aba3d0f02b8">On insulated surfaces only the air discharge mode can be applied. The load cell is approached by the charged electrode until a spark discharge occurs</p>
+                      <p id="_6b3e8eeb-b642-6967-fc2e-938410c74e25">Indirect application:</p>
+                      <p id="_7d5f5ec1-3dce-0172-abce-f8aea5bdcd5a">The discharges are applied in the contact mode only on coupling planes mounted in the vicinity of the load cell.</p>
+                      <p id="_62d20132-58b5-315d-7f5d-863161057a4a">For load cells not equipped with a ground terminal, the load cell shall be fully discharged between discharges.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_c870b843-d3aa-2429-256c-f38767222ca1">Test severity</p>
+                    </td>
+                    <td>
+                      <p id="_52887c9b-6cd7-8faf-1d94-702400da4791">Level 3 (in accordance with IEC 61000-4 -2 (2008-12) Ed 2.0 Consolidated edition,
+No. 5). DC voltage up to and including <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>6</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kV"><mml:mstyle mathvariant="normal"><mml:mi>kV</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> for contact discharges
+and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>8</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kV"><mml:mstyle mathvariant="normal"><mml:mi>kV</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> for air discharges.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_48d4eb01-3aed-0d0a-b34b-ec5b4667de49">Test load</p>
+                    </td>
+                    <td>
+                      <p id="_80be5aa2-bd17-ab7f-1bba-f17007ac7b35">The test shall be performed with no load or with one small test load (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>10</mml:mn><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>)</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <sec id="_fcaef4a7-0f1b-4e58-cc7a-b6c254016ef1">
+            <label>2.10.7.9</label>
+            <title>Exposure to radiated RF electromagnetic fields (see R 60-1, 5.7.2.5 Disturbances)</title>
+            <p id="_1ed34b2a-a5e4-be74-debb-df4d0eb1ee62">This test is conducted to verify compliance with the provisions in R 60-1, 5.7.2.5 under conditions of exposure to electromagnetic fields.</p>
+            <p id="_0c2b7184-3c71-2f94-d820-726edbff7c39">Applicable standard:</p>
+            <p id="_a07a8c9e-5017-4293-38de-b60d2364a184">IEC 61000-4-3 [22]: No. 6 (test generator), No. 7 (test set-up), No. 8 (test procedure)</p>
+            <table-wrap id="_588ac876-1b08-e3f7-8ace-b769cd118872">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p id="_88c01d0f-372b-ebbf-f6aa-ce545b7d6626">Test method</p>
+                    </td>
+                    <td>
+                      <p id="_3a638f29-87aa-8785-f2f0-24f28ccad315">Exposure to specified electromagnetic fields</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_9ddd9e50-15e1-c15c-c012-fa2208b0efd5">Test conditions</p>
+                    </td>
+                    <td>
+                      <p id="_c0bb609e-1a5d-98cc-c786-c8d6507b9b4e">In accordance with <xref ref-type="sec" rid="sec-2.7.3.1">2.7.3.1</xref> Environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_28f77cd1-693c-87d8-0d1a-e0be3d4080e1">Preconditioning of the load cell</p>
+                    </td>
+                    <td>
+                      <p id="_1106d23d-331f-e643-928b-25b6e1e76e7c">Stabilise the load cell under constant environmental conditions.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_7510268a-02ab-7bab-d997-659c6843b7fd">Test procedure in brief</p>
+                    </td>
+                    <td>
+                      <p id="_02194def-7127-9e20-6dc3-e8dbda939924">The load cell is exposed to electromagnetic fields with the required field strength and the field uniformity as defined in the referred standard.</p>
+                      <p id="_51a2399a-a39b-647f-bfe8-6b81e17da6b9">The level of field strength specified refers to the field generated by the unmodulated carrier wave.</p>
+                      <p id="_66caac1f-c869-5de8-c5a8-04a556a2272e">The load cell shall be exposed to the modulated wave field. The frequency sweep shall be made only pausing to adjust the RF signal level or to switch RF-generators, amplifiers and antennas if necessary. Where the frequency range is swept incrementally, the step size shall not exceed 1 % of the preceding frequency value.</p>
+                      <p id="_b9b370b6-1d46-ab05-5866-2f2a8908d7c6">The dwell time of the amplitude modulated carrier at each frequency shall not be less than the time necessary for the load cell to be exercised and to respond, but shall in no case be less than 0.5 s.</p>
+                      <p id="_527ba3d1-78e3-90df-8e33-f7bd82bf8c6b">Adequate EM fields can be generated in facilities of different type and set-up the use of which is limited by the dimensions of the load cell and the frequency range of the facility.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_ebcd6cf3-5524-0861-9bcc-542de081adf9">Test load</p>
+                    </td>
+                    <td>
+                      <p id="_a117b288-cbbf-9c0b-542d-515ef3d8115f">The test shall be performed with no load or with one small test load (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>10</mml:mn><mml:mtext> v</mml:mtext></mml:mstyle></mml:math></inline-formula>).</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_bb98428c-8780-373e-0c4e-50688afe5b9e">Test levels</p>
+                    </td>
+                    <td>
+                      <p id="_4d1e4653-adf5-8e59-03c4-e772722c73aa">Level 3:</p>
+                      <p id="_1b35b696-67d8-4a6e-2b00-8dc4956be587">Frequency range: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>80</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_MHz"><mml:mstyle mathvariant="normal"><mml:mi>MHz</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula><fn id="_1ac2fba6-c3c7-d72d-ca39-07c54b6ba1ed"><label>a</label><p>a)Frequency range used in conventional testing shall be  to , for load cells with power lines or I/O ports. The lower limit of frequency of electromagnetic field is  for load cells without power lines or I/O ports, and for which the test for conducted electromagnetic field (2.10.7.102.10.7.10) is inapplicable.</p></fn></p>
+                      <p id="_bdc1e5d7-70e5-4859-40da-69099ef1f580">to <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>3 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_MHz"><mml:mstyle mathvariant="normal"><mml:mi>MHz</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>;</p>
+                      <p id="_8a4d2f7d-4383-99b1-4298-499e431f627b">Field strength: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>10</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu16.u1e-1/1"><mml:mstyle mathvariant="normal"><mml:mi>V</mml:mi></mml:mstyle><mml:mi>⁢</mml:mi><mml:msup><mml:mstyle mathvariant="normal"><mml:mi>m</mml:mi></mml:mstyle><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:mstyle></mml:math></inline-formula>;</p>
+                      <p id="_56112153-e8db-be44-9668-715574fdea15">Modulation: 80 % AM, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>1</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kHz"><mml:mstyle mathvariant="normal"><mml:mi>kHz</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> sine wave.</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <sec id="sec-2.10.7.10">
+            <label>2.10.7.10</label>
+            <title>Exposure to conducted (common mode) currents generated by RF EM fields (see R 60-1, 5.7.2.5 Disturbances)</title>
+            <p id="_557e6549-30d7-f63c-9a6d-472b291ab42e">This test is conducted to verify compliance with the provisions in R 60-1, 5.7.2.5 while exposed to electromagnetic fields</p>
+            <p id="_4859330a-e0fe-307c-ce21-f6118e5a443f">Applicable standard: IEC 61000-4-6 [23]</p>
+            <table-wrap id="_19ab6abe-d24d-dcce-fe23-71551682ca5b">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p id="_43488854-09c9-a122-83fe-4146caf59bf6">Test method</p>
+                    </td>
+                    <td>
+                      <p id="_4e97cb36-6eba-0971-daf2-3ecf4a8e6b88">Exposure of the load cell to disturbances induced by radiated radio-frequency fields.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_d648eb42-afc8-2db0-9060-819b2081a1d3">Test conditions</p>
+                    </td>
+                    <td>
+                      <p id="_aa7adb0c-0eea-b191-34c8-ca001f4587fd">In accordance with <xref ref-type="sec" rid="sec-2.7.3.1">2.7.3.1</xref> Environmental conditions</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_cd81be3a-dacd-d94c-e405-8eb46f6d9534">Preconditioning of the load cell</p>
+                    </td>
+                    <td>
+                      <p id="_4d657461-5fc0-5d7c-783e-3809c6dc2dc7">Stabilise the load cell under constant environmental conditions.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_7c8b36bb-cd76-404b-625e-0a67a02b8d6b">Test procedure in brief</p>
+                    </td>
+                    <td>
+                      <p id="_e6f2caa0-17d0-1cfa-2f81-ea51b1ab9946">A RF EM current, simulating the influence of EM fields shall be coupled or injected into the power ports and I/O ports of the load cell using coupling/decoupling devices as defined in the referred standard.</p>
+                      <p id="_637f2e83-cbc8-49b9-a9e2-a8887deef01b">The characteristics of the test equipment consisting of an RF generator,</p>
+                      <p id="_2a9eb72d-9f02-c8e0-7f2e-ca3db9ed9813">(de-)coupling devices, attenuators, etc. shall be verified before connecting the load cell.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_1f9a7b71-13ce-6f5c-6bf6-709492653791">Test load</p>
+                    </td>
+                    <td>
+                      <p id="_4c5154f7-6067-d978-5e26-beeaefb61e36">The test shall be performed with no load or with one small test load (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>10</mml:mn><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>).</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_aae3cfef-1c64-275f-fc8d-6bc93a6aea43">Test level index</p>
+                    </td>
+                    <td>
+                      <p id="_ae6d4add-84f5-803d-a0d9-4eab623dff38">Level 3 (in accordance with the referred standard)</p>
+                      <p id="_cc03d325-5b08-72e0-0bb0-e0f5d5cba988">Frequency range: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>0,15</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_MHz"><mml:mstyle mathvariant="normal"><mml:mi>MHz</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>—<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>80</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_MHz"><mml:mstyle mathvariant="normal"><mml:mi>MHz</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
+                      <p id="_0ed5e584-51f1-ddfd-c83b-2f8ed4d9a30e">RF amplitude (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>50</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu18"><mml:mstyle mathvariant="normal"><mml:mi>Ω</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>): <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>10</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu16"><mml:mstyle mathvariant="normal"><mml:mi>V</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>(emf)</p>
+                      <p id="_d6fd6a0f-9914-d7f9-8c00-a2ec9712f441">Modulation: 80 % AM, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>1</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kHz"><mml:mstyle mathvariant="normal"><mml:mi>kHz</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, sine wave</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p id="_2a1582c8-9906-a791-2dbe-45ac87c95a1d">Notes</p>
+                    </td>
+                    <td>
+                      <p id="_6f128858-57de-7049-e0e2-250ae60c3cfb">This test is not applicable for load cells without mains power supply or other input port.</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <sec id="sec-2.10.7.11">
+            <label>2.10.7.11</label>
+            <title>Span stability (see R 60-1, 5.7.2.6) (not applicable to class A load cells)</title>
+            <p id="_85092899-00a9-4e3d-3d22-55c90f53480b">Test procedure in brief:</p>
+            <p id="_116e4159-5b3e-b159-b400-e6415864a838">The test consists in observing the variations of the output of the load cell under
+reasonably constant (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>±</mml:mo><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>) conditions (e.g. in a normal laboratory environment) at various intervals before, during and after the load cell has been subjected to performance tests. The performance tests shall include (as a minimum) the temperature test. The damp heat test shall be performed when applicable but may be performed after a series of span stability tests if the conduct of that test during the span stability test imposes an increased risk that the principles expressed under <xref ref-type="sec" rid="sec-2.7.3.3">2.7.3.3</xref>. would be compromised. This may be a greater concern when conducting tests on higher capacity load cells.</p>
+            <p id="_0e367369-d404-beff-abd5-40ab382a8536">The load cell shall be disconnected from the mains power supply, or battery supply where fitted, two times for at least 8 hours during the period of test. The number of disconnections may be increased if the manufacturer specifies so or at the discretion of the approval authority in the absence of any such consideration.</p>
+            <p id="_5ba7499d-5583-23c0-de7a-1d3a6e38a2c6">For the conduct of this test, the manufacturer’s operating instructions shall be considered.</p>
+            <p id="_c74b5ecc-106a-73e8-4e7b-a0081c81c4d5">The load cell shall be stabilised at sufficiently constant ambient conditions after switch-on for at least 5 hours, but at least 16 hours after any temperature or humidity tests have been performed.</p>
+            <p id="_9e69a391-4aa4-ac54-2fc3-96f88d8af1f1">Test duration:</p>
+            <p id="_35f3596f-4782-7fd4-d8d1-10c39df684a4">28 days or the period necessary for the performance tests to be carried out, whichever is shorter, for temperature and humidity tests.</p>
+            <p id="_ba18a3fa-3ab7-e377-df05-1a05fbec553f">The duration may be increased to 40 days for CH marked load cells only.</p>
+            <p id="_5b666376-98b0-05a1-ba1d-12732b12cbe5">Time between measurements:</p>
+            <p id="_b561dc4a-9c52-218c-3e89-1d0c1b64d267">Between 1/2 day (12 hours) and 10 days (240 hours) for SH marked load cells, and 14 days for CH marked load cells, with an even distribution of the measurements over the total duration of the test.</p>
+            <p id="_c8688c0e-f31c-331e-ef90-18cb263168d0">Test loads:</p>
+            <p id="_940beb86-de2f-406f-fde4-405fcaa76384">A minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>; the same test load shall be used throughout the test.</p>
+            <p id="_7cef0fb6-98bd-1334-3356-a7cf3931b781">A maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>; the same test load shall be used throughout the test.</p>
+            <p id="_da67fa8e-baaa-a2ad-f7c7-81191a9c731c">Number of measurements: At least 8.</p>
+            <p id="_5a5dec0d-bbd2-a689-414e-192b3693da50">Test sequence:</p>
+            <p id="_c2eb2bfc-0f75-8ba2-1d38-cbb71becc8a1">Identical test equipment and test loads shall be used throughout the test.</p>
+            <p id="_fc464a41-732b-2b12-bf4d-9bbce3cd1c4b">Stabilise all factors at sufficiently constant ambient conditions.</p>
+            <p id="_bd0cf3e1-fad2-3ac9-d3df-39968d3203f9">Each set of measurements shall consist of the following:</p>
+            <list list-type="alpha-lower">
+              <list-item>
+                <label>a)</label>
+                <p id="_fda37140-5bd4-4c0d-70f0-f0b68d48a712">preload the load cell by applying the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>,
+three times, returning to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, after each load application;</p>
+              </list-item>
+              <list-item>
+                <label>b)</label>
+                <p id="_a2f5e6d0-51c9-063b-d65f-f6c7e790d2dc">stabilise the load cell at the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>;</p>
+              </list-item>
+              <list-item>
+                <label>c)</label>
+                <p id="_e688f4fb-79d8-6766-b903-f85d4c1f2d7e">read the minimum test load output and apply the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>. Read the maximum test load output at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>, and return to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>. Repeat this four more times for accuracy class B or two more times for accuracy classes C and D;</p>
+              </list-item>
+              <list-item>
+                <label>d)</label>
+                <p id="_6807e875-d708-16d0-3f77-d123d05ed712">determine the span measurement result, which is the difference in output between the mean max-imum test load outputs and the mean minimum test load outputs. Compare subsequent results with the initial span measurement result and determine the error.</p>
+              </list-item>
+            </list>
+            <p id="_0cc7f715-7144-a1c6-227e-6616509b7221">Record the following data:</p>
+            <list list-type="alpha-lower">
+              <list-item>
+                <label>a)</label>
+                <p id="_15ba1460-f55f-caca-bcaa-31ec66cbe5c4">date and time (absolute, not relative);</p>
+              </list-item>
+              <list-item>
+                <label>b)</label>
+                <p id="_ca1c70a9-4f79-0e57-2310-2e6e64740651">temperature;</p>
+              </list-item>
+              <list-item>
+                <label>c)</label>
+                <p id="_d332bafb-bb85-03cc-e6ed-29ec9defde43">barometric pressure;</p>
+              </list-item>
+              <list-item>
+                <label>d)</label>
+                <p id="_85829e76-aafb-a6c1-6614-37cfb8eaae43">relative humidity;</p>
+              </list-item>
+              <list-item>
+                <label>e)</label>
+                <p id="_eee78901-d8ab-10c1-dbc1-7b656a2a1f5f">test load values;</p>
+              </list-item>
+              <list-item>
+                <label>f)</label>
+                <p id="_30e8dbfd-93a0-4847-ce66-0d6fcd976208">load cell outputs;</p>
+              </list-item>
+              <list-item>
+                <label>g)</label>
+                <p id="_f460f23f-c105-3ba1-023d-98deb6ceea10">errors.</p>
+              </list-item>
+            </list>
+            <p id="_0757f21d-212b-fd7e-d910-5c9dc82d6703">Apply all necessary corrections resulting from variations in temperature, pressure, etc. between the various measurements.</p>
+            <p id="_461cd321-ff2d-ac7a-3198-35737accd0ab">Allow for full recovery of the load cell before any other tests are performed.</p>
+            <p id="_579a0818-230e-1d4c-4396-f82a5538a7f2">Where differences of results indicate a trend of more than half the allowable variation specified above, the test shall be continued until the trend comes to rest or reverses itself, or until the error exceeds the maximum allowable variation.</p>
+          </sec>
+        </sec>
+      </sec>
+      <sec id="sec-2.11">
+        <label>2.11</label>
+        <title>Test sequence</title>
+        <sec id="sec-2.11.1">
+          <label>2.11.1</label>
+          <title>Test sequence for test temperatures</title>
+          <p id="_68a88c64-1dd6-71ad-a66c-2278480caf9c">The recommended test sequence for each test temperature when all tests are carried out in the same force-generating system is shown in  <xref ref-type="fig" rid="fig_2">Figure 2</xref>.</p>
+          <fig id="fig_2">
+            <label>Figure 2</label>
+            <caption>
+              <title>Recommended test sequence for each test temperature when all tests are carried out in the same force-generating system</title>
+            </caption>
+            <graphic xlink:href="images/figure-2.svg"/>
+          </fig>
+        </sec>
+        <sec id="sec-2.11.2">
+          <label>2.11.2</label>
+          <title>Test sequence for minimum dead load output return</title>
+          <p id="_2af44a14-570d-07d6-8012-84e94ba0afd3">The recommended test sequence for each test temperature for the minimum dead load output return (DR) and creep tests when carried out in a force-generating system different to that used for the load tests is shown in  <xref ref-type="fig" rid="fig_3">Figure 3</xref>.</p>
+          <fig id="fig_3">
+            <label>Figure 3</label>
+            <caption>
+              <title>Recommended test sequence for each test temperature for the minimum dead load output return (DR) and creep tests when carried out in a machine different from that used for the load tests</title>
+            </caption>
+            <graphic xlink:href="images/figure-3.svg"/>
+          </fig>
+        </sec>
+      </sec>
+      <sec id="sec-2.12">
+        <label>2.12</label>
+        <title>OIML certificate</title>
+        <sec id="sec-2.12.1">
+          <label>2.12.1</label>
+          <title>Preparation of certificate</title>
+          <p id="_0c02d7d1-655f-0e17-7110-48bf337ece66">The OIML certificate shall be prepared according to the rules contained within OIML B 18  <italic>Framework for the OIML Certification System (OIML-CS)</italic> [6] and OIML-CS Procedural DocumentPD-05 [29]. The certificate template (which may be downloaded from the “Documentation” section under the OIML-CS part of the OIML website) shall be supplemented with the information as specified in Annex B. In addition, Annex C provides an example of the supplemental information that may be included in the OIML certificate and is included in this Recommendation to complement the template.</p>
+        </sec>
+        <sec id="sec-2.12.2">
+          <label>2.12.2</label>
+          <title>Reference of values on certificate</title>
+          <p id="_ae66f46c-5340-3311-f564-1168a6aaa772">Regardless of the evaluation result of any load cell in a load cell family, the certificate to be issued should not provide for any characteristics or values which are beyond those that the manufacturer has requested and for which the manufacturer intends to guarantee, for example, by expressing the relevant characteristics and values in its data sheet.</p>
+        </sec>
+      </sec>
+    </sec>
+  </body>
+</standard>

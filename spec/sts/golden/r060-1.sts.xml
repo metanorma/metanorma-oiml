@@ -1,0 +1,1940 @@
+<standard xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" dtd-version="1.2">
+  <processing-meta tagset-family="sts" base-tagset="interchange" table-model="xhtml" mathml="MathML 3.0" terminology-model="tbx"/>
+  <front>
+    <std-meta>
+      <title-wrap>
+        <main>Metrological regulation for load cells — Part 1:Metrological and technical requirements</main>
+      </title-wrap>
+      <std-ident>
+        <originator>OIML</originator>
+        <doc-type>r</doc-type>
+        <doc-number>60</doc-number>
+        <part-number>1</part-number>
+      </std-ident>
+      <pub-date>2021</pub-date>
+      <permissions>
+        <copyright-statement>© 2021 OIML</copyright-statement>
+        <copyright-year>2021</copyright-year>
+        <copyright-holder>OIML</copyright-holder>
+      </permissions>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>oiml-doc-series</meta-name>
+          <meta-value>R</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </std-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Copyright</title>
+      <p id="_1d37d283-b53c-595e-4f5b-96140619aae7">© OIML 2021</p>
+      <p id="_6711e67c-7bc3-b668-a67f-ec68c6b24d99">Bureau International de Métrologie Légale 11, rue Turgot – 75009 Paris – France Telephone: 33 (0)1 48 78 12 82 Fax: 33 (0)1 42 82 17 27 E-mail: biml@oiml.org Internet:  <ext-link ext-link-type="uri" xlink:href="https://www.oiml.org">www.oiml.org</ext-link></p>
+    </sec>
+    <sec>
+      <title>Feedback</title>
+      <p id="_d0a674b7-3667-12e4-81ba-deec26ebe4bb">OIML Publications may be downloaded from the OIML web site in the form of PDF files. Additional information on OIML Publications may be obtained from the Organisation’s headquarters:</p>
+      <p id="_f0f7fd17-e1fc-5b10-60ff-c6d972b4eaa1">Bureau International de Métrologie Légale 11, rue Turgot – 75009 Paris – France Telephone: 33 (0)1 48 78 12 82 Fax: 33 (0)1 42 82 17 27 E-mail:  <ext-link ext-link-type="uri" xlink:href="mailto:biml@oiml.org">biml@oiml.org</ext-link> Internet:  <ext-link ext-link-type="uri" xlink:href="https://www.oiml.org">www.oiml.org</ext-link></p>
+    </sec>
+    <sec>
+      <title>Foreword</title>
+      <p id="_562d2fb6-d63e-84ae-e97e-5078e3b7b4a7">The International Organisation of Legal Metrology (OIML) is a worldwide, intergovernmental organisation whose primary aim is to harmonise the regulations and metrological controls applied by the national metrological services, or related organisations, of its Member States. The main categories of OIML publications are:</p>
+      <p id="_0be69df8-5ff3-5678-8945-66a921bc4e81">OIML Draft Recommendations, Documents and Guides are developed by Project Groups linked to Technical Committees or Subcommittees which comprise representatives from OIML Member States. Certain international and regional institutions also participate on a consultation basis. Cooperative agreements have been established between the OIML and certain institutions, such as ISO and the IEC, with the objective of avoiding contradictory requirements. Consequently, manufacturers and users of measuring instruments, test laboratories, etc. may simultaneously apply OIML publications and those of other institutions.</p>
+      <p id="_ba13e892-20b5-80a9-312e-a25da604a959">International Recommendations, Documents, Guides and Basic Publications are published in English (E) and translated into French (F) and are subject to periodic revision.</p>
+      <p id="_b7af99b1-4765-8464-90e3-8626b04b84de">Additionally, the OIML publishes or participates in the publication of <bold>Vocabularies (OIML V)</bold> and periodically commissions legal metrology experts to write <bold>Expert Reports (OIML E)</bold>. Expert Reports are intended to provide information and advice, and are written solely from the viewpoint of their author, without the involvement of a Technical Committee or Subcommittee, nor that of the CIML. Thus, they do not necessarily represent the views of the OIML.</p>
+      <p id="_3ff9d426-d25c-df8b-126a-772db05b7299">This publication — reference OIML R 60-1:2021 — is an updated edition (developed by the OIML Certification System Management Committee) of OIML R 60-1:2017 (developed by Project Group 1 of OIML Technical Committee TC 9 <italic>Instruments for measuring mass and density</italic>). This updated edition consolidates the Amendment (2019-12-23) to R 60:2017, and includes other editorial and minor technical changes. It was approved for final publication by the International Committee of Legal Metrology at its 56th meeting in October 2021 and was sanctioned by the 16th International Conference on Legal Metrology in 2021. It supersedes the previous edition of R 60 dated 2017.</p>
+      <p id="_f38c1156-6177-3ef5-50b8-864745ac082c">OIML Publications may be downloaded from the OIML web site in the form of PDF files. Additional information on OIML Publications may be obtained from the Organisation’s headquarters:</p>
+      <p id="_751e9754-4918-f7bc-6597-17b5f66ca306">Bureau International de Métrologie Légale 11, rue Turgot — 75009 Paris — France Telephone: 33 (0)1 48 78 12 82 Fax: 33 (0)1 42 82 17 27 E-mail:  <ext-link ext-link-type="uri" xlink:href="mailto:biml@oiml.org">biml@oiml.org</ext-link> Internet: www.oiml.org</p>
+      <list list-type="bullet">
+        <list-item>
+          <p id="_d372c31f-bfd7-7fbb-535a-ed45152cf8ca"><bold>International Recommendations (OIML R)</bold>, which are model regulations that establish the metrological characteristics required of certain measuring instruments and which specify methods and equipment for checking their conformity. OIML Member States shall implement these Recommendations to the greatest possible extent;</p>
+        </list-item>
+        <list-item>
+          <p id="_82dedfa9-31e2-ffd7-34db-ed3d3913cc6b"><bold>International Documents (OIML D)</bold>, which are informative in nature and which are intended to harmonise and improve work in the field of legal metrology;</p>
+        </list-item>
+        <list-item>
+          <p id="_d0c20f2d-127a-b5bd-a238-7454decfcac5"><bold>International Guides (OIML G)</bold>, which are also informative in nature and which are intended to give guidelines for the application of certain requirements to legal metrology; and</p>
+        </list-item>
+        <list-item>
+          <p id="_9a623d5d-7950-60e7-1649-808e78aeacee"><bold>International Basic Publications (OIML B)</bold>, which define the operating rules of the various OIML structures and systems.</p>
+        </list-item>
+      </list>
+    </sec>
+    <sec id="_0c23170a-702b-a7e1-831a-4c3275ef0b3d" sec-type="intro">
+      <label>1</label>
+      <title>Introduction</title>
+      <p id="_3c1284ac-d3e9-0d10-dbbe-4e9617711a92">Load cells comprise a distinct element or module within other complex instruments; they do not produce distinct quantitative values that are inherently identified or associated with denominations or units. The data that can be extracted from a load cell is simply a measurement of change in the output of the load cell in relation to the input. This relative change must be converted by other elements or modules within an instrument into values that are meaningful measurements which can then be used to identify a quantity.</p>
+      <p id="_82c057bb-509a-ff16-cf29-850975029f82">Although strain gauge technology was a primary focus in the initial development of R 60, it is to be understood that load cells that operate using other principles may also be evaluated under this Recommendation.</p>
+    </sec>
+    <sec id="_5ee7856f-be57-502e-7021-763c0f45de54" sec-type="scope">
+      <label>2</label>
+      <title>Scope</title>
+      <sec id="_40d94f64-ee5c-2e91-7677-3579764567f7">
+        <label>2.1</label>
+        <p id="_27fee4b8-c9b5-e185-eb51-cf78a61baa41">This Recommendation prescribes the principal metrological static requirements and static evaluation procedures for load cells used in the determination of conformity to this Recommendation. It is intended to provide authorities with uniform means for determining the metrological characteristics of load cells used in measuring instruments that are subjected to metrological controls.</p>
+        <p id="_aada72d8-cbe6-dbee-5e66-8b35b4117450">It is acknowledged that test procedures found in OIML R 60-2 are useful in the evaluation of load cells that are currently in service (i.e. primarily of the strain gauge design) however, there may be variations in designs for load cells that will require additional or modified test procedures to appropriately evaluate them. These additional test procedures may be annexed when necessary.</p>
+        <p id="_aeedf795-2666-ed28-8f43-576b4452e75d">Except where otherwise specified, these requirements apply regardless of the technology or operating principle employed. The requirements and evaluation procedures in this Recommendation have been drafted to be non-specific with regard to load cell design and their operating principles.</p>
+      </sec>
+      <sec id="_3bd3c190-0c6c-790a-cb7f-2abf8704c245">
+        <label>2.2</label>
+        <p id="_910f8462-d552-4c53-f5b6-76a8a65d3bc9">This Recommendation utilises the principle that several measurement errors shall
+be considered together when applying load cell performance characteristics to the
+permitted error envelope. Thus, it is not considered appropriate to specify individual
+errors for given characteristics (e.g. non-linearity, hysteresis, effects of influence
+factors), but rather to consider the total error envelope allowed for a load cell
+as the limiting factor. The use of an error envelope allows the balancing of the
+individual contributions to the total error of measurement while still achieving
+the intended final result.</p>
+        <non-normative-note>
+          <label>NOTE</label>
+          <p id="_adea2257-b85d-5592-6879-9fb66eee286e">The error envelope may be defined as the boundary of the combined individual errors (see  <xref ref-type="table" rid="table-4">Table 4</xref>) as a function of the force introduced by the applied load (expressed in mass units) over the measuring range. The combined error determined may be positive or negative and include the effects of non-linearity, hysteresis and temperature.</p>
+        </non-normative-note>
+      </sec>
+      <sec id="sec-2.3">
+        <label>2.3</label>
+        <p id="_b9a015f6-75bd-0749-9cd3-197e075ce525">“Weighing modules” as noted in OIML R 76 [1], T.2.2.7 (see R 60, Annex A, A.2.1), are not covered by this Recommendation. Weighing instruments that include load cells and which give an indication of mass are the subjects of separate Recommendations. While digital load cells may be covered under this Recommendation, a load cell that produces an output consisting of more than digital “raw counts” is not covered. In the illustration from OIML R 76 below, the scope of R 60 would not extend beyond module #3.</p>
+        <fig id="fig_1">
+          <label>Figure 1</label>
+          <caption>
+            <title>Typical components in a weighing instrument</title>
+          </caption>
+          <graphic xlink:href="images/figure-1.svg"/>
+        </fig>
+        <fig id="fig_2">
+          <label>Figure 2</label>
+          <caption>
+            <title>Characterisation of load cell capabilities</title>
+          </caption>
+          <graphic xlink:href="images/figure-2.svg"/>
+        </fig>
+      </sec>
+    </sec>
+    <sec id="_2b3d6585-21b7-68da-c5c4-10391724ff62">
+      <label>3</label>
+      <title>Terminology (Terms and definitions)</title>
+      <p id="_a72ebd9f-74a8-6790-a396-87b42beefb77">The terms most frequently used in the load cell field and their definitions are given below (see  <xref ref-type="sec" rid="sec-3.6">3.6</xref> for an illustration of certain definitions). The terminology used in this Recommendation conforms to OIML V 2-200  <italic>International Vocabulary of Metrology — Basic and General Concepts and Associated Terms</italic> (VIM) <xref ref-type="bibr" rid="OIML_V_2_200_2012">OIML V 2-200:2012</xref>, to OIML V 1  <italic>International Vocabulary of Terms in Legal Metrology</italic> (VIML) <xref ref-type="bibr" rid="OIML_V_1_2013">OIML V 1:2013</xref>, to OIML D 9 <italic>Principles of metrological supervision</italic> <xref ref-type="bibr" rid="OIML_D_9_2004">OIML D 9:2004</xref>, to OIML D 11 <italic>General requirements for measuring instruments</italic> <xref ref-type="bibr" rid="OIML_D_11_2008">OIML D 11:2008</xref>, and to OIML B 18 <italic>Framework for the OIML Certification System (OIML-CS)</italic> <xref ref-type="bibr" rid="OIML_B_18_2018">OIML B 18:2018</xref>.</p>
+      <p id="_f0b850bf-d46c-2915-f6f7-db4f4e3f2cd5">In addition, for the purposes of this Recommendation, the following definitions apply:</p>
+      <sec id="sec_3.1" sec-type="terms">
+        <label>3.1</label>
+        <title>General definitions</title>
+        <sec id="term-durability">
+          <title>3.1.1</title>
+          <p>
+            <bold>durability</bold>
+          </p>
+          <p>ability of a measuring instrument to maintain its performance characteristics over a period of use</p>
+          <p>[SOURCE: OIML V 1:2013, 5.15[1] ]</p>
+        </sec>
+        <sec id="term-legal-metrology">
+          <title>3.1.2</title>
+          <p>
+            <bold>legal metrology</bold>
+          </p>
+          <p>practice and process of applying statutory and regulatory structure and enforcement to metrology</p>
+          <p>(For notes, refer to the OIML V 1:2013).</p>
+          <p>[SOURCE: OIML V 1:2013, 1.01[1] ]</p>
+        </sec>
+        <sec id="term-load-cell">
+          <title>3.1.3</title>
+          <p>
+            <bold>load cell</bold>
+          </p>
+          <p>measuring transducer that will produce an output in response to an applied load. This output may be converted by another device into measurement units such as mass</p>
+          <sec id="term-analogue-passive-load-cell">
+            <title>3.1.3.1</title>
+            <p>
+              <bold>analogue-passive load cell</bold>
+            </p>
+            <p>load cell from which the output provides either measurable data or direct information representing the measurand value</p>
+            <non-normative-note>
+              <p id="_b6ce9843-6939-5d37-a226-364f86fa0792">The ratio between output and input may be adjustable and this type of load cell may utilise</p>
+              <label>Note:</label>
+              <list list-type="bullet">
+                <list-item>
+                  <p id="_17bad211-3afe-b3f5-74b2-bcdd1a55e39b">passive electronics (e.g. strain gauges), and</p>
+                </list-item>
+                <list-item>
+                  <p id="_fec7e62f-020e-8f36-22ac-0295bf6cc5c7">passive temperature compensation elements</p>
+                </list-item>
+              </list>
+            </non-normative-note>
+          </sec>
+          <sec id="term-analogue-active-load-cell">
+            <title>3.1.3.2</title>
+            <p>
+              <bold>analogue-active load cell</bold>
+            </p>
+            <p>load cell which is capable of performing the functions as described under analogue-passive load cell (3.1.3.1) and which also utilises active electronics</p>
+            <non-normative-note>
+              <p id="_b66822ee-c6d5-b83d-a0e3-d3519564a95c">This type of load cell may utilise the active electronics for</p>
+              <label>Note:</label>
+              <list list-type="bullet">
+                <list-item>
+                  <p id="_51a936e7-ec55-c44f-6ace-298462bee2a5">gaining an electronic representation of the measurand value,</p>
+                </list-item>
+                <list-item>
+                  <p id="_cb8a8f4f-e56d-120f-11d6-770f78d15c4e">active temperature compensation, and</p>
+                </list-item>
+                <list-item>
+                  <p id="_94c13998-16c2-529b-be41-dbb318b04f0e">similar functions being of influence to the measurand value.</p>
+                </list-item>
+              </list>
+            </non-normative-note>
+          </sec>
+          <sec id="term-digital-load-cell">
+            <title>3.1.3.3</title>
+            <p>
+              <bold>digital load cell</bold>
+            </p>
+            <p>analogue-active load cell which includes an analogue to digital conversion device providing a representation of the measurand value in some unprocessed digital format</p>
+          </sec>
+          <sec id="sec-3.1.3.4">
+            <title>3.1.3.4</title>
+            <p>
+              <bold>digital load cell equipped with further data processing (Figure 2, A-F)</bold>
+            </p>
+            <p>analogue-active load cell which includes an analogue to digital conversion device providing a representation of the measurand value in some digital format and includes further digital processing (e.g. scaling)</p>
+          </sec>
+        </sec>
+        <sec id="term-marking">
+          <title>3.1.4</title>
+          <p>
+            <bold>marking</bold>
+          </p>
+          <p>affixing of one or more marks</p>
+          <p>(For notes, refer to the OIML V 1:2013).</p>
+          <p>[SOURCE: OIML V 1:2013, 2.19[1] ]</p>
+        </sec>
+        <sec id="term-metrological-supervision">
+          <title>3.1.5</title>
+          <p>
+            <bold>metrological supervision</bold>
+          </p>
+          <p>activity of legal metrological control to check the observance of metrology laws and regulations</p>
+          <p>(For notes, refer to the OIML V 1:2013).</p>
+          <p>[SOURCE: OIML V 1:2013, 2.03[1] ]</p>
+        </sec>
+        <sec id="term-measuring-transducer">
+          <title>3.1.6</title>
+          <p>
+            <bold>measuring transducer</bold>
+          </p>
+          <p>device, used in measurement, that provides an output quantity having a specified relation to the input quantity</p>
+          <p>[SOURCE: OIML V 2-200:2012, 3.7[2] ]</p>
+        </sec>
+        <sec id="term-performance-test">
+          <title>3.1.7</title>
+          <p>
+            <bold>performance test</bold>
+          </p>
+          <p>test to verify whether the load cell under test is capable of performing its intended functions</p>
+        </sec>
+        <sec id="term-rated-operating-condition">
+          <title>3.1.8</title>
+          <p>
+            <bold>rated operating condition</bold>
+          </p>
+          <p>operating condition that must be fulfilled during measurement in order that a measuring instrument or measuring system perform as designed</p>
+          <p>(For notes, refer to the OIML V 2-200:2012).</p>
+          <p>[SOURCE: OIML V 2-200:2012, 4.9[2] ]</p>
+        </sec>
+        <sec id="term-sealing">
+          <title>3.1.9</title>
+          <p>
+            <bold>sealing</bold>
+          </p>
+          <p>means intended to protect the measuring instrument against any unauthorised modification, readjustment, removal of parts, software, etc.</p>
+          <p>(For notes, refer to the OIML V 1:2013).</p>
+          <p>[SOURCE: OIML V 1:2013, 2.20[1] ]</p>
+        </sec>
+        <sec id="term-type-_pattern_-evaluation">
+          <title>3.1.10</title>
+          <p>
+            <bold>type (pattern) evaluation</bold>
+          </p>
+          <p>conformity assessment procedure on one or more specimens of an identified type (pattern) of measuring instruments which results in an evaluation report and / or an evaluation certificate</p>
+          <p>(For notes, refer to the OIML V 1:2013).</p>
+          <p>[SOURCE: OIML V 1:2013, 2.04[1] ]</p>
+        </sec>
+        <sec id="term-type-approval">
+          <title>3.1.11</title>
+          <p>
+            <bold>type approval</bold>
+          </p>
+          <p>decision of legal relevance, based on the review of the type evaluation report, that the type of a measuring instrument complies with the relevant statutory requirements and results in the issuance of the type approval certificate</p>
+          <p>[SOURCE: OIML V 1:2013, 2.05[1] ]</p>
+        </sec>
+      </sec>
+      <sec id="_84762d3f-2272-59ac-622b-c67133c8f090">
+        <label>3.2</label>
+        <title>Categories of load cells</title>
+        <sec id="sec_3.2.1" sec-type="terms">
+          <label>3.2.1</label>
+          <title>Application of load</title>
+          <sec id="term-compression-loading">
+            <title>3.2.1.1</title>
+            <p>
+              <bold>compression loading</bold>
+            </p>
+            <p>applying a compressive force to the load receptor of a load cell</p>
+          </sec>
+          <sec id="term-tension-loading">
+            <title>3.2.1.2</title>
+            <p>
+              <bold>tension loading</bold>
+            </p>
+            <p>applying a tension force to the load receptor of a load cell</p>
+          </sec>
+        </sec>
+      </sec>
+      <sec id="sec_3.3" sec-type="terms">
+        <label>3.3</label>
+        <title>Construction of load cells (see sections 1 and 2.1)</title>
+        <sec id="term-strain-gauge">
+          <title>3.3.1</title>
+          <p>
+            <bold>strain gauge</bold>
+          </p>
+          <p>analogue resistive element that is attached to a load cell structure and that changes resistance depending on the deformation of the load cell structure when compression or tension forces are applied to the load cell</p>
+        </sec>
+      </sec>
+      <sec id="sec_3.4" sec-type="terms">
+        <label>3.4</label>
+        <title>Metrological characteristics of a load cell</title>
+        <sec id="term-humidity-symbol">
+          <title>3.4.1</title>
+          <p>
+            <bold>humidity symbol</bold>
+          </p>
+          <p>symbol assigned to a load cell that indicates the conditions of humidity under which the load cell has been tested</p>
+        </sec>
+        <sec id="term-load-cell-family">
+          <title>3.4.2</title>
+          <p>
+            <bold>load cell family</bold>
+          </p>
+          <p>group of load cells which for the purposes of type evaluation are considered as one family and that are of:</p>
+          <list list-type="alpha-lower">
+            <list-item>
+              <label>a)</label>
+              <p>the same material or combination of materials (for example mild steel, stainless steel or aluminium);</p>
+            </list-item>
+            <list-item>
+              <label>b)</label>
+              <p>the same design of the measurement technique (for example strain gauges bonded to metal);</p>
+            </list-item>
+            <list-item>
+              <label>c)</label>
+              <p>when used, the same principle used to attach the strain gauge to the load cell;</p>
+            </list-item>
+            <list-item>
+              <label>d)</label>
+              <p>the same method of construction (for example shape, sealing of strain gauges, mounting method, manufacturing method);</p>
+            </list-item>
+            <list-item>
+              <label>e)</label>
+              <p>the same set of specifications (for example output rating, input impedance, supply voltage, cable details); and</p>
+            </list-item>
+            <list-item>
+              <label>f)</label>
+              <p>one or more load cell groups where all load cells within the group possess identical metrological characteristics (as listed in  <xref ref-type="sec" rid="sec-5.1.5">5.1.5 </xref> — including: class; <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>; temperature rating, etc.).</p>
+            </list-item>
+          </list>
+          <non-normative-note>
+            <p id="_f4936eae-1b68-0833-8fb0-b76bf90213f5">The examples provided are not intended to be limiting.</p>
+            <label>Note:</label>
+          </non-normative-note>
+        </sec>
+      </sec>
+      <sec id="sec_3.5" sec-type="terms">
+        <label>3.5</label>
+        <title>Range, capacity and output terms</title>
+        <sec id="term-load-cell-interval">
+          <title>3.5.1</title>
+          <p>
+            <bold>load cell interval</bold>
+          </p>
+          <p>subdivision of the load cell measuring range</p>
+        </sec>
+        <sec id="term-load-cell-measuring-range-_for-verification_">
+          <title>3.5.2</title>
+          <p>
+            <bold>load cell measuring range (for verification)</bold>
+          </p>
+          <p>range between the maximum load of the measuring range <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> and minimum
+load of the measuring range <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula></p>
+          <p>load cell measuring range <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub><mml:mo/></mml:mrow></mml:mstyle></mml:math></inline-formula>)</p>
+        </sec>
+        <sec id="term-load-cell-output">
+          <title>3.5.3</title>
+          <p>
+            <bold>load cell output</bold>
+          </p>
+          <p>measurable quantity into which a load cell converts the measured input quantity</p>
+        </sec>
+        <sec id="term-load-cell-verification-interval-_v_">
+          <title>3.5.4</title>
+          <p>
+            <bold>load cell verification interval ( v )</bold>
+          </p>
+          <p>load cell interval, expressed in units of mass, used in the test of the load cell for accuracy classification</p>
+        </sec>
+        <sec id="sec-3.5.5">
+          <title>3.5.5</title>
+          <p>
+            <bold>maximum capacity ( E max )</bold>
+          </p>
+          <p>largest value of a quantity expressed in units of mass, which may be applied to a load cell</p>
+        </sec>
+        <sec id="sec-3.5.6">
+          <title>3.5.6</title>
+          <p>
+            <bold>maximum load of the measuring range ( D max )</bold>
+          </p>
+          <p>largest value of a quantity expressed in units of mass which can be introduced to a load cell under test</p>
+        </sec>
+        <sec id="term-maximum-measuring-range">
+          <title>3.5.7</title>
+          <p>
+            <bold>maximum measuring range</bold>
+          </p>
+          <p>range of values of the quantity expressed in units of mass that may be applied to a load cell</p>
+          <p>maximum measuring range <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub><mml:mo>)</mml:mo></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
+          <non-normative-note>
+            <p id="_3d4a2d18-3ed5-4bf8-cd65-d9e3cd113232">maximum measuring range is the range between maximum capacity <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>
+and minimum dead load <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula></p>
+            <label>Note:</label>
+          </non-normative-note>
+        </sec>
+        <sec id="sec-3.5.8">
+          <title>3.5.8</title>
+          <p>
+            <bold>maximum number of load cell verification intervals ( n LC )</bold>
+          </p>
+          <p>maximum number of load cell verification intervals into which the maximum measuring range may be divided</p>
+        </sec>
+        <sec id="sec-3.5.9">
+          <title>3.5.9</title>
+          <p>
+            <bold>minimum dead load ( E min )</bold>
+          </p>
+          <p>smallest value of a quantity (expressed in mass units) that may be applied to a load cell</p>
+        </sec>
+        <sec id="sec-3.5.10">
+          <title>3.5.10</title>
+          <p>
+            <bold>minimum dead load output return (DR)</bold>
+          </p>
+          <p>difference of load cell output, expressed in units of mass at the minimum dead load
+(<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>), measured before and after application of a load of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula></p>
+        </sec>
+        <sec id="sec-3.5.11">
+          <title>3.5.11</title>
+          <p>
+            <bold>minimum load cell verification interval ( v min )</bold>
+          </p>
+          <p>smallest load cell verification interval in units of mass into which the maximum
+measuring range (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>) can be divided</p>
+        </sec>
+        <sec id="sec-3.5.12">
+          <title>3.5.12</title>
+          <p>
+            <bold>minimum load of the measuring range ( D min )</bold>
+          </p>
+          <p>smallest value of a quantity expressed in units of mass, applied to a load cell under test</p>
+        </sec>
+        <sec id="term-number-of-load-cell-verification-intervals-_n_">
+          <title>3.5.13</title>
+          <p>
+            <bold>number of load cell verification intervals ( n )</bold>
+          </p>
+          <p>total of load cell verification intervals into which the maximum measuring range is divided</p>
+        </sec>
+        <sec id="sec-3.5.14">
+          <title>3.5.14</title>
+          <p>
+            <bold>relative minimum dead load output return ( Z )</bold>
+          </p>
+          <p>ratio of the maximum measuring range, to two times the minimum dead load output return, DR</p>
+          <non-normative-note>
+            <p id="_13aafd28-dceb-69f7-4a48-95a7888f18e5">This ratio is used to describe multi-interval instruments.</p>
+            <label>Note:</label>
+          </non-normative-note>
+        </sec>
+        <sec id="sec-3.5.15">
+          <title>3.5.15</title>
+          <p>
+            <bold>relative minimum load cell verification interval ( Y )</bold>
+          </p>
+          <p>ratio of the maximum measuring range, to the minimum load cell verification interval,
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula></p>
+          <non-normative-note>
+            <p id="_1d8b121d-9453-829c-e7eb-5a10aa024ac4">This ratio describes the resolution of the load cell independent from the load cell capacity.</p>
+            <label>Note:</label>
+          </non-normative-note>
+        </sec>
+        <sec id="term-safe-load-limit-_E___lim___">
+          <title>3.5.16</title>
+          <p>
+            <bold>safe load limit ( E lim )</bold>
+          </p>
+          <p>maximum load that can be applied without producing a permanent shift in the performance characteristics beyond those specified</p>
+        </sec>
+        <sec id="term-warm-up-time">
+          <title>3.5.17</title>
+          <p>
+            <bold>warm-up time</bold>
+          </p>
+          <p>time between the moment power is applied to a load cell and the moment at which the load cell is capable of complying with the requirements</p>
+        </sec>
+      </sec>
+      <sec id="sec-3.6">
+        <label>3.6</label>
+        <title>Illustration of certain definitions</title>
+        <p id="_525ae919-1615-945d-f1bc-eec04e934d6c">The terms that appear above the central horizontal line (related to parameters <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>
+and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>) are parameters that are fixed by the design of the load cell.
+The terms that appear below that line (related to parameters <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> and
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>) are parameters that are variable, dependent on the conditions of the test of a load cell (in particular, those load cells used in weighing instruments).</p>
+        <fig id="fig_3">
+          <label>Figure 3</label>
+          <caption>
+            <title>Illustration of certain definitions</title>
+          </caption>
+          <graphic xlink:href="images/figure-3.svg"/>
+        </fig>
+        <p id="_61c410f4-d2eb-ca10-30e5-3c074826a811">The following statements apply: (see also R 60-2, 2.7.3.4)</p>
+        <list list-type="alpha-lower">
+          <list-item>
+            <label>a)</label>
+            <p id="_29489702-6627-6fd9-2e6c-e147676bbe64">
+              <inline-formula>
+                <mml:math>
+                  <mml:mstyle displaystyle="false">
+                    <mml:mrow>
+                      <mml:mo>(</mml:mo>
+                      <mml:msub>
+                        <mml:mi>D</mml:mi>
+                        <mml:mtext>max</mml:mtext>
+                      </mml:msub>
+                      <mml:mo>−</mml:mo>
+                      <mml:msub>
+                        <mml:mi>D</mml:mi>
+                        <mml:mtext>min</mml:mtext>
+                      </mml:msub>
+                      <mml:mo>)</mml:mo>
+                    </mml:mrow>
+                    <mml:mrow>
+                      <mml:mo>(</mml:mo>
+                      <mml:msub>
+                        <mml:mi>E</mml:mi>
+                        <mml:mtext>max</mml:mtext>
+                      </mml:msub>
+                      <mml:mo>−</mml:mo>
+                      <mml:msub>
+                        <mml:mi>E</mml:mi>
+                        <mml:mtext>min</mml:mtext>
+                      </mml:msub>
+                      <mml:mo>)</mml:mo>
+                    </mml:mrow>
+                  </mml:mstyle>
+                </mml:math>
+              </inline-formula>
+            </p>
+          </list-item>
+          <list-item>
+            <label>b)</label>
+            <p id="_0579370f-828c-f759-ba30-78ef1f849a82"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub><mml:mo>≤</mml:mo><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub><mml:mo>≤</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mn>0,1</mml:mn><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>)</mml:mo></mml:mrow></mml:mstyle></mml:math></inline-formula>, and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mrow><mml:mo>(</mml:mo><mml:mn>0,9</mml:mn><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>≤</mml:mo><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>≤</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula></p>
+          </list-item>
+        </list>
+      </sec>
+      <sec id="sec_3.7" sec-type="terms">
+        <label>3.7</label>
+        <title>Measurement and error terms</title>
+        <sec id="term-creep">
+          <title>3.7.1</title>
+          <p>
+            <bold>creep</bold>
+          </p>
+          <p>change in load cell output occurring with time while under constant load and with all environmental conditions and other variables also remaining constant</p>
+        </sec>
+        <sec id="term-apportioning-factor-_p___LC___">
+          <title>3.7.2</title>
+          <p>
+            <bold>apportioning factor ( p LC )</bold>
+          </p>
+          <p>value of a dimensionless fraction expressed as a decimal (for example, 0.7) representing that portion of an error observed in the (weighing) instrument which is attributed to the load cell alone</p>
+          <non-normative-note>
+            <p id="_58f20487-a409-b310-d6b6-205f4000bb07">This value is used in determining the MPE (see <xref ref-type="sec" rid="sec-3.7.10">3.7.10</xref>).</p>
+            <label>Note:</label>
+          </non-normative-note>
+        </sec>
+        <sec id="term-durability-error">
+          <title>3.7.3</title>
+          <p>
+            <bold>durability error</bold>
+          </p>
+          <p>difference between the intrinsic error after a period of use and the initial intrinsic error of a measuring instrument</p>
+          <p>[SOURCE: OIML V 1:2013, 5.16[1] ]</p>
+        </sec>
+        <sec id="term-expanded-uncertainty">
+          <title>3.7.4</title>
+          <p>
+            <bold>expanded uncertainty</bold>
+          </p>
+          <p>quantity defining an interval about the result of a measurement that may be expected to encompass a large fraction of the distribution of values that could reasonably be attributed to the measurand (OIML G 1-100  <italic>Guide to the Expression of Uncertainty in Measurement</italic>) [7]</p>
+        </sec>
+        <sec id="term-fault">
+          <title>3.7.5</title>
+          <p>
+            <bold>fault</bold>
+          </p>
+          <p>difference between the error of indication and the intrinsic error of a measuring instrument (For notes, refer to the  OIML V 1:2013).</p>
+          <p>[SOURCE: OIML V 1:2013, 5.12[1] ]</p>
+        </sec>
+        <sec id="term-fault-detection-output">
+          <title>3.7.6</title>
+          <p>
+            <bold>fault detection output</bold>
+          </p>
+          <p>electrical representation issued by the load cell indicating that a fault condition exists</p>
+        </sec>
+        <sec id="term-hysteresis-error">
+          <title>3.7.7</title>
+          <p>
+            <bold>hysteresis error</bold>
+          </p>
+          <p>difference in load cell output readings for the same applied force between the reading
+obtained by increasing the load from minimum load (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>), and the reading
+obtained by decreasing the load from maximum load (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>)</p>
+        </sec>
+        <sec id="term-initial-intrinsic-error">
+          <title>3.7.8</title>
+          <p>
+            <bold>initial intrinsic error</bold>
+          </p>
+          <p>intrinsic error of a measuring instrument as determined prior to performance tests and durability evaluations</p>
+          <p>[SOURCE: OIML V 1:2013, 5.11[1] ]</p>
+        </sec>
+        <sec id="term-load-cell-intrinsic-error">
+          <title>3.7.9</title>
+          <p>
+            <bold>load cell intrinsic error</bold>
+          </p>
+          <p>error resulting from a load cell, determined under reference conditions</p>
+        </sec>
+        <sec id="sec-3.7.10">
+          <title>3.7.10</title>
+          <p>
+            <bold>maximum permissible error (MPE)</bold>
+          </p>
+          <p>extreme value of measurement error, with respect to a known reference quantity value, permitted by specifications or regulations for a given measurement, measuring instrument, or measuring system</p>
+          <p>(For notes, refer to the OIML V 2-200:2012).</p>
+          <p>[SOURCE: OIML V 2-200:2012, 4.26[2] ]</p>
+        </sec>
+        <sec id="term-measurement-error">
+          <title>3.7.11</title>
+          <p>
+            <bold>measurement error</bold>
+          </p>
+          <p>measured quantity minus a reference quantity value.</p>
+          <p>(For additional notes, refer to the OIML V 2-200:2012).</p>
+          <p>[SOURCE: OIML V 2-200:2012, 2.16[2] ]</p>
+          <non-normative-note>
+            <p id="_e95c8de0-ed02-6e6e-86c1-0b70949d9a85">The term “measurement error” in this Recommendation refers to load cell measurement errors.</p>
+            <label>Note:</label>
+          </non-normative-note>
+        </sec>
+        <sec id="term-measured-quantity-_value_">
+          <title>3.7.12</title>
+          <p>
+            <bold>measured quantity (value)</bold>
+          </p>
+          <p>quantity value representing a measurement result</p>
+          <p>(For notes, refer to the OIML V 2-200:2012).</p>
+          <p>[SOURCE: OIML V 2-200:2012, 2.10[2] ]</p>
+        </sec>
+        <sec id="term-non-linearity">
+          <title>3.7.13</title>
+          <p>
+            <bold>non-linearity</bold>
+          </p>
+          <p>deviation from the average of the values of load cell signals from a straight line through zero force applied and maximum force applied</p>
+        </sec>
+        <sec id="term-repeatability-error">
+          <title>3.7.14</title>
+          <p>
+            <bold>repeatability error</bold>
+          </p>
+          <p>difference between load cell output readings taken from consecutive tests under the same loading and environmental conditions of measurement</p>
+        </sec>
+        <sec id="term-resolution">
+          <title>3.7.15</title>
+          <p>
+            <bold>resolution</bold>
+          </p>
+          <p>smallest change in a quantity being measured that causes a perceptible change in the corresponding indication</p>
+          <p>(For notes, refer to the OIML V 2-200:2012).</p>
+          <p>[SOURCE: OIML V 2-200:2012, 4.14[2] ]</p>
+        </sec>
+        <sec id="term-significant-durability-error">
+          <title>3.7.16</title>
+          <p>
+            <bold>significant durability error</bold>
+          </p>
+          <p>durability error exceeding the value specified in the applicable Recommendation</p>
+          <p>(For notes, refer to the OIML V 1:2013).</p>
+          <p>[SOURCE: OIML V 1:2013, 5.17[1] ]</p>
+        </sec>
+        <sec id="term-significant-fault">
+          <title>3.7.17</title>
+          <p>
+            <bold>significant fault</bold>
+          </p>
+          <p>fault exceeding the applicable fault limit value</p>
+          <p>(For notes, refer to the OIML V 1:2013).</p>
+          <p>[SOURCE: OIML V 1:2013, 5.14[1] ]</p>
+        </sec>
+        <sec id="term-span-stability">
+          <title>3.7.18</title>
+          <p>
+            <bold>span stability</bold>
+          </p>
+          <p>capability of a load cell to maintain the load cell output of the load cell’s measuring range over a period of use within specified limits</p>
+        </sec>
+        <sec id="term-temperature-effect-on-minimum-dead-load-output">
+          <title>3.7.19</title>
+          <p>
+            <bold>temperature effect on minimum dead load output</bold>
+          </p>
+          <p>change of the signal output under minimum dead load due to a change in ambient temperature</p>
+        </sec>
+        <sec id="term-temperature-effect-on-sensitivity">
+          <title>3.7.20</title>
+          <p>
+            <bold>temperature effect on sensitivity</bold>
+          </p>
+          <p>change in sensitivity due to a change in ambient temperature</p>
+        </sec>
+        <sec id="term-type-approval-mark">
+          <title>3.7.21</title>
+          <p>
+            <bold>type approval mark</bold>
+          </p>
+          <p>mark applied to a measuring instrument certifying its conformity to the approved type</p>
+          <p>[SOURCE: OIML V 1:2013, 3.07[1] ]</p>
+        </sec>
+      </sec>
+      <sec id="sec_3.8" sec-type="terms">
+        <label>3.8</label>
+        <title>Influences and reference conditions</title>
+        <sec id="term-disturbance">
+          <title>3.8.1</title>
+          <p>
+            <bold>disturbance</bold>
+          </p>
+          <p>influence quantity having a value within the limits specified in the relevant Recommendation, but outside the specified rated operating conditions of a measuring instrument</p>
+          <p>[SOURCE: OIML V 1:2013, 5.19[1] ]</p>
+        </sec>
+        <sec id="term-influence-factor">
+          <title>3.8.2</title>
+          <p>
+            <bold>influence factor</bold>
+          </p>
+          <p>influence quantity having a value which ranges within the rated operating conditions of a measuring instrument</p>
+          <p>(For notes, refer to the OIML V 1:2013).</p>
+          <p>[SOURCE: OIML V 1:2013, 5.17[1] ]</p>
+        </sec>
+        <sec id="term-influence-quantity">
+          <title>3.8.3</title>
+          <p>
+            <bold>influence quantity</bold>
+          </p>
+          <p>quantity that, in a direct measurement, does not affect the quantity that is actually measured, but that affects the relation between the indication and the measurement result</p>
+          <p>(For examples and notes, refer to the OIML V 2-200:2012).</p>
+          <p>[SOURCE: OIML V 2-200:2012, 2.52[2] ]</p>
+        </sec>
+        <sec id="term-rated-operating-condition-1">
+          <title>3.8.4</title>
+          <p>
+            <bold>rated operating condition</bold>
+          </p>
+          <p>operating condition that must be fulfilled during measurement in order that a measuring instrument or measuring system perform as designed</p>
+          <p>(For notes, refer to the OIML V 2-200:2012).</p>
+          <p>[SOURCE: OIML V 2-200:2012, 4.9[2] ]</p>
+        </sec>
+        <sec id="term-reference-_operating_-condition">
+          <title>3.8.5</title>
+          <p>
+            <bold>reference (operating) condition</bold>
+          </p>
+          <p>operating condition prescribed for evaluating the performance of a measuring instrument or measuring system or for comparison of measurement results</p>
+          <p>(For notes, refer to the OIML V 2-200:2012).</p>
+          <p>[SOURCE: OIML V 2-200:2012, 4.11[2] ]</p>
+        </sec>
+      </sec>
+      <sec id="_82309959-a8a0-bd49-2739-5d5015d0681b">
+        <label>3.9</label>
+        <title>Abbreviations</title>
+        <def-list id="_04e1b172-8061-f8c9-10e0-0aa20d22425a">
+          <def-item id="symbol-AC">
+            <term>AC</term>
+            <def>
+              <p id="_69eba77a-1060-2203-5c6e-2f8544cd130b">Alternating Current</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-CH">
+            <term>CH</term>
+            <def>
+              <p id="_37f5088c-0d88-d943-c8bd-b78ba84f5fa6">Cyclic Humidity</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-DC">
+            <term>DC</term>
+            <def>
+              <p id="_1a2b7af6-8e55-e477-dc90-353e427a4687">Direct Current</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-DR">
+            <term>DR</term>
+            <def>
+              <p id="_48624cbb-5430-67fe-8b34-7c15e6aab258">Minimum Deadload Output Return</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-EMC">
+            <term>EMC</term>
+            <def>
+              <p id="_8aff7e2e-9eab-611e-aebe-23806cd774ff">Electro Magnetic Compatibility</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-EUT">
+            <term>EUT</term>
+            <def>
+              <p id="_6468a846-0439-8b55-2f61-ac89cefde46a">Equipment Under Test</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-I_O">
+            <term>I/O</term>
+            <def>
+              <p id="_e9d2beb0-9e92-924f-1e94-4a0ce53b73a8">Input/Output</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-IEC">
+            <term>IEC</term>
+            <def>
+              <p id="_96b35549-dd9b-a7dd-3dcf-adf6480b42f1">International Electrotechnical Commission</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-ISO">
+            <term>ISO</term>
+            <def>
+              <p id="_2705c401-2e84-13ec-edf3-4297c9c9d49b">International Organization for Standardization</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-LC">
+            <term>LC</term>
+            <def>
+              <p id="_09d3f036-bf75-5ca8-18c0-ca661d9022ef">Load Cell</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-MPE">
+            <term>MPE</term>
+            <def>
+              <p id="_ae6c93c5-ad57-84d5-f373-ae020e9884cc">Maximum Permissible Error</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-NH">
+            <term>NH</term>
+            <def>
+              <p id="_e5051f6e-42d1-4ed6-7ace-a700d7d5f419">No Humidity</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-OIML">
+            <term>OIML</term>
+            <def>
+              <p id="_fe592cc7-ed89-2c01-40cc-623d93ac8126">International Organisation of Legal Metrology</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-OIML-1">
+            <term>OIML</term>
+            <def>
+              <p id="_3a6e0ded-d641-1d6c-fe8d-ddab2851b433">R 60-1:2021 (E)</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-SH">
+            <term>SH</term>
+            <def>
+              <p id="_a2225782-51cb-bbfe-8995-db9dc4015358">Steady-State Humidity</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-VIM">
+            <term>VIM</term>
+            <def>
+              <p id="_1f3c05fc-5ec6-108e-8fb5-e7880b3f9123">International Vocabulary of Metrology — Basic and General Concepts and Associated Terms</p>
+            </def>
+          </def-item>
+          <def-item id="symbol-VIML">
+            <term>VIML</term>
+            <def>
+              <p id="_c061b98b-5d51-bf32-07a7-603e1d9a4814">International vocabulary of terms in legal metrology</p>
+            </def>
+          </def-item>
+        </def-list>
+      </sec>
+    </sec>
+    <sec id="_d0d8d765-731f-74cb-224d-59e39370dff5">
+      <label>4</label>
+      <title>Description of load cells</title>
+      <p id="_dfdc06ce-a8c2-9442-d004-d29fc948f9fd">A load cell provides an output proportional to a force resulting from applying a load. Load cells may be used as a single transducer or applied together with other load cells in a system where the design allows such application. The term “load cell” in this Recommendation is not limited to any particular type of technology or design principle.</p>
+      <p id="_1df951c1-cdb0-b077-9387-93f321da7184">While many technologies are used in the design of load cells, those used in legal metrology applications are commonly designed to provide an electrical output relative to a mechanical input. Both analogue and digital outputs are recognised in load cells within that category. Although strain gauge technology was a primary focus in the development of R 60, it is to be understood that load cells that operate using other principles may also be evaluated under this Recommendation. Variations of transducers that operate using alternative basis of input/output may include, but are not limited to pressure (e.g. hydraulic, pneumatic), vibratory frequency and magnetic forces.</p>
+      <p id="_0480e644-5911-2e13-1a4d-3fcaf0e038a3">The term load cell may describe an elemental component/module or a somewhat more complex instrument including constituents that perform functions such as signal filtering and analogue-to-digital conversion.</p>
+    </sec>
+    <sec id="_5e7bc85b-6dbc-cb31-89d0-bd1357c24c0c">
+      <label>5</label>
+      <title>Metrological requirements</title>
+      <sec id="_a2037a09-a8b5-779a-6c72-9ea3cf4ec214">
+        <label>5.1</label>
+        <title>Principle of load cell classification</title>
+        <p id="_5e2e13e5-1f79-e4e9-13cc-4105633c6c17">The classification of load cells into specific accuracy classes is provided to facilitate their application to various measuring systems. In the application of this Recommendation, it should be recognised that the effective performance of a particular load cell may be improved by compensation means within the measuring system with which it is applied. Therefore, it is not the intention of this Recommendation to require that a load cell be of the same accuracy class as the measuring system in which it may be applied. Nor does it require that a measuring instrument, indicating in units of mass for example, use a load cell which has been approved during a separate type evaluation. All data/items found in  <xref ref-type="sec" rid="sec-5.1.1">5.1.1</xref>
+ to <xref ref-type="sec" rid="sec-5.1.7">5.1.7</xref>
+ shall be specified by the manufacturer.</p>
+        <sec id="sec-5.1.1">
+          <label>5.1.1</label>
+          <title>Accuracy classes and their symbols</title>
+          <p id="_e1a2baa0-c538-d56d-3015-a52aa40d2e84">Load cells shall be ranked according to their overall performance capabilities into one of the four accuracy classes whose designations are as follows:</p>
+          <p id="_fd0ec4ee-1c01-a35b-bfa6-d9c5bb888cef">Class A; Class B; Class C; Class D.</p>
+        </sec>
+        <sec id="sec-5.1.2">
+          <label>5.1.2</label>
+          <title>Maximum number of load cell verification intervals</title>
+          <p id="_56120abe-f391-ed70-c3b8-55fa4980b8e3">The maximum number of load cell verification intervals, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, into which
+the maximum measuring range <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (see <xref ref-type="sec" rid="sec-3.5.8">3.5.8</xref>) can be divided in a measuring system shall be within the limits presented in  <xref ref-type="table" rid="table-1">Table 1</xref>.</p>
+          <table-wrap id="table-1">
+            <label>Table 1</label>
+            <caption>
+              <title>Table 1 — Maximum number of load cell verification intervals () according to accuracy class</title>
+            </caption>
+            <table>
+              <thead>
+                <tr>
+                  <th/>
+                  <th>Class A</th>
+                  <th>Class B</th>
+                  <th>Class C</th>
+                  <th>Class D</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lower limit</td>
+                  <td>50 000</td>
+                  <td>5 000</td>
+                  <td>500</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td>Upper limit</td>
+                  <td>Unlimited</td>
+                  <td>100 000</td>
+                  <td>10 000</td>
+                  <td>1 000</td>
+                </tr>
+              </tbody>
+            </table>
+          </table-wrap>
+        </sec>
+        <sec id="_e7e525aa-ca46-556d-ce1c-0c5b17a609f2">
+          <label>5.1.3</label>
+          <title>Minimum load cell verification interval</title>
+          <p id="_cb44958e-2129-3d46-002a-7a06f5cf6b85">The minimum load cell verification interval, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, shall be specified by the manufacturer (see  <xref ref-type="sec" rid="sec-3.5.11">3.5.11</xref> in combination with <xref ref-type="sec" rid="sec-3.5.15">3.5.15</xref>).</p>
+        </sec>
+        <sec id="sec-5.1.4">
+          <label>5.1.4</label>
+          <title>Supplementary classifications</title>
+          <p id="_4b97c921-8946-17a8-b7a4-acb3805be2e7">Load cells shall also be classified by the intended manner in which a load is applied to the load cell wherever there would be a risk of confusing the manner of loading (i.e. compression loading, tension loading or universal). A load cell may bear different classifications according to the intended manner in which a load is applied to the load cell. The manner of loading for which the classification(s) applies(y) shall be specified. For multiple capacity load cells, each capacity shall be classified separately.</p>
+        </sec>
+        <sec id="sec-5.1.5">
+          <label>5.1.5</label>
+          <title>Complete load cell classification</title>
+          <p id="_061061b8-5389-3c15-10b2-7bc282f36a17">The load cell shall be classified corresponding to the following six parameters:</p>
+          <list list-type="alpha-lower">
+            <list-item>
+              <label>a)</label>
+              <p id="_3bb1dd0f-b92c-af03-2794-6378153758ba">accuracy class designation (see <xref ref-type="sec" rid="sec-5.1.1">5.1.1</xref> and <xref ref-type="sec" rid="sec-6.2.4.1">6.2.4.1</xref>);</p>
+            </list-item>
+            <list-item>
+              <label>b)</label>
+              <p id="_a2790e07-0e2b-7e9a-ef32-e3630b61934a">maximum number of load cell verification intervals (see <xref ref-type="sec" rid="sec-5.1.2">5.1.2</xref> and <xref ref-type="sec" rid="sec-6.2.4.5">6.2.4.5</xref>);</p>
+            </list-item>
+            <list-item>
+              <label>c)</label>
+              <p id="_d3dc6736-8dac-f4fc-88bd-5f48bf856d87">intended manner of the application of the load, if necessary (see <xref ref-type="sec" rid="sec-5.1.4">5.1.4</xref> and <xref ref-type="sec" rid="sec-6.2.4.2">6.2.4.2</xref>);</p>
+            </list-item>
+            <list-item>
+              <label>d)</label>
+              <p id="_ef7a6db1-a3df-2f33-6060-2f2043a06a63">special limits of working temperature, if applicable (see <xref ref-type="sec" rid="sec-6.2.4.3">6.2.4.3</xref>);</p>
+            </list-item>
+            <list-item>
+              <label>e)</label>
+              <p id="_7f119409-e349-a6ec-1759-daf783ad3e99">humidity symbol, if applicable (see <xref ref-type="sec" rid="sec-6.2.4.4">6.2.4.4</xref>); and</p>
+            </list-item>
+            <list-item>
+              <label>f)</label>
+              <p id="_62a37f7b-e210-eecd-f8a2-829467ccea60">additional characterisation information, as listed below in <xref ref-type="fig" rid="fig_4">Figure 4</xref>
+, <xref ref-type="sec" rid="sec-5.1.6">5.1.6</xref>
+ and <xref ref-type="sec" rid="sec-5.1.7">5.1.7</xref>
+.</p>
+            </list-item>
+          </list>
+          <p id="_92c9538e-9f7e-b8d4-e536-7e376039fecd">An example illustrating the six parts of the load cell classification is shown in <xref ref-type="fig" rid="fig_4">Figure 4</xref>.</p>
+          <fig id="fig_4">
+            <label>Figure 4</label>
+            <caption>
+              <title>Complete load cell classification</title>
+            </caption>
+            <graphic xlink:href="images/figure-4.svg"/>
+          </fig>
+        </sec>
+        <sec id="sec-5.1.6">
+          <label>5.1.6</label>
+          <title>Standard classification</title>
+          <p id="_fc697ce5-acfb-97c4-fcd3-61e4c916e2a2">Standard classifications shall be used; examples are shown in <xref ref-type="table" rid="table-2">Table 2</xref>.</p>
+          <table-wrap id="table-2">
+            <label>Table 2</label>
+            <caption>
+              <title>Table 2 — Examples of load cell classification</title>
+            </caption>
+            <table>
+              <thead>
+                <tr>
+                  <th>Classification symbol</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>C2</td>
+                  <td>Class C, 2 000 intervals</td>
+                </tr>
+                <tr>
+                  <td>C3 ↓ ↑ 5/35</td>
+                  <td>Class C, 3 000 intervals, compression, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>+</mml:mo><mml:mn>5</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> to <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>+</mml:mo><mml:mn>35</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></td>
+                </tr>
+                <tr>
+                  <td>C2 NH</td>
+                  <td>Class C, 2 000 intervals, not to be subjected to humidity test</td>
+                </tr>
+              </tbody>
+            </table>
+          </table-wrap>
+        </sec>
+        <sec id="sec-5.1.7">
+          <label>5.1.7</label>
+          <title>Multiple classifications</title>
+          <p id="_9cca743c-40d2-01e6-4d8b-794c0c202ecd">Load cells that have comprehensive classifications for the manner in which the load is applied to the load cell shall be accompanied by the relative information for each classification. An example is shown in  <xref ref-type="table" rid="table-3">Table 3</xref>. An illustration of the standard classification symbols, using an example, is shown in  <xref ref-type="fig" rid="fig_4">Figure 4</xref>.</p>
+          <table-wrap id="table-3">
+            <label>Table 3</label>
+            <caption>
+              <title>Table 3 — Examples of multiple classifications</title>
+            </caption>
+            <table>
+              <thead>
+                <tr>
+                  <th>Classification symbol</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>C2 ↑</td>
+                  <td>Class C, 2 000 intervals</td>
+                </tr>
+                <tr>
+                  <td>C1.5 ↓</td>
+                  <td>Class C, 1 500 intervals</td>
+                </tr>
+                <tr>
+                  <td>C1 ↓ ↑ — 5/30</td>
+                  <td>Class C, 1 000 intervals, compression, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>−</mml:mo><mml:mn>5</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> to <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>+</mml:mo><mml:mn>30</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></td>
+                </tr>
+                <tr>
+                  <td>C3 ↑ ↓ — 5/30</td>
+                  <td>Class C, 3 000 intervals, tension, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>−</mml:mo><mml:mn>5</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> to <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>+</mml:mo><mml:mn>30</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></td>
+                </tr>
+              </tbody>
+            </table>
+          </table-wrap>
+        </sec>
+      </sec>
+      <sec id="_1245599c-0970-004f-b0e6-07937a798acb">
+        <label>5.2</label>
+        <title>Measuring ranges</title>
+        <sec id="_c264459b-f414-f716-3576-f347e3ca4075">
+          <label>5.2.1</label>
+          <title>Minimum load of the measuring range ( [#&lt;Metanorma::Document::Components::Inline::AsciimathElement @text=D {min}, @  mutated after parse  =true&gt;] ) (see 3.5.12 )</title>
+          <p id="_fcf0fc1a-267e-da2f-1dcb-84396480199d">The value of the smallest load applied to a load cell during test which is expressed
+in units of mass shall not be less than <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (see <xref ref-type="sec" rid="sec-3.5.9">3.5.9</xref>).</p>
+        </sec>
+        <sec id="_b69b7b25-1638-b98b-22b9-1dd0ba75b9d9">
+          <label>5.2.2</label>
+          <title>Maximum load of the measuring range ( [#&lt;Metanorma::Document::Components::Inline::AsciimathElement @text=D {max}, @  mutated after parse  =true&gt;] ) (see 3.5.6 )</title>
+          <p id="_43b84737-8ed9-69e1-a300-64b75668f97a">The value of the largest load applied to a load cell during test which is expressed
+in units of mass shall not be greater than <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (see <xref ref-type="sec" rid="sec-3.5.5">3.5.5</xref>).</p>
+        </sec>
+      </sec>
+      <sec id="sec-5.3">
+        <label>5.3</label>
+        <title>Maximum permissible measurement errors</title>
+        <p id="_03073d38-227b-05b3-db58-1081ebc3ddbb">Under the rated operating conditions in <xref ref-type="sec" rid="sec-5.6">5.6</xref>, the maximum permissible error (MPE) shall not exceed the values stated in  <xref ref-type="sec" rid="sec-5.5">5.5</xref>.</p>
+        <p id="_da8c5abc-5ff7-815e-d3d1-ed206c9289f6">The MPE is applicable after increasing as well as decreasing the force applied (i.e. they include hysteresis).</p>
+        <sec id="_e824cc1f-1ec7-9fee-a0ed-3d200b24c418">
+          <label>5.3.1</label>
+          <title>Maximum permissible errors for each accuracy class</title>
+          <p id="_4d5dc486-c41c-ad25-1f75-d9445896b86e">The maximum permissible measurement errors for each accuracy class are related to
+the maximum number of load cell verification intervals (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>) specified for the load cell (see  <xref ref-type="sec" rid="sec-5.1.2">5.1.2</xref>) and to the actual value of the load cell verification
+interval, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
+        </sec>
+        <sec id="sec-5.3.2">
+          <label>5.3.2</label>
+          <title>Type evaluation</title>
+          <p id="_c2449cc7-1e65-b900-eef8-7a93717ef9fe">The MPE (see <xref ref-type="sec" rid="sec-3.7.10">3.7.10</xref>) on type evaluation shall be the values derived using
+the expressions contained in the left column of <xref ref-type="table" rid="table-4">Table 4</xref>. The apportioning factor,
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> shall be chosen and declared (if other than 0.7) by the manufacturer
+and shall be in the range of 0.3 to 0.8: (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>0,3</mml:mn><mml:mo>≤</mml:mo><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub><mml:mo>≤</mml:mo><mml:mn>0,8</mml:mn></mml:mstyle></mml:math></inline-formula>)<fn id="_0fd3eba8-c317-df67-6381-23bfe95a1306"><label>1</label><p>1)Associated with apportionment of error provisions contained within OIML R 76-1, 3.5.1 and 3.10.2.1 [1]; R 50-1, 2.2.33.2.2 [24]; R 51-1, 5.2.3.4 [25]; R 61-1, 5.2.3.3 [26]; R 106-1, 5.1.3.2 [27]; or R 107-1, 5.1.4.1 [28], when load cell is applied to such instruments.</p></fn>, where “m” is the value (expressed in mass)
+representing the force introduced by the load applied.</p>
+          <table-wrap id="table-4">
+            <label>Table 4</label>
+            <caption>
+              <title>Table 4 — Maximum Permissible Errors (MPE) on type evaluation</title>
+            </caption>
+            <table>
+              <thead>
+                <tr>
+                  <th>MPE (+/-)</th>
+                  <th>Load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>m</mml:mi></mml:mstyle></mml:math></inline-formula></th>
+                </tr>
+                <tr>
+                  <th>Class A</th>
+                  <th>Class B</th>
+                  <th>Class C</th>
+                  <th>Class D</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:msub>
+                            <mml:mi>p</mml:mi>
+                            <mml:mtext>LC</mml:mtext>
+                          </mml:msub>
+                          <mml:mo>×</mml:mo>
+                          <mml:mn>0,5</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>0</mml:mn>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mi>m</mml:mi>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mn>50 000</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>0</mml:mn>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mi>m</mml:mi>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mn>5 000</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>0</mml:mn>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mi>m</mml:mi>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mn>500</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>0</mml:mn>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mi>m</mml:mi>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mn>50</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:msub>
+                            <mml:mi>p</mml:mi>
+                            <mml:mtext>LC</mml:mtext>
+                          </mml:msub>
+                          <mml:mo>×</mml:mo>
+                          <mml:mn>1,0</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>50 000</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                          <mml:mo>&lt;</mml:mo>
+                          <mml:mi>m</mml:mi>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mn>200</mml:mn>
+                          <mml:mn>0</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>5 000</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                          <mml:mo>&lt;</mml:mo>
+                          <mml:mi>m</mml:mi>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mn>20</mml:mn>
+                          <mml:mn>0</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>500</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                          <mml:mo>&lt;</mml:mo>
+                          <mml:mi>m</mml:mi>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mn>2</mml:mn>
+                          <mml:mn>0</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>50</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                          <mml:mo>&lt;</mml:mo>
+                          <mml:mi>m</mml:mi>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mn>200</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:msub>
+                            <mml:mi>p</mml:mi>
+                            <mml:mtext>LC</mml:mtext>
+                          </mml:msub>
+                          <mml:mo>×</mml:mo>
+                          <mml:mn>1,5</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>200 000</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                          <mml:mo>&lt;</mml:mo>
+                          <mml:mi>m</mml:mi>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>20 000</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                          <mml:mo>&lt;</mml:mo>
+                          <mml:mi>m</mml:mi>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mn>100</mml:mn>
+                          <mml:mn>0</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>2 000</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                          <mml:mo>&lt;</mml:mo>
+                          <mml:mi>m</mml:mi>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mn>10 000</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                  <td>
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mn>200</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                          <mml:mo>&lt;</mml:mo>
+                          <mml:mi>m</mml:mi>
+                          <mml:mo>≤</mml:mo>
+                          <mml:mn>1</mml:mn>
+                          <mml:mn>0</mml:mn>
+                          <mml:mtext> v</mml:mtext>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </table-wrap>
+          <p id="_c4426222-6ea0-6230-2dad-00a08563ab06">The value of the apportioning factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> shall appear on the OIML certificate,
+if the value is not equal to 0.7. If the apportioning factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> is not specified on the certificate then the value 0.7 shall be assumed. The maximum permissible error may be positive or negative and is applicable to both increasing and decreasing loads.</p>
+          <p id="_be7662fe-62ac-92ab-32bb-61ead7c3e43d">The limits of error shown include errors due to non-linearity, hysteresis and temperature effect on sensitivity over certain temperature ranges, specified in  <xref ref-type="sec" rid="sec-5.6.1.1">5.6.1.1</xref> and  <xref ref-type="sec" rid="sec-5.6.1.2">5.6.1.2</xref>. Further errors, not included in the <xref ref-type="table" rid="table-4">Table 4</xref> limits of error, are treated separately.</p>
+        </sec>
+      </sec>
+      <sec id="_1e46917b-2704-2773-fa17-3efa497d6376">
+        <label>5.4</label>
+        <title>Repeatability error</title>
+        <p id="_8082d16c-7ed2-52d1-cf50-161975d33cb5">The maximum difference between the results of five identical load applications for classes A and B and of three identical load applications for classes C and D shall not be greater than the absolute value of the MPE for that load.</p>
+      </sec>
+      <sec id="sec-5.5">
+        <label>5.5</label>
+        <title>Permissible variation of results under reference conditions</title>
+        <sec id="sec-5.5.1">
+          <label>5.5.1</label>
+          <title>Creep</title>
+          <p id="_bbbe4707-4a78-f530-fd9c-129a0e14de2b">The difference between the reading taken upon the application of a maximum load (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>)
+and the reading observed within and after 30 minutes of exposure of 90 % to 100 %
+of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> shall not exceed 0.7 times the absolute value of MPE for the applied load.</p>
+          <p id="_ba9036a6-6b77-7a90-f805-0cf095695441">Regardless of any value declared by the manufacturer for the apportioning factor,
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, the MPE for creep shall be determined from <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>t</mml:mi><mml:mi>a</mml:mi><mml:mi>b</mml:mi><mml:mo>≤</mml:mo><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mstyle></mml:math></inline-formula> using
+the apportioning factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mn>0,7</mml:mn></mml:mstyle></mml:math></inline-formula>.</p>
+          <p id="_7ebfcaf1-ac16-500b-f104-cbf50e0e46f3">The difference in readings taken after 20 minutes of exposure to 90 % to 100 % of
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> and at 30 minutes of exposure to 90 % to 100 % of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> shall not exceed 0.15 times the absolute value of MPE.</p>
+          <non-normative-example>
+            <label>EXAMPLE 1</label>
+            <p id="_5963c84e-b972-44ab-74e8-9767d44e9a96">Load cell class: C3 (declared by the manufacturer)</p>
+            <p id="_59959dba-f4a7-6170-9818-60efdcdd5fff">Apportioning factor: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mn>0,7</mml:mn></mml:mstyle></mml:math></inline-formula></p>
+            <p id="_94de4de5-af51-23bb-73f4-f0285b4639b5">Applied load: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (test specification)</p>
+            <p id="_5926c37a-2ae7-7e1e-cf82-5416a327ce96">Maximum difference between the reading <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>=</mml:mo><mml:mn>0,7</mml:mn><mml:mo>×</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mn>0,7</mml:mn><mml:mo>×</mml:mo><mml:mn>1,5</mml:mn><mml:mi>v</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mn>0,735</mml:mn><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula></p>
+          </non-normative-example>
+          <non-normative-example>
+            <label>EXAMPLE 2</label>
+            <p id="_664dd085-4c10-2be3-892a-dcee85d46770">Load cell class: C3 (declared by the manufacturer)</p>
+            <p id="_a97356ae-2a1a-47f3-cdbc-bf33fb474602">Apportioning factor: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mn>0,7</mml:mn></mml:mstyle></mml:math></inline-formula></p>
+            <p id="_c2f8e950-b176-e174-d318-66556925fc56">Applied load: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (test specification)</p>
+            <p id="_b6203912-4587-b3f8-b6ea-b0bb681cff18">Maximum difference between the initial reading <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>=</mml:mo><mml:mn>0,15</mml:mn><mml:mo>×</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mn>0,7</mml:mn><mml:mo>×</mml:mo><mml:mn>1,5</mml:mn><mml:mtext> v</mml:mtext><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mn>0,157 5</mml:mn><mml:mtext> v</mml:mtext></mml:mstyle></mml:math></inline-formula></p>
+          </non-normative-example>
+        </sec>
+        <sec id="_15c5946d-4d52-90fe-a444-16baa68e7249">
+          <label>5.5.2</label>
+          <title>Minimum dead load output return (DR) (see 3.5.10 )</title>
+          <p id="_085fbee3-aa5c-93a7-1f86-eca927899993">The difference between the initial reading of the minimum load output (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>)
+and the reading of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> at the conclusion of the creep test (<xref ref-type="sec" rid="sec-5.5.1">5.5.1</xref>),
+shall not exceed half the value of the load cell verification interval
+(<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>0,5</mml:mn><mml:mtext> v</mml:mtext></mml:mstyle></mml:math></inline-formula>).</p>
+          <non-normative-note>
+            <label>NOTE</label>
+            <p id="_04ef11f6-2541-ea71-7fab-31ab8ea35ac9">It should be noted that DR is the minimum dead load output return expressed in mass units (g, kg, t). DR has to be adjusted in a value expressed in load cell verification intervals, v.</p>
+          </non-normative-note>
+        </sec>
+      </sec>
+      <sec id="sec-5.6">
+        <label>5.6</label>
+        <title>Influence quantities (Rated operating conditions)</title>
+        <p id="_aa85632a-f14f-542f-1e2e-277478004a1a">Load cells shall be evaluated under the conditions specified in <xref ref-type="sec" rid="sec-5.6.1">5.6.1</xref>
+ to <xref ref-type="sec" rid="sec-5.6.3">5.6.3</xref>
+. An evaluation may include additional special testing performed under conditions that vary from those specified in  <xref ref-type="sec" rid="sec-5.6.1">5.6.1</xref>
+ to <xref ref-type="sec" rid="sec-5.6.3">5.6.3</xref>
+ if requested and specified by the applicant submitting the load cell for evaluation. This special testing may be performed in addition to, but not instead of testing under the specified conditions in  <xref ref-type="sec" rid="sec-5.6.1">5.6.1</xref>
+ to <xref ref-type="sec" rid="sec-5.6.3">5.6.3</xref>
+.</p>
+        <p id="_11476318-41e7-1741-c915-7e33883a419f">Load cells that are equipped with functions typically performed by complete instruments may be required to be evaluated against additional requirements contained in other OIML Recommendations for those complete instruments. These additional evaluations are outside the scope of this Recommendation (see  <xref ref-type="sec" rid="sec-2.3">2.3</xref>
+ and <xref ref-type="fig" rid="fig_2">Figure 2</xref>
+).</p>
+        <sec id="sec-5.6.1">
+          <label>5.6.1</label>
+          <title>Temperature</title>
+          <sec id="sec-5.6.1.1">
+            <label>5.6.1.1</label>
+            <title>Temperature limits</title>
+            <p id="_b102431d-719e-282e-16c5-eda73a84e646">Excluding temperature effects on minimum dead load output, the load cell shall perform
+within the limits of error in <xref ref-type="sec" rid="sec-5.3.2">5.3.2</xref> over the temperature range of
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>−</mml:mo><mml:mn>10</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> to <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>+</mml:mo><mml:mn>40</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, unless otherwise specified
+as in <xref ref-type="sec" rid="sec-5.6.1.2">5.6.1.2</xref>.</p>
+            <non-normative-note>
+              <label>NOTE</label>
+              <p id="_ca6de3f4-6714-bfae-532a-3a880a187c98">National legislation may prescribe alternative temperature limits outside of the range specified above as appropriate for local climatic conditions and the environmental conditions that can be anticipated.</p>
+            </non-normative-note>
+          </sec>
+          <sec id="sec-5.6.1.2">
+            <label>5.6.1.2</label>
+            <title>Special limits</title>
+            <p id="_cdbdee2a-9918-0ee0-d2ef-d71a3ca60f7e">Load cells for which particular limits of working temperature are specified shall satisfy, within those ranges, the conditions defined in  <xref ref-type="sec" rid="sec-5.3.2">5.3.2</xref>. The span of these ranges shall be at least:</p>
+            <p id="_67358827-1b3b-cf4d-afa4-a8bfb1184019"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>5</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> for load cells of class A;
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>15</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> for load cells of class B;
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> for load cells of classes C and D.</p>
+          </sec>
+          <sec id="_40bfb4f3-89d9-44e2-4ede-e4ff8f6ea2e3">
+            <label>5.6.1.3</label>
+            <title>Temperature effect on minimum dead load output</title>
+            <p id="_6cc79a16-3945-1bb1-bbde-2f7906ba053e">The minimum dead load output of the load cell over the temperature range, as specified in  <xref ref-type="sec" rid="sec-5.6.1.1">5.6.1.1</xref> or <xref ref-type="sec" rid="sec-5.6.1.2">5.6.1.2</xref>, shall not vary by an amount greater than the
+apportioning factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, times the minimum load cell verification interval,
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, for any change in ambient temperature of:</p>
+            <p id="_e9b59f30-9724-1162-2b7f-6d7957d04916"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> for load cells of class A;
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>5</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> for load cells of class B, C and D.</p>
+          </sec>
+        </sec>
+        <sec id="_76c5e966-a721-50b9-8014-d647a1a284f4">
+          <label>5.6.2</label>
+          <title>Barometric pressure</title>
+          <p id="_851b15fd-bf48-03a3-1a70-f2e829ecbbf5">The output of the load cell shall not vary by an amount greater than the minimum
+load cell verification interval, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, for any incremental change in
+barometric pressure equivalent to <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>1</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kPa"><mml:mstyle mathvariant="normal"><mml:mi>kPa</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>.</p>
+        </sec>
+        <sec id="sec-5.6.3">
+          <label>5.6.3</label>
+          <title>Humidity</title>
+          <p id="_42dfaedc-0cac-8a84-4b89-22944fccc2bd">With respect to humidity conditions, this Recommendation defines 3 humidity classes: CH (cyclic humidity — as standard), NH (no humidity), and SH (steady-state humidity). In the case of class NH or SH, the class designation shall be marked on the load cell. In the case of class CH, class designation marking of the load cell is not mandatory.</p>
+          <sec id="_36e183d9-4fe1-a496-45c8-f28b1a66e736">
+            <label>5.6.3.1</label>
+            <title>Humidity error — CH or unmarked load cells</title>
+            <p id="_9298b8eb-4de9-c086-4791-94bc729b4fe3">This requirement is only applicable to load cells marked CH or with no humidity symbol marking and not applicable to load cells marked NH or SH.</p>
+            <p id="_651a47f5-da4c-2982-feff-56ea4d6e94e5">The influence of exposure to temperature cycles specified in R 60-2, 2.10.5.12 <xref ref-type="bibr" rid="R060-2">R060-2 / current-metanorma-collection/R060-2,  2.10.5.12</xref> on
+the load cell output for minimum load shall not be greater than 4 % of the difference
+between the output on the maximum capacity, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, and that at the minimum
+dead load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+            <p id="_a46a8287-318b-b711-6673-87cbc0b3a6c8">The influence of exposure to temperature cycles specified in R 60-2, 2.10.5.12 on the load cell output for the maximum load shall not be greater than the load cell verification interval, v.</p>
+          </sec>
+          <sec id="_f8ff51bb-cbf2-2491-b30d-6f08725178fe">
+            <label>5.6.3.2</label>
+            <title>Humidity error — SH marked load cells</title>
+            <p id="_0149b1ab-2a16-9305-a087-d0e7a917bb95">This requirement is only applicable to load cells marked SH and is not applicable to load cells marked NH or CH or with no humidity symbol marking.</p>
+            <p id="_a09bfbd7-c7cd-dd8c-8cfa-22e7d33f6744">A load cell shall meet the MPE applicable to the load applied as specified in <xref ref-type="table" rid="table-4">Table 4</xref>, when exposed to conditions of relative humidity variations as specified in R 60-2, 2.10.6.11.</p>
+          </sec>
+        </sec>
+      </sec>
+      <sec id="_8e7e5a10-a9e0-7632-8189-e3a3f7344368">
+        <label>5.7</label>
+        <title>Requirements for analogue-active and digital load cells</title>
+        <sec id="sec-5.7.1">
+          <label>5.7.1</label>
+          <title>General requirements</title>
+          <p id="_aab261a0-b5cb-c4e3-c3bc-d3703d9cdf13">In addition to the other requirements of this Recommendation, analogue-active load
+cells shall comply with the following requirements. The MPE shall be determined using
+an apportioning factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> greater than or equal to 0.7 and less than
+or equal to 0.8 (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>0,7</mml:mn><mml:mo>≤</mml:mo><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub><mml:mo>≤</mml:mo><mml:mn>0,8</mml:mn></mml:mstyle></mml:math></inline-formula>) substituted for the apportioning
+factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, that is declared by the manufacturer and applied to the other requirements.</p>
+          <p id="_b0cdd95d-f482-2bf1-4694-65caa467bfd0">If a digital load cell equipped with further data processing (<xref ref-type="other" rid="sec-3.1.3.4">3.1.3.4</xref>) is configured with substantial additional electronic functions (e.g. display of indications, frequency counter) that are typical of an electronic weighing instrument, it may be considered outside the scope of this Recommendation and the load cell may need to undergo additional evaluation against requirements contained in other OIML Recommendations which are applicable to weighing instruments.</p>
+          <sec id="sec-5.7.1.1">
+            <label>5.7.1.1</label>
+            <title>Faults</title>
+            <p id="_7c8f7d9e-910f-2bcb-e8e3-119bcb461b48">An analogue-active load cell shall be designed and manufactured such that when it is exposed to electrical disturbances either:</p>
+            <list list-type="alpha-lower">
+              <list-item>
+                <label>a)</label>
+                <p id="_d13213df-a5e5-2eb2-3ad1-a2e434d39ec8">significant faults do not occur; or</p>
+              </list-item>
+              <list-item>
+                <label>b)</label>
+                <p id="_0afa8b22-0d03-3da4-dee3-c879f808f64c">significant faults are detected and acted upon.</p>
+              </list-item>
+            </list>
+            <p id="_534259c3-26f7-1dc4-cae9-af423cdf1f89">If significant faults do occur, and the load cell is equipped with the intelligence to detect and act upon significant faults through the instrument that the load cell is installed in, the reporting of and acting upon significant faults would then be evaluated under the appropriate Recommendation for the complete instrument.</p>
+            <p id="_7ac7b280-e968-e464-4e9c-419ee5b5475d">Messages of significant faults should not be confused with other messages presented.</p>
+            <non-normative-note>
+              <label>NOTE</label>
+              <p id="_3561ec44-e8ab-5734-57c5-33584d63fe11">A fault in value that is equal to or smaller than the load cell minimum verification
+interval, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, is allowed.</p>
+            </non-normative-note>
+          </sec>
+          <sec id="sec-5.7.1.2">
+            <label>5.7.1.2</label>
+            <title>Acting upon significant faults</title>
+            <p id="_b7b18227-1519-06a2-0c2a-e7991e415757">When a significant fault has been detected, either the load cell shall be made inoperative automatically or a fault detection output shall be issued automatically. This fault detection output shall continue until the fault has been resolved.</p>
+          </sec>
+          <sec id="sec-5.7.1.3">
+            <label>5.7.1.3</label>
+            <title>Durability</title>
+            <p id="_757a11fa-7a1c-78b0-61a1-6ff30ceafd22">The load cell shall be suitably durable so that the requirements of this Recommendation may be met in accordance with the intended use of the load cell.</p>
+          </sec>
+          <sec id="_416f7900-079b-e42d-bffd-a76a724ffbe8">
+            <label>5.7.1.4</label>
+            <title>Compliance with requirements</title>
+            <p id="_a3ec46fb-bd0f-c251-57cd-9df0e44d349d">An analogue-active load cell is presumed to comply with the requirements in <xref ref-type="sec" rid="sec-5.7.1.1">5.7.1.1</xref>
+ and <xref ref-type="sec" rid="sec-5.7.1.3">5.7.1.3</xref>
+, if it passes the examinations specified in <xref ref-type="sec" rid="sec-5.7.2">5.7.2</xref> and R 60-2, 2.10.7.</p>
+          </sec>
+          <sec id="_e92246ee-48f0-aa68-219d-15959460824a">
+            <label>5.7.1.5</label>
+            <title>Application of the requirements in 5.7.1.1</title>
+            <p id="_ae0959f9-63d5-c5ec-fbb5-8e1a5eaf2899">The requirements in <xref ref-type="sec" rid="sec-5.7.1.1">5.7.1.1</xref> may be applied separately to each individual cause or significant fault. The choice of whether  <xref ref-type="other" rid="item-5.7.1.1-a">5.7.1.1 a)</xref> or <xref ref-type="other" rid="item-5.7.1.1-b">5.7.1.1 b)</xref> is applied is left to the manufacturer.</p>
+          </sec>
+        </sec>
+        <sec id="sec-5.7.2">
+          <label>5.7.2</label>
+          <title>Influence quantities</title>
+          <sec id="_5ef52170-c7a2-afc7-63dd-24a41b51e998">
+            <label>5.7.2.1</label>
+            <title>Warm-up time</title>
+            <p id="_74880f24-3473-9a76-05f3-03b47e334ae8">During the designed warm-up time of an analogue-active load cell there shall be no transmission of measurement results.</p>
+          </sec>
+          <sec id="_5fb83eb2-2e76-ef13-f433-e4151b53c6b3">
+            <label>5.7.2.2</label>
+            <title>Mains power supply (AC)</title>
+            <p id="_fa8cce93-dea6-feae-9883-c460d4b2c682">An analogue-active load cell that operates from a mains power supply shall be designed to comply with the metrological requirements if the mains power supply varies in voltage from -15 % to +10 % of the supply voltage.</p>
+          </sec>
+          <sec id="_70a0a550-6739-6e24-1b34-1b3a34fb993e">
+            <label>5.7.2.3</label>
+            <title>Battery power supply (DC)</title>
+            <p id="_1e48767d-ce5a-36b6-8a30-c7db964fb448">An analogue-active load cell that operates from a battery power supply shall either continue to function correctly, or not provide a measurement result whenever the voltage is below the value specified by the manufacturer.</p>
+          </sec>
+          <sec id="_731ae921-a446-9ac0-2cce-cfdb4c939963">
+            <label>5.7.2.4</label>
+            <title>Maximum allowable variations during voltage variations</title>
+            <p id="_969825f3-5f88-8a24-2d04-5d2d71358a3f">All functions shall operate as designed.</p>
+            <p id="_b827976f-833f-e4a9-0927-5ec17f364b20">All measurement results shall be within maximum permissible errors.</p>
+          </sec>
+          <sec id="_5fbb9d99-0272-5f0f-0ac8-6b5da9f62cec">
+            <label>5.7.2.5</label>
+            <title>Disturbances</title>
+            <p id="_4119df2f-c857-db06-8b5f-9dfe3dc51584">When an analogue-active load cell is subjected to the disturbances specified in R 60-2, 2.10.7.5 to 2.10.7.10 (also summarised in  <xref ref-type="table" rid="table-5">Table 5</xref>), the difference between the load cell output due to a disturbance and the load cell output without disturbance (fault) shall satisfy the conditions in  <xref ref-type="sec" rid="sec-5.7.1.1">5.7.1.1</xref>.</p>
+            <table-wrap id="table-5">
+              <label>Table 5</label>
+              <caption>
+                <title>Table 5 — Influence factors and disturbances</title>
+              </caption>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Test</th>
+                    <th>Subclause R 60-2, 2.10 test procedure</th>
+                    <th>
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:msub>
+                              <mml:mi>p</mml:mi>
+                              <mml:mtext>LC</mml:mtext>
+                            </mml:msub>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                      <fn id="_10b91117-51c7-68cb-bdfe-1835f49613c2">
+                        <label>a</label>
+                        <p>a p LC = 0,7 shall be used for analogue-active load cells during influence factors tests.</p>
+                      </fn>
+                    </th>
+                    <th>Characteristic under test</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Warm-up time</td>
+                    <td>2.10.7.3</td>
+                    <td>1.0</td>
+                    <td>Influence factor</td>
+                  </tr>
+                  <tr>
+                    <td>Power voltage variations</td>
+                    <td>2.10.7.4</td>
+                    <td>Influence factor</td>
+                  </tr>
+                  <tr>
+                    <td>Short-time power reductions</td>
+                    <td>2.10.7.5</td>
+                    <td>Disturbance</td>
+                  </tr>
+                  <tr>
+                    <td>Bursts (electrical fast transients)</td>
+                    <td>2.10.7.6</td>
+                    <td>Disturbance</td>
+                  </tr>
+                  <tr>
+                    <td>Surge</td>
+                    <td>2.10.7.7</td>
+                    <td>Disturbance</td>
+                  </tr>
+                  <tr>
+                    <td>Electrostatic discharge</td>
+                    <td>2.10.7.8</td>
+                    <td>Disturbance</td>
+                  </tr>
+                  <tr>
+                    <td>Electromagnetic susceptibility</td>
+                    <td>2.10.7.9</td>
+                    <td>Disturbance</td>
+                  </tr>
+                  <tr>
+                    <td>Immunity to conducted electromagnetic fields</td>
+                    <td>2.10.7.10</td>
+                    <td>Disturbance</td>
+                  </tr>
+                  <tr>
+                    <td>Span stability</td>
+                    <td>2.10.7.11</td>
+                    <td>Influence factor</td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <sec id="_8b6ae347-e54e-2a0a-a26d-650a7d24584b">
+            <label>5.7.2.6</label>
+            <title>Span stability: maximum allowable variation requirements (not applicable to class A load cells)</title>
+            <p id="_a53b1d7a-f127-38c3-f063-9d9a47809bde">When an analogue-active load cell is subjected to the span stability test specified
+in R 60-2, 2.10.7.11, the variation in the load cell span measurement results shall
+not exceed the greater of: half the load cell verification interval; or half the
+absolute value of the MPE for the applied test load <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
+          </sec>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="_1d4048e2-09f8-7159-d379-23889d33583c">
+      <label>6</label>
+      <title>Technical requirements</title>
+      <sec id="_405195a5-1845-b5e9-584b-2d39e6b3e057">
+        <label>6.1</label>
+        <title>Software</title>
+        <p id="_cbe29504-87de-97ec-0efc-78c1754746c9">Provision shall be made for appropriate sealing by mechanical, electronic and/or cryptographic means, making any change that affects the metrological integrity of the device impossible or evident. Any embedded programming (i.e. firmware) that influences the raw count output of the load cell will be evaluated under the terms of this Recommendation. In addition, if the software modifies load cell performance, not exceeding the functions of analogue to digital conversion and the linearization of the load cell output, then that software shall be evaluated under the terms in this Recommendation and in accordance with OIML D 31 [8]. Any weighing instrument function shall be evaluated under other appropriate Recommendations for weighing instruments.</p>
+        <p id="_369f159f-5717-a07a-fc4b-c1b2c9c14208">Functionality of any software which is not covered by this Recommendation, e.g. functionalities of weighing instruments, is outside the scope of this Recommendation and is therefore not evaluated. It may be required to undergo additional evaluations against other requirements contained in the applicable OIML Recommendations for weighing instruments.</p>
+        <p id="_52658957-d3a6-740e-34a7-1f797f497328">The requirements which are relevant to the evaluation of load cells and provided in OIML D 31 [8] shall be fulfilled for the load cell by taking into account the following aspects.</p>
+        <list list-type="alpha-lower">
+          <list-item>
+            <label>a)</label>
+            <p id="_e81db825-4c78-2342-bb48-fae39dd29bbf">In general, for load cells, the severity level I, examined with validation procedure A, is required.</p>
+          </list-item>
+          <list-item>
+            <label>b)</label>
+            <p id="_95771318-c724-e4e5-4f61-709f4294466c">For legally relevant software of digital load cells the following statements according to OIML D 31 [8] shall be applied.</p>
+            <list list-type="arabic">
+              <list-item>
+                <label>1)</label>
+                <p id="_0fa16ba9-981b-da1e-530b-0e6c7f90a4ac">The exception described in OIML D 31, 5.1.1 [8] for an imprint of the software identification is allowed.</p>
+              </list-item>
+              <list-item>
+                <label>2)</label>
+                <p id="_2dc12f81-710a-fc18-aa64-f7187936dd2b">The level of conformity of manufactured devices to the approved type is according to OIML D 31, 5.2.5 (subclause a) [8].</p>
+              </list-item>
+              <list-item>
+                <label>3)</label>
+                <p id="_abace09f-c15c-3f02-812f-4142c06d597e">Updating the legally relevant software of a load cell in the field is possible via verified or traced update according to OIML D 31, 5.2.6.2 and 5.2.6.3 [8].</p>
+              </list-item>
+              <list-item>
+                <label>4)</label>
+                <p id="_5ed913c3-8cbe-29f6-19cd-54221b1c893f">The software documentation shall include descriptions according to the applicable requirements of OIML D 31, 6.1.1 [8].</p>
+              </list-item>
+            </list>
+          </list-item>
+        </list>
+        <p id="_395b554d-61ff-7874-0a9b-32a56f70b8b1">The validation procedures are described in OIML D 31, 6.4 [8].</p>
+      </sec>
+      <sec id="_efcd3192-5fd1-10d8-d839-acf8caf6f671">
+        <label>6.2</label>
+        <title>Inscriptions and presentation of load cell information</title>
+        <p id="_013522ca-f3a2-9d57-c6e0-9e143cc12f00">Technical information markings including load cell classifications as indicated in <xref ref-type="sec" rid="sec-5.1.5">5.1.5</xref> must be specified for the load cell(s).</p>
+        <sec id="_36e85824-e2da-8278-c22e-7f662125cd92">
+          <label>6.2.1</label>
+          <title>Mandatory markings on the load cell</title>
+          <p id="_78fef056-3ac6-0d1d-1306-31ab654f1ae4">The following mandatory markings shall be clearly and indelibly marked on the load cell. When a sticker or data plate is used it shall be impossible to remove them without damaging them.</p>
+          <list list-type="alpha-lower">
+            <list-item>
+              <label>a)</label>
+              <p id="_ac1fc5c5-f7c1-fbfd-6e77-96dfe6d84b1c">Manufacturer’s name or trade mark</p>
+            </list-item>
+            <list-item>
+              <label>b)</label>
+              <p id="_4efd1862-7b5e-a76d-61fc-cef74cf15afc">Manufacturer’s type designation or load cell model</p>
+            </list-item>
+            <list-item>
+              <label>c)</label>
+              <p id="_4e9cea21-3aa2-1373-030f-3cec1918af9a">Serial number</p>
+            </list-item>
+            <list-item>
+              <label>d)</label>
+              <p id="_dab801af-5fd3-f94b-8393-f92cd43468aa">Maximum capacity as: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mtext>(in units g, kg, t)</mml:mtext></mml:mstyle></mml:math></inline-formula></p>
+            </list-item>
+            <list-item>
+              <label>e)</label>
+              <p id="_6f1b7398-dc95-ed66-720b-e42e8c13bd78">Year of production</p>
+            </list-item>
+            <list-item>
+              <label>f)</label>
+              <p id="_59a4c2bf-5ec0-81d5-9c6b-24cc9c493e8c">Type approval mark (if applicable)</p>
+            </list-item>
+          </list>
+          <p id="_98c33415-0ca7-b659-2ec4-aac863750aa9">If due to the limitation of the size of the load cell, it is impossible to apply all the mandatory markings, the manufacturer’s name or trade mark, the load cell type designation, the serial number, and the maximum capacity shall be provided as a minimum on the load cell itself. All other mandatory information shall be provided in an accompanying document supplied by the manufacturer and submitted to the user. Where such a document is provided, the information required in  <xref ref-type="sec" rid="sec-6.2.2">6.2.2</xref> shall also be given therein.</p>
+        </sec>
+        <sec id="sec-6.2.2">
+          <label>6.2.2</label>
+          <title>Mandatory additional information</title>
+          <p id="_ab612b54-5a0f-bcac-45ad-f2a5b560bd0c">The following mandatory information shall be provided in a document accompanying the load cell supplied by the manufacturer and submitted to the user or, if space permits, they may be marked on the load cell. Where the information provided is associated with a specific unit of measure, the unit (g, kg, t) shall also be specified.</p>
+          <list list-type="alpha-lower">
+            <list-item>
+              <label>a)</label>
+              <p id="_2ef620f5-7ddd-570e-c870-2246d43f8661">Manufacturer’s name or trade mark</p>
+            </list-item>
+            <list-item>
+              <label>b)</label>
+              <p id="_a132212d-ec00-515b-1bcd-fddd4841a70e">Manufacturer’s type designation or load cell model</p>
+            </list-item>
+            <list-item>
+              <label>c)</label>
+              <p id="_bb012891-2e49-3718-a0db-9e3705267737">Accuracy class(es); see <xref ref-type="sec" rid="sec-6.2.4.1">6.2.4.1</xref></p>
+            </list-item>
+            <list-item>
+              <label>d)</label>
+              <p id="_0b4e1660-a4ef-f02f-f4af-7665f22009d9">Type of load; see <xref ref-type="sec" rid="sec-6.2.4.2">6.2.4.2</xref></p>
+            </list-item>
+            <list-item>
+              <label>e)</label>
+              <p id="_345de483-48cb-af86-8f5f-ed773bb0c77a">Working temperature when required; see <xref ref-type="sec" rid="sec-6.2.4.3">6.2.4.3</xref></p>
+            </list-item>
+            <list-item>
+              <label>f)</label>
+              <p id="_a4756f0b-e148-532c-3138-14e7f7878f13">Humidity symbol when required; see <xref ref-type="sec" rid="sec-6.2.4.4">6.2.4.4</xref></p>
+            </list-item>
+            <list-item>
+              <label>g)</label>
+              <p id="_a8502ce1-1760-658e-67b3-62296e27c12b">Maximum capacity as: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>=</mml:mo></mml:mstyle></mml:math></inline-formula></p>
+            </list-item>
+            <list-item>
+              <label>h)</label>
+              <p id="_30267ea3-ed00-d7ea-3aa5-39be0ff4c6b7">Minimum dead load as: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub><mml:mo>=</mml:mo></mml:mstyle></mml:math></inline-formula></p>
+            </list-item>
+            <list-item>
+              <label>i)</label>
+              <p id="_b9f0276a-4e03-c675-80e4-c3c9d7307999">Safe load limit as: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>lim</mml:mtext></mml:msub><mml:mo>=</mml:mo></mml:mstyle></mml:math></inline-formula></p>
+            </list-item>
+            <list-item>
+              <label>j)</label>
+              <p id="_6499978e-7018-522e-d05a-f7f9ce7d820e">Minimum load cell verification interval as <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (or relative minimum
+load cell verification interval, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi></mml:mstyle></mml:math></inline-formula>) =</p>
+            </list-item>
+            <list-item>
+              <label>k)</label>
+              <p id="_13f68ebc-0147-27ba-97d3-3294b7531f3e">Value of the apportioning factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>p</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, if not equal to 0.7; and</p>
+            </list-item>
+            <list-item>
+              <label>l)</label>
+              <p id="_f73426f8-a7cb-6d0a-ee4b-e099e51ede2b">Other pertinent conditions that must be observed to obtain the specified performance (for example, electrical characteristics of the load cell such as output rating, input impedance, supply voltage, cable details, mounting torque, etc.).</p>
+            </list-item>
+          </list>
+        </sec>
+        <sec id="_a963a066-2101-7c5a-ce7a-fee315885f5b">
+          <label>6.2.3</label>
+          <title>Non-mandatory additional information</title>
+          <p id="_f3f9efab-eec2-11a4-4e57-c397b8c17145">In addition to the information required in <xref ref-type="sec" rid="sec-6.2.2">6.2.2</xref>, the following information may optionally be specified:</p>
+          <list list-type="alpha-lower">
+            <list-item>
+              <label>a)</label>
+              <p id="_3d598a29-a4bb-061a-db0e-f84e48ae7f88">for a weighing instrument (for example a multiple range instrument according to
+OIML R 76 [1]), the relative <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi></mml:mstyle></mml:math></inline-formula>, where
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>/</mml:mo><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (see <xref ref-type="sec" rid="sec-3.5.15">3.5.15</xref>);</p>
+            </list-item>
+            <list-item>
+              <label>b)</label>
+              <p id="_7dec3063-cbb9-d4d9-9649-b8b5ddc2e79d">for a weighing instrument (for example a multi-interval instrument according to
+OIML R 76) [1], the relative DR, Z, where
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Z</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mo>/</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mn>2</mml:mn><mml:mo>×</mml:mo><mml:mi>D</mml:mi><mml:mi>R</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mstyle></mml:math></inline-formula> (see <xref ref-type="sec" rid="sec-3.5.14">3.5.14</xref>) and the value of DR (see  <xref ref-type="sec" rid="sec-3.5.10">3.5.10</xref>) is set at the maximum permissible minimum dead load output return according to R 60-2, 2.10.1;</p>
+            </list-item>
+            <list-item>
+              <label>c)</label>
+              <p id="_ede29593-4976-f076-d868-9daba6cb9d55">other information considered necessary or useful by the manufacturer.</p>
+            </list-item>
+          </list>
+        </sec>
+        <sec id="_1ad55728-eac2-d55d-00a4-60992f0ef4bc">
+          <label>6.2.4</label>
+          <title>Specific markings</title>
+          <sec id="sec-6.2.4.1">
+            <label>6.2.4.1</label>
+            <title>Accuracy class designation</title>
+            <p id="_66b320da-4a02-2131-cb41-c95f53af54e2">Class A load cells shall be designated by the character “A”, class B by “B”, class C by “C” and class D by the character “D”.</p>
+          </sec>
+          <sec id="sec-6.2.4.2">
+            <label>6.2.4.2</label>
+            <title>Designation of the type of load applied to the load cell</title>
+            <p id="_e39347d7-1dae-83f8-fd53-ed26b3fa7e16">The designation of the type of load applied to the load cell shall be specified when it is not clearly apparent from the load cell construction, using the symbols shown in  <xref ref-type="table" rid="table-6">Table 6</xref>.</p>
+            <table-wrap id="table-6">
+              <label>Table 6</label>
+              <caption>
+                <title>Table 6 — Symbols for different types of load transmission principles</title>
+              </caption>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Tension</td>
+                    <td>↑ ↓</td>
+                  </tr>
+                  <tr>
+                    <td>Compression</td>
+                    <td>↓ ↑</td>
+                  </tr>
+                  <tr>
+                    <td>Beam</td>
+                    <td>↑ or ↓</td>
+                  </tr>
+                  <tr>
+                    <td>Universal</td>
+                    <td>↑ ↓ ↓ ↑</td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <sec id="sec-6.2.4.3">
+            <label>6.2.4.3</label>
+            <title>Working temperature designation</title>
+            <p id="_dacc9a25-32f1-01c1-1b3d-8a64bc71ecdd">The special limits of working temperature, as referred to in <xref ref-type="sec" rid="sec-5.6.1.2">5.6.1.2</xref>, shall be specified when the load cell cannot perform within the limits of error in  <xref ref-type="sec" rid="sec-5.3">5.3</xref>
+ to <xref ref-type="sec" rid="sec-5.6">5.6</xref>
+ over the temperature range specified in  <xref ref-type="sec" rid="sec-5.6.1.1">5.6.1.1</xref>. In such cases, the limits
+of temperature shall be designated in degrees Celsius (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>).</p>
+          </sec>
+          <sec id="sec-6.2.4.4">
+            <label>6.2.4.4</label>
+            <title>Humidity symbols</title>
+            <list list-type="alpha-lower">
+              <list-item>
+                <label>a)</label>
+                <p id="_5c131182-f4ad-7d04-e359-5b43002d4d76">A load cell not designed to meet performance criteria evaluated under R 60-2, 2.10.5 or 2.10.6 shall be marked by the symbol NH.</p>
+              </list-item>
+              <list-item>
+                <label>b)</label>
+                <p id="_05634c94-f1cf-2330-bbab-971f612c5b80">A load cell submitted for evaluation and designed to meet performance criteria evaluated under R 60-2, 2.10.5 shall be marked by the symbol CH or not be marked with any humidity classification.</p>
+              </list-item>
+              <list-item>
+                <label>c)</label>
+                <p id="_8ec73cae-8f5e-e088-cd8c-6a3fba396c51">A load cell submitted for evaluation and manufactured to meet performance criteria evaluated under R 60-2, 2.10.6 shall be marked by the symbol SH.</p>
+              </list-item>
+            </list>
+          </sec>
+          <sec id="sec-6.2.4.5">
+            <label>6.2.4.5</label>
+            <title>Maximum number of load cell verification intervals</title>
+            <p id="_616c537f-54f2-9828-ae6b-65ddd0d37473">The maximum number of load cell verification intervals for which the accuracy class
+applies shall be designated in actual units (e.g. 3 000) or, when combined with the accuracy class designation (see  <xref ref-type="sec" rid="sec-6.2.4.1">6.2.4.1</xref>) to produce a classification symbol (see  <xref ref-type="sec" rid="sec-5.1.6">5.1.6</xref>), it shall be designated in units of 1 000.</p>
+          </sec>
+        </sec>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ref-list content-type="bibl">
+      <title>Bibliography</title>
+      <ref id="OIML_V_1_2013">
+        <label>[1]</label>
+        <mixed-citation>OIML V 1:2013, International Vocabulary of Terms in Legal Metrology (VIML)</mixed-citation>
+        <std type="dated">
+          <std-ref type="dated">OIML V 1:2013</std-ref>
+          <title>International Vocabulary of Terms in Legal Metrology (VIML)</title>
+        </std>
+      </ref>
+      <ref id="OIML_V_2_200_2012">
+        <label>[2]</label>
+        <mixed-citation>OIML V 2-200:2012, International Vocabulary of Metrology — Basic and General Concepts and Associated Terms (VIM)</mixed-citation>
+        <std type="dated">
+          <std-ref type="dated">OIML V 2-200:2012</std-ref>
+          <title>International Vocabulary of Metrology — Basic and General Concepts and Associated Terms (VIM)</title>
+        </std>
+      </ref>
+      <ref id="OIML_D_9_2004">
+        <label>[3]</label>
+        <mixed-citation>OIML D 9:2004, Principles of metrological supervision</mixed-citation>
+        <std type="dated">
+          <std-ref type="dated">OIML D 9:2004</std-ref>
+          <title>Principles of metrological supervision</title>
+        </std>
+      </ref>
+      <ref id="OIML_D_11_2008">
+        <label>[4]</label>
+        <mixed-citation>OIML D 11:2008, General requirements for electronic measuring instruments</mixed-citation>
+        <std type="dated">
+          <std-ref type="dated">OIML D 11:2008</std-ref>
+          <title>General requirements for electronic measuring instruments</title>
+        </std>
+      </ref>
+      <ref id="OIML_B_18_2018">
+        <label>[5]</label>
+        <mixed-citation>OIML B 18:2018, Framework for the OIML Certification System (OIML-CS)</mixed-citation>
+        <std type="dated">
+          <std-ref type="dated">OIML B 18:2018</std-ref>
+          <title>Framework for the OIML Certification System (OIML-CS)</title>
+        </std>
+      </ref>
+      <ref id="R060-2">
+        <label>[6]</label>
+        <mixed-citation>R060-2, [NO INFORMATION AVAILABLE]</mixed-citation>
+        <std type="undated">
+          <std-ref type="undated">R060-2</std-ref>
+          <title>[NO INFORMATION AVAILABLE]</title>
+        </std>
+      </ref>
+    </ref-list>
+  </back>
+</standard>
