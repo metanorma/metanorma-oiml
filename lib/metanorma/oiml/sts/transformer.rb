@@ -37,14 +37,9 @@ module Metanorma::Oiml::Sts::Transformer
   autoload :TermTransformer, "metanorma/oiml/sts/transformer/term_transformer"
   autoload :DlTransformer, "metanorma/oiml/sts/transformer/dl_transformer"
   autoload :BlockDispatcher, "metanorma/oiml/sts/transformer/block_dispatcher"
-  autoload :RenderedTextExtractor, "metanorma/oiml/sts/transformer/rendered_text_extractor"
-
-  autoload :SourceOrder, "metanorma/oiml/sts/transformer/source_order"
-
   autoload :NbspProcessor, "metanorma/oiml/sts/transformer/nbsp_processor"
   autoload :RequirementTransformer, "metanorma/oiml/sts/transformer/requirement_transformer"
-  autoload :ProvisionIndex, "metanorma/oiml/sts/transformer/provision_index"
-  autoload :QuoteTransformer, "metanorma/oiml/sts/transformer/quote_transformer"
+  autoload :RenderedTextExtractor, "metanorma/oiml/sts/transformer/rendered_text_extractor"
 
   def self.convert(input)
     source = SourceDocument.parse(input)

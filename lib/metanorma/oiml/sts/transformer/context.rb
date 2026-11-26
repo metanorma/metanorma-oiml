@@ -1,58 +1,18 @@
 # frozen_string_literal: true
 
+require "metanorma/oiml/sts/profile"
+
 module Metanorma
   module Oiml
     module Sts
       module Transformer
-        class Context
-          attr_reader :source, :id_generator, :footnote_collector, :presentation_xml
-
-          def initialize(source, presentation_xml: nil)
-            @source = source
-            @id_generator = IdGenerator.new.pre_register(source)
-            @footnote_collector = FootnoteCollector.new
-            @presentation_xml = presentation_xml
-          end
-
-          # The typed provision <table> the sibling presentation XML
-          # rendered for +source_requirement+ (matched by anchor), or nil
-          # when no presentation XML is available or the requirement has
-          # no provision of its own.
-          def provision_for(source_requirement)
-            return nil unless provision_index
-
-            anchor = requirement_anchor(source_requirement)
-            return nil unless anchor
-
-            provision_index.table_for(anchor)
-          end
-
-          # Lazy: the streaming scan over the presentation XML only pays
-          # off when a requirement actually asks for its provision table.
-          def provision_index
-            return @provision_index if @provision_index
-
-            return nil if presentation_xml.nil? || presentation_xml.empty?
-
-            @provision_index = ProvisionIndex.from_xml(presentation_xml)
-          end
-
-          def language
-            source.language || "en"
-          end
-
-          def docidentifier
-            source.docidentifier
-          end
-
-          private
-
-          # Requirements are identified across the semantic and
-          # presentation trees by their +anchor+; the bare id is a uuid
-          # that differs between the two.
-          def requirement_anchor(requirement)
-            anchor = requirement.anchor
-            anchor.nil? || anchor.empty? ? nil : anchor
+        # Delegates to the shared engine (metanorma-document 0.5.15,
+        # Metanorma::Document::Sts) per metanorma-iso#1760 /
+        # metanorma-document#165 — defaulting the context to the OIML
+        # profile so class_overrides resolve the OIML subclasses.
+        class Context < Metanorma::Document::Sts::Transformer::Context
+          def initialize(source, presentation_xml: nil, profile: Metanorma::Oiml::Sts::Profile.instance)
+            super
           end
         end
       end
