@@ -3,7 +3,7 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
-        class FigureTransformer < Base
+        class FigureTransformer < Metanorma::Document::Sts::Transformer::FigureTransformer
           def transform(source_fig)
             attrs = {}
             attrs[:id] = source_fig.id if source_fig.class.method_defined?(:id) && source_fig.id

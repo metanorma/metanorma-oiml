@@ -1,21 +1,13 @@
 # frozen_string_literal: true
+
+# Delegates to the shared engine (metanorma-document 0.5.15, Metanorma::Document::Sts)
+# per metanorma-iso#1760 / metanorma-document#165.
+
 module Metanorma
   module Oiml
     module Sts
       module Transformer
-        class BodyTransformer < Base
-          def transform(source)
-            sections = []
-
-            sections += front_transformer.preface_sections(source) if source.front?
-
-            source.sections.each do |clause|
-              sec = dispatcher.dispatch(clause)
-              sections << sec if sec
-            end
-
-            ModelBuilder.body(sec: sections)
-          end
+        class BodyTransformer < Metanorma::Document::Sts::Transformer::BodyTransformer
         end
       end
     end

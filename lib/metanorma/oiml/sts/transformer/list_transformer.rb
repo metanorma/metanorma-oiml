@@ -1,80 +1,13 @@
 # frozen_string_literal: true
+
+# Delegates to the shared engine (metanorma-document 0.5.15, Metanorma::Document::Sts)
+# per metanorma-iso#1760 / metanorma-document#165.
+
 module Metanorma
   module Oiml
     module Sts
       module Transformer
-        class ListTransformer < Base
-          def transform(source_list)
-            list_type = source_list.is_a?(Metanorma::Document::Components::Lists::OrderedList) ? "order" : "bullet"
-            items = Array(source_list.listitem).map { |li| build_list_item(li) }
-            ModelBuilder.list(list_type: list_type, list_item: items)
-          end
-
-          def transform_def_list(source_dl)
-            items = Array(source_dl.dt).zip(Array(source_dl.dd)).map do |dt, dd|
-              build_def_item(dt, dd)
-            end.compact
-            ::Sts::NisoSts::DefList.new(def_item: items)
-          end
-
-          private
-
-          def build_list_item(li)
-            nested_lists = build_nested_lists(li)
-
-            ::Sts::NisoSts::ListItem.new do |item|
-              label = item_label(li)
-              item.label ::Sts::NisoSts::Label.new(content: [label]) if label
-              Array(li.paragraphs).each { |p| item.p paragraph_transformer.transform(p) }
-              nested_lists.each { |l| item.list l }
-            end
-          end
-
-          # The item's marker from the presentation XML (its fmt-name /
-          # autonum, e.g. "—" or "1."), nil when absent.
-          def item_label(li)
-            return nil unless li.class.method_defined?(:fmt_name) && li.fmt_name
-
-            text = RenderedTextExtractor.text_of(li.fmt_name).strip
-            text.empty? ? nil : text
-          end
-
-          # Recurses into nested <ul>/<ol> children of a list item.
-          # MN stores them as typed collection attrs on ListItem.
-          def build_nested_lists(li)
-            results = []
-            [:unordered_lists, :ordered_lists].each do |attr|
-              next unless li.class.method_defined?(attr)
-              Array(li.public_send(attr)).each do |nested|
-                results << transform(nested)
-              end
-            end
-            results
-          end
-
-          def build_def_item(dt, dd)
-            term_text = RenderedTextExtractor.text_of(dt)
-            desc_text = extract_dd_text(dd)
-            return nil unless term_text || desc_text
-
-            attrs = {}
-            attrs[:term] = ::Sts::NisoSts::Term.new(text: [term_text]) if term_text && !term_text.empty?
-            if desc_text && !desc_text.empty?
-              attrs[:def] = ::Sts::NisoSts::Def.new(
-                paragraph: [::Sts::NisoSts::Paragraph.new(content: [desc_text])]
-              )
-            end
-            ::Sts::NisoSts::DefItem.new(attrs)
-          end
-
-          def extract_dd_text(dd)
-            return nil unless dd
-            ps = dd.p if dd.is_a?(Lutaml::Model::Serializable) && dd.class.method_defined?(:p)
-            ps = Array(ps)
-            return RenderedTextExtractor.text_of(dd) if ps.empty?
-            texts = ps.map { |p| RenderedTextExtractor.text_of(p) }.reject(&:empty?)
-            texts.empty? ? nil : texts.join(" ")
-          end
+        class ListTransformer < Metanorma::Document::Sts::Transformer::ListTransformer
         end
       end
     end

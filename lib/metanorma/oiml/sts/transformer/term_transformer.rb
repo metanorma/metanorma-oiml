@@ -4,7 +4,7 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
-        class TermTransformer < Base
+        class TermTransformer < Metanorma::Document::Sts::Transformer::TermTransformer
           def transform(source_term)
             content = []
 

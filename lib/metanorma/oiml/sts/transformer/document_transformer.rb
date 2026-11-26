@@ -4,7 +4,7 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
-        class DocumentTransformer < Base
+        class DocumentTransformer < Metanorma::Document::Sts::Transformer::DocumentTransformer
           def transform(source)
             front_model = build_front(source)
             body_model = build_body(source)

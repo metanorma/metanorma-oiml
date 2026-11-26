@@ -1,4 +1,4 @@
-<standard xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:mml="http://www.w3.org/1998/Math/MathML" xml:lang="en" dtd-version="1.2">
+<standard xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" dtd-version="1.2">
   <processing-meta tagset-family="sts" base-tagset="interchange" table-model="xhtml" mathml="MathML 3.0" terminology-model="tbx"/>
   <front>
     <std-meta>
@@ -29,12 +29,12 @@
     <sec>
       <title>Copyright</title>
       <p id="_1d37d283-b53c-595e-4f5b-96140619aae7">© OIML 2021</p>
-      <p id="_6711e67c-7bc3-b668-a67f-ec68c6b24d99">Bureau International de Métrologie Légale 11, rue Turgot – 75009 Paris – France Telephone: 33 (0)1 48 78 12 82 Fax: 33 (0)1 42 82 17 27 E-mail: biml@oiml.org Internet:  <ext-link ext-link-type="uri">www.oiml.org</ext-link></p>
+      <p id="_6711e67c-7bc3-b668-a67f-ec68c6b24d99">Bureau International de Métrologie Légale 11, rue Turgot – 75009 Paris – France Telephone: 33 (0)1 48 78 12 82 Fax: 33 (0)1 42 82 17 27 E-mail: biml@oiml.org Internet:  <ext-link ext-link-type="uri" xlink:href="https://www.oiml.org">www.oiml.org</ext-link></p>
     </sec>
     <sec>
       <title>Feedback</title>
       <p id="_d0a674b7-3667-12e4-81ba-deec26ebe4bb">OIML Publications may be downloaded from the OIML web site in the form of PDF files. Additional information on OIML Publications may be obtained from the Organisation’s headquarters:</p>
-      <p id="_f0f7fd17-e1fc-5b10-60ff-c6d972b4eaa1">Bureau International de Métrologie Légale 11, rue Turgot – 75009 Paris – France Telephone: 33 (0)1 48 78 12 82 Fax: 33 (0)1 42 82 17 27 E-mail:  <ext-link ext-link-type="uri">biml@oiml.org</ext-link> Internet:  <ext-link ext-link-type="uri">www.oiml.org</ext-link></p>
+      <p id="_f0f7fd17-e1fc-5b10-60ff-c6d972b4eaa1">Bureau International de Métrologie Légale 11, rue Turgot – 75009 Paris – France Telephone: 33 (0)1 48 78 12 82 Fax: 33 (0)1 42 82 17 27 E-mail:  <ext-link ext-link-type="uri" xlink:href="mailto:biml@oiml.org">biml@oiml.org</ext-link> Internet:  <ext-link ext-link-type="uri" xlink:href="https://www.oiml.org">www.oiml.org</ext-link></p>
     </sec>
     <sec>
       <title>Foreword</title>
@@ -47,19 +47,15 @@
       <p id="_376fd438-865f-19e3-fda8-8fe1cec58bf9">Bureau International de Métrologie Légale 11, rue Turgot — 75009 Paris — France Telephone: 33 (0)1 48 78 12 82 Fax:33 (0)1 42 82 17 27 E-mail:biml@oiml.org Internet: www.oiml.org</p>
       <list list-type="bullet">
         <list-item>
-          <label>—</label>
           <p id="_d372c31f-bfd7-7fbb-535a-ed45152cf8ca"><bold>International Recommendations (OIML R),</bold> which are model regulations that establish the metrological characteristics required of certain measuring instruments and which specify methods and equipment for checking their conformity. OIML Member States shall implement these Recommendations to the greatest possible extent;</p>
         </list-item>
         <list-item>
-          <label>—</label>
           <p id="_82dedfa9-31e2-ffd7-34db-ed3d3913cc6b"><bold>International Documents (OIML D),</bold> which are informative in nature and which are intended to harmonise and improve work in the field of legal metrology;</p>
         </list-item>
         <list-item>
-          <label>—</label>
           <p id="_12fb4c73-5c12-16b9-03ab-4fabaf852c47"><bold>International Guides (OIML G),</bold> which are also informative in nature and which are intended to give guidelines for the application of certain requirements to legal metrology;</p>
         </list-item>
         <list-item>
-          <label>—</label>
           <p id="_a958a960-842a-d89c-8ca5-3ec04ac73868"><bold>International Basic Publications (OIML B),</bold> which define the operating rules of the various OIML structures and systems; and</p>
         </list-item>
       </list>
@@ -104,7 +100,7 @@
           <title>Load cell errors ( [#&lt;Metanorma::Document::Components::Inline::AsciimathElement @text=E L =, @  mutated after parse  =true&gt;]  Error Load test)</title>
           <sec id="_66372443-22cc-5bb5-9143-009d2d86fb8b">
             <label>2.1.2.1</label>
-            <p id="_2c2d9920-44ea-73c3-ee67-31da5706e9ad">Complete a <xref ref-type="other" rid="table-6.3">Table 1</xref> for each test temperature, calculate the averages and record in the right-hand column. When five runs are necessary, use  <xref ref-type="other" rid="table-6.4">Table 2</xref>.</p>
+            <p id="_2c2d9920-44ea-73c3-ee67-31da5706e9ad">Complete a <xref ref-type="table" rid="table-6.3">Table 1</xref> for each test temperature, calculate the averages and record in the right-hand column. When five runs are necessary, use  <xref ref-type="table" rid="table-6.4">Table 2</xref>.</p>
           </sec>
           <sec id="_de735374-0d8d-f3a4-839f-b41d8ed98ede">
             <label>2.1.2.2</label>
@@ -117,7 +113,7 @@ the increasing load tests at the initial <inline-formula><mml:math><mml:mstyle d
             <label>2.1.2.3</label>
             <p id="_9bbd49aa-9b63-4a59-dbc1-22c7b45338fc">If a test load corresponding to 75 % of the measuring range for the load cell under
 test (i.e. 2 250 divisions for a 3 000 division cell, which is <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>
-plus 75 % of the difference between <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>) is not included in the test loads used in  <xref ref-type="other" rid="table-6.3">Table 1</xref>, interpolate between the adjacent upper and lower values of the averages of all three test runs and record in  <xref ref-type="other" rid="table-6.5">Table 3</xref> (see R 60-2, 2.8.2).</p>
+plus 75 % of the difference between <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>) is not included in the test loads used in  <xref ref-type="table" rid="table-6.3">Table 1</xref>, interpolate between the adjacent upper and lower values of the averages of all three test runs and record in  <xref ref-type="table" rid="table-6.5">Table 3</xref> (see R 60-2, 2.8.2).</p>
           </sec>
           <sec id="sec-2.1.2.4">
             <label>2.1.2.4</label>
@@ -173,7 +169,7 @@ per load cell verification interval, <inline-formula><mml:math><mml:mstyle displ
           <sec id="_1829d7df-c2d9-ac54-0441-dc3717cf130b">
             <label>2.1.2.5</label>
             <p id="_3a21dcca-5543-848a-977c-789796d0d7ad">Enter the average test indications of the tests at the temperatures following the
-initial test at a nominal <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> in <xref ref-type="other" rid="table-6.5">Table 3</xref>. In recording
+initial test at a nominal <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> in <xref ref-type="table" rid="table-6.5">Table 3</xref>. In recording
 this data, indicate a “no test load” indication (at <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>) as “0”.
 This may require subtracting the “no load indication at <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>” from the “test load indication” so that the first entry in the column is “0”. These “0’s” have been preprinted on the form to clarify that a dead load condition is recorded as “0”.</p>
           </sec>
@@ -181,7 +177,7 @@ This may require subtracting the “no load indication at <inline-formula><mml:m
             <label>2.1.2.6</label>
             <p id="_db8861f3-2b60-afac-a4b5-56c72409181f">Calculate the reference indication, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>R</mml:mi><mml:mtext>i</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, by converting the net test load,
 in mass units, to indicated units (e.g. counts or digits), by multiplying by the
-conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>, for each test load and recording in the 2nd column in <xref ref-type="other" rid="table-6.5">Table 3</xref>.</p>
+conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>, for each test load and recording in the 2nd column in <xref ref-type="table" rid="table-6.5">Table 3</xref>.</p>
             <disp-formula id="_291c1dff-4f95-2210-185d-e7de35b69d31">
               <mml:math>
                 <mml:mstyle displaystyle="true">
@@ -227,7 +223,7 @@ conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><m
           </sec>
           <sec id="_ee69ae63-5bc0-8efd-308b-7108ceb1d1fe">
             <label>2.1.2.7</label>
-            <p id="_847d9b48-cc2f-7db6-96a1-1ab5ff4458ed">In <xref ref-type="other" rid="table-6.5">Table 3</xref> calculate the difference between the average test indication and
+            <p id="_847d9b48-cc2f-7db6-96a1-1ab5ff4458ed">In <xref ref-type="table" rid="table-6.5">Table 3</xref> calculate the difference between the average test indication and
 the reference indication for each test load at each test temperature and divide the
 result by the conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>, to obtain the error, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>L</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, for
 each test load in terms of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
@@ -269,11 +265,11 @@ each test load in terms of <inline-formula><mml:math><mml:mstyle displaystyle="f
           <title>Repeatability error ( [#&lt;Metanorma::Document::Components::Inline::AsciimathElement @text=E R, @  mutated after parse  =true&gt;]  in terms of verification interval,  [#&lt;Metanorma::Document::Components::Inline::AsciimathElement @text=v, @  mutated after parse  =true&gt;] )</title>
           <sec id="_70185de6-ef01-9153-5d24-0cb44ccab484">
             <label>2.1.3.1</label>
-            <p id="_a5c53806-2413-eee5-fa92-fc9126a45b65">Enter data in <xref ref-type="other" rid="table-6.6">Table 4</xref>.</p>
+            <p id="_a5c53806-2413-eee5-fa92-fc9126a45b65">Enter data in <xref ref-type="table" rid="table-6.6">Table 4</xref>.</p>
           </sec>
           <sec id="_6805245e-67f9-baab-4398-21970a6a02d9">
             <label>2.1.3.2</label>
-            <p id="_5a67380a-fb85-8ad1-8d61-3ecdaaf33d6f">Calculate the maximum difference between the test indications on <xref ref-type="other" rid="form-6.3">Form 6.3</xref>
+            <p id="_5a67380a-fb85-8ad1-8d61-3ecdaaf33d6f">Calculate the maximum difference between the test indications on <xref ref-type="sec" rid="form-6.3">Form 6.3</xref>
 and divide it by <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula> to obtain the repeatability error, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>R</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, in terms
 of the load cell verification interval, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
             <disp-formula id="_fd24620e-ea3f-4b0b-07d4-bf4e07145eab">
@@ -307,8 +303,8 @@ of the load cell verification interval, <inline-formula><mml:math><mml:mstyle di
           <title>Temperature effects on minimum dead load output (MDLO) ( [#&lt;Metanorma::Document::Components::Inline::AsciimathElement @text=C M =, @  mutated after parse  =true&gt;]  Change MDLO)</title>
           <sec id="_7e6dd2aa-7b9e-0f37-a37b-a420cd18ea55">
             <label>2.1.4.1</label>
-            <p id="_5538ea15-34b3-9cae-3428-6ff0167db7e5">Enter in <xref ref-type="other" rid="table-6.7">Table 5</xref> the average indication for the initial minimum test load,
-<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, for each test temperature from <xref ref-type="other" rid="table-6.3">Table 1</xref>.</p>
+            <p id="_5538ea15-34b3-9cae-3428-6ff0167db7e5">Enter in <xref ref-type="table" rid="table-6.7">Table 5</xref> the average indication for the initial minimum test load,
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, for each test temperature from <xref ref-type="table" rid="table-6.3">Table 1</xref>.</p>
           </sec>
           <sec id="_7478fed7-c923-7d7d-7348-3f5fc28c15ba">
             <label>2.1.4.2</label>
@@ -471,14 +467,14 @@ not exceed <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub>
           <p id="_844951d8-59cf-8505-284b-39bb8407d4cb">Remark: Contrary to the minimum dead load output return <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>D</mml:mi><mml:mi>R</mml:mi></mml:mstyle></mml:math></inline-formula> in terms of mass
 the minimum dead load output <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>C</mml:mi><mml:mi>D</mml:mi></mml:msub><mml:mi>R</mml:mi></mml:mstyle></mml:math></inline-formula> is expressed in terms of the verification
 interval, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
-          <p id="_ca812173-5807-b472-3945-de47e5ae9a58">From the test indications recorded in <xref ref-type="other" rid="table-6.8">Table 6</xref>, calculate the difference between
+          <p id="_ca812173-5807-b472-3945-de47e5ae9a58">From the test indications recorded in <xref ref-type="table" rid="table-6.8">Table 6</xref>, calculate the difference between
 the initial indication obtained at the minimum creep test load after the stabilisation
 period and any indication obtained over the 30 minute test period with the maximum
 creep test load of 90 % to 100 % of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> and divide by the conversion
 factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
           <p id="_84862953-b6e3-0245-4049-e92f143ee26b">Remark: If the minimum creep test load or the maximum creep test load differ from
-<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> or <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> according to <xref ref-type="other" rid="sec-2.1.2">2.1.2</xref> “Load cell errors
-<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>L</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>” the conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>, must be recalculated with the minimum and maximum creep test loads (see  <xref ref-type="other" rid="sec-2.1.2.4">2.1.2.4</xref>).</p>
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> or <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> according to <xref ref-type="sec" rid="sec-2.1.2">2.1.2</xref> “Load cell errors
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>L</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>” the conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>, must be recalculated with the minimum and maximum creep test loads (see  <xref ref-type="sec" rid="sec-2.1.2.4">2.1.2.4</xref>).</p>
           <sec id="_fde3c3e8-ac3a-5d26-97c2-a57a3d5c05e2">
             <label>2.1.5.1</label>
             <p id="_43d72e7c-328e-896d-ef2f-e05f3b1d6ec5"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>C</mml:mi><mml:mtext>C</mml:mtext></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mi>t</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:mstyle></mml:math></inline-formula> must not exceed 0.7 times the absolute value of the MPE for the
@@ -651,7 +647,7 @@ the apportionment factor, <inline-formula><mml:math><mml:mstyle displaystyle="fa
           <title>Barometric pressure effects ( [#&lt;Metanorma::Document::Components::Inline::AsciimathElement @text=C P =, @  mutated after parse  =true&gt;]  Change due to barometric pressure)</title>
           <sec id="_20cde2bf-3529-cc5d-ed07-fedfb11c4364">
             <label>2.1.6.1</label>
-            <p id="_27a5b001-f66f-cf31-2cef-1d983caf4ff9">From the test indications recorded in R 60-3, <xref ref-type="other" rid="table-6.9">Table 7</xref>, calculate the difference
+            <p id="_27a5b001-f66f-cf31-2cef-1d983caf4ff9">From the test indications recorded in R 60-3, <xref ref-type="table" rid="table-6.9">Table 7</xref>, calculate the difference
 between the indications for each pressure and divide the result by conversion factor,
 <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>, to obtain the change, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>C</mml:mi><mml:mtext>P</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, in terms of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
             <disp-formula id="_a1817801-5ca4-c1a9-bd36-f9494d24d81c">
@@ -2269,20 +2265,22 @@ intervals, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v<
           <table>
             <tbody>
               <tr>
-                <td>The load cell under test fulfils ALL the applicable requirements according to OIML R 60-1
-</td>
-                <td>Yes
-</td>
-                <td>No
-</td>
+                <td>
+                  <p id="_feeabde4-d886-c108-fd77-e1fd07be9d4b">The load cell under test fulfils <bold>ALL</bold> the applicable requirements according to OIML R 60-1</p>
+                </td>
+                <td>
+                  <p id="_e2b8d6e6-295a-9dba-7d53-2b2bfbcc78e9">Yes</p>
+                </td>
+                <td>
+                  <p id="_54d27fdd-841a-cf5c-7cb1-201bace09426">No</p>
+                </td>
               </tr>
               <tr>
-                <td>Remarks:
-
-‌
-
-‌
-</td>
+                <td>
+                  <p id="_b5bcf8a8-553f-562d-641d-a3540bb99df6">Remarks:</p>
+                  <p id="_c6816ad1-5117-5b3a-f85e-e15c1d9ac87f">‌</p>
+                  <p id="_845ea820-cd6f-70a7-da1b-98b1ca6b90e8">‌</p>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -2492,65 +2490,76 @@ intervals, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v<
             <table>
               <tbody>
                 <tr>
-                  <td>Company
-</td>
+                  <td>
+                    <p id="_713efc6f-9ba4-242e-730d-8274a719808d">Company</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Representative (name, telephone)
-</td>
+                  <td>
+                    <p id="_2c09d79b-1745-4b8d-6b80-7fdcef6c7194">Representative (name, telephone)</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Address
-</td>
+                  <td>
+                    <p id="_71553cea-8111-020b-339e-24da4698c01c">Address</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Contact information
-</td>
+                  <td>
+                    <p id="_b47ac4a9-ae2c-161f-23a6-fb93facd3e25">Contact information</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Reference
-</td>
+                  <td>
+                    <p id="_db2f1731-2fe9-3d39-b5c4-a173d2f74f89">Reference</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Date of application
-</td>
+                  <td>
+                    <p id="_868633db-a019-6169-d4f2-c0eb2240f4af">Date of application</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Application number
-</td>
+                  <td>
+                    <p id="_a9eb0beb-863d-9d96-7f9c-cb1fc7d41383">Application number</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Applicant authorised by the manufacturer (documented)
-</td>
-                  <td>☐ Yes
-</td>
-                  <td>☐ No
-</td>
+                  <td>
+                    <p id="_8a544179-2e97-512f-ba86-40739386ddf0">Applicant authorised by the manufacturer (documented)</p>
+                  </td>
+                  <td>
+                    <p id="_46d0fa2e-2d70-ef0c-b5ea-a0c18b1bd26b">☐ Yes</p>
+                  </td>
+                  <td>
+                    <p id="_888b19f0-081f-ef0b-f227-37ad32e6e78b">☐ No</p>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Statement that no concurrent application for OIML type evaluation has been made to any other OIML Issuing Authority (see Procedural Document PD-05 [29], 4.1.2 b)
-</td>
-                  <td>☐ Yes
-</td>
-                  <td>☐ No
-</td>
+                  <td>
+                    <p id="_0a83889b-088a-25b9-b167-6932ce25badf">Statement that no concurrent application for OIML type evaluation has been made to any other OIML Issuing Authority (see Procedural Document PD-05 [29], 4.1.2 b)</p>
+                  </td>
+                  <td>
+                    <p id="_c550b15b-8b97-e732-d664-b6189dd27bf3">☐ Yes</p>
+                  </td>
+                  <td>
+                    <p id="_3527a5b4-4dd5-04e0-d531-889fa3f92f90">☐ No</p>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Remarks:
-
-‌
-
-‌
-
-‌
-</td>
+                  <td>
+                    <p id="_5f64fe1c-18ae-5c72-2bbb-0650ed205e10">Remarks:</p>
+                    <p id="_7af1a724-b7a6-8f12-85c9-9e3dbb69ee64">‌</p>
+                    <p id="_ddc0cf25-fdbd-86bb-cd33-7b09e5b22985">‌</p>
+                    <p id="_9cd6efe7-e034-d5b4-c614-0fb97f47440c">‌</p>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -2566,86 +2575,103 @@ intervals, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v<
             <table>
               <tbody>
                 <tr>
-                  <td>Name
-</td>
+                  <td>
+                    <p id="_79627901-57d5-2b87-e3eb-25f15447f56e">Name</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Address
-</td>
+                  <td>
+                    <p id="_792f80b5-c5df-b4ab-d191-d4718c76e402">Address</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Application number
-</td>
+                  <td>
+                    <p id="_363c230b-97ac-f48a-f7c6-5e7867c2a636">Application number</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Tests by this laboratory
-</td>
+                  <td>
+                    <p id="_22b4660d-38f2-401f-a0f9-8be805c28988">Tests by this laboratory</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Date/period of tests
-</td>
+                  <td>
+                    <p id="_99da9e59-d5c4-342b-2f33-e19ee8db12dd">Date/period of tests</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Name(s) of test engineer(s)
-</td>
+                  <td>
+                    <p id="_31a47148-e157-c8e4-ea07-ad11da040c89">Name(s) of test engineer(s)</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Accredited by
-</td>
+                  <td>
+                    <p id="_2d651c71-e3d7-3137-a4cb-cad1eee92512">Accredited by</p>
+                  </td>
                   <td/>
-                  <td>Number:
-</td>
-                  <td>Expires (date):
-</td>
+                  <td>
+                    <p id="_314472fd-2f1f-4f4b-8559-0b1b6db7e0e8">Number:</p>
+                  </td>
+                  <td>
+                    <p id="_cda84c93-1137-4746-0c27-2a3430ac611e">Expires (date):</p>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Accreditation includes R 60
-</td>
-                  <td>☐ Yes
-</td>
-                  <td>Edition: ☐
-</td>
-                  <td>☐ No
-</td>
+                  <td>
+                    <p id="_3c98d274-cbe7-0f1a-3ed5-44e84445ff38">Accreditation includes R 60</p>
+                  </td>
+                  <td>
+                    <p id="_9e554bf5-566d-211c-8810-128a70e58890">☐ Yes</p>
+                  </td>
+                  <td>
+                    <p id="_e0f20de9-0e1b-a276-39c3-7946e5a08cfc">Edition: ☐</p>
+                  </td>
+                  <td>
+                    <p id="_208ff897-a1d1-efa8-b1e8-aa2bc75c304d">☐ No</p>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Details of relevant peer assessment or assessment by other means
-</td>
-                  <td/>
-                </tr>
-                <tr>
-                  <td>In case tests have been performed at locations other than the address of this laboratory, give details here
-</td>
-                  <td/>
-                </tr>
-                <tr>
-                  <td>Name of the responsible person
-</td>
+                  <td>
+                    <p id="_f1bea944-e5ba-89ef-5840-fa76c37dc2a7">Details of relevant peer assessment or assessment by other means</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Date of signature
-</td>
+                  <td>
+                    <p id="_866fd875-161b-9c19-73ca-f183ca0bf61b">In case tests have been performed at locations other than the address of this laboratory, give details here</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Stamp (if applicable) and signature of the responsible person
-</td>
+                  <td>
+                    <p id="_4e596b49-aa50-8fbf-1e6b-031c5ec7821b">Name of the responsible person</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Remarks: ‌
-
-‌
-
-‌
-</td>
+                  <td>
+                    <p id="_946c4aa0-e559-02b5-e177-0b95fbbe8923">Date of signature</p>
+                  </td>
+                  <td/>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_ff4ebd60-3ac1-19e5-04fb-a5f6356c9962">Stamp (if applicable) and signature of the responsible person</p>
+                  </td>
+                  <td/>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_03396145-b5df-88cc-438c-f3c8c2bcdd1e">Remarks: ‌</p>
+                    <p id="_0364f9d4-66ce-ead5-eb41-a8ad8c6fbd2c">‌</p>
+                    <p id="_17048046-1df0-bf31-053d-5b09eaa6d007">‌</p>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -2816,14 +2842,31 @@ intervals, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v<
                   <th>Minimum dead load output return</th>
                 </tr>
                 <tr>
-                  <td>()
-</td>
                   <td>
-</td>
-                  <td>()
-</td>
-                  <td>DR ()
-</td>
+                    <p id="_75e4acae-7a60-1036-eb8e-5b57f7b62149"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>
+(<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu27"><mml:mstyle mathvariant="normal"><mml:mi>g</mml:mi></mml:mstyle></mml:mrow><mml:mo>,</mml:mo><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow><mml:mo>,</mml:mo><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu88"><mml:mstyle mathvariant="normal"><mml:mi>t</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>)</p>
+                  </td>
+                  <td>
+                    <p id="_6583d193-db64-aa74-125e-86e8f963d28f">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:msub>
+                              <mml:mi>n</mml:mi>
+                              <mml:mtext>LC</mml:mtext>
+                            </mml:msub>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_007a03c7-5531-ffe4-6909-be3415beaedc"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>
+(<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu27"><mml:mstyle mathvariant="normal"><mml:mi>g</mml:mi></mml:mstyle></mml:mrow><mml:mo>,</mml:mo><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow><mml:mo>,</mml:mo><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu88"><mml:mstyle mathvariant="normal"><mml:mi>t</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>)</p>
+                  </td>
+                  <td>
+                    <p id="_b971f265-fda4-5305-e206-c8a2366a83a4">DR (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu27"><mml:mstyle mathvariant="normal"><mml:mi>g</mml:mi></mml:mstyle></mml:mrow><mml:mo>,</mml:mo><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow><mml:mo>,</mml:mo><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu88"><mml:mstyle mathvariant="normal"><mml:mi>t</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>)</p>
+                  </td>
                 </tr>
                 <tr>
                   <td/>
@@ -3668,16 +3711,13 @@ intervals, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v<
             <table>
               <tbody>
                 <tr>
-                  <td>Pictures / Drawings of the load cell dimensions of the load cell family
-
-‌
-
-‌
-
-‌
-
-‌
-</td>
+                  <td>
+                    <p id="_f38cc165-0d34-35ef-c4a0-547001728c37">Pictures / Drawings of the load cell dimensions of the load cell family</p>
+                    <p id="_25673da0-e891-a31b-7265-9d76e8d17c6f">‌</p>
+                    <p id="_af96f011-7bcf-d45c-1266-dd788d1af2a2">‌</p>
+                    <p id="_06715f2d-e95d-e2f6-9b62-ffc96bed200b">‌</p>
+                    <p id="_a611bbf5-5584-6789-fe82-2f72fdf57bbd">‌</p>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -3690,16 +3730,13 @@ intervals, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v<
             <table>
               <tbody>
                 <tr>
-                  <td>Pictures / Drawings of the recommended load transmissions
-
-‌
-
-‌
-
-‌
-
-‌
-</td>
+                  <td>
+                    <p id="_40dbe83b-c159-99ed-7aa9-121f08949e34">Pictures / Drawings of the recommended load transmissions</p>
+                    <p id="_f1926959-dd4a-412e-bc94-03ccfedafde5">‌</p>
+                    <p id="_477c2f70-2410-89d4-c419-0a55e483edb5">‌</p>
+                    <p id="_5f4bb1c0-1a28-b31a-fa42-e5ed4bd89c33">‌</p>
+                    <p id="_95f3bb82-d230-82c9-db25-4eca6f34541a">‌</p>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -5160,36 +5197,30 @@ including the level of “risk.” For instance, 95 % or <inline-formula><mml:ma
           <table>
             <tbody>
               <tr>
-                <td>Date:
-</td>
-                <td>Observer:
-</td>
-                <td>Serial number:
-</td>
+                <td>
+                  <p id="_cbf9e699-a638-e8ca-254a-8efce44d90b1">Date:</p>
+                </td>
+                <td>
+                  <p id="_5816eeab-b130-0d25-84a1-4a18172ce257">Observer:</p>
+                </td>
+                <td>
+                  <p id="_d01ea6d5-c25d-404e-d1cc-4bb3b0f9c708">Serial number:</p>
+                </td>
               </tr>
               <tr>
                 <td/>
-                <td>Fulfils requirements
-</td>
+                <td>
+                  <p id="_d05a6cef-d13b-cb75-1fcb-7c21ba72ad86">Fulfils requirements</p>
+                </td>
               </tr>
               <tr>
                 <td/>
-                <td>Yes
-</td>
-                <td>No
-</td>
-              </tr>
-              <tr>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
+                <td>
+                  <p id="_a8712cd0-fb54-c426-bf6f-f269c2ecb046">Yes</p>
+                </td>
+                <td>
+                  <p id="_77eefa95-f8f6-7ece-8df3-ade908a4bf44">No</p>
+                </td>
               </tr>
               <tr>
                 <td/>
@@ -5198,18 +5229,29 @@ including the level of “risk.” For instance, 95 % or <inline-formula><mml:ma
                 <td/>
               </tr>
               <tr>
-                <td>Remarks
-
-‌
-
-‌
-
-‌
-</td>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
               </tr>
               <tr>
-                <td>Passed ☐ Yes ☐ No
-</td>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <p id="_e39b9169-fb3d-17a8-af83-7225794a5222">Remarks</p>
+                  <p id="_3879517e-845d-dad2-f12c-e32826ce2ed6">‌</p>
+                  <p id="_f63387d1-946b-e8ef-7837-a55ca0bd1681">‌</p>
+                  <p id="_be080de9-956a-013e-9eed-3b6bd915252e">‌</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p id="_b51e06f9-fcd7-ab3a-ee29-e7bf1cd60a06">Passed ☐ Yes ☐ No</p>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -5222,58 +5264,68 @@ including the level of “risk.” For instance, 95 % or <inline-formula><mml:ma
           <table>
             <tbody>
               <tr>
-                <td>Date:
-</td>
-                <td>Observer:
-</td>
-                <td>Serial number:
-</td>
+                <td>
+                  <p id="_892182a1-0b31-0b4c-366a-64bab0dd6049">Date:</p>
+                </td>
+                <td>
+                  <p id="_71a290f4-fd81-61ed-8be2-6752c081fc82">Observer:</p>
+                </td>
+                <td>
+                  <p id="_e11f5160-871b-3462-9464-a82714ee06b1">Serial number:</p>
+                </td>
               </tr>
               <tr>
-                <td>Version of software:
-</td>
-                <td>Identification code:
-</td>
+                <td>
+                  <p id="_796e10d9-880f-24cb-33fc-fd26387a530c">Version of software:</p>
+                </td>
+                <td>
+                  <p id="_6c10e192-b77b-02af-b7f4-d13481cc0144">Identification code:</p>
+                </td>
               </tr>
               <tr>
                 <td/>
               </tr>
               <tr>
                 <td/>
-                <td>Yes
-</td>
-                <td>No
-</td>
+                <td>
+                  <p id="_07e0df58-33bd-0f6f-26ec-cf415e5e8abd">Yes</p>
+                </td>
+                <td>
+                  <p id="_64309582-1a73-e2bf-9cbc-c82358f8f1fa">No</p>
+                </td>
               </tr>
               <tr>
-                <td>Software protected by sealing
-</td>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td>Automatic change of identification code
-</td>
+                <td>
+                  <p id="_48505958-a126-ff2c-7c6f-be30a98b9230">Software protected by sealing</p>
+                </td>
                 <td/>
                 <td/>
               </tr>
               <tr>
-                <td>Fixed version number
-</td>
+                <td>
+                  <p id="_a0c8063d-28f5-dfc4-0a60-f0c9b4f26357">Automatic change of identification code</p>
+                </td>
                 <td/>
                 <td/>
               </tr>
               <tr>
-                <td>Remarks: ‌
-
-‌
-
-‌
-</td>
+                <td>
+                  <p id="_bfd46be5-abfd-486c-9e75-05cdeaf89368">Fixed version number</p>
+                </td>
+                <td/>
+                <td/>
               </tr>
               <tr>
-                <td>Passed ☐ Yes ☐ No
-</td>
+                <td>
+                  <p id="_65ef7832-3094-c81f-b618-b535ebd986d7">Remarks: ‌</p>
+                  <p id="_1843c358-1040-2833-b05e-19aa3fa9675c">‌</p>
+                  <p id="_a282536a-054a-0079-da0a-c20483e95f51">‌</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p id="_79220af4-34b5-2bf5-beb8-831bd7d1ff26">Passed ☐ Yes ☐ No</p>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -5294,97 +5346,113 @@ including the level of “risk.” For instance, 95 % or <inline-formula><mml:ma
             </thead>
             <tbody>
               <tr>
-                <td>a) Description of the general principle of measurement (R 60-2, 2.5, a)
-</td>
+                <td>
+                  <p id="_c65d1b02-cdfe-4977-523b-1ba41a47bd67">a) Description of the general principle of measurement (R 60-2, 2.5, a)</p>
+                </td>
                 <td/>
                 <td/>
                 <td/>
-              </tr>
-              <tr>
-                <td>b) List and characteristics of essential components + details
-</td>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td>c) Mechanical drawings (R 60-2, 2.5, b)
-</td>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td>d) Electric/electronic diagrams (R 60-2, 2.5, c)
-</td>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td>e) Installation requirements (R 60-2, 2.5, d)
-</td>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td>f) Sealing plan
-</td>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td>g) Panel layout
-</td>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td>h) General information of the software (R 60-2, 2.5, g)
-</td>
-                <td/>
-                <td/>
-                <td>For details, see R 60-1, 6.1
-</td>
               </tr>
               <tr>
                 <td>
-</td>
+                  <p id="_af515b88-6c97-36a2-35b4-e11777dd3843">b) List and characteristics of essential components + details</p>
+                </td>
                 <td/>
                 <td/>
                 <td/>
               </tr>
               <tr>
-                <td>j) Information supporting the manufacturer’s assumption of compliance (R 60-2, 2.5, f)
-</td>
+                <td>
+                  <p id="_20121e69-561a-500b-06ac-32f86919d8d8">c) Mechanical drawings (R 60-2, 2.5, b)</p>
+                </td>
                 <td/>
                 <td/>
                 <td/>
               </tr>
               <tr>
-                <td>Other relevant information pertaining to identification of the instrument, diagrams, results of previous tests, etc.: (attach photograph(s) and/or outline-drawing(s) here if available):
-
-‌
-
-‌
-</td>
+                <td>
+                  <p id="_390180e1-7231-d5b8-677c-cb493f83b7ec">d) Electric/electronic diagrams (R 60-2, 2.5, c)</p>
+                </td>
+                <td/>
+                <td/>
+                <td/>
               </tr>
               <tr>
-                <td>Remarks:
-
-‌
-
-‌
-</td>
+                <td>
+                  <p id="_483f9d04-01d3-1975-1dae-3b84150586a9">e) Installation requirements (R 60-2, 2.5, d)</p>
+                </td>
+                <td/>
+                <td/>
+                <td/>
               </tr>
               <tr>
-                <td>Passed
-</td>
-                <td>☐ Yes ☐ No
-</td>
+                <td>
+                  <p id="_6f82466d-26d3-e006-5974-0aed6dacd740">f) Sealing plan</p>
+                </td>
+                <td/>
+                <td/>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <p id="_5ecf30e9-e109-0761-5eb3-2568c8ac529e">g) Panel layout</p>
+                </td>
+                <td/>
+                <td/>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <p id="_57bcae06-d44b-0728-3437-9b89b4617c3b">h) General information of the software (R 60-2, 2.5, g)</p>
+                </td>
+                <td/>
+                <td/>
+                <td>
+                  <p id="_0f9eb3db-0571-a82b-316c-41c934e78bc5">For details, see R 60-1, 6.1</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <list list-type="alpha-lower">
+                    <list-item>
+                      <label>a)</label>
+                      <p id="_1c6ccebd-508e-090a-0ae1-b97d4bca6006">Operating instructions (R 60-2, 2.5, e)</p>
+                    </list-item>
+                  </list>
+                </td>
+                <td/>
+                <td/>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <p id="_cb240a32-824e-1f34-9a80-b35e80ac974f">j) Information supporting the manufacturer’s assumption of compliance (R 60-2, 2.5, f)</p>
+                </td>
+                <td/>
+                <td/>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <p id="_808724b2-8655-24d5-5ca2-81e06b75ec77">Other relevant information pertaining to identification of the instrument, diagrams, results of previous tests, etc.: (attach photograph(s) and/or outline-drawing(s) here if available):</p>
+                  <p id="_6b4a1525-6917-7408-032e-748b3745a620">‌</p>
+                  <p id="_24f33757-8e6c-3657-8430-50d3b2ceba34">‌</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p id="_eabc11cc-a5c6-db59-1651-10f21f7422e0">Remarks:</p>
+                  <p id="_61f1f2a8-d652-3e1f-0838-3c0f8ef332f6">‌</p>
+                  <p id="_cbc6eb47-017e-c201-1b53-bd26ab7a51f3">‌</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p id="_86b899db-adf3-c06d-f428-3efb4d7dbd8c">Passed</p>
+                </td>
+                <td>
+                  <p id="_ae29f12c-9ad0-1408-e1c6-4e53bf294173">☐ Yes ☐ No</p>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -5788,24 +5856,53 @@ effects (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><m
                   <th>Fulfils requirements</th>
                 </tr>
                 <tr>
-                  <th>Test procedure (R 60-2 reference)
-</th>
                   <th>
-</th>
+                    <p id="_1cd0341b-51ae-1a68-2c43-a2af65f0c3f7">Test procedure (R 60-2 reference)</p>
+                  </th>
                   <th>
-</th>
-                  <th>Conversion factor, ] (see R 60-3, 2.1.2.4)
-</th>
-                  <th>Yes
-</th>
-                  <th>No
-</th>
+                    <p id="_6184e45d-ad79-c806-9bdf-af91910011b3">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:msub>
+                              <mml:mi>D</mml:mi>
+                              <mml:mtext>max</mml:mtext>
+                            </mml:msub>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </th>
+                  <th>
+                    <p id="_6994ceea-0c12-9d9e-60fa-1ef9965c0c8b">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:msub>
+                              <mml:mi>D</mml:mi>
+                              <mml:mtext>min</mml:mtext>
+                            </mml:msub>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </th>
+                  <th>
+                    <p id="_b6481456-e7d3-4fdc-ac3a-b36675f14c8e">Conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi><mml:mrow><mml:mo>[</mml:mo><mml:mtext>indication</mml:mtext><mml:mo>/</mml:mo><mml:mi>v</mml:mi><mml:mo></mml:mo></mml:mrow></mml:mstyle></mml:math></inline-formula>] (see R 60-3, 2.1.2.4)</p>
+                  </th>
+                  <th>
+                    <p id="_f4650de1-826f-b2bd-ca03-0ad45cd0c93e">Yes</p>
+                  </th>
+                  <th>
+                    <p id="_abba6113-6b82-10a2-9328-722463463cf9">No</p>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>2.10.1
-</td>
+                  <td>
+                    <p id="_d79f4429-d7eb-13ec-507f-9e2df3f38d2d">2.10.1</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
@@ -5813,8 +5910,9 @@ effects (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><m
                   <td/>
                 </tr>
                 <tr>
-                  <td>2.10.2
-</td>
+                  <td>
+                    <p id="_6131d067-812d-6d9e-7285-143f19c5ff1b">2.10.2</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
@@ -5822,8 +5920,9 @@ effects (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><m
                   <td/>
                 </tr>
                 <tr>
-                  <td>2.10.3
-</td>
+                  <td>
+                    <p id="_302a568f-8157-5a19-ff9f-c036d96bdba4">2.10.3</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
@@ -5831,8 +5930,9 @@ effects (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><m
                   <td/>
                 </tr>
                 <tr>
-                  <td>2.10.4
-</td>
+                  <td>
+                    <p id="_3cd097a2-384b-c321-b8d0-e772ccf944ea">2.10.4</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
@@ -5840,8 +5940,9 @@ effects (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><m
                   <td/>
                 </tr>
                 <tr>
-                  <td>2.10.5
-</td>
+                  <td>
+                    <p id="_f21bc86a-7fd8-38f3-3320-b226648a73cf">2.10.5</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
@@ -5849,8 +5950,9 @@ effects (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><m
                   <td/>
                 </tr>
                 <tr>
-                  <td>2.10.6
-</td>
+                  <td>
+                    <p id="_c52c4766-d82c-0294-e941-dad41db6e9a8">2.10.6</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
@@ -5858,8 +5960,9 @@ effects (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><m
                   <td/>
                 </tr>
                 <tr>
-                  <td>2.10.7
-</td>
+                  <td>
+                    <p id="_7f31f9b8-2819-13e6-97d7-9740be14f3d0">2.10.7</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
@@ -5867,12 +5970,15 @@ effects (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><m
                   <td/>
                 </tr>
                 <tr>
-                  <td>Passed
-</td>
-                  <td>☐Yes
-</td>
-                  <td>☐No
-</td>
+                  <td>
+                    <p id="_60bd731c-9060-10f5-3eee-a66316eb0af9">Passed</p>
+                  </td>
+                  <td>
+                    <p id="_b4b0ec19-1e68-47af-ad25-eece638a0ec1">☐Yes</p>
+                  </td>
+                  <td>
+                    <p id="_254a8f6e-96ea-2d57-4d46-1942f79f617f">☐No</p>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -6103,7 +6209,7 @@ using lower <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>n
         <table-wrap id="table-6.3">
           <label>Table 1</label>
           <caption>
-            <title>(3 runs)</title>
+            <title>Table 1 — (3 runs)</title>
           </caption>
           <table>
             <thead>
@@ -6444,7 +6550,7 @@ using lower <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>n
         <table-wrap id="table-6.4">
           <label>Table 2</label>
           <caption>
-            <title>(5 runs)</title>
+            <title>Table 2 — (5 runs)</title>
           </caption>
           <table>
             <thead>
@@ -6785,6 +6891,9 @@ using lower <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>n
         <p id="_4bcf6acc-b08b-0e01-90f1-fd7bd38ef40f">R 60-1, 5.3.1 R 60-2, 2.10.1.12 to 2.10.1.14 R 60-3, 2.1.2.2</p>
         <table-wrap id="table-6.5">
           <label>Table 3</label>
+          <caption>
+            <title>Table 3</title>
+          </caption>
           <table>
             <thead>
               <tr>
@@ -7001,6 +7110,9 @@ using lower <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>n
         <p id="_17ac8edf-c15a-b7b8-2a6b-320848d673d8">R 60-1, 5.4 R 60-2, 2.10.1.15 R 60-3, 2.1.3</p>
         <table-wrap id="table-6.6">
           <label>Table 4</label>
+          <caption>
+            <title>Table 4</title>
+          </caption>
           <table>
             <thead>
               <tr>
@@ -7012,22 +7124,30 @@ using lower <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>n
                 <th>MPE (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>)</th>
               </tr>
               <tr>
-                <th>Repeatability error (counts)
-</th>
-                <th>Repeatability error
-</th>
-                <th>Repeatability error (counts)
-</th>
-                <th>Repeatability error
-</th>
-                <th>Repeatability error (counts)
-</th>
-                <th>Repeatability error
-</th>
-                <th>Repeatability error (counts)
-</th>
-                <th>Repeatability error
-</th>
+                <th>
+                  <p id="_5a99a2b6-e179-7516-e097-87577dd92c31">Repeatability error (counts)</p>
+                </th>
+                <th>
+                  <p id="_5b126b0c-b63d-f363-1320-814369c7f6ac">Repeatability error <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula></p>
+                </th>
+                <th>
+                  <p id="_42b1c10c-6c3e-c4c2-3cb5-862194f524f4">Repeatability error (counts)</p>
+                </th>
+                <th>
+                  <p id="_8b330abb-4411-e1de-1074-73e68b332d81">Repeatability error <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula></p>
+                </th>
+                <th>
+                  <p id="_46cf7a9f-1cd6-11c3-fa75-4eaa363710bd">Repeatability error (counts)</p>
+                </th>
+                <th>
+                  <p id="_3019879b-2ce9-f250-3e53-c0c0fd72ceae">Repeatability error <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula></p>
+                </th>
+                <th>
+                  <p id="_d455c47b-9dbe-c0da-2958-c12331dbe18b">Repeatability error (counts)</p>
+                </th>
+                <th>
+                  <p id="_e256fe7a-87a2-c6c0-e219-6f2e5e318737">Repeatability error <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula></p>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -7227,6 +7347,9 @@ the five test indications divided by the conversion factor, <inline-formula><mml
         <p id="_441c7caf-aec9-65a0-2861-f99da341f120">PASS: ☐ FAIL: ☐</p>
         <table-wrap id="table-6.7">
           <label>Table 5</label>
+          <caption>
+            <title>Table 5</title>
+          </caption>
           <table>
             <thead>
               <tr>
@@ -7313,6 +7436,9 @@ the five test indications divided by the conversion factor, <inline-formula><mml
         <p id="_5b248fd3-39c4-e4c3-9ec0-71ae842eb6cd">R 60-1, 5.5.1, 5.5.2 R 60-2, 2.10.2, 2.10.3. Complete one sheet for each test temperature.</p>
         <table-wrap id="table-6.8">
           <label>Table 6</label>
+          <caption>
+            <title>Table 6</title>
+          </caption>
           <table>
             <thead>
               <tr>
@@ -7320,78 +7446,176 @@ the five test indications divided by the conversion factor, <inline-formula><mml
                 <th>DR</th>
               </tr>
               <tr>
-                <th>Test load
-</th>
-                <th>Original
-</th>
-                <th>Barom. Press.
-</th>
-                <th>Change of
-</th>
-                <th>mpc
-</th>
-                <th>Test load
-</th>
-                <th>Original
-</th>
-                <th>Barom. Press.
-</th>
-                <th>Change of
-</th>
-                <th>mpc
-</th>
+                <th>
+                  <p id="_db3e2c14-6970-7660-41af-7a3360f769a6">Test load</p>
+                </th>
+                <th>
+                  <p id="_7c8af5f4-d070-7b3e-7a86-42b5ab52cefd">Original</p>
+                </th>
+                <th>
+                  <p id="_5bd97d44-9848-0fb0-ece7-2a4f24cba86a">Barom. Press.</p>
+                </th>
+                <th>
+                  <p id="_3b49121b-fdae-b035-95ab-4ab133c1a979">Change of</p>
+                </th>
+                <th>
+                  <p id="_9eb56a37-f039-99aa-4d9d-64c081a0d887">mpc</p>
+                </th>
+                <th>
+                  <p id="_2f6303dc-02c0-f401-2edf-b7d7aff71e70">Test load</p>
+                </th>
+                <th>
+                  <p id="_b5c3ffa3-90ce-dc4e-ea2d-72b625ca9a79">Original</p>
+                </th>
+                <th>
+                  <p id="_70c10584-9bb7-4cba-7559-97916b03ad67">Barom. Press.</p>
+                </th>
+                <th>
+                  <p id="_c50ffbfb-b38a-28c8-dd79-7f43c51c2045">Change of</p>
+                </th>
+                <th>
+                  <p id="_56a63c64-d9f6-ac1a-9a23-9c4fe490a76f">mpc</p>
+                </th>
               </tr>
               <tr>
-                <th>Indication
-</th>
-                <th>Time
-</th>
-                <th>Indication
-</th>
-                <th>Time
-</th>
-                <th>Indication
-</th>
-                <th>Time
-</th>
-                <th>Indication
-</th>
-                <th>Time
-</th>
+                <th>
+                  <p id="_b8ed8097-ae67-95e6-bab1-a0ed1f14b256">Indication</p>
+                </th>
+                <th>
+                  <p id="_3f5fcb2a-40a7-cd06-0248-e8b11685d56a">Time</p>
+                </th>
+                <th>
+                  <p id="_6b6d9058-b1da-ac84-60bf-12034b5f5ba9">Indication</p>
+                </th>
+                <th>
+                  <p id="_13b55342-42a2-27dd-ce6e-5752bce48ee7">Time</p>
+                </th>
+                <th>
+                  <p id="_f5086136-59ae-2884-754b-92a84e87714a">Indication</p>
+                </th>
+                <th>
+                  <p id="_7e154502-4abd-089d-4df8-53a6347189fc">Time</p>
+                </th>
+                <th>
+                  <p id="_3209183e-a52a-584a-f9e4-8030d4942953">Indication</p>
+                </th>
+                <th>
+                  <p id="_7752eed1-217f-1683-1a23-4d1481b07ebe">Time</p>
+                </th>
               </tr>
               <tr>
                 <th/>
-                <th>counts
-</th>
-                <th>hh:mm:ss
-</th>
                 <th>
-</th>
+                  <p id="_e6ccf70e-0998-7447-95d7-966e4a2f2557">counts</p>
+                </th>
                 <th>
-</th>
-                <th>mm:ss
-</th>
+                  <p id="_c473093d-a51a-e9ae-2d45-af4010e82b49">hh:mm:ss</p>
+                </th>
                 <th>
-</th>
+                  <p id="_0f539af9-0c3b-825e-3966-eed463de5337">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mrow xref="U_kPa">
+                            <mml:mstyle mathvariant="normal">
+                              <mml:mi>kPa</mml:mi>
+                            </mml:mstyle>
+                          </mml:mrow>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </th>
+                <th>
+                  <p id="_f0d3ba40-6e0a-2351-061a-aae1dcd9aaed">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mi>v</mml:mi>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </th>
+                <th>
+                  <p id="_11a9712f-5de3-410a-52b3-6c4595070565">mm:ss</p>
+                </th>
+                <th>
+                  <p id="_94a2770b-8efb-869e-e972-fdae9b5d1a32">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mi>v</mml:mi>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </th>
                 <th/>
-                <th>counts
-</th>
-                <th>hh:mm:ss
-</th>
                 <th>
-</th>
+                  <p id="_d13fe76b-a84a-c793-c7d4-fdab71a1bab9">counts</p>
+                </th>
                 <th>
-</th>
-                <th>mm:ss
-</th>
+                  <p id="_cd952325-8e5a-8ed3-a4e0-893dee05578c">hh:mm:ss</p>
+                </th>
                 <th>
-</th>
+                  <p id="_25f9c3c4-aef6-8d51-f323-803e8f9d9693">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mrow xref="U_kPa">
+                            <mml:mstyle mathvariant="normal">
+                              <mml:mi>kPa</mml:mi>
+                            </mml:mstyle>
+                          </mml:mrow>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </th>
+                <th>
+                  <p id="_9742de7d-7970-b31e-6328-62d03cb2e470">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mi>v</mml:mi>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </th>
+                <th>
+                  <p id="_d8f926f2-9f74-dd0a-2dd6-3c81d26fc457">mm:ss</p>
+                </th>
+                <th>
+                  <p id="_f43fbb9e-a1f7-c563-53e5-2f1c509babb8">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:mi>v</mml:mi>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>
-</td>
+                  <p id="_f991c0a2-9af4-f6b1-d991-9bfebb59a24d">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:msub>
+                            <mml:mi>D</mml:mi>
+                            <mml:mtext>min</mml:mtext>
+                          </mml:msub>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </td>
                 <td/>
                 <td/>
                 <td/>
@@ -7408,7 +7632,19 @@ the five test indications divided by the conversion factor, <inline-formula><mml
               </tr>
               <tr>
                 <td>
-</td>
+                  <p id="_e9468473-9734-00ea-798f-dad812006bbd">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:msub>
+                            <mml:mi>D</mml:mi>
+                            <mml:mtext>max</mml:mtext>
+                          </mml:msub>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </td>
                 <td/>
                 <td/>
                 <td/>
@@ -7496,24 +7732,6 @@ the five test indications divided by the conversion factor, <inline-formula><mml
                 <td/>
                 <td/>
                 <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td>(*)
-</td>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td>
-</td>
                 <td/>
                 <td/>
                 <td/>
@@ -7523,63 +7741,28 @@ the five test indications divided by the conversion factor, <inline-formula><mml
               </tr>
               <tr>
                 <td>
-</td>
+                  <p id="_57ae26a7-7dce-3376-82c8-044525d5bfa2">(*)</p>
+                </td>
                 <td/>
                 <td/>
                 <td/>
                 <td/>
                 <td/>
                 <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-              </tr>
-              <tr>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td/>
-                <td>(***)
-</td>
+                <td>
+                  <p id="_8c0ff706-9eaa-c19d-5b83-eb21e3488a29">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:msub>
+                            <mml:mi>D</mml:mi>
+                            <mml:mtext>max</mml:mtext>
+                          </mml:msub>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </td>
                 <td/>
                 <td/>
                 <td/>
@@ -7589,15 +7772,26 @@ the five test indications divided by the conversion factor, <inline-formula><mml
               </tr>
               <tr>
                 <td>
-</td>
+                  <p id="_1351366c-d9c8-5ca4-1eb8-26c334f6e366">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:msub>
+                            <mml:mi>D</mml:mi>
+                            <mml:mtext>min</mml:mtext>
+                          </mml:msub>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </td>
                 <td/>
                 <td/>
                 <td/>
                 <td/>
                 <td/>
                 <td/>
-                <td>
-</td>
+                <td/>
                 <td/>
                 <td/>
                 <td/>
@@ -7606,8 +7800,101 @@ the five test indications divided by the conversion factor, <inline-formula><mml
                 <td/>
               </tr>
               <tr>
-                <td>(**)
-</td>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+              </tr>
+              <tr>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+              </tr>
+              <tr>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td>
+                  <p id="_30eb909e-1e36-9d31-3890-59c45bf648ee">(***)</p>
+                </td>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <p id="_94862f5c-c9c0-3aba-4823-13ef05639382">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:msub>
+                            <mml:mi>D</mml:mi>
+                            <mml:mtext>max</mml:mtext>
+                          </mml:msub>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </td>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td>
+                  <p id="_ff463ea0-45ef-7baa-75ab-e20985ad22b3">
+                    <inline-formula>
+                      <mml:math>
+                        <mml:mstyle displaystyle="false">
+                          <mml:msub>
+                            <mml:mi>D</mml:mi>
+                            <mml:mtext>min</mml:mtext>
+                          </mml:msub>
+                        </mml:mstyle>
+                      </mml:math>
+                    </inline-formula>
+                  </p>
+                </td>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+                <td/>
+              </tr>
+              <tr>
+                <td>
+                  <p id="_b20cc7a0-32de-a44e-c6b9-8cb42bace3c4">(**)</p>
+                </td>
                 <td/>
                 <td/>
                 <td/>
@@ -8034,6 +8321,9 @@ the five test indications divided by the conversion factor, <inline-formula><mml
         <p id="_07739155-2483-4703-e822-abafb8115d38">PASS: ☐ FAIL: ☐</p>
         <table-wrap id="table-6.9">
           <label>Table 7</label>
+          <caption>
+            <title>Table 7</title>
+          </caption>
           <table>
             <thead>
               <tr>
@@ -8082,11 +8372,14 @@ the five test indications divided by the conversion factor, <inline-formula><mml
             <title>Form 6.10.1.(a): Humidity effects summary (CH or no mark)</title>
             <p id="_8d1fd76a-2cbf-1af7-330f-736b78ab1bd4">(¤) Indications at minimum test load</p>
             <p id="_e3349cfc-dbb0-6ac6-a1ed-28d96651a131">Change (¤), <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>C</mml:mi><mml:mtext>Hmin</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>: PASS: ☐ FAIL: ☐</p>
-            <p id="_68ea9784-1397-12e2-516d-f06f069abfe4">(‡) Indications at maximum test load <xref ref-type="other" rid="note_3">c)</xref></p>
+            <p id="_68ea9784-1397-12e2-516d-f06f069abfe4">(‡) Indications at maximum test load <xref ref-type="table" rid="note_3">c)</xref></p>
             <p id="_90ef27a5-e51e-61bf-b4a3-8421f4de6777">(*) Average, see R 60-1, 5.6.3 and R 60-3, 2.1.7</p>
             <p id="_4b51f11e-dc5a-a0ed-0d8a-e3ffe375fcf4">Change (*), <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>C</mml:mi><mml:mtext>Hmax</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>: PASS: ☐ FAIL: ☐</p>
             <table-wrap id="table-6.10.1-a">
               <label>Table 8</label>
+              <caption>
+                <title>Table 8</title>
+              </caption>
               <table>
                 <thead>
                   <tr>
@@ -8298,7 +8591,7 @@ the five test indications divided by the conversion factor, <inline-formula><mml
             <table-wrap id="table-6.10.1-c">
               <label>Table 10</label>
               <caption>
-                <title>(3 runs)</title>
+                <title>Table 10 — (3 runs)</title>
               </caption>
               <table>
                 <thead>
@@ -8623,7 +8916,7 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <table-wrap id="table-6.10.1-b">
             <label>Table 9</label>
             <caption>
-              <title>3 runs</title>
+              <title>Table 9 — 3 runs</title>
             </caption>
             <table>
               <thead>
@@ -8853,7 +9146,7 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <table-wrap id="_8f9e0c19-5b2b-3724-3eba-4ba7275e87ac">
             <label>Table 11</label>
             <caption>
-              <title>Table 6.10.1.(d) 5 runs</title>
+              <title>Table 11 — Table 6.10.1.(d) 5 runs</title>
             </caption>
             <table>
               <thead>
@@ -9181,7 +9474,7 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <table-wrap id="table-6.10.1-e">
             <label>Table 12</label>
             <caption>
-              <title>5 runs</title>
+              <title>Table 12 — 5 runs</title>
             </caption>
             <table>
               <thead>
@@ -9505,6 +9798,9 @@ the five test indications divided by the conversion factor, <inline-formula><mml
             <p id="_b7815d9c-dfc3-244a-937d-f6082d16f864">For summary of SH-humidity load test errors: use form 6.3 (3 runs) or 6.4 (5 runs) as appropriate to record individual teat results.</p>
             <table-wrap id="table-6.10.2">
               <label>Table 13</label>
+              <caption>
+                <title>Table 13</title>
+              </caption>
               <table>
                 <thead>
                   <tr>
@@ -9717,6 +10013,9 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <p id="_291c0bbe-f230-c9c2-f9b4-6f5f4d701908">PASS: ☐ FAIL: ☐</p>
           <table-wrap id="_2a146fe3-1c78-55f1-b744-a0c83a48d6d9">
             <label>Table 14</label>
+            <caption>
+              <title>Table 14</title>
+            </caption>
             <table>
               <thead>
                 <tr>
@@ -9863,6 +10162,9 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <p id="_c62ca3f0-9c53-d678-3ebe-1c0382877c6d">PASS: ☐ FAIL:☐</p>
           <table-wrap id="table-6.12-a">
             <label>Table 15</label>
+            <caption>
+              <title>Table 15</title>
+            </caption>
             <table>
               <thead>
                 <tr>
@@ -10107,6 +10409,9 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <p id="_27851664-0593-adef-1a5f-2b106650edba">Remarks:</p>
           <table-wrap id="table-6.13">
             <label>Table 16</label>
+            <caption>
+              <title>Table 16</title>
+            </caption>
             <table>
               <thead>
                 <tr>
@@ -10179,7 +10484,7 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <table-wrap id="table-6.14.1">
             <label>Table 17</label>
             <caption>
-              <title>Power supply lines: test voltage = 2 kV; duration of test = 1 minute at each polarity</title>
+              <title>Table 17 — Power supply lines: test voltage = 2 kV; duration of test = 1 minute at each polarity</title>
             </caption>
             <table>
               <thead>
@@ -10299,6 +10604,9 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <p id="_db051906-0c81-3e80-86ca-108bd31a5fbb">Remarks:</p>
           <table-wrap id="table-6.14.2">
             <label>Table 18</label>
+            <caption>
+              <title>Table 18</title>
+            </caption>
             <table>
               <thead>
                 <tr>
@@ -10474,318 +10782,489 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <p id="_25a4f145-19fb-f6a4-4a16-1ba32d4208eb">R 60-1, 5.7.2.5 R 60-2, 2.10.7.7 R 60-3, 2.2.5</p>
           <table-wrap id="table-6.15">
             <label>Table 19</label>
+            <caption>
+              <title>Table 19</title>
+            </caption>
             <table>
               <tbody>
                 <tr>
-                  <td>OIML R 60-2, …​…​…​
-
-[unit] ☐[g]; ☐[kg]; ☐[t];
-</td>
-                  <td>Test conditions surges on signal, data and control lines
-</td>
-                  <td>Observer’s name:
-</td>
-                </tr>
-                <tr>
-                  <td>Output gained
-</td>
-                  <td>☐
-</td>
-                  <td>using actual loads
-</td>
-                  <td/>
-                </tr>
-                <tr>
-                  <td>Test load:
-</td>
-                  <td>Line to line 1 kV
-</td>
-                </tr>
-                <tr>
-                  <td>☐
-</td>
-                  <td>simulating loading
-</td>
-                  <td>Line to earth 2 kV
-</td>
-                </tr>
-                <tr>
-                  <td>using:
-</td>
-                  <td/>
-                </tr>
-                <tr>
-                  <td>Cable:
-</td>
-                  <td/>
-                  <td>☐ Symmetrical line
-</td>
-                </tr>
-                <tr>
-                  <td>Date:
-</td>
-                  <td/>
-                  <td>Start
-</td>
-                  <td>Stop
-</td>
-                  <td>☐ Unsymmetrical line
-</td>
-                </tr>
-                <tr>
-                  <td>Time:
-</td>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>Specimen:
-</td>
-                </tr>
-                <tr>
-                  <td>Ambient temperature
-</td>
                   <td>
-</td>
+                    <p id="_c44bef7a-755a-1459-cb08-1ea5f4d8ce9b">
+                      <bold>OIML</bold>
+                      <bold>R 60-2,</bold>
+                      <bold>…​…​…​</bold>
+                    </p>
+                    <p id="_d0c2d65c-40d6-3a4a-f005-c07d578c3571">
+                      <bold>[unit]</bold>
+                      <bold>☐[g];</bold>
+                      <bold>☐[kg];</bold>
+                      <bold>☐[t];</bold>
+                    </p>
+                  </td>
                   <td>
-</td>
+                    <p id="_785def31-7e0f-5d87-2e2b-b51866ab70ba">Test conditions surges on signal, data and control lines</p>
+                  </td>
                   <td>
-</td>
+                    <p id="_388122bd-fdd5-1280-c649-bc22e46f2386">Observer’s name:</p>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Relative humidity
-</td>
-                  <td>%
-</td>
-                  <td>%
-</td>
-                  <td>[unit]
-</td>
-                </tr>
-                <tr>
-                  <td>Barometric Pressure
-</td>
                   <td>
-</td>
+                    <p id="_1044d4c5-ffc3-a38a-65d7-c69905bee6ae">Output gained</p>
+                  </td>
                   <td>
-</td>
-                  <td>[unit]
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td>Cycle phase
-</td>
-                  <td>Initial
-</td>
-                  <td>During exposure
-</td>
-                  <td>After
-</td>
-                </tr>
-                <tr>
-                  <td>Load
-</td>
-                  <td/>
-                  <td/>
+                    <p id="_f25789c3-b259-eade-f396-c3845cca88a4">☐</p>
+                  </td>
+                  <td>
+                    <p id="_fbd6e810-5a12-c80b-7d44-4e988b6e8bc8">using actual loads</p>
+                  </td>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Time
-</td>
-                  <td>Start
-</td>
+                  <td>
+                    <p id="_4ec487ec-e7ff-9a3d-9bb4-02e1e1208fdb">Test load:</p>
+                  </td>
+                  <td>
+                    <p id="_0dbef7a8-a279-cb8f-7fd7-2f78aef48ce6">Line to line 1 kV</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_f4c755b1-c728-2add-ed81-b5b2a47b5eb8">☐</p>
+                  </td>
+                  <td>
+                    <p id="_b311b44a-63eb-4f7f-ef6d-ffc9df7af60e">simulating loading</p>
+                  </td>
+                  <td>
+                    <p id="_4cc487d1-b8ff-ddf7-51d4-7f752ab2ecca">Line to earth 2 kV</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_f9445d17-9ee6-faea-df71-d3c8b391209a">using:</p>
+                  </td>
+                  <td/>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_6284bc2e-ac19-0bd8-c072-2b4b08c885cd">Cable:</p>
+                  </td>
+                  <td/>
+                  <td>
+                    <p id="_3ce38375-9c77-59c1-2e48-abe3d1484aa9">☐ Symmetrical line</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_9779cebf-6dea-1a33-b9d8-bb7d79eb0687">Date:</p>
+                  </td>
+                  <td/>
+                  <td>
+                    <p id="_eda4731c-7ff0-583b-1adb-e87d0eb3fdeb">Start</p>
+                  </td>
+                  <td>
+                    <p id="_2307885c-67ee-62c1-adf5-a755216d5b71">Stop</p>
+                  </td>
+                  <td>
+                    <p id="_f3367347-4b99-8460-25b2-6b5b32217630">☐ Unsymmetrical line</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_e9ce5be2-610d-b6ee-38cd-a06cb65c5008">Time:</p>
+                  </td>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_631b09b7-1275-f041-d943-545ee2e88fc9">Specimen:</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_f6785f8a-bc1e-09db-5f67-cc9342f3bdfd">Ambient temperature</p>
+                  </td>
+                  <td>
+                    <p id="_c64c2e6f-c708-8c82-c467-9701edab5383">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mrow xref="U_NISTu23">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>°C</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_70609a8c-995d-08d0-c42d-c92c83d0ffc4">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mrow xref="U_NISTu23">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>°C</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_b98620b7-4eca-f5fa-1e54-334020a9798e">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mi>f</mml:mi>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_3f0dea7f-f234-7871-1c4f-195fd46f58fb">Relative humidity</p>
+                  </td>
+                  <td>
+                    <p id="_b62b0956-d460-0acd-2226-346daac397b2">%</p>
+                  </td>
+                  <td>
+                    <p id="_008b51db-6f68-fb53-6fc6-9be8b339e382">%</p>
+                  </td>
+                  <td>
+                    <p id="_98ec116d-a4f3-0dc1-a25b-ca97fc39ac3a"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> [unit]</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_050cd656-5037-9eaa-ee6b-c1b85d9fe265">Barometric Pressure</p>
+                  </td>
+                  <td>
+                    <p id="_2af6379b-3a25-d6cc-db1c-24cfe1dfee98">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mrow xref="U_kPa">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kPa</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_8637351c-d47b-e19a-2422-816cde4df5b4">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mrow xref="U_kPa">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kPa</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_3bb14af2-2cd3-2768-e741-8c43df7bf8a9"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> [unit]</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td>
+                    <p id="_6f1973f5-745c-1bf1-2318-8b9135c33c33">Cycle phase</p>
+                  </td>
+                  <td>
+                    <p id="_935d51e7-475b-a8b2-3561-366ef63ffc5a">
+                      <bold>Initial</bold>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_6dda445b-1af2-e6ce-2871-41e3e1c2d952">
+                      <bold>During exposure</bold>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_7e00795a-a328-d477-3ad5-40187df01476">
+                      <bold>After</bold>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_ec38e8bf-0a18-9735-fb13-40ab5d0dc3b3">Load</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Stop
-</td>
+                  <td>
+                    <p id="_6cc6d7d8-bc3c-40a3-2832-1d274dddec43">Time</p>
+                  </td>
+                  <td>
+                    <p id="_a0a62c41-6be7-68b1-8ddc-15346b7efbf8">Start</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Quantity [unit]
-</td>
-                  <td>reference
-</td>
+                  <td>
+                    <p id="_917183a3-9325-86b1-e63c-3d6be9a3aaa9">Stop</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>indicated
-</td>
+                  <td>
+                    <p id="_86a604c4-391d-8229-16d1-6028943821bf">Quantity [unit]</p>
+                  </td>
+                  <td>
+                    <p id="_4b528d48-ee4b-4497-4040-a84a1e978afb">reference</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Error []
-</td>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td/>
-                </tr>
-                <tr>
-                  <td>relative error [%]
-</td>
+                  <td>
+                    <p id="_a4aed772-82ca-ba00-ca0a-6a2a19a39ca8">indicated</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>MPE [%]
-</td>
-                  <td/>
-                  <td/>
-                </tr>
-                <tr>
-                  <td/>
-                  <td>Pass
-</td>
-                  <td>☐
-</td>
-                  <td/>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td>Fail
-</td>
-                  <td>☐
-</td>
-                  <td/>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td>Observed faults after exposure
-</td>
-                </tr>
-                <tr>
-                  <td>Fault limit [%]
-</td>
-                  <td>………….
-</td>
-                </tr>
-                <tr>
-                  <td>Line to line (N/A for balanced)
-</td>
-                  <td>Fault/Deviation
-</td>
-                  <td>Significant
-</td>
-                  <td>Acts on fault
-</td>
-                </tr>
-                <tr>
-                  <td>↑ ▇
-</td>
-                  <td>↓ ▇
-</td>
-                  <td/>
-                  <td>Yes
-</td>
-                  <td>No
-</td>
-                  <td>Yes
-</td>
-                  <td>No
-</td>
-                </tr>
-                <tr>
-                  <td>3x
-</td>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td>3x
-</td>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td>Line to earth
-</td>
-                  <td/>
+                  <td>
+                    <p id="_e13faa34-4717-7a55-10c4-9d37ad460f13">Error [<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>]</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>3x
-</td>
+                  <td>
+                    <p id="_2aaa0f4b-993d-4f00-e440-e412fabe93c8">relative error [%] <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>ii</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula></p>
+                  </td>
                   <td/>
                   <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
+                  <td/>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_5bb92a13-0da8-6c0f-47d2-a6a9e38dce7b">MPE [%]</p>
+                  </td>
+                  <td/>
+                  <td/>
                 </tr>
                 <tr>
                   <td/>
-                  <td>3x
-</td>
+                  <td>
+                    <p id="_536d10d0-d8c3-bbf3-8b89-e02799632e23">Pass</p>
+                  </td>
+                  <td>
+                    <p id="_458406e4-515b-0488-6660-f588449a24dc">☐</p>
+                  </td>
                   <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
+                  <td>
+                    <p id="_91a4ab59-0120-e4c6-6db3-fa637ed7ffaa">☐</p>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Observations
-
-‌
-
-‌
-
-‌
-
-‌
-</td>
+                  <td/>
+                  <td>
+                    <p id="_76f4bf28-e827-cb38-a9f8-0cb8c63b4632">Fail</p>
+                  </td>
+                  <td>
+                    <p id="_12275af1-fc15-bda7-3b6f-75da0e2212f3">☐</p>
+                  </td>
+                  <td/>
+                  <td>
+                    <p id="_cccd1e02-77cd-5439-6b92-c65faf877df8">☐</p>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Result
-</td>
+                  <td>
+                    <p id="_7279a503-56dd-8951-65f2-bd9ea0a4b1ea">
+                      <bold>Observed faults after exposure</bold>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_7b96d2d4-d8e6-b47e-dfa3-22203a0062cf">Fault limit [%]</p>
+                  </td>
+                  <td>
+                    <p id="_ca017e2a-a96c-4563-2eaa-99f6b3d21b82">………….</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_6319c12a-6eb3-4942-71a4-a666453d7be4">Line to line (N/A for balanced)</p>
+                  </td>
+                  <td>
+                    <p id="_a0ecc359-f596-3c87-a65e-e78d5ff28f4f">Fault/Deviation</p>
+                  </td>
+                  <td>
+                    <p id="_f56b05c4-c41a-3bdc-d713-b8608dbe5109">Significant</p>
+                  </td>
+                  <td>
+                    <p id="_3f50f2c2-05a5-d0a7-3d63-0fe458fd0b6b">Acts on fault</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_239c779b-bd7d-66ea-4d0c-887b6b390c5f">↑ ▇</p>
+                  </td>
+                  <td>
+                    <p id="_cecaf164-c33e-e827-1c78-f93480be0ea9">↓ ▇</p>
+                  </td>
                   <td/>
-                  <td>Pass
-</td>
-                  <td>☐
-</td>
-                  <td>Fail
-</td>
-                  <td>☐
-</td>
+                  <td>
+                    <p id="_a3e184d8-b77c-e0e7-f248-e5a46b527198">Yes</p>
+                  </td>
+                  <td>
+                    <p id="_b733d197-d2fd-c30b-ae1c-b96c40269be1">No</p>
+                  </td>
+                  <td>
+                    <p id="_eea16593-1b06-7062-320b-35015edd75b5">Yes</p>
+                  </td>
+                  <td>
+                    <p id="_830cf69b-6cbe-3e36-1a12-1da91f3b6634">No</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_51615df4-7897-d47b-191b-e3fc7dfd9632">
+                      <bold>3x</bold>
+                    </p>
+                  </td>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_c7f6c436-d610-1d33-b985-8a1d5adb5501">☐</p>
+                  </td>
+                  <td>
+                    <p id="_3539783a-00a7-f0e2-456c-0037080a9d48">☐</p>
+                  </td>
+                  <td>
+                    <p id="_0a1cf41e-96bb-8cba-d12c-961845e54839">☐</p>
+                  </td>
+                  <td>
+                    <p id="_974f2617-1da6-5d18-e98c-623bfaea253b">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td>
+                    <p id="_c8684c9d-b6f0-5ee7-010b-98224e11c62f">
+                      <bold>3x</bold>
+                    </p>
+                  </td>
+                  <td/>
+                  <td>
+                    <p id="_bb0a2851-41d1-226d-fe37-23a0813faef9">☐</p>
+                  </td>
+                  <td>
+                    <p id="_4251e6db-c4f1-da15-e3c6-8cdd0f508836">☐</p>
+                  </td>
+                  <td>
+                    <p id="_9ad845ce-3cef-9fff-8cc6-95c64e56be94">☐</p>
+                  </td>
+                  <td>
+                    <p id="_ff1651ec-8790-c2ec-5d91-6c9e3401ad71">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_e5518af6-f4d5-a611-c402-d23f1e690d64">Line to earth</p>
+                  </td>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td/>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_af4a3c8b-2d64-8d27-d679-43f0a8e8345b">
+                      <bold>3x</bold>
+                    </p>
+                  </td>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_b2fee794-74c0-9925-9b43-575294e34c90">☐</p>
+                  </td>
+                  <td>
+                    <p id="_c426b247-2222-34d3-c05f-7028be681f94">☐</p>
+                  </td>
+                  <td>
+                    <p id="_5465a082-6fb3-9ca4-f9ad-b17e1c331b91">☐</p>
+                  </td>
+                  <td>
+                    <p id="_bdbcac9e-83cc-6017-12fc-66eaa6cae0f6">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td>
+                    <p id="_b4ca3e14-74e9-eee7-31f2-e78384e0c288">
+                      <bold>3x</bold>
+                    </p>
+                  </td>
+                  <td/>
+                  <td>
+                    <p id="_635d09f8-f123-8e8f-2742-39bc71bfb230">☐</p>
+                  </td>
+                  <td>
+                    <p id="_57aaf95d-c952-afee-4854-6ab074dc5b1b">☐</p>
+                  </td>
+                  <td>
+                    <p id="_b2a6e670-625c-1f58-345e-a04e1dc4adc4">☐</p>
+                  </td>
+                  <td>
+                    <p id="_4815166a-876d-d0c5-3e40-ddecfa13b335">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_97f20a89-8a47-30bf-82bc-e8164f706d32">Observations</p>
+                    <p id="_25a112df-ca24-f0b0-d42f-887b361a8dd3">‌</p>
+                    <p id="_c5d93a47-5451-45bc-5de9-1fed21c524dc">‌</p>
+                    <p id="_7a501845-57bb-8dc2-2bed-811ee5dada00">‌</p>
+                    <p id="_113f6313-6bce-592b-af8e-bd5635bd6818">‌</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_574e8373-17b7-4fbe-adf5-74800d2dabe4">Result</p>
+                  </td>
+                  <td/>
+                  <td>
+                    <p id="_4e32f4c5-a752-2576-ffeb-35c0f629d197">Pass</p>
+                  </td>
+                  <td>
+                    <p id="_f227a25f-66eb-e289-57cb-930c39471018">☐</p>
+                  </td>
+                  <td>
+                    <p id="_9a001a15-35f3-5bfe-ba53-102b46779b01">Fail</p>
+                  </td>
+                  <td>
+                    <p id="_c8f2380b-3813-8992-43b9-84174ed2c823">☐</p>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -10803,6 +11282,9 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <p id="_f83c3a11-d07b-448e-5c26-a8ec2325c03f">Remarks:</p>
           <table-wrap id="table-6.16.1">
             <label>Table 20</label>
+            <caption>
+              <title>Table 20</title>
+            </caption>
             <table>
               <thead>
                 <tr>
@@ -10891,7 +11373,7 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <table-wrap id="table-6.16.2.1">
             <label>Table 21</label>
             <caption>
-              <title>Horizontal coupling plane</title>
+              <title>Table 21 — Horizontal coupling plane</title>
             </caption>
             <table>
               <thead>
@@ -10959,7 +11441,7 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <table-wrap id="table-6.16.2.2">
             <label>Table 22</label>
             <caption>
-              <title>Vertical coupling plane</title>
+              <title>Table 22 — Vertical coupling plane</title>
             </caption>
             <table>
               <thead>
@@ -11036,7 +11518,7 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <title>Form 6.16.3 Electronic discharge (continued) — specification of test points</title>
           <p id="_ae6551e8-34ca-549b-87f9-df90324bcd37">R 60-1, 5.7.2.5 R 60-2, 2.10.7.8 R 60-3, 2.2.6</p>
           <p id="_e20862a6-062f-c611-f9ad-65bed3cee223">Specify test points utilised on load cell and test equipment used, e.g. by photos or sketches.</p>
-          <list list-type="order">
+          <list list-type="alpha-lower">
             <list-item>
               <label>a)</label>
               <p id="_73e74b49-2883-95c2-ad2a-a73aca97be95">Direct application</p>
@@ -11064,6 +11546,9 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <p id="_a3ab07ef-c816-760a-d82a-a7024f64279e">Remarks:</p>
           <table-wrap id="table-6.17">
             <label>Table 23</label>
+            <caption>
+              <title>Table 23</title>
+            </caption>
             <table>
               <thead>
                 <tr>
@@ -11176,426 +11661,659 @@ the five test indications divided by the conversion factor, <inline-formula><mml
           <p id="_5baef919-60bb-deeb-57f0-28a33a60bab2">R 60-1, 5.7.2.5 R 60-2, 2.10.7.10 R 60-3, 2.2.8</p>
           <table-wrap id="table-6.18">
             <label>Table 24</label>
+            <caption>
+              <title>Table 24</title>
+            </caption>
             <table>
               <tbody>
                 <tr>
-                  <td>OIML R 60-2, …​…​..
-
-[unit] ☐ [g]; ☐ [kg]; ☐ [t]
-</td>
-                  <td>test conditions rf current injection
-</td>
-                  <td>Observer’s name:
-</td>
-                </tr>
-                <tr>
-                  <td>output gained
-</td>
-                  <td>☐
-</td>
-                  <td>using actual loads
-</td>
-                  <td/>
-                </tr>
-                <tr>
-                  <td>Test load:
-</td>
                   <td>
-</td>
-                </tr>
-                <tr>
-                  <td>☐
-</td>
-                  <td>simulating loading
-</td>
+                    <p id="_50e3dbb1-4292-83c7-65f0-3aa73c10f2d9">
+                      <bold>OIML</bold>
+                      <bold>R 60-2,</bold>
+                      <bold>…​…​..</bold>
+                    </p>
+                    <p id="_f1d0189a-08ec-ed9d-e343-70e424cd1220"><bold>[unit]</bold> ☐ [g]; ☐ [kg]; ☐ [t]</p>
+                  </td>
                   <td>
-</td>
-                </tr>
-                <tr>
-                  <td>using:
-</td>
-                  <td>RF voltage
-</td>
-                </tr>
-                <tr>
-                  <td>Cable exposed
-</td>
-                  <td/>
-                  <td>Modulation % AM
-</td>
-                </tr>
-                <tr>
-                  <td>Date:
-</td>
-                  <td/>
-                  <td>Start
-</td>
-                  <td>Stop
-</td>
-                  <td>Dwell time
-</td>
-                </tr>
-                <tr>
-                  <td>Time:
-</td>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>Specimen:
-</td>
-                </tr>
-                <tr>
-                  <td>Ambient temperature
-</td>
+                    <p id="_8070847b-d5ef-7dfe-a5c3-45e7e368f76b">test conditions rf current injection</p>
+                  </td>
                   <td>
-</td>
+                    <p id="_ac57d809-dbc5-6db4-a0b5-afb92f84af25">Observer’s name:</p>
+                  </td>
+                </tr>
+                <tr>
                   <td>
-</td>
+                    <p id="_acd9d601-c593-bbdd-a3f1-044c8e575f91">output gained</p>
+                  </td>
                   <td>
-</td>
-                </tr>
-                <tr>
-                  <td>Relative humidity
-</td>
-                  <td>%
-</td>
-                  <td>%
-</td>
-                  <td>[unit]
-</td>
-                </tr>
-                <tr>
-                  <td>Barometric pressure
-</td>
+                    <p id="_a17e05cc-3981-dd22-fd9f-45b42c184f26">☐</p>
+                  </td>
                   <td>
-</td>
+                    <p id="_8f2a957d-aa04-49cc-363f-cd3638c8f5d0">using actual loads</p>
+                  </td>
+                  <td/>
+                </tr>
+                <tr>
                   <td>
-</td>
-                  <td>[unit]
-</td>
+                    <p id="_1945b1e6-13bc-425a-85a4-14f3054795aa">Test load:</p>
+                  </td>
+                  <td>
+                    <p id="_78ba3218-0832-1d69-3b7c-625f5d8dc8ba">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:msub>
+                              <mml:mi>f</mml:mi>
+                              <mml:mtext>l</mml:mtext>
+                            </mml:msub>
+                            <mml:mo>=</mml:mo>
+                            <mml:mi>  </mml:mi>
+                            <mml:mi>  </mml:mi>
+                            <mml:mi>  </mml:mi>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_MHz">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>MHz</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Frequency cycle
-</td>
-                  <td>Cycle phase
-</td>
-                  <td>Initial
-</td>
-                  <td>During exposure
-</td>
-                  <td>After
-</td>
+                  <td>
+                    <p id="_6d8828af-423a-158a-bee0-8ddcd1ecce65">☐</p>
+                  </td>
+                  <td>
+                    <p id="_81254d76-5789-0dd2-5192-6a5aea3da049">simulating loading</p>
+                  </td>
+                  <td>
+                    <p id="_730af65b-23c9-bd56-434c-8e09e2c14ea7">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:msub>
+                              <mml:mi>f</mml:mi>
+                              <mml:mtext>h</mml:mtext>
+                            </mml:msub>
+                            <mml:mo>=</mml:mo>
+                            <mml:mi>  </mml:mi>
+                            <mml:mi>  </mml:mi>
+                            <mml:mi>  </mml:mi>
+                            <mml:mo rspace="thickmathspace">⁢</mml:mo>
+                            <mml:mrow xref="U_MHz">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>MHz</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Load
-</td>
+                  <td>
+                    <p id="_4ed6b298-2cc9-7a23-99e8-b4d96835530d">using:</p>
+                  </td>
+                  <td>
+                    <p id="_29cfe1d0-fdb5-9a7c-90ad-ceaa07ae8d82">RF voltage <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>emf</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_7c4aa7bf-1ec5-934a-78b7-96ca1ca78755">Cable exposed</p>
+                  </td>
+                  <td/>
+                  <td>
+                    <p id="_80fc63f4-cf11-0c0d-3793-1da6cd9700ab">Modulation % AM</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_6fa0209b-64f8-5818-cfa5-ff9f85328685">Date:</p>
+                  </td>
+                  <td/>
+                  <td>
+                    <p id="_e364dfd9-a186-fe16-db25-38e36272d1a8">Start</p>
+                  </td>
+                  <td>
+                    <p id="_0f9e29fc-9ffb-c637-7443-a11ed80233de">Stop</p>
+                  </td>
+                  <td>
+                    <p id="_7a1b7cb7-392a-ccf0-cb6f-35ad1c7bf1b8">Dwell time <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mrow xref="U_NISTu3"><mml:mstyle mathvariant="normal"><mml:mi>s</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_ac46f088-934e-17fd-9922-e3cc38fec852">Time:</p>
+                  </td>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_41997c9d-1e85-41b0-9a4c-b935d72e7fab">Specimen:</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_53b46c19-cda2-6782-8446-9b451dae76f5">Ambient temperature</p>
+                  </td>
+                  <td>
+                    <p id="_e12ca8fd-eee6-4079-13e2-f10c0110b539">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mrow xref="U_NISTu23">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>°C</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_e353d40f-a4dc-f2e9-181f-65212a5c0f60">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mrow xref="U_NISTu23">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>°C</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_87fa4b22-ea6c-4942-a0d9-49d62de449b5">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mi>f</mml:mi>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_ea9848ab-96a7-5ff1-aaeb-aad88fb345a4">Relative humidity</p>
+                  </td>
+                  <td>
+                    <p id="_f270dcc4-d5bf-27e6-ae21-d192bbb7df6a">%</p>
+                  </td>
+                  <td>
+                    <p id="_90482e27-d20c-c410-65c2-8618435d1a3a">%</p>
+                  </td>
+                  <td>
+                    <p id="_a5af4ce9-e194-dc21-0514-4786a2083fe3"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> [unit]</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_f7204ae6-3a72-823e-1e22-c3388d7a0c27">Barometric pressure</p>
+                  </td>
+                  <td>
+                    <p id="_5b882a69-a966-1ae4-c2a2-092ff8776797">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mrow xref="U_kPa">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kPa</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_9ced5df5-1f4e-f018-cc66-bdd793a13d97">
+                      <inline-formula>
+                        <mml:math>
+                          <mml:mstyle displaystyle="false">
+                            <mml:mrow xref="U_kPa">
+                              <mml:mstyle mathvariant="normal">
+                                <mml:mi>kPa</mml:mi>
+                              </mml:mstyle>
+                            </mml:mrow>
+                          </mml:mstyle>
+                        </mml:math>
+                      </inline-formula>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_a4bfdc30-e9d8-ccbb-479f-e274b21b5f89"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> [unit]</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_713ba5a1-3d35-b038-3a91-b067a0c088f2">
+                      <bold>Frequency cycle</bold>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_e8414d61-16b2-0375-b563-c7ac98343044">Cycle phase</p>
+                  </td>
+                  <td>
+                    <p id="_0717d325-59d0-1045-31fe-35d88a8a27a6">
+                      <bold>Initial</bold>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_50ec38a8-1359-7c40-053a-6063349fc37e">
+                      <bold>During exposure</bold>
+                    </p>
+                  </td>
+                  <td>
+                    <p id="_3b43e691-6421-ea4b-9c0a-0f02a2552ddf">
+                      <bold>After</bold>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_26fc040a-ead4-b28e-3366-bfb14bce5ca3">Load</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Time
-</td>
-                  <td>Start
-</td>
+                  <td>
+                    <p id="_bd8d9357-b815-1f50-7261-edfb17568c08">Time</p>
+                  </td>
+                  <td>
+                    <p id="_ce86be35-e031-daf8-3239-dfe64e727cdf">Start</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Stop
-</td>
+                  <td>
+                    <p id="_6e4391ba-2db2-daab-9f23-9602c8ea2ea5">Stop</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Quantity [unit]
-</td>
-                  <td>reference
-</td>
+                  <td>
+                    <p id="_cc675d75-1e07-1141-9d3c-935aad43f5ed">Quantity [unit]</p>
+                  </td>
+                  <td>
+                    <p id="_6faee8d7-ab95-77b6-0abb-a4ed7201a021">reference</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>indicated
-</td>
+                  <td>
+                    <p id="_f72f7217-bddb-e6fd-f9d3-6ece678a79fc">indicated</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>Error []
-</td>
+                  <td>
+                    <p id="_90f530fa-20e9-08da-cee5-c8124d816e33">Error [<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>]</p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>relative error [%]
-</td>
+                  <td>
+                    <p id="_08438227-8940-fc81-797f-ee3e676e1600">relative error [%] <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>E</mml:mi></mml:mstyle></mml:math></inline-formula></p>
+                  </td>
                   <td/>
                   <td/>
                   <td/>
                 </tr>
                 <tr>
-                  <td>MPE [%]
-</td>
+                  <td>
+                    <p id="_2d98b40b-0d1f-b819-73b5-6689b73cb5ef">MPE [%]</p>
+                  </td>
                   <td/>
                   <td/>
-                </tr>
-                <tr>
-                  <td/>
-                  <td>Pass
-</td>
-                  <td>☐
-</td>
-                  <td/>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td>Fail
-</td>
-                  <td>☐
-</td>
-                  <td/>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td>Observed faults during exposure
-</td>
-                </tr>
-                <tr>
-                  <td>Fault limit [%]
-</td>
-                  <td>…………….
-</td>
-                </tr>
-                <tr>
-                  <td>Frequency
-</td>
-                  <td/>
-                  <td>Fault/Deviation
-</td>
-                  <td>Significant
-</td>
-                  <td>Acts on fault
-</td>
-                </tr>
-                <tr>
-                  <td>MHz
-</td>
-                  <td/>
-                  <td/>
-                  <td>Yes
-</td>
-                  <td>No
-</td>
-                  <td>Yes
-</td>
-                  <td>No
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                </tr>
-                <tr>
-                  <td/>
-                  <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
                 </tr>
                 <tr>
                   <td/>
+                  <td>
+                    <p id="_a1d3748e-d1b2-dcd3-813f-e58f22376f51">Pass</p>
+                  </td>
+                  <td>
+                    <p id="_f5a4902c-81fd-c1c1-e6d1-24143fc88532">☐</p>
+                  </td>
                   <td/>
-                  <td/>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
-                  <td>☐
-</td>
+                  <td>
+                    <p id="_9d62cc4c-484e-447f-fde1-02ea1307fc18">☐</p>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Observations
-
-‌
-
-‌
-
-‌
-
-‌
-
-‌
-</td>
+                  <td/>
+                  <td>
+                    <p id="_f1167458-42d6-dacc-217b-05a5506eb5b2">Fail</p>
+                  </td>
+                  <td>
+                    <p id="_4b28e5a6-ad58-7d29-6135-ca54cbe5166d">☐</p>
+                  </td>
+                  <td/>
+                  <td>
+                    <p id="_4737de39-76be-6784-3c6b-040cf32ac8c4">☐</p>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Result
-</td>
+                  <td>
+                    <p id="_9f501453-08a5-fb11-aaf8-c178ac3d2ac8">
+                      <bold>Observed faults during exposure</bold>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_ab5f8a66-643d-65d0-245f-ed46ce235f06">Fault limit [%]</p>
+                  </td>
+                  <td>
+                    <p id="_012a1de9-d371-8d4c-b608-4e5433da2b28">…………….</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_1bfb88db-ea29-0e8c-94b5-729185fcc8d7">Frequency</p>
+                  </td>
                   <td/>
-                  <td>Pass
-</td>
-                  <td>☐
-</td>
-                  <td>Fail
-</td>
-                  <td>☐
-</td>
+                  <td>
+                    <p id="_6c665ace-f0c0-6937-58c4-2b0f88d0c9b8">Fault/Deviation</p>
+                  </td>
+                  <td>
+                    <p id="_0476e0a9-3500-a13f-69db-cabedd380006">Significant</p>
+                  </td>
+                  <td>
+                    <p id="_d2c458da-5924-4fc5-3617-f6571c8e1d7d">Acts on fault</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_36b91460-d336-2976-017c-0cecc6af6c1d">MHz</p>
+                  </td>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_258c864d-7cef-28d5-7613-5cd7cd1aeefb">Yes</p>
+                  </td>
+                  <td>
+                    <p id="_9c8bb1a2-45c9-dd0f-8eea-6be169e7c2aa">No</p>
+                  </td>
+                  <td>
+                    <p id="_ba2961d9-8921-9ad2-1769-3b2145629123">Yes</p>
+                  </td>
+                  <td>
+                    <p id="_fc0dd137-2be3-c3c4-7ea9-bd3ed9f4adfc">No</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_18bec499-1018-e174-fd7f-c3a1533c0f24">☐</p>
+                  </td>
+                  <td>
+                    <p id="_747e96b9-5c4d-29a2-ae63-606f9ea6aa86">☐</p>
+                  </td>
+                  <td>
+                    <p id="_f5772b22-9831-099f-3c51-8c2b5b58ddc4">☐</p>
+                  </td>
+                  <td>
+                    <p id="_bf87eb00-2fac-87bb-eb26-7073b6c6c63f">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_348d6359-4cb0-82a4-ee80-5f7c49e1317f">☐</p>
+                  </td>
+                  <td>
+                    <p id="_fcca3fce-c93b-874a-e5f9-a857117dc36e">☐</p>
+                  </td>
+                  <td>
+                    <p id="_340e4cd8-2c28-b1fb-474e-3fca4d776469">☐</p>
+                  </td>
+                  <td>
+                    <p id="_4944f9da-9beb-5a7d-b3ec-e07f4bae7c02">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_ee1854a1-68ef-88a7-cdc2-47c8fb3dfbdd">☐</p>
+                  </td>
+                  <td>
+                    <p id="_c9a696a3-df7c-c9ad-49d2-5bf2629fde1f">☐</p>
+                  </td>
+                  <td>
+                    <p id="_2bc5f454-50ce-5ad2-eeff-9eb79302b09e">☐</p>
+                  </td>
+                  <td>
+                    <p id="_9b0e7e8c-95fa-5b6e-686f-89bb2f53a2ad">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_d7b1ceb4-583d-52c8-7d49-cd430517d99d">☐</p>
+                  </td>
+                  <td>
+                    <p id="_9512f1fd-8393-9a2a-4fda-18d48586035e">☐</p>
+                  </td>
+                  <td>
+                    <p id="_8faa112f-1c2b-3969-efbc-91007aaf936d">☐</p>
+                  </td>
+                  <td>
+                    <p id="_567a66d8-6990-7e87-53b4-7cff49deffad">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_5b12d90c-3523-59f8-1984-83f2a146ef68">☐</p>
+                  </td>
+                  <td>
+                    <p id="_7fff48c9-f707-ea53-35f5-6016564fa023">☐</p>
+                  </td>
+                  <td>
+                    <p id="_7dc1f61e-7235-0d18-15af-997e0ca3a6be">☐</p>
+                  </td>
+                  <td>
+                    <p id="_4602ccb2-5e19-f7b3-7932-f681fd90a4f1">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_83f2b0b5-a2f1-1914-332c-3829f38350d1">☐</p>
+                  </td>
+                  <td>
+                    <p id="_e20c2be9-cf38-3c18-7991-362f4aa973a5">☐</p>
+                  </td>
+                  <td>
+                    <p id="_66ebdd8b-0d7b-ad11-2c3c-3fdd26faae6b">☐</p>
+                  </td>
+                  <td>
+                    <p id="_96bcc272-6305-ecf9-d9f0-fccae8501ee6">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_2ef21a3b-ea4d-0c2b-84ac-75b2768ed878">☐</p>
+                  </td>
+                  <td>
+                    <p id="_00007b48-cda4-0457-1041-7aa41c98d33f">☐</p>
+                  </td>
+                  <td>
+                    <p id="_ad29816f-aab5-536f-000b-daec6b70570a">☐</p>
+                  </td>
+                  <td>
+                    <p id="_f88dbf4d-6f8f-7eb4-87b9-575f7b4fe4bf">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_a942839c-997b-6209-7a1d-db18200cc78a">☐</p>
+                  </td>
+                  <td>
+                    <p id="_c497ee33-811e-9496-af33-e03c3c76c116">☐</p>
+                  </td>
+                  <td>
+                    <p id="_1215458f-c2f8-f7e4-f2b8-09554cb01969">☐</p>
+                  </td>
+                  <td>
+                    <p id="_dc6f4041-43ec-29eb-5c60-4acd594c3c05">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_1a0ac798-1396-598a-0d67-e7309a00a82c">☐</p>
+                  </td>
+                  <td>
+                    <p id="_6431add2-6888-2c9f-5d7a-b134df8793ad">☐</p>
+                  </td>
+                  <td>
+                    <p id="_919610e0-07d9-5898-ad55-0becda29b170">☐</p>
+                  </td>
+                  <td>
+                    <p id="_3ab9d102-e124-0f22-af0c-f4bd92e049a1">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_bcc680a1-2918-217b-3e71-569bd198411d">☐</p>
+                  </td>
+                  <td>
+                    <p id="_8ae84345-4d5e-9ca7-db0a-71d0bfc0ada9">☐</p>
+                  </td>
+                  <td>
+                    <p id="_213529d5-ee80-034d-8c83-158781d5de81">☐</p>
+                  </td>
+                  <td>
+                    <p id="_f47efb97-fa39-5562-1ec2-8d0eea967abe">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_210775be-aa55-fdd0-c346-472cdf4cc65b">☐</p>
+                  </td>
+                  <td>
+                    <p id="_4fa75144-697b-5127-3e98-f7f70566e565">☐</p>
+                  </td>
+                  <td>
+                    <p id="_cf9acd80-7567-87f7-6c50-6b0c3c4ca105">☐</p>
+                  </td>
+                  <td>
+                    <p id="_5e2d580f-854a-f130-e6dc-ea0ba4131ae0">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_e2adcd33-41c8-3e18-a625-5ebeb1bdd111">☐</p>
+                  </td>
+                  <td>
+                    <p id="_b66effac-2919-d0ba-32e0-7efd9b4c68a9">☐</p>
+                  </td>
+                  <td>
+                    <p id="_3303ab81-fe87-5f9a-d04f-5b80e8131f33">☐</p>
+                  </td>
+                  <td>
+                    <p id="_a9cba847-35b7-fbf3-ddaf-47675b474309">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td/>
+                  <td/>
+                  <td/>
+                  <td>
+                    <p id="_c2b814cf-30f4-22cd-bf85-33f70691a2f8">☐</p>
+                  </td>
+                  <td>
+                    <p id="_4758f855-4c52-3633-1e68-d61bba97f344">☐</p>
+                  </td>
+                  <td>
+                    <p id="_d629a5bd-6ca4-94d3-3685-2b6a8b76b6ae">☐</p>
+                  </td>
+                  <td>
+                    <p id="_668ff640-45d9-855c-1bce-c6b7ae56aafb">☐</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_35ee8e9c-0e02-a511-1fc8-4e0a1ddc3c2e">Observations</p>
+                    <p id="_45e19bdc-1033-00c9-9e8d-3640dad07454">‌</p>
+                    <p id="_a23c7799-83cc-374b-dbf5-ec4fbbfeffc4">‌</p>
+                    <p id="_dec33de6-5ed0-e27e-2a4d-38c068a0c1c8">‌</p>
+                    <p id="_0ba72814-d7e4-c485-1fec-9d74b7aca354">‌</p>
+                    <p id="_7ed5a898-e037-e91b-5ff2-1a1983f5384b">‌</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p id="_b81e0472-f846-e3b9-3140-3b5d18a24fd9">Result</p>
+                  </td>
+                  <td/>
+                  <td>
+                    <p id="_d86ecf3e-00a8-0d40-d547-e724f04a4880">Pass</p>
+                  </td>
+                  <td>
+                    <p id="_5b9f27da-4f3d-05ad-b9aa-22cfef8a5558">☐</p>
+                  </td>
+                  <td>
+                    <p id="_449ca49f-a855-5ff4-b6a4-d753d7769d03">Fail</p>
+                  </td>
+                  <td>
+                    <p id="_fad820fa-44c1-d6e6-a1b4-28d88b5bf249">☐</p>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -12051,7 +12769,7 @@ R 60-3, 2.2.9</p>
           <table-wrap id="table-6.19.2">
             <label>Table 25</label>
             <caption>
-              <title>Measurement no. 1 (5 runs)</title>
+              <title>Table 25 — Measurement no. 1 (5 runs)</title>
             </caption>
             <table>
               <thead>
@@ -12118,7 +12836,7 @@ R 60-3, 2.2.9</p>
           <table-wrap id="_bba7025c-d309-283c-79b4-ad7ae7fed74e">
             <label>Table 26</label>
             <caption>
-              <title>Measurement no. 2 (5 runs)</title>
+              <title>Table 26 — Measurement no. 2 (5 runs)</title>
             </caption>
             <table>
               <thead>
@@ -12185,7 +12903,7 @@ R 60-3, 2.2.9</p>
           <table-wrap id="_f3e50961-4eb5-9515-8ddd-92d3389d40e7">
             <label>Table 27</label>
             <caption>
-              <title>Measurement no. 3 (5 runs)</title>
+              <title>Table 27 — Measurement no. 3 (5 runs)</title>
             </caption>
             <table>
               <thead>
@@ -12252,7 +12970,7 @@ R 60-3, 2.2.9</p>
           <table-wrap id="_0060b780-9227-d8a8-5051-2bed42737f91">
             <label>Table 28</label>
             <caption>
-              <title>Measurement no. 4 (5 runs)</title>
+              <title>Table 28 — Measurement no. 4 (5 runs)</title>
             </caption>
             <table>
               <thead>
@@ -12319,7 +13037,7 @@ R 60-3, 2.2.9</p>
           <table-wrap id="_b07eeead-73b1-66b7-930e-db945ba6b084">
             <label>Table 29</label>
             <caption>
-              <title>Measurement no. 5 (5 runs)</title>
+              <title>Table 29 — Measurement no. 5 (5 runs)</title>
             </caption>
             <table>
               <thead>
@@ -12386,7 +13104,7 @@ R 60-3, 2.2.9</p>
           <table-wrap id="_46326c47-3bc3-46a9-9865-7e7023bcedf7">
             <label>Table 30</label>
             <caption>
-              <title>Measurement no. 6 (5 runs)</title>
+              <title>Table 30 — Measurement no. 6 (5 runs)</title>
             </caption>
             <table>
               <thead>
@@ -12453,7 +13171,7 @@ R 60-3, 2.2.9</p>
           <table-wrap id="_c1ff61be-20dc-6a5b-5d01-0ad36716540a">
             <label>Table 31</label>
             <caption>
-              <title>Measurement no. 7 (5 runs)</title>
+              <title>Table 31 — Measurement no. 7 (5 runs)</title>
             </caption>
             <table>
               <thead>
@@ -12520,7 +13238,7 @@ R 60-3, 2.2.9</p>
           <table-wrap id="_13ea26a2-cff0-059d-b6e1-240145ae74f2">
             <label>Table 32</label>
             <caption>
-              <title>Measurement no. 8 (5 runs)</title>
+              <title>Table 32 — Measurement no. 8 (5 runs)</title>
             </caption>
             <table>
               <thead>
@@ -12594,7 +13312,7 @@ R 60-3, 2.2.9</p>
           <table-wrap id="_a1b142dd-78a2-a961-9e97-6a4088f129ea">
             <label>Table 33</label>
             <caption>
-              <title>Table 6.19.3</title>
+              <title>Table 33 — Table 6.19.3</title>
             </caption>
             <table>
               <thead>
