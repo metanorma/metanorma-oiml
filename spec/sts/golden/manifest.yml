@@ -1,0 +1,11 @@
+# Golden STS parity manifest (safety net for the engine delegation,
+# metanorma-oiml STS waves / metanorma-document#165): slug → the
+# real-document presentation XML each golden was captured from.
+# spec/sts/golden/<slug>.sts.xml holds the captured output;
+# `bundle exec rake sts:golden:capture` rewrites the goldens from the
+# CURRENT pipeline; spec/sts/golden_spec.rb diffs every conversion
+# against its golden byte-for-byte.
+r060-1: spec/fixtures/oiml/r060/1/document.presentation.xml
+r060-2: spec/fixtures/oiml/r060/2/document.presentation.xml
+r060-3: spec/fixtures/oiml/r060/3/document.presentation.xml
+r060-annex: spec/fixtures/oiml/r060/annex/document.presentation.xml
