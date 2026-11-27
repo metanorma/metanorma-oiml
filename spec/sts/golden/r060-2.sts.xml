@@ -46,16 +46,16 @@
       <p id="_f38c1156-6177-3ef5-50b8-864745ac082c">OIML Publications may be downloaded from the OIML web site in the form of PDF files. Additional information on OIML Publications may be obtained from the Organisation’s headquarters:</p>
       <p id="_fca1deab-c64c-5a08-d2a0-6a518de88e2e">Bureau International de Métrologie Légale 11, rue Turgot — 75009 Paris – France Telephone: 33 (0)1 48 78 12 82 Fax: 33 (0)1 42 82 17 27 E-mail:  <ext-link ext-link-type="uri" xlink:href="mailto:biml@oiml.org">biml@oiml.org</ext-link> Internet: www.oiml.org</p>
       <list list-type="bullet">
-        <list-item>
+        <list-item id="_8e6d9ebd-9b81-8586-364b-5c92d2d12aaf">
           <p id="_d372c31f-bfd7-7fbb-535a-ed45152cf8ca"><bold>International Recommendations (OIML R),</bold> which are model regulations that establish the metrological characteristics required of certain measuring instruments and which specify methods and equipment for checking their conformity. OIML Member States shall implement these Recommendations to the greatest possible extent;</p>
         </list-item>
-        <list-item>
+        <list-item id="_015ba13f-651e-cf59-c4cf-ba51718cd4f1">
           <p id="_82dedfa9-31e2-ffd7-34db-ed3d3913cc6b"><bold>International Documents (OIML D),</bold> which are informative in nature and which are intended to harmonise and improve work in the field of legal metrology;</p>
         </list-item>
-        <list-item>
+        <list-item id="_8a94387d-dc14-0c9d-d969-cd392d9a5b9d">
           <p id="_12fb4c73-5c12-16b9-03ab-4fabaf852c47"><bold>International Guides (OIML G),</bold> which are also informative in nature and which are intended to give guidelines for the application of certain requirements to legal metrology;</p>
         </list-item>
-        <list-item>
+        <list-item id="_0dd1d64b-c260-f54f-1b9a-986ae82a6bc1">
           <p id="_a958a960-842a-d89c-8ca5-3ec04ac73868"><bold>International Basic Publications (OIML B),</bold> which define the operating rules of the various OIML structures and systems; and</p>
         </list-item>
       </list>
@@ -162,31 +162,31 @@
         <title>Documentation</title>
         <p id="_9aebf666-02db-2f8c-8753-2aa7c6ad9dbc">The documentation submitted with the application for type evaluation shall include:</p>
         <list list-type="alpha-lower">
-          <list-item>
+          <list-item id="_9b771ad0-e18c-ca09-319f-46ec8179b595">
             <label>a)</label>
             <p id="_e751def0-f6da-692d-59f1-fc161a9d071b">a description of its general principle of measurement;</p>
           </list-item>
-          <list-item>
+          <list-item id="_b605d35a-ecd5-79fd-e5a6-64b9c7b224ad">
             <label>b)</label>
             <p id="_8210ecc3-5f1d-f5c4-f4e9-b26d468ae9b8">mechanical drawings (including documents on the load transmission(s) as per Annex E);</p>
           </list-item>
-          <list-item>
+          <list-item id="_be60a7cd-24b8-9572-68bc-93b84cd51e91">
             <label>c)</label>
             <p id="_ad8253c7-0472-3810-e540-84c9b26c53c0">electric/electronic diagrams;</p>
           </list-item>
-          <list-item>
+          <list-item id="_7fa6fb88-6cbf-b0e7-c2df-6fc6aaf43c1e">
             <label>d)</label>
             <p id="_80fc3068-0a98-682b-de87-b1529fbb9184">installation requirements (physical and electrical) if appropriate;</p>
           </list-item>
-          <list-item>
+          <list-item id="_4f9c9ae6-be1e-3dca-2081-d36b0107471b">
             <label>e)</label>
             <p id="_2fb0bf95-3d2d-46b9-a5d5-6b788368753f">operating instructions that shall be provided to the user if appropriate;</p>
           </list-item>
-          <list-item>
+          <list-item id="_6110b8f3-4a86-1906-8c01-330323843eff">
             <label>f)</label>
             <p id="_1753e5ba-5690-b98f-232a-5f22e0672c92">documents or other evidence to support and demonstrate the manufacturer’s belief that the design and characteristics of the load cell will comply with the requirements of this Recommendation; and</p>
           </list-item>
-          <list-item>
+          <list-item id="_de7682ec-676f-d5a9-49e9-06ec0e8ba9c4">
             <label>g)</label>
             <p id="_6636ea8f-aef4-35cd-33f1-a86b74895be0">documentation relative to software if appropriate.</p>
           </list-item>
@@ -201,35 +201,35 @@
         <p id="_55a9cef4-e76a-e786-d646-28c8793c9013">The load cell shall be given a visual inspection to obtain a general appraisal of its design and construction and the documentation shall be studied.</p>
         <p id="_9e0d790a-fe7c-a811-ecdc-ace75920baa4">In particular, the following aspects shall be examined:</p>
         <list list-type="alpha-lower">
-          <list-item>
+          <list-item id="_ab4ed684-1b51-3f13-16be-36f7ccaa0f0b">
             <label>a)</label>
             <p id="_6c23a6cd-2089-9ddb-ac1f-e4be5e9bc170">accuracy classes and their symbols (R 60-1, 5.1.1 and 6.2.4.1);</p>
           </list-item>
-          <list-item>
+          <list-item id="_f579508e-aae5-3f7c-4928-4936aee192c4">
             <label>b)</label>
             <p id="_75307fa6-fb3f-01b6-bcbb-29e7eb96b207">maximum number of load cell verification intervals (R 60-1, 5.1.2 and 6.2.4.5);</p>
           </list-item>
-          <list-item>
+          <list-item id="_a4d69daa-dd89-1414-d697-107cf11deb8d">
             <label>c)</label>
             <p id="_db61355a-c37e-2004-319b-d1ed516b2a72">load cell measuring ranges (R 60-1, 3.5.2);</p>
           </list-item>
-          <list-item>
+          <list-item id="_ea2f74b3-2cd0-8b71-6859-ad3c588f4035">
             <label>d)</label>
             <p id="_0d1fccaa-4977-5ef0-e533-f638f3bb5c3d">apportioning of errors (R 60-1, 5.3.2 and 3.7.2);</p>
           </list-item>
-          <list-item>
+          <list-item id="_5500b666-1c89-0fc8-d236-bd9dd90b7e68">
             <label>e)</label>
             <p id="_393ca426-a608-73bf-ee57-e8209dbda16b">construction of load cells (R 60-1, 3.3);</p>
           </list-item>
-          <list-item>
+          <list-item id="_869668ab-3f54-b544-a7ec-3e004707e1e4">
             <label>f)</label>
             <p id="_1b896ff8-5981-5a4b-9a54-9ec6f47937b8">software (R 60-1, 6.1) (if applicable);</p>
           </list-item>
-          <list-item>
+          <list-item id="_d8327431-1ee3-23cd-e7e3-016a072b6396">
             <label>g)</label>
             <p id="_86ba0812-76fb-643f-f418-998238d0f7a4">inscriptions and presentation of load cell information (R 60-1, 6.2); and</p>
           </list-item>
-          <list-item>
+          <list-item id="_4e22211f-33c3-aada-9acc-8aacd162bda7">
             <label>h)</label>
             <p id="_ff55e319-4bb7-bddd-aab8-5db36388058d">installation instructions/recommendations.</p>
           </list-item>
@@ -676,22 +676,22 @@ This is based upon the initial <inline-formula><mml:math><mml:mstyle displaystyl
             <title>Adherence to loading/unloading times</title>
             <p id="_454745be-88c8-c613-e875-fb93580b37c4">When the specified loading or unloading times cannot be achieved, the applicant for evaluation should be consulted and the following shall apply:</p>
             <list list-type="alpha-lower">
-              <list-item>
+              <list-item id="_965fbe60-9a68-c066-1f9f-c30d4db27ca2">
                 <label>a)</label>
                 <p id="_7df68a55-15c6-4808-0473-b5aaa08cecae">In the case of the minimum dead load output return test, the time may be increased from 100 % to a limit of 150 % of the specified time provided that the permissible variation of the result is proportionally reduced from 100 % to 50 % of the allowable difference between the initial reading of the minimum load output upon unloading and the reading before loading.</p>
                 <p id="_ba647bb7-a633-9559-bcd5-6050cf115b56">For example:</p>
                 <list list-type="arabic">
-                  <list-item>
+                  <list-item id="_dffc95c1-6dba-09bd-88f7-e68b812a2e8f">
                     <label>1)</label>
                     <p id="_8ab76ebb-e292-ac3e-d6df-ec5742061eca">A change in load of 10 kg for class C and D load cells, loading (or unloading) time (approximately 5 s) is increased to 7.5 s (150 % of 5 s), MPE is reduced to 50 %; or</p>
                   </list-item>
-                  <list-item>
+                  <list-item id="_d1c43059-e972-619a-2586-1c68d7bcf9ef">
                     <label>2)</label>
                     <p id="_d96a7aa5-7376-f4c9-fcc6-28fcec37626a">A change in load of 1500 kg for class C and D load cells, loading (or unloading) time (approximately 20 s) is increased to 25 s (125 % of 20 s), MPE is reduced to 75 %.</p>
                   </list-item>
                 </list>
               </list-item>
-              <list-item>
+              <list-item id="_cb6e75d1-dca7-3596-3604-57faa2629c66">
                 <label>b)</label>
                 <p id="_88a0318b-0ff2-0f84-1192-e905f32b45a4">In all cases, the actual times shall be recorded in the Test report.</p>
               </list-item>
@@ -1109,16 +1109,16 @@ three times, returning to the minimum test load, <inline-formula><mml:math><mml:
                       <p id="_4535e640-7ccf-e1fb-970b-836588bcf49c">Condensation is expected to occur on the load cell during the temperature rise.</p>
                       <p id="_9d37fce8-160c-a5dc-b10c-2e93c6a2c699">The 24 h cycle comprises:</p>
                       <list list-type="bullet">
-                        <list-item>
+                        <list-item id="_a0ab1b8d-6180-ccf2-89c9-dee64c796bf9">
                           <p id="_30dadccc-fb3c-950d-96a9-3153841f6627">temperature rise during 3 hours,</p>
                         </list-item>
-                        <list-item>
+                        <list-item id="_7190d6e8-67e1-fae6-d368-eb5488bda432">
                           <p id="_c5288786-925d-7bea-889e-d465a9299094">temperature maintained at upper value until 12 hours from the start of the cycle,</p>
                         </list-item>
-                        <list-item>
+                        <list-item id="_7ca08e8c-1551-19c8-339c-5cb773a31f98">
                           <p id="_89a93e3e-042f-e50a-370a-b294ef087d40">temperature lowered to lower temperature level within a period of 3 to 6 hours, the declination (rate of fall) during the first hour and a half being such that the lower temperature level would be reached in a 3 hour period,</p>
                         </list-item>
-                        <list-item>
+                        <list-item id="_e6304923-d49f-231a-d4d5-a44a9a567eff">
                           <p id="_9e4ffee8-732c-d88f-5701-f0bb27184ec6">temperature maintained at the lower level until the 24 h period is completed.</p>
                         </list-item>
                       </list>
@@ -1251,16 +1251,16 @@ three times, returning to the minimum test load, <inline-formula><mml:math><mml:
                     <td>
                       <p id="_e42be64d-6181-5edb-0f39-d613cf58e725">This test involves exposure of the load cell to a constant temperature and a constant relative humidity. The load cell shall be tested as specified in  <xref ref-type="sec" rid="sec-2.10.6.1">2.10.6.1</xref> to <xref ref-type="sec" rid="sec-2.10.6.10">2.10.6.10</xref>:</p>
                       <list list-type="alpha-lower">
-                        <list-item>
+                        <list-item id="_a1863931-8ace-22b0-e6c9-b1ff3b05911d">
                           <label>a)</label>
                           <p id="_f495e7df-405a-cc86-c4f8-cf5acd7baf3d">at a reference temperature (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> or the mean value of the
 temperature range whenever <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>20</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> is outside this range) and a relative humidity of 50 % following conditioning;</p>
                         </list-item>
-                        <list-item>
+                        <list-item id="_51650243-13b3-0f57-36d1-6125c005b451">
                           <label>b)</label>
                           <p id="_609a881a-6b49-a3aa-06ac-2445f8ef9061">at the high temperature of the range specified in R 60-1, 5.6.1 for the load cell and a relative humidity of 85 %, 48 hours following temperature and humidity stabilisation; and</p>
                         </list-item>
-                        <list-item>
+                        <list-item id="_18d10bac-60d6-1d74-2990-089312139ed2">
                           <label>c)</label>
                           <p id="_f1c1d390-e51d-03f2-7758-6dceda869d4e">at the reference temperature and relative humidity of 50 %. The load cell shall be handled such that no condensation of water occurs on it.</p>
                         </list-item>
@@ -1431,19 +1431,19 @@ be returned to the minimum test load, <inline-formula><mml:math><mml:mstyle disp
                     <td>
                       <p id="_58ea3298-4152-34b2-2434-fbf7afe3bb7e">Mains power voltage variations:</p>
                       <list list-type="bullet">
-                        <list-item>
+                        <list-item id="_29225bcd-5f4f-dfe3-a41f-2fb29fc23d25">
                           <p id="_8f4ade9e-3297-7d1b-8394-fe1cfd8cf5dd">upper voltage limit (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>V</mml:mi><mml:mo>+</mml:mo><mml:mn>10</mml:mn><mml:mi>%</mml:mi></mml:mstyle></mml:math></inline-formula>);</p>
                         </list-item>
-                        <list-item>
+                        <list-item id="_15e4da4e-b721-017a-09c9-7ab32a9b4560">
                           <p id="_901f540f-3651-454a-b8af-434a5d8a1f7c">lower voltage limit (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>V</mml:mi><mml:mo>−</mml:mo><mml:mn>15</mml:mn><mml:mi>%</mml:mi></mml:mstyle></mml:math></inline-formula>)</p>
                         </list-item>
                       </list>
                       <p id="_256b53c6-0120-29fd-ca33-e947db0ca974">Battery power voltage variations:</p>
                       <list list-type="bullet">
-                        <list-item>
+                        <list-item id="_d0209ae3-3d99-0667-9415-92ecedc34f74">
                           <p id="_bb79ce6e-7dfa-6c6f-dd95-10b050a14dfa">upper voltage limit (not applicable);</p>
                         </list-item>
-                        <list-item>
+                        <list-item id="_51cd9de6-d550-36bc-a285-d445e0745a01">
                           <p id="_d90189b0-3118-d1d6-9f71-11234b797332">lower power voltage: (specified by the manufacturer, below <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mrow xref="U_NISTu16"><mml:mstyle mathvariant="normal"><mml:mi>V</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>)</p>
                         </list-item>
                       </list>
@@ -1571,10 +1571,10 @@ a lower voltage limit of <inline-formula><mml:math><mml:mstyle displaystyle="fal
                       <p id="_7b239eb6-245d-d2d0-4232-aa29178f969c">Level 3 in accordance with referenced standard: IEC 61000-4-4 No.5</p>
                       <p id="_c4670b56-2ca7-9d9a-0bc8-965f635901b6">Open circuit output test voltage for:</p>
                       <list list-type="bullet">
-                        <list-item>
+                        <list-item id="_8f81727d-100c-75d3-9d51-6a9dfb60ee81">
                           <p id="_de7a9aa3-c1a0-d57a-f3a0-b1cc06f8c3de">power supply lines: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kV"><mml:mstyle mathvariant="normal"><mml:mi>kV</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>;</p>
                         </list-item>
-                        <list-item>
+                        <list-item id="_88cde4ef-b366-5bd8-7aac-61d58d5254cb">
                           <p id="_c0a10cad-fd2f-20a0-7eb3-8ac10fdf8d96">I/O signal, data, and control lines: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>1</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_kV"><mml:mstyle mathvariant="normal"><mml:mi>kV</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>.</p>
                         </list-item>
                       </list>
@@ -1602,11 +1602,11 @@ a lower voltage limit of <inline-formula><mml:math><mml:mstyle displaystyle="fal
                       <p id="_5f5fd2a7-f68d-c050-b54d-7decd9696e44">A burst generator as defined in the referred standard [IEC 61000-4-4 Ed 3.0 (2012-04)] shall be used. The characteristics of the generator shall be verified before connecting the EUT.</p>
                       <p id="_745103c3-e56f-082f-7227-188cad90f475">The test shall be applied separately to:</p>
                       <list list-type="alpha-lower">
-                        <list-item>
+                        <list-item id="_e4458708-dbf4-3151-6071-3468c3242777">
                           <label>a)</label>
                           <p id="_9c78159e-6d7e-4a83-0190-eb82b1557350">power supply lines;</p>
                         </list-item>
-                        <list-item>
+                        <list-item id="_e43b2025-d382-ce2e-3040-83f71aa2d9b0">
                           <label>b)</label>
                           <p id="_18b94b23-487c-14ff-ed33-88bab5c4d577">I/O circuits and communication lines, if any.</p>
                         </list-item>
@@ -1933,51 +1933,51 @@ reasonably constant (<inline-formula><mml:math><mml:mstyle displaystyle="false">
             <p id="_fc464a41-732b-2b12-bf4d-9bbce3cd1c4b">Stabilise all factors at sufficiently constant ambient conditions.</p>
             <p id="_bd0cf3e1-fad2-3ac9-d3df-39968d3203f9">Each set of measurements shall consist of the following:</p>
             <list list-type="alpha-lower">
-              <list-item>
+              <list-item id="_55617c02-94bb-95bb-2f8d-c93a785e9b74">
                 <label>a)</label>
                 <p id="_fda37140-5bd4-4c0d-70f0-f0b68d48a712">preload the load cell by applying the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>,
 three times, returning to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, after each load application;</p>
               </list-item>
-              <list-item>
+              <list-item id="_9680c4cd-530b-2627-dd63-d0373d8565a5">
                 <label>b)</label>
                 <p id="_a2f5e6d0-51c9-063b-d65f-f6c7e790d2dc">stabilise the load cell at the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>;</p>
               </list-item>
-              <list-item>
+              <list-item id="_58d0677d-c6c0-0058-7f1e-97f13113db3e">
                 <label>c)</label>
                 <p id="_e688f4fb-79d8-6766-b903-f85d4c1f2d7e">read the minimum test load output and apply the maximum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>. Read the maximum test load output at time intervals as near as possible to those specified in  <xref ref-type="table" rid="table-1">Table 1</xref> in <xref ref-type="sec" rid="sec-2.8.3">2.8.3</xref>, and return to the minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>. Repeat this four more times for accuracy class B or two more times for accuracy classes C and D;</p>
               </list-item>
-              <list-item>
+              <list-item id="_3253316d-d434-39d7-8f96-db05d1da898e">
                 <label>d)</label>
                 <p id="_6807e875-d708-16d0-3f77-d123d05ed712">determine the span measurement result, which is the difference in output between the mean max-imum test load outputs and the mean minimum test load outputs. Compare subsequent results with the initial span measurement result and determine the error.</p>
               </list-item>
             </list>
             <p id="_0cc7f715-7144-a1c6-227e-6616509b7221">Record the following data:</p>
             <list list-type="alpha-lower">
-              <list-item>
+              <list-item id="_d70609bf-e818-4a3f-5a8c-990b5e238c4c">
                 <label>a)</label>
                 <p id="_15ba1460-f55f-caca-bcaa-31ec66cbe5c4">date and time (absolute, not relative);</p>
               </list-item>
-              <list-item>
+              <list-item id="_f4c384fd-d3ab-c7b7-d4bd-5f33f7e0a72d">
                 <label>b)</label>
                 <p id="_ca1c70a9-4f79-0e57-2310-2e6e64740651">temperature;</p>
               </list-item>
-              <list-item>
+              <list-item id="_7717b9f7-0721-09fc-f808-db2fcb8f06db">
                 <label>c)</label>
                 <p id="_d332bafb-bb85-03cc-e6ed-29ec9defde43">barometric pressure;</p>
               </list-item>
-              <list-item>
+              <list-item id="_f61c3f48-d6e3-3c24-e893-627699d61d30">
                 <label>d)</label>
                 <p id="_85829e76-aafb-a6c1-6614-37cfb8eaae43">relative humidity;</p>
               </list-item>
-              <list-item>
+              <list-item id="_9b0c361e-77a3-8587-94c6-e8b15558f0cb">
                 <label>e)</label>
                 <p id="_eee78901-d8ab-10c1-dbc1-7b656a2a1f5f">test load values;</p>
               </list-item>
-              <list-item>
+              <list-item id="_f7275e3d-a812-e29d-3941-53ec67c6d38b">
                 <label>f)</label>
                 <p id="_30e8dbfd-93a0-4847-ce66-0d6fcd976208">load cell outputs;</p>
               </list-item>
-              <list-item>
+              <list-item id="_f72095a7-ef7d-4d9c-7b64-132beec0f449">
                 <label>g)</label>
                 <p id="_f460f23f-c105-3ba1-023d-98deb6ceea10">errors.</p>
               </list-item>

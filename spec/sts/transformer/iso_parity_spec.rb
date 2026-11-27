@@ -90,13 +90,21 @@ RSpec.describe "reconciled OIML STS mirrors" do
 
   it "keeps OIML terms as ordinary sections with resolvable source anchors" do
     doc = convert_sections(<<~XML)
-      <clause id="s"><title>Scope</title><p>See <xref target="term1" style="clause"/>.</p></clause>
+      <clause id="s"><title>Scope</title><p>See <xref target="term1"/>.</p></clause>
       <terms id="terms"><title>Terms and definitions</title>
         <term id="term1"><preferred><expression><name>sample</name></expression></preferred></term>
       </terms>
     XML
     expect(doc.at_xpath('//xref')['rid']).to eq("term1")
+    expect(doc.at_xpath('//xref')['ref-type']).to eq("sec")
     expect(doc.at_xpath('//sec[@id="term1"]')).not_to be_nil
+  end
+
+  it "types an unstyled xref to a presentation term as sec" do
+    xml = File.read("spec/fixtures/oiml/r060/1/document.presentation.xml")
+    doc = Nokogiri::XML(Metanorma::Oiml::Sts.convert(xml)).tap(&:remove_namespaces!)
+    expect(doc.at_xpath('//sec[@id="sec-3.1.3.4"]')).not_to be_nil
+    expect(doc.xpath('//xref[@rid="sec-3.1.3.4"]').map { |x| x["ref-type"] }.uniq).to eq(["sec"])
   end
 
   it "claims unique ids even when a generated suffix is requested explicitly" do
