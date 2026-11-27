@@ -28,8 +28,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "lutaml-model", "~> 0.8.0"
   spec.add_dependency "sts", ">= 0.5.6" # relaxed until glossarist supports 0.6
   spec.add_dependency "mml", "~> 2.3"
+  spec.add_dependency "moxml", "~> 0.6.0"
   spec.add_dependency "liquid", ">= 5.0"
   # Nokogiri is used by the validator and parity tooling
-  spec.add_dependency "nokogiri", ">= 1.16"
   spec.add_dependency "thor", ">= 1.2"
 end
