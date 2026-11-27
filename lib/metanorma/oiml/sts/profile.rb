@@ -9,11 +9,8 @@ module Metanorma
       # (metanorma-document 0.5.15, Metanorma::Document::Sts) —
       # metanorma-iso#1760 / metanorma-document#165.
       class Profile
-        # The <processing-meta> element the engine injects after
-        # <standard>; identical on the facade and the adapter paths.
-        PROCESSING_META =
-          '<processing-meta tagset-family="sts" base-tagset="interchange" ' \
-          'table-model="xhtml" mathml="MathML 3.0" terminology-model="tbx"/>'.freeze
+        PROCESSING_META = '<processing-meta tagset-family="sts" base-tagset="interchange" ' \
+                          'table-model="xhtml" mathml="MathML 3.0" terminology-model="tbx"/>'
 
         def self.instance
           @instance ||= Metanorma::Document::Sts::Profile.new(
@@ -21,6 +18,7 @@ module Metanorma
             org_abbrev: "OIML",
             dtd_version: "1.2",
             processing_meta: PROCESSING_META,
+            term_classes: [Metanorma::IsoDocument::Terms::IsoTerm],
             reader_class: Metanorma::Oiml::Document::Root,
             validator_class: Metanorma::Oiml::Sts::Validator,
             class_overrides: overrides,
@@ -50,6 +48,7 @@ module Metanorma
             Metanorma::Document::Sts::Transformer::NoteTransformer => Metanorma::Oiml::Sts::Transformer::NoteTransformer,
             Metanorma::Document::Sts::Transformer::ParagraphTransformer => Metanorma::Oiml::Sts::Transformer::ParagraphTransformer,
             Metanorma::Document::Sts::Transformer::ReferenceTransformer => Metanorma::Oiml::Sts::Transformer::ReferenceTransformer,
+            Metanorma::Document::Sts::Transformer::RequirementTransformer => Metanorma::Oiml::Sts::Transformer::RequirementTransformer,
             Metanorma::Document::Sts::Transformer::RenderedTextExtractor => Metanorma::Oiml::Sts::Transformer::RenderedTextExtractor,
             Metanorma::Document::Sts::Transformer::SectionTransformer => Metanorma::Oiml::Sts::Transformer::SectionTransformer,
             Metanorma::Document::Sts::Transformer::Standard => Metanorma::Oiml::Sts::Transformer::Standard,

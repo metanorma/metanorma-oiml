@@ -3,7 +3,7 @@
   <front>
     <std-meta>
       <title-wrap>
-        <main>Metrological regulation for load cells — Part 4:Annexes</main>
+        <main>Metrological regulation for load cells — Part 4:Annexes</main>
       </title-wrap>
       <std-ident>
         <originator>OIML</originator>
@@ -45,16 +45,16 @@
       <p id="_f38c1156-6177-3ef5-50b8-864745ac082c">OIML Publications may be downloaded from the OIML web site in the form of PDF files. Additional information on OIML Publications may be obtained from the Organisation’s headquarters:</p>
       <p id="_376fd438-865f-19e3-fda8-8fe1cec58bf9">Bureau International de Métrologie Légale 11, rue Turgot — 75009 Paris — France Telephone: 33 (0)1 48 78 12 82 Fax:33 (0)1 42 82 17 27 E-mail:biml@oiml.org Internet: www.oiml.org</p>
       <list list-type="bullet">
-        <list-item>
+        <list-item id="_8e6d9ebd-9b81-8586-364b-5c92d2d12aaf">
           <p id="_d372c31f-bfd7-7fbb-535a-ed45152cf8ca"><bold>International Recommendations (OIML R),</bold> which are model regulations that establish the metrological characteristics required of certain measuring instruments and which specify methods and equipment for checking their conformity. OIML Member States shall implement these Recommendations to the greatest possible extent;</p>
         </list-item>
-        <list-item>
+        <list-item id="_015ba13f-651e-cf59-c4cf-ba51718cd4f1">
           <p id="_82dedfa9-31e2-ffd7-34db-ed3d3913cc6b"><bold>International Documents (OIML D),</bold> which are informative in nature and which are intended to harmonise and improve work in the field of legal metrology;</p>
         </list-item>
-        <list-item>
+        <list-item id="_8a94387d-dc14-0c9d-d969-cd392d9a5b9d">
           <p id="_12fb4c73-5c12-16b9-03ab-4fabaf852c47"><bold>International Guides (OIML G),</bold> which are also informative in nature and which are intended to give guidelines for the application of certain requirements to legal metrology;</p>
         </list-item>
-        <list-item>
+        <list-item id="_0dd1d64b-c260-f54f-1b9a-986ae82a6bc1">
           <p id="_a958a960-842a-d89c-8ca5-3ec04ac73868"><bold>International Basic Publications (OIML B),</bold> which define the operating rules of the various OIML structures and systems; and</p>
         </list-item>
       </list>
@@ -65,7 +65,7 @@
       <app id="sec_A" content-type="normative">
         <label>Annex A</label>
         <title>Definitions from other applicable international publications</title>
-        <sec id="sec-A.1">
+        <sec id="sec_A.1" sec-type="terms">
           <label>A.1</label>
           <title>Terms and definitions</title>
           <sec id="sec-A.1.1">
@@ -190,7 +190,7 @@
             <p id="_018136dd-4651-e411-3b23-a6965916148c">Example: To preserve stored data</p>
           </sec>
         </sec>
-        <sec id="sec-A.2">
+        <sec id="sec_A.2" sec-type="terms">
           <label>A.2</label>
           <title>Definitions from OIML R 76 [1]</title>
           <sec id="sec-A.2.1">
@@ -333,9 +333,9 @@
           <title>Technical data</title>
           <p id="_172cb34d-0b46-f922-36bc-ab43b9bc7bd5">The essential technical data for OIML certificates are listed on the certificate (at the request of the manufacturer). Alternatively, in the case of limited space on the certificate, the following information may be provided on additional pages to the certificate:</p>
           <table-wrap id="table-B.1">
-            <label>Table B.1</label>
+            <label>Table B.1</label>
             <caption>
-              <title>Table B.1 — Technical data</title>
+              <title>Table B.1 — Technical data</title>
             </caption>
             <table>
               <thead>
@@ -783,7 +783,7 @@
       <app id="sec_C" content-type="informative">
         <label>Annex C</label>
         <title>OIML certificate for load cells</title>
-        <p id="_af812f94-f1ce-68eb-c6bb-c49f2d095963">This Annex is provided as an example of supplemental information that may be included in the OIML certificate and is intended to complement the information found in  <xref ref-type="app" rid="sec_B">Annex B</xref>.</p>
+        <p id="_af812f94-f1ce-68eb-c6bb-c49f2d095963">This Annex is provided as an example of supplemental information that may be included in the OIML certificate and is intended to complement the information found in  <xref ref-type="app" rid="sec_B">Annex B</xref>.</p>
         <sec id="sec-C.1">
           <label>C.1</label>
           <title>Certificate history</title>
@@ -809,12 +809,11 @@
         <sec id="sec-C.2">
           <label>C.2</label>
           <title>Technical data</title>
-          <p id="_3bdf7c38-1ddf-8842-e97d-76ea6c53f94f">The metrological characteristics of the load cells type xxx are listed in <xref ref-type="table" rid="table-C2">Table C.1</xref>. Further technical data are listed in the data sheet of the manufacturer (see the section “6 Data sheet and dimensions” in this Annex).</p>
-          <p id="_87eefc3e-4610-c423-a3af-58fddeb33666">Dead load: xxx <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>%</mml:mi><mml:mo>⋅</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>; Safe overload: xxx <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>%</mml:mi><mml:mo>⋅</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>; Input impedance: xxx <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mrow xref="U_NISTu18"><mml:mstyle mathvariant="normal"><mml:mi>Ω</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
+          <p id="_3bdf7c38-1ddf-8842-e97d-76ea6c53f94f">The metrological characteristics of the load cells type xxx are listed in <xref ref-type="table" rid="table-C2">Table C.1</xref>. Further technical data are listed in the data sheet of the manufacturer (see the section “6 Data sheet and dimensions” in this Annex).</p>
           <table-wrap id="table-C2">
-            <label>Table C.1</label>
+            <label>Table C.1</label>
             <caption>
-              <title>Table C.1 — Essential data</title>
+              <title>Table C.1 — Essential data</title>
             </caption>
             <table>
               <thead>
@@ -977,17 +976,18 @@
               </tbody>
             </table>
           </table-wrap>
+          <p id="_87eefc3e-4610-c423-a3af-58fddeb33666">Dead load: xxx <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>%</mml:mi><mml:mo>⋅</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>; Safe overload: xxx <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>%</mml:mi><mml:mo>⋅</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>; Input impedance: xxx <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mrow xref="U_NISTu18"><mml:mstyle mathvariant="normal"><mml:mi>Ω</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
         </sec>
         <sec id="sec-C.3">
           <label>C.3</label>
           <title>Tests</title>
           <p id="_d5291982-2e18-ef62-27f3-643f6ee6d866">The determination of the measurement error, the stability of the dead load output,
 repeatability and creep in the temperature range of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>−</mml:mo><mml:mn>10</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> to
-<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>+</mml:mo><mml:mn>40</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> as well as the tests of barometric pressure effects and the determination of the effects of damp heat steady state have been performed according to OIML R 60 as shown in  <xref ref-type="table" rid="table-C2">Table C.1</xref> on the load cell denominated in the test report with the reference No. xxx, dated xxx.</p>
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mo>+</mml:mo><mml:mn>40</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> as well as the tests of barometric pressure effects and the determination of the effects of damp heat steady state have been performed according to OIML R 60 as shown in  <xref ref-type="table" rid="table-C2">Table C.1</xref> on the load cell denominated in the test report with the reference No. xxx, dated xxx.</p>
           <table-wrap id="table-C3">
-            <label>Table C.2</label>
+            <label>Table C.2</label>
             <caption>
-              <title>Table C.2 — Tests performed</title>
+              <title>Table C.2 — Tests performed</title>
             </caption>
             <table>
               <thead>
@@ -1175,17 +1175,32 @@ repeatability and creep in the temperature range of <inline-formula><mml:math><m
           <label>C.4</label>
           <title>Description of the load cell</title>
           <non-normative-example>
+            <label>EXAMPLE</label>
             <p id="_173a9892-97dd-a850-fa95-8486ac239322">The load cells (LC) of the series xxx are double bending beam load cells. They are made of aluminium, and the strain gauge application is hermetically sealed. Further essential characteristics are given in the data sheet (see the section “6 Data sheet and dimensions” in this Annex).</p>
             <p id="_6e9fce42-8412-6bef-ed50-253faf09d54f">[Include a picture/diagram of the load cell]</p>
-            <p id="_f3f380bb-37c2-fae9-6fea-61086bcbbce4">Figure 1 — Load cell type xxx</p>
+            <p id="_f3f380bb-37c2-fae9-6fea-61086bcbbce4">Figure 1 — Load cell type xxx</p>
             <p id="_9fa332ef-fdc3-b826-13e6-cc48d6de7826">The complete type designation is indicated as follows in the example on the name plate:</p>
             <p id="_82d272f0-8b69-acf1-9f48-225706386e2e">[Include a picture/diagram of the name plate]</p>
-            <p id="_71d6c136-c8fa-70fe-cefd-17804e6820a7">Figure 2 — Name plate</p>
+            <p id="_71d6c136-c8fa-70fe-cefd-17804e6820a7">Figure 2 — Name plate</p>
           </non-normative-example>
         </sec>
         <sec id="sec-C.5">
           <label>C.5</label>
           <title>Documentation</title>
+          <non-normative-example>
+            <label>EXAMPLE</label>
+            <list list-type="bullet">
+              <list-item id="_9b2e5e16-f9bd-430c-f371-6d1e05616fff">
+                <p id="_cf77091b-3d86-89e4-c8ad-dacf27b49cb8">Test Report No. xxx; C3; <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi><mml:mo>=</mml:mo><mml:mtext>xxx</mml:mtext></mml:mstyle></mml:math></inline-formula>; <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Z</mml:mi><mml:mo>=</mml:mo><mml:mtext>xxx</mml:mtext></mml:mstyle></mml:math></inline-formula>; <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mtext>xxx</mml:mtext><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>; SN: xxx</p>
+              </list-item>
+              <list-item id="_92bf4145-98dd-d12b-b6fd-1dfbd39730e6">
+                <p id="_dd1a869b-fb77-c947-7c41-6cf366992fb4">Datasheet No. Xxx</p>
+              </list-item>
+              <list-item id="_db3acb82-1c46-d3f0-946a-bbadbfec4b39">
+                <p id="_5a86ea19-1650-382b-6d5a-cd45ed664481">Technical Drawing No. Xxx</p>
+              </list-item>
+            </list>
+          </non-normative-example>
         </sec>
         <sec id="sec-C.6">
           <label>C.6</label>
@@ -1769,8 +1784,9 @@ repeatability and creep in the temperature range of <inline-formula><mml:math><m
           <label>C.8</label>
           <title>Wiring</title>
           <p id="_67e20065-caa6-c6cb-d9c6-473e00317c2d">The load cell is provided with a shielded 4- or 6-wire cable. The cable length is indicated in the accompanying document. The shield will be connected or not connected to the load cell according to the customer’s preference.</p>
-          <fig id="_ed9afefc-60b9-a31b-a85c-d560d8302c20">
+          <fig id="fig_1">
             <caption/>
+            <graphic xlink:href="images/figure-un1.svg"/>
           </fig>
         </sec>
         <sec id="sec-C.9">
@@ -1901,13 +1917,38 @@ repeatability and creep in the temperature range of <inline-formula><mml:math><m
         <title>Selection of load cell(s) for testing — a practical example</title>
         <sec id="_6ed8a61c-dc89-1b7b-966d-a0d36b6c9ea4">
           <label>D.1</label>
-          <p id="_513ce06c-0332-a774-f206-7f40753456d4">This Annex describes a practical example showing the complete procedure for the selection of test samples out of a load cell family.</p>
+          <p id="_513ce06c-0332-a774-f206-7f40753456d4">This Annex describes a practical example showing the complete procedure for the selection of test samples out of a load cell family.</p>
         </sec>
         <sec id="_22ffa0e3-39c2-bbad-d217-a85727630185">
           <label>D.2</label>
           <p id="_6f971bcb-a337-1d87-5562-194d367893e4">Assume a family consisting of three groups of load cells, differing in class, maximum
 number of load cell verification intervals, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, and maximum capacities,
 <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>. The capacities, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, overlap between the groups according to the following example:</p>
+          <def-list id="_516a4aaa-53e5-dbf0-d716-07a240aa029d">
+            <def-item>
+              <term>Group 1</term>
+              <def>
+                <p id="_851da730-8225-a022-b9e3-6dedbefcdd16">Class C, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>LC</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mn>6 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi><mml:mo>=</mml:mo><mml:mn>18 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Z</mml:mi><mml:mo>=</mml:mo><mml:mn>6 000</mml:mn></mml:mstyle></mml:math></inline-formula></p>
+                <p id="_900af99a-2736-59ed-ec63-4c8c5681e0ec"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>:<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>50</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>,<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>100</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>300</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>
+ and  <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>500</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
+              </def>
+            </def-item>
+            <def-item>
+              <term>Group 2</term>
+              <def>
+                <p id="_f5264c02-d29a-281f-e3bb-5552985db488">Class C, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>LC</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mn>3 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi><mml:mo>=</mml:mo><mml:mn>12 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Z</mml:mi><mml:mo>=</mml:mo><mml:mn>4 000</mml:mn></mml:mstyle></mml:math></inline-formula></p>
+                <p id="_d4a3ba08-49bf-bdac-a50e-081d6d0f58e0"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>100</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>300</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>500</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>,
+<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>5 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>10</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu88"><mml:mstyle mathvariant="normal"><mml:mi>t</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu88"><mml:mstyle mathvariant="normal"><mml:mi>t</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>50</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu88"><mml:mstyle mathvariant="normal"><mml:mi>t</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
+              </def>
+            </def-item>
+            <def-item>
+              <term>Group 3</term>
+              <def>
+                <p id="_b81da615-bfa3-26e4-b18e-8b6960b1c3b0">Class B, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>LC</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mn>10 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi><mml:mo>=</mml:mo><mml:mn>25 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Z</mml:mi><mml:mo>=</mml:mo><mml:mn>10 000</mml:mn></mml:mstyle></mml:math></inline-formula></p>
+                <p id="_211bbc36-5525-9b92-71bf-12d398ae9824"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>500</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>1 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>4 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
+              </def>
+            </def-item>
+          </def-list>
           <sec id="sec-D.2.1">
             <label>D.2.1</label>
             <title>Summarise and sort the load cells with respect to  [#&lt;Metanorma::Document::Components::Inline::AsciimathElement @text=E {max}, @  mutated after parse  =true&gt;]  and accuracy as follows:</title>
@@ -2133,10 +2174,6 @@ number of load cell verification intervals, <inline-formula><mml:math><mml:mstyl
           <sec id="sec-D.2.2">
             <label>D.2.2</label>
             <title>Identify the smallest capacity load cells in each group to be tested, according to R 60-2, 2.4:</title>
-            <p id="_3086dcaf-5acb-d2a3-9654-7358f20238c2">In this example, select and identify:</p>
-            <p id="_3e601c2a-517e-d362-540f-81a657822b1d"><bold>C6 — 50 kg</bold> (full evaluation test required)</p>
-            <p id="_d4fdab9d-c58a-55c1-fe25-88f141658314"><bold>B10 — 500 kg</bold> (full evaluation test required)</p>
-            <p id="_28f25dd8-a764-2ebf-2234-8749e5d51ccf">Although load cell C3 — 100 kg is the smallest capacity in its group, its capacity falls within the range of other selected load cells having better metrological characteristics. Therefore, it is not selected.</p>
             <table-wrap id="_d827cca0-e9d0-fb59-70c0-676daefdd9fe">
               <table>
                 <tbody>
@@ -2355,12 +2392,14 @@ number of load cell verification intervals, <inline-formula><mml:math><mml:mstyl
                 </tbody>
               </table>
             </table-wrap>
+            <p id="_3086dcaf-5acb-d2a3-9654-7358f20238c2">In this example, select and identify:</p>
+            <p id="_3e601c2a-517e-d362-540f-81a657822b1d"><bold>C6 — 50 kg</bold> (full evaluation test required)</p>
+            <p id="_d4fdab9d-c58a-55c1-fe25-88f141658314"><bold>B10 — 500 kg</bold> (full evaluation test required)</p>
+            <p id="_28f25dd8-a764-2ebf-2234-8749e5d51ccf">Although load cell C3 — 100 kg is the smallest capacity in its group, its capacity falls within the range of other selected load cells having better metrological characteristics. Therefore, it is not selected.</p>
           </sec>
           <sec id="sec-D.2.3">
             <label>D.2.3</label>
             <p id="_dd41aa4c-69de-2df7-11b0-d4cd1fc79f62">Begin with the group with the best metrological characteristics (in this example, B10) and in accordance with R 60-2, 2.4.2, select the next largest capacity between 5 and 10 times that of the nearest smaller capacity load cell which has been selected. When no capacity meets this criterion, the selected load cell shall be that having the smallest capacity exceeding 10 times that of the nearest smaller capacity load cell which has been selected. Continue this process until all load cell capacities in the group have been considered.</p>
-            <p id="_42b9e5b2-a062-065d-045c-743275270827">In this example, select and identify:</p>
-            <p id="_7bdea6a7-c01a-ebc6-d5a2-d1bc25902a83"><bold>B10 —  4 000 ⁢ kg </bold> (full evaluation test required)</p>
             <table-wrap id="_85545c82-0c9d-388c-33db-bbdb94dd0ad0">
               <table>
                 <tbody>
@@ -2571,14 +2610,12 @@ number of load cell verification intervals, <inline-formula><mml:math><mml:mstyl
                 </tbody>
               </table>
             </table-wrap>
+            <p id="_42b9e5b2-a062-065d-045c-743275270827">In this example, select and identify:</p>
+            <p id="_7bdea6a7-c01a-ebc6-d5a2-d1bc25902a83"><bold>B10 —  4 000 ⁢ kg </bold> (full evaluation test required)</p>
           </sec>
           <sec id="sec-D.2.4">
             <label>D.2.4</label>
             <p id="_bd5e771f-d6c4-1682-afba-7362d67a3125">Move to the group with the next best characteristics (in this example, C6) and, in accordance with R 60-2, 2.4.2 select the next largest capacity between 5 and 10 times that of the nearest smaller capacity load cell which has been selected. When no capacity meets this criterion, the selected load cell shall be that having the smallest capacity exceeding 10 times that of the nearest smaller capacity load cell which has been selected. Continue this process until all load cell capacities in the group have been considered.</p>
-            <p id="_8900762c-2f09-fbe8-fc73-df854d876d8b">In this example, <bold>there is no change</bold> to the load cells selected. The capacities
-of the load cells C6 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>300</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> and C6 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>500</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>
-exceed the capacity of the load cell C6 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>50</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> by greater than
-5 times but not greater than 10 times. However, a <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>500</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> load cell of better metrological characteristics (from group B10) has already been selected. Therefore, in order to minimise the number of load cells to be tested according to R 60-2, 2.3.1, neither cell is selected.</p>
             <table-wrap id="_df783979-2ce6-ce43-3e1b-e2738c31d1ef">
               <table>
                 <tbody>
@@ -2797,17 +2834,14 @@ exceed the capacity of the load cell C6 — <inline-formula><mml:math><mml:m
                 </tbody>
               </table>
             </table-wrap>
+            <p id="_8900762c-2f09-fbe8-fc73-df854d876d8b">In this example, <bold>there is no change</bold> to the load cells selected. The capacities
+of the load cells C6 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>300</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> and C6 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>500</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>
+exceed the capacity of the load cell C6 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>50</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> by greater than
+5 times but not greater than 10 times. However, a <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>500</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> load cell of better metrological characteristics (from group B10) has already been selected. Therefore, in order to minimise the number of load cells to be tested according to R 60-2, 2.3.1, neither cell is selected.</p>
           </sec>
           <sec id="sec-D.2.5">
             <label>D.2.5</label>
             <p id="_cde478f3-d4d2-0cee-2bbf-80ec88769ece">Again, and repeating this process until all groups have been considered, move to the group with the next best characteristics (in this example, C3) and in accordance with R 60-2, 2.4.4, select the next largest capacity between 5 and 10 times that of the nearest smaller capacity load cell which has been selected. When no capacity meets this criterion, the selected load cell shall be that having the smallest capacity exceeding 10 times that of the nearest smaller capacity load cell which has been selected. Continue this process until all load cell capacities in the group and all groups have been considered.</p>
-            <p id="_0997d02b-91eb-3f92-fd6a-601feba0c561">In this example, select and identify:</p>
-            <p id="_48a6d979-8d42-59b5-4e86-fa14ccaaefbe"><bold>C3 —  30 000 ⁢ kg </bold> (full evaluation test required) Proceeding from
-smallest to largest capacity, the only capacity of load cell which is greater than
-5 times the capacity of an already selected load cell but less than 10 times that
-capacity is the C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> load cell. Since the capacity of
-the C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>50 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> load cell does not exceed 5 times the capacity
-of the next smaller selected load cell, which is C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, according to R 60-2, 2.4.3 it is presumed to comply the requirements of this Recommendation.</p>
             <table-wrap id="_cb553a85-4fc5-f16a-9962-8f0d2fd34a56">
               <table>
                 <tbody>
@@ -3026,6 +3060,13 @@ of the next smaller selected load cell, which is C3 — <inline-formula><mml
                 </tbody>
               </table>
             </table-wrap>
+            <p id="_0997d02b-91eb-3f92-fd6a-601feba0c561">In this example, select and identify:</p>
+            <p id="_48a6d979-8d42-59b5-4e86-fa14ccaaefbe"><bold>C3 —  30 000 ⁢ kg </bold> (full evaluation test required) Proceeding from
+smallest to largest capacity, the only capacity of load cell which is greater than
+5 times the capacity of an already selected load cell but less than 10 times that
+capacity is the C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> load cell. Since the capacity of
+the C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>50 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> load cell does not exceed 5 times the capacity
+of the next smaller selected load cell, which is C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, according to R 60-2, 2.4.3 it is presumed to comply the requirements of this Recommendation.</p>
           </sec>
           <sec id="_628444d1-bad7-70f7-6942-9a53b7cb67b8">
             <label>D.2.6</label>
@@ -3037,14 +3078,6 @@ cells with the highest accuracy class and highest <inline-formula><mml:math><mml
 (see shaded portion of table below). For those load cells of the same capacity but
 from different groups, identify only the one with the highest accuracy class and
 <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>LC</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> and lowest <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
-            <p id="_8506bc46-285a-d56c-8eb7-a514160d16c7">Inspect the values of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi></mml:mstyle></mml:math></inline-formula>, and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Z</mml:mi></mml:mstyle></mml:math></inline-formula> for all cells of the same capacity.</p>
-            <p id="_d35e4803-ae22-2e61-a88a-d53e5038f535">If any load cell of the same capacity has a lower <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> or higher <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi></mml:mstyle></mml:math></inline-formula>
-than the identified load cell, that load cell (or load cells) is also liable for
-partial evaluation testing, specifically the conduct of additional temperature effect
-on minimum dead load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> and barometric pressure effect tests.</p>
-            <p id="_f3c65675-bc54-8172-8803-dad61022adda">If any load cell of the same capacity has a higher <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi></mml:mstyle></mml:math></inline-formula> than the selected load cell, that load cell (or load cells) is also liable for partial evaluation testing, specifically the conduct of additional creep and DR tests.</p>
-            <p id="_a25742d2-663b-afb0-a48a-f312c0233d46">In this example, the <bold>load cells identified above also have the best characteristics
-of lowest  v min , highest  Y  and highest  Z .</bold> This is normally the case, but not always.</p>
             <table-wrap id="_1926d3a7-8e96-7be8-8745-52ed30e6dfd7">
               <table>
                 <tbody>
@@ -3246,6 +3279,14 @@ of lowest  v min , highest  Y  and highest  Z .</bold> This is normally the case
                 </tbody>
               </table>
             </table-wrap>
+            <p id="_8506bc46-285a-d56c-8eb7-a514160d16c7">Inspect the values of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi></mml:mstyle></mml:math></inline-formula>, and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Z</mml:mi></mml:mstyle></mml:math></inline-formula> for all cells of the same capacity.</p>
+            <p id="_d35e4803-ae22-2e61-a88a-d53e5038f535">If any load cell of the same capacity has a lower <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> or higher <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi></mml:mstyle></mml:math></inline-formula>
+than the identified load cell, that load cell (or load cells) is also liable for
+partial evaluation testing, specifically the conduct of additional temperature effect
+on minimum dead load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> and barometric pressure effect tests.</p>
+            <p id="_f3c65675-bc54-8172-8803-dad61022adda">If any load cell of the same capacity has a higher <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi></mml:mstyle></mml:math></inline-formula> than the selected load cell, that load cell (or load cells) is also liable for partial evaluation testing, specifically the conduct of additional creep and DR tests.</p>
+            <p id="_a25742d2-663b-afb0-a48a-f312c0233d46">In this example, the <bold>load cells identified above also have the best characteristics
+of lowest  v min , highest  Y  and highest  Z .</bold> This is normally the case, but not always.</p>
           </sec>
           <sec id="sec-D.2.7">
             <label>D.2.7</label>
@@ -3256,6 +3297,7 @@ example the greatest value of <inline-formula><mml:math><mml:mstyle displaystyle
 lowest value of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> is the same load cell, therefore select:</p>
             <p id="_1253eb74-5a9c-a541-ca41-add8b299fcfa"><bold>B10 —  500 ⁢ kg </bold> (humidity test required)</p>
             <non-normative-note>
+              <label>NOTE</label>
               <p id="_d433fafd-abd8-5def-4f71-23c4b27d18a0">The other B10 load cells also possess the same qualifications and are possible
 choices. The <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>500</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> load cell was chosen because it is the smallest
 of the applicable B10 capacities. Although the C6 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>50</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> load
@@ -3270,7 +3312,6 @@ load cells in accordance with R 60-2, 2.4.6, that being the load cell with the m
 severe characteristics, for example the greatest value of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> or the
 lowest value of <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
             <p id="_68916ca9-39ed-fb91-128d-217dfe0c1f13">2+h| <bold>D.2.9</bold> Summarising, the load cells selected for test are:</p>
-            <p id="_224f1dec-f6f0-981f-3da3-c1ab38a0f0cd">In this example, no load cell in the family is equipped with electronics.</p>
             <table-wrap id="_e3d0d532-29c7-1d83-07f3-a9b6f4ddb161">
               <table>
                 <thead>
@@ -3309,40 +3350,16 @@ C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30
                 </tbody>
               </table>
             </table-wrap>
+            <p id="_224f1dec-f6f0-981f-3da3-c1ab38a0f0cd">In this example, no load cell in the family is equipped with electronics.</p>
           </sec>
-          <def-list id="_516a4aaa-53e5-dbf0-d716-07a240aa029d">
-            <def-item>
-              <term>Group 1</term>
-              <def>
-                <p id="_851da730-8225-a022-b9e3-6dedbefcdd16">Class C, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>LC</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mn>6 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi><mml:mo>=</mml:mo><mml:mn>18 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Z</mml:mi><mml:mo>=</mml:mo><mml:mn>6 000</mml:mn></mml:mstyle></mml:math></inline-formula></p>
-                <p id="_900af99a-2736-59ed-ec63-4c8c5681e0ec"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>:<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>50</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>,<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>100</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>300</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>
- and  <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>500</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
-              </def>
-            </def-item>
-            <def-item>
-              <term>Group 2</term>
-              <def>
-                <p id="_f5264c02-d29a-281f-e3bb-5552985db488">Class C, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>LC</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mn>3 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi><mml:mo>=</mml:mo><mml:mn>12 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Z</mml:mi><mml:mo>=</mml:mo><mml:mn>4 000</mml:mn></mml:mstyle></mml:math></inline-formula></p>
-                <p id="_d4a3ba08-49bf-bdac-a50e-081d6d0f58e0"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>100</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>300</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>500</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>,
-<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>5 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>10</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu88"><mml:mstyle mathvariant="normal"><mml:mi>t</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu88"><mml:mstyle mathvariant="normal"><mml:mi>t</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>50</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu88"><mml:mstyle mathvariant="normal"><mml:mi>t</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
-              </def>
-            </def-item>
-            <def-item>
-              <term>Group 3</term>
-              <def>
-                <p id="_b81da615-bfa3-26e4-b18e-8b6960b1c3b0">Class B, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>n</mml:mi><mml:mtext>LC</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mn>10 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi><mml:mo>=</mml:mo><mml:mn>25 000</mml:mn></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Z</mml:mi><mml:mo>=</mml:mo><mml:mn>10 000</mml:mn></mml:mstyle></mml:math></inline-formula></p>
-                <p id="_211bbc36-5525-9b92-71bf-12d398ae9824"><inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>: <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>500</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>1 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula> and <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>4 000</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula></p>
-              </def>
-            </def-item>
-          </def-list>
         </sec>
       </app>
       <app id="sec_E" content-type="informative">
         <label>Annex E</label>
         <title>Load transmission to the load cell</title>
-        <p id="_5a481bef-4eda-1f1d-de24-396402777599">This Annex is taken from the WELMEC 2.4 (European cooperation in legal metrology) Guide for Load Cells (Issue 2, published in August, 2001). With permission from WELMEC, the following portion of that Guide is reprinted here to provide guidelines for load cell evaluators, during load cell performance evaluations. Recognising the critical role that load cell receptors and load transmission devices play in accurate measurements, this Annex is intended to provide information regarding the effect of load transmission and recommendations for test design and procedure. The annex is informational and not to be considered required practice.</p>
+        <p id="_5a481bef-4eda-1f1d-de24-396402777599">This Annex is taken from the WELMEC 2.4 (European cooperation in legal metrology) Guide for Load Cells (Issue 2, published in August, 2001). With permission from WELMEC, the following portion of that Guide is reprinted here to provide guidelines for load cell evaluators, during load cell performance evaluations. Recognising the critical role that load cell receptors and load transmission devices play in accurate measurements, this Annex is intended to provide information regarding the effect of load transmission and recommendations for test design and procedure. The annex is informational and not to be considered required practice.</p>
         <p id="_7b0c55da-e1a5-eb75-0dac-d867befb9304">For some types of load cells, the kind of load transmission to the load cell has an influence on the measurements and therefore on the test results.</p>
-        <p id="_ff902e3d-9fa4-492e-639e-54740d5dbf37">In this Annex the standard load transmission devices are listed.</p>
+        <p id="_ff902e3d-9fa4-492e-639e-54740d5dbf37">In this Annex the standard load transmission devices are listed.</p>
         <p id="_f0335c85-c28c-5461-ed27-d7680e688f24">The manufacturer should define whether the load cell works with all standard load transmission devices for the type of load cell or with selected standard load transmission devices or with a load cell specific load transmission devices.</p>
         <p id="_d93eb03f-352e-4eec-8048-1750ae81ebbc">This information may be considered for the load cell tests and may be marked on the certificate.</p>
         <p id="_fc149442-ac7d-615b-e936-b131f0a45181">
@@ -3366,6 +3383,7 @@ C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30
                 <td>
                   <p id="_6199b20c-b0f4-5b90-de4a-049dcad86250">Movement possible normal to load axis</p>
                   <non-normative-note>
+                    <label>NOTE 1</label>
                     <p id="_187a6e31-8aa5-ef16-25aa-d9a45deccbbf">allows for temperature dilatation</p>
                   </non-normative-note>
                 </td>
@@ -3376,6 +3394,7 @@ C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30
                 <td>
                   <p id="_69fc2ef0-1196-a29c-a7d8-76ea3a2d9476">Movement possible normal to load axis, with reversing force (spring-back effect)</p>
                   <non-normative-note>
+                    <label>NOTE 2</label>
                     <p id="_328dbfc4-81d2-0bbc-d7f1-ad9bc4d530c3">allows for temperature dilatation, also used for damping of lateral shock</p>
                   </non-normative-note>
                 </td>
@@ -3386,6 +3405,7 @@ C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30
                 <td>
                   <p id="_0875ef93-5931-56a0-35fe-37ae0fda347e">Inclination possible</p>
                   <non-normative-note>
+                    <label>NOTE 3</label>
                     <p id="_bf35fd89-5089-19fb-0ff5-e79745106b31">allows for tilt of load cell or deflection of load receptor, no movement normal to load axis possible</p>
                   </non-normative-note>
                 </td>
@@ -3408,65 +3428,65 @@ C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30
  can also be utilised in a completely reversed manner.</p>
         <p id="_dfafb31e-c8ab-0fac-747e-2b681ddbb78e">The load transmission device is independent of the encapsulation, potting or housing which are shown in the examples.</p>
         <list list-type="alpha-lower">
-          <list-item>
+          <list-item id="_b57eba21-8f11-e3d3-1ac6-f5602010c8fa">
             <label>a)</label>
-            <p id="_3f57717b-b324-ae89-fd99-d379cb049b3f">Compression LCs (<xref ref-type="table" rid="table-e1">Table E.1</xref>, upper part)</p>
+            <p id="_3f57717b-b324-ae89-fd99-d379cb049b3f">Compression LCs (<xref ref-type="table" rid="table-e1">Table E.1</xref>, upper part)</p>
             <list list-type="bullet">
-              <list-item>
+              <list-item id="_35552b4e-8ec4-4406-d6ef-42d655850df5">
                 <p id="_7a194909-592b-e5c4-5d7b-7337bc086248">The load transmissions 1 to 8 are presented for canister type LCs. Instead, all load transmissions may be constructed for S-type or ring type load cells.</p>
               </list-item>
-              <list-item>
+              <list-item id="_421016ab-8b45-dbb8-fd6d-66e34b82e76c">
                 <p id="_50022c3f-3224-f3e4-e6a8-ce3f55a6df74">6a shows a pendulum construction build as a complete unit.</p>
               </list-item>
-              <list-item>
+              <list-item id="_8046b312-6b32-8143-aabb-1751351c3e3a">
                 <p id="_bb3fbcbc-a112-14ec-a35f-fbc2c3f318be">6b and 6c show external pendulum rocker pins combined with ring-type LCs.</p>
               </list-item>
-              <list-item>
+              <list-item id="_531d4406-433e-c164-00e9-c3ddf00d6c02">
                 <p id="_d9958e73-b3a4-8db6-b032-e159b7b35aef">The bearings for all compression load cells may be installed either below or above the LC.</p>
               </list-item>
             </list>
           </list-item>
-          <list-item>
+          <list-item id="_65a68f56-df63-79c6-cf62-5858b2863bf2">
             <label>b)</label>
-            <p id="_e110d52e-6741-55b6-2639-65a41fabfc91">Tension LCs (<xref ref-type="table" rid="table-e1">Table E.1</xref>, lower part)</p>
+            <p id="_e110d52e-6741-55b6-2639-65a41fabfc91">Tension LCs (<xref ref-type="table" rid="table-e1">Table E.1</xref>, lower part)</p>
             <list list-type="bullet">
-              <list-item>
+              <list-item id="_de5db1bb-7bde-9857-4942-3e81ab8633be">
                 <p id="_8cffc037-c7ca-6c77-f6ff-5a44601630a1">The load transmissions 1 and 2 are presented for canister type LCs. Alternatively, both load transmissions may be used for S-type LCs.</p>
               </list-item>
             </list>
           </list-item>
-          <list-item>
+          <list-item id="_c8371429-8986-9ccc-12c4-ddb6878451cc">
             <label>c)</label>
-            <p id="_8c5fee45-8e9b-0670-438d-fade8b6e2fad">Beam LCs (<xref ref-type="table" rid="table-e2">Table E.2</xref>, upper part)</p>
+            <p id="_8c5fee45-8e9b-0670-438d-fade8b6e2fad">Beam LCs (<xref ref-type="table" rid="table-e2">Table E.2</xref>, upper part)</p>
             <list list-type="bullet">
-              <list-item>
+              <list-item id="_84f740b7-f572-30ce-20b1-77f3776d63f2">
                 <p id="_66e67e56-a1cd-89ef-377e-f5f529b812ba">The drawings present double bending and shear beams, as well as plastic potted and encapsulated constructions; all these constructions may be combined with either of the load transmissions 1 to 10.</p>
               </list-item>
-              <list-item>
+              <list-item id="_2e03cc0b-a43c-1127-a15c-22c1311266d9">
                 <p id="_80116f34-8f89-ffb6-c247-17f7cefdcc6a">The direction of loading, which is given by the manufacturer, has to be observed.</p>
               </list-item>
             </list>
           </list-item>
-          <list-item>
+          <list-item id="_a288e38e-a1e0-eac1-80e2-d8a283d063f5">
             <label>d)</label>
-            <p id="_326ae92d-9784-ac9f-4cde-ee97f061bdfb">Single point LCs (<xref ref-type="table" rid="table-e2">Table E.2</xref>, middle part)</p>
+            <p id="_326ae92d-9784-ac9f-4cde-ee97f061bdfb">Single point LCs (<xref ref-type="table" rid="table-e2">Table E.2</xref>, middle part)</p>
             <list list-type="bullet">
-              <list-item>
+              <list-item id="_95c7850c-35ce-ab61-a379-9201a9c42c04">
                 <p id="_57e1b967-e180-42f5-b2db-bb4bc38d0597">The load transmissions 1 to 10 for the beam LCs may be applied to all single point LCs.</p>
               </list-item>
-              <list-item>
+              <list-item id="_b1f8b079-eba3-803f-faa8-bf41b69bab70">
                 <p id="_d4f3727b-c768-5b6d-f546-4078d85c56f6">The direction of loading, which is given by the manufacturer, has to be observed.</p>
               </list-item>
             </list>
           </list-item>
-          <list-item>
+          <list-item id="_9e4e6454-4b6b-984c-ecc8-bd7527e5b0ee">
             <label>e)</label>
-            <p id="_ea4ba0b7-5763-908b-1f4d-7b9cfbee877f">Double bending beam LCs (<xref ref-type="table" rid="table-e2">Table E.2</xref>, lower part)</p>
+            <p id="_ea4ba0b7-5763-908b-1f4d-7b9cfbee877f">Double bending beam LCs (<xref ref-type="table" rid="table-e2">Table E.2</xref>, lower part)</p>
             <list list-type="bullet">
-              <list-item>
+              <list-item id="_e94ffe25-63ee-2de7-4918-913231ffb312">
                 <p id="_48dad19d-30fe-9f77-8078-c94aea4ecc56">The table shows examples of common constructions. Variations are possible provided the constructions allow enough horizontal flexibility between both ends.</p>
               </list-item>
-              <list-item>
+              <list-item id="_1b579d87-e11f-2a9c-e7f6-294374f13e11">
                 <p id="_7fc861a5-6d68-ddda-c08f-66e8399efad4">The direction of loading, provided by the manufacturer, has to be observed.</p>
               </list-item>
             </list>
@@ -3474,9 +3494,9 @@ C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30
         </list>
         <p id="_98b47d87-5c9a-4e52-990d-bcdc5cb1ee8e">The single bending beams had been exempted for general acceptance, because very small displacements of the “force transducing point” may lead to a change of span and linearity.</p>
         <table-wrap id="table-e1">
-          <label>Table E.1</label>
+          <label>Table E.1</label>
           <caption>
-            <title>Table E.1 — Schematic drawings for compression and tension LCs</title>
+            <title>Table E.1 — Schematic drawings for compression and tension LCs</title>
           </caption>
           <table>
             <tbody>
@@ -3488,9 +3508,9 @@ C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30
           </table>
         </table-wrap>
         <table-wrap id="table-e2">
-          <label>Table E.2</label>
+          <label>Table E.2</label>
           <caption>
-            <title>Table E.2 — Schematic drawings for beam LCs</title>
+            <title>Table E.2 — Schematic drawings for beam LCs</title>
           </caption>
           <table>
             <tbody>

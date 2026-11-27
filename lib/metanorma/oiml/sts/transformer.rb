@@ -37,6 +37,8 @@ module Metanorma::Oiml::Sts::Transformer
   autoload :TermTransformer, "metanorma/oiml/sts/transformer/term_transformer"
   autoload :DlTransformer, "metanorma/oiml/sts/transformer/dl_transformer"
   autoload :BlockDispatcher, "metanorma/oiml/sts/transformer/block_dispatcher"
+  autoload :NbspProcessor, "metanorma/oiml/sts/transformer/nbsp_processor"
+  autoload :RequirementTransformer, "metanorma/oiml/sts/transformer/requirement_transformer"
   autoload :RenderedTextExtractor, "metanorma/oiml/sts/transformer/rendered_text_extractor"
 
   def self.convert(input)

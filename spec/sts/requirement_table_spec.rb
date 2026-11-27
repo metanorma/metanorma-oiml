@@ -99,7 +99,7 @@ RSpec.describe "requirement blocks map to STS formal tables" do
       expect(wrap["id"]).to eq("rc-1")
       expect(wrap["content-type"]).to eq("recommendclass")
       expect(wrap["specific-use"]).to eq("modspec")
-      expect(wrap.at("./label").text.strip).to eq("Table 5")
+      expect(wrap.at("./label").text.strip.tr("\u00A0", " ")).to eq("Table 5")
       expect(wrap.at("./caption/title").text.strip.tr("\u00A0", " ")).to eq("Table 5 — Requirements class 1: Class one")
     end
 

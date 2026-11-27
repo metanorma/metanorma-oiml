@@ -4,17 +4,12 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
-        # Delegates to the shared engine (metanorma-document 0.5.15,
-        # Metanorma::Document::Sts::Transformer::DocumentTransformer) per
-        # metanorma-iso#1760 / metanorma-document#165. The shared trunk
-        # owns the reference-id pre-registration (the id-generator kinds
-        # registry fills before any transform, so forward xrefs resolve
-        # their ref type regardless of section order), the profile-driven
-        # @dtd-version (OIML pins "1.2" on its profile), and the
-        # namespace / processing-meta / lang post-processing; every
-        # engine step resolves to the OIML subclasses through the
-        # profile's class_overrides.
+        # The shared engine does the work; OIML adds only its NBSP typography
+        # (dtd-version and processing-meta come from the OIML profile).
         class DocumentTransformer < Metanorma::Document::Sts::Transformer::DocumentTransformer
+          def apply_nbsp(xml)
+            NbspProcessor.apply_to_text(xml)
+          end
         end
       end
     end

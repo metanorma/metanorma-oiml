@@ -11,7 +11,7 @@ module Metanorma
         class DlTransformer < Metanorma::Document::Sts::Transformer::DlTransformer
           def transform(source_dl)
             def_items = pair_dt_dd(source_dl)
-            ModelBuilder.def_list(id: source_dl.id, def_items: def_items)
+            Metanorma::Document::Sts::Transformer::ModelBuilder.def_list(id: source_dl.id, def_items: def_items)
           end
 
           private
@@ -28,19 +28,19 @@ module Metanorma
             attrs = {}
             attrs[:id] = dt.id if dt.class.method_defined?(:id) && dt.id
 
-            term_text = RenderedTextExtractor.text_of(dt)
-            term = term_text.nil? || term_text.empty? ? nil : ModelBuilder.term(content: [term_text])
+            term_text = Metanorma::Document::Sts::Transformer::RenderedTextExtractor.text_of(dt)
+            term = term_text.nil? || term_text.empty? ? nil : Metanorma::Document::Sts::Transformer::ModelBuilder.term(content: [term_text])
 
             defn = dd ? build_def(dd) : nil
 
             attrs[:term] = term if term
             attrs[:defn] = defn if defn
-            ModelBuilder.def_item(**attrs)
+            Metanorma::Document::Sts::Transformer::ModelBuilder.def_item(**attrs)
           end
 
           def build_def(dd)
             paragraphs = Array(dd.p).map { |p| paragraph_transformer.transform(p) }
-            ModelBuilder.def(paragraph: paragraphs)
+            Metanorma::Document::Sts::Transformer::ModelBuilder.def(paragraph: paragraphs)
           end
         end
       end

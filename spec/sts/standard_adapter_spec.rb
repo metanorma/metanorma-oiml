@@ -53,7 +53,7 @@ RSpec.describe Metanorma::Oiml::Sts::Transformer::Standard do
     adapter = described_class.new(root2, { sts_presentation_xml: presentation })
     out = adapter.transform.to_xml
     expect(out).to include("content-type=\"recommendclass\"")
-    expect(out).to include("Table 2")
+    expect(out.tr("\u00A0", " ")).to include("Table 2")
   end
 
   it "reads the sibling presentation XML from the source filename" do
@@ -75,7 +75,7 @@ RSpec.describe Metanorma::Oiml::Sts::Transformer::Standard do
       root2 = Metanorma::Oiml::Document::Root.from_xml(xml_with_req)
       adapter = described_class.new(root2, { sourcefilename: src })
       out = adapter.transform.to_xml
-      expect(out).to include("Table 9")
+      expect(out.tr("\u00A0", " ")).to include("Table 9")
     end
   end
 end
