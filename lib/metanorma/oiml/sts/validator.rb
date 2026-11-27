@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "nokogiri"
+require "moxml"
 
 module Metanorma
   module Oiml
@@ -32,11 +32,8 @@ module Metanorma
         private
 
         def parse(xml)
-          case xml
-          when Pathname then Nokogiri::XML(xml.read)
-          when ->(x) { x.respond_to?(:read) } then Nokogiri::XML(xml.read)
-          else Nokogiri::XML(xml.to_s)
-          end
+          source = xml.respond_to?(:read) ? xml.read : xml.to_s
+          Moxml.parse(source)
         end
 
         # Returns the list of rule implementations. Adding a new rule =
@@ -59,10 +56,10 @@ module Metanorma
               apply: ->(doc, report, rule) {
                 doc.xpath("//standard").each do |node|
                   next if node.at_xpath("./processing-meta")
-                  next if node.ancestors("adoption").any?
+                  next if ancestor_names(node).include?("adoption")
 
                   report.add(rule_id: rule.id, message: rule.message,
-                             xpath: node.path)
+                             xpath: element_path(node))
                 end
               }
             ),
@@ -83,7 +80,7 @@ module Metanorma
 
                   report.add(rule_id: rule.id,
                              message: "<std>: #{problems.join('; ')} (OIML X 999 Clause 5.4).",
-                             xpath: node.path)
+                             xpath: element_path(node))
                 end
               }
             ),
@@ -92,7 +89,8 @@ module Metanorma
               message: "<self-uri> shall not occur inside <self-xref>.",
               apply: ->(doc, report, rule) {
                 doc.xpath("//self-xref//self-uri").each do |node|
-                  report.add(rule_id: rule.id, message: rule.message, xpath: node.path)
+                  report.add(rule_id: rule.id, message: rule.message,
+                             xpath: element_path(node))
                 end
               }
             ),
@@ -103,11 +101,36 @@ module Metanorma
                 doc.xpath("//disp-quote[attrib]").each do |node|
                   next if node.at_xpath("./permissions")
 
-                  report.add(rule_id: rule.id, message: rule.message, xpath: node.path)
+                  report.add(rule_id: rule.id, message: rule.message,
+                             xpath: element_path(node))
                 end
               }
             )
           ]
+        end
+
+        # Moxml nodes carry no precomputed path; synthesize the nokogiri-style
+        # positional path ("/ancestor[n]/element[n]") by walking up the tree.
+        def element_path(node)
+          segments = []
+          current = node
+          while current.respond_to?(:name) && current.node_type == :element
+            siblings = current.parent&.xpath("./#{current.name}")&.to_a || []
+            index = siblings.index(current)
+            segments.unshift "/#{current.name}[#{index ? index + 1 : 1}]"
+            current = current.parent
+          end
+          segments.join
+        end
+
+        def ancestor_names(node)
+          names = []
+          current = node.parent
+          while current&.node_type == :element
+            names << current.name
+            current = current.parent
+          end
+          names
         end
 
         # Tiny struct that binds a rule id + message to its apply lambda.
