@@ -16,6 +16,7 @@ module Metanorma
   module Oiml
     module Sts
       autoload :VERSION, "metanorma/oiml/sts/version"
+      autoload :Profile, "metanorma/oiml/sts/profile"
       autoload :Transformer, "metanorma/oiml/sts/transformer"
       autoload :MathmlBuilder, "metanorma/oiml/sts/mathml_builder"
       autoload :HtmlRenderer, "metanorma/oiml/sts/html_renderer"
@@ -68,7 +69,7 @@ module Metanorma
 
       def self.inject_processing_meta(xml)
         return xml if xml.include?("<processing-meta")
-        meta = '<processing-meta tagset-family="sts" base-tagset="interchange" table-model="xhtml" mathml="MathML 3.0" terminology-model="tbx"/>'
+        meta = Profile::PROCESSING_META
         # Linear scan for the end of the first <standard ...> opening tag.
         # Avoids the polynomial regex previously flagged by CodeQL.
         open_start = xml.index("<standard")
