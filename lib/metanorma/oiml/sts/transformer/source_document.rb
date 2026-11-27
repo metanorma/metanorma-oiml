@@ -8,7 +8,14 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
-        class SourceDocument
+        # Delegates to the shared engine (metanorma-document 0.5.15,
+        # Metanorma::Document::Sts) per metanorma-iso#1760 /
+        # metanorma-document#165: subclassing the shared wrapper lets the
+        # shared adapter recognize an OIML parse result as already-wrapped
+        # (Standard#source passes it through instead of double-wrapping),
+        # while the OIML-specific reads below still win over the shared
+        # defaults.
+        class SourceDocument < Metanorma::Document::Sts::Transformer::SourceDocument
           attr_reader :typed_root
 
           def self.parse(input, profile: Metanorma::Oiml::Sts::Profile.instance)
