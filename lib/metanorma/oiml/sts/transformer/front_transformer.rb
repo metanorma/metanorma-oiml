@@ -3,7 +3,7 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
-        class FrontTransformer < Base
+        class FrontTransformer < Metanorma::Document::Sts::Transformer::FrontTransformer
           def transform(source)
             std_meta = build_std_meta(source)
             ModelBuilder.front(std_meta: std_meta)

@@ -18,10 +18,10 @@ RSpec.describe Metanorma::Oiml::Sts::Transformer::BlockDispatcher do
               described_class.private_method_defined?(handler))
         .to be(true), "no handler ##{handler} for the typed attribute dispatch"
     end
-    described_class::HANDLERS.each_value do |handler|
+    described_class::MODEL_CLASS_DISPATCH.each_value do |handler|
       expect(described_class.method_defined?(handler) ||
               described_class.private_method_defined?(handler))
-        .to be(true), "no handler ##{handler} for #{described_class::HANDLERS.key(handler)}"
+        .to be(true), "no handler ##{handler} for #{described_class::MODEL_CLASS_DISPATCH.key(handler)}"
     end
   end
 end
