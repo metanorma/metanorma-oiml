@@ -48,9 +48,9 @@ module Metanorma
             id_for_clause(term)
           end
 
-          # Tables are cited by id from anywhere in the body; mark their kind
-          # in the pre-registration pass so a forward xref resolves to
-          # ref-type "table".
+          # Tables and terms are cited by id from anywhere in the body; mark
+          # their kinds in the pre-registration pass so a forward xref resolves
+          # to ref-type "table" or "sec".
           def pre_register(source)
             super
             mark_tables(source.typed_root)
@@ -64,7 +64,7 @@ module Metanorma
             return if seen.key?(node)
 
             seen[node] = true
-            mark_kind(node.id, "table") if node.class.name&.split("::")&.last == "TableBlock" && node.id
+            mark_node_kind(node)
             node.class.attributes.each_key do |attr|
               value = begin
                 node.public_send(attr)
@@ -72,6 +72,18 @@ module Metanorma
                 next
               end
               Array(value).each { |child| mark_tables(child, seen) }
+            end
+          end
+
+          # Tables and terms are cited by id from anywhere in the body. A
+          # term is an ordinary section here, so its kind is "clause" (ref-type
+          # "sec") even when the xref precedes it.
+          def mark_node_kind(node)
+            return unless node.respond_to?(:id) && node.id
+
+            case node.class.name&.split("::")&.last
+            when "TableBlock" then mark_kind(node.id, "table")
+            when "Term", "IsoTerm" then mark_kind(node.id, "clause")
             end
           end
 

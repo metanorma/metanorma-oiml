@@ -46,16 +46,16 @@
       <p id="_f38c1156-6177-3ef5-50b8-864745ac082c">OIML Publications may be downloaded from the OIML web site in the form of PDF files. Additional information on OIML Publications may be obtained from the Organisation’s headquarters:</p>
       <p id="_376fd438-865f-19e3-fda8-8fe1cec58bf9">Bureau International de Métrologie Légale 11, rue Turgot — 75009 Paris — France Telephone: 33 (0)1 48 78 12 82 Fax:33 (0)1 42 82 17 27 E-mail:biml@oiml.org Internet: www.oiml.org</p>
       <list list-type="bullet">
-        <list-item>
+        <list-item id="_8e6d9ebd-9b81-8586-364b-5c92d2d12aaf">
           <p id="_d372c31f-bfd7-7fbb-535a-ed45152cf8ca"><bold>International Recommendations (OIML R),</bold> which are model regulations that establish the metrological characteristics required of certain measuring instruments and which specify methods and equipment for checking their conformity. OIML Member States shall implement these Recommendations to the greatest possible extent;</p>
         </list-item>
-        <list-item>
+        <list-item id="_015ba13f-651e-cf59-c4cf-ba51718cd4f1">
           <p id="_82dedfa9-31e2-ffd7-34db-ed3d3913cc6b"><bold>International Documents (OIML D),</bold> which are informative in nature and which are intended to harmonise and improve work in the field of legal metrology;</p>
         </list-item>
-        <list-item>
+        <list-item id="_8a94387d-dc14-0c9d-d969-cd392d9a5b9d">
           <p id="_12fb4c73-5c12-16b9-03ab-4fabaf852c47"><bold>International Guides (OIML G),</bold> which are also informative in nature and which are intended to give guidelines for the application of certain requirements to legal metrology;</p>
         </list-item>
-        <list-item>
+        <list-item id="_0dd1d64b-c260-f54f-1b9a-986ae82a6bc1">
           <p id="_a958a960-842a-d89c-8ca5-3ec04ac73868"><bold>International Basic Publications (OIML B),</bold> which define the operating rules of the various OIML structures and systems; and</p>
         </list-item>
       </list>
@@ -5423,7 +5423,7 @@ including the level of “risk.” For instance, 95 % or <inline-formula><mml:m
               <tr>
                 <td>
                   <list list-type="alpha-lower">
-                    <list-item>
+                    <list-item id="_ea72a252-f627-2c27-c37e-1cac3af92505">
                       <label>a)</label>
                       <p id="_1c6ccebd-508e-090a-0ae1-b97d4bca6006">Operating instructions (R 60-2, 2.5, e)</p>
                     </list-item>
@@ -6556,11 +6556,11 @@ using lower <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>n
         <non-normative-note>
           <label>NOTE</label>
           <list list-type="alpha-lower">
-            <list-item>
+            <list-item id="_51788e11-aac5-98fe-8e98-f5fa1925fcac">
               <label>a)</label>
               <p id="_cb4c8c23-5c1b-ba44-ea1f-2205da2c3be7">* = Average initial minimum test load indication.</p>
             </list-item>
-            <list-item>
+            <list-item id="_98311569-47d1-b038-2bad-f2e65e73f776">
               <label>b)</label>
               <p id="_7c347ef4-5ab5-322c-bb78-e6db7dd22f30">Absolute (not relative) time shall be recorded.</p>
             </list-item>
@@ -6911,11 +6911,11 @@ using lower <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>n
         <non-normative-note>
           <label>NOTE</label>
           <list list-type="alpha-lower">
-            <list-item>
+            <list-item id="_485fface-42d4-6c3d-423d-a48614fbc830">
               <label>a)</label>
               <p id="_2ad43a16-1b2c-8517-40d3-234770d1dc61">* = Average initial minimum test load indication.</p>
             </list-item>
-            <list-item>
+            <list-item id="_f42212c0-214f-2e14-afab-b1218bc73131">
               <label>b)</label>
               <p id="_8d2a3aac-eeed-12c0-da12-48ba58383840">Absolute (not relative) time shall be recorded.</p>
             </list-item>
@@ -7143,16 +7143,16 @@ using lower <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>n
         <non-normative-note>
           <label>NOTE</label>
           <list list-type="alpha-lower">
-            <list-item>
+            <list-item id="_b6a26193-136d-0626-e1e7-3aa57017a91f">
               <label>a)</label>
               <p id="_99b6eca2-11f9-5cfa-269e-31256cf1bcdf">Load/reference indications: if a 75 % load point was not obtained, a straight line interpolation between the adjacent higher and lower load point indications is used (see R 60-1, 5.3.1 and calculation procedures in R 60-3, 2.1.2.2).</p>
             </list-item>
-            <list-item>
+            <list-item id="_92bcfdf7-d088-963d-844b-640a2fab821a">
               <label>b)</label>
               <p id="_b89ea151-35e4-240a-4563-8b519d5dc68c">Error, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>L</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>: the difference between the test indication and the reference
 indication divided by the conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
             </list-item>
-            <list-item>
+            <list-item id="_e8608bdc-effa-99cf-2d09-f303cb173214">
               <label>c)</label>
               <p id="_b97adea1-a714-05ad-0966-d0dcd0c07930">Test load values are values above minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
             </list-item>
@@ -7488,20 +7488,20 @@ the five test indications divided by the conversion factor, <inline-formula><mml
         <non-normative-note>
           <label>NOTE</label>
           <list list-type="alpha-lower">
-            <list-item>
+            <list-item id="_9166be29-c4ac-fe0f-42dc-27b0c67f0787">
               <label>a)</label>
               <p id="_9afb4603-2e9b-0ed8-bdbf-5dfefc1ee18e">MDLO: minimum dead load output.</p>
             </list-item>
-            <list-item>
+            <list-item id="_07473eaa-ebcc-75ba-8c9b-2ef3687c7b3f">
               <label>b)</label>
               <p id="_448fe6ef-c2ee-09d3-7349-f95ede7dd127">Indication: the average initial minimum test load indication obtained from <xref ref-type="table" rid="table-6.3">Table 1</xref>.</p>
             </list-item>
-            <list-item>
+            <list-item id="_297eb61b-5038-6ba8-4fcd-dfa8a70fae7c">
               <label>c)</label>
               <p id="_a4632186-e6e6-f7b9-5aa6-eae607b041f7">The maximum permissible change (mpc) allowed is: (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub><mml:mo>/</mml:mo><mml:mn>5</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>)
 for classes B, C, and D; (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu23"><mml:mstyle mathvariant="normal"><mml:mi>°C</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>) for class A.</p>
             </list-item>
-            <list-item>
+            <list-item id="_462acc26-3ad5-8e7e-da4e-927229b284a8">
               <label>d)</label>
               <p id="_c6cfac86-5bdc-aa8c-6187-679699161b45">Change, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>C</mml:mi><mml:mtext>M</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula> (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>): the difference between the observed indications,
 and the indications at the prior temperature, divided by the conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
@@ -8394,21 +8394,21 @@ and the indications at the prior temperature, divided by the conversion factor, 
         <non-normative-note>
           <label>NOTE</label>
           <list list-type="alpha-lower">
-            <list-item>
+            <list-item id="_5763ac20-b23c-2e83-ba86-ce3a43e2fe2c">
               <label>a)</label>
               <p id="_534eef1f-149d-f6b8-210b-f8ae54cb8fb7">Change (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>) for creep: the observed indication minus the initial “load” indication
 (**) divided by the conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
             </list-item>
-            <list-item>
+            <list-item id="_0128b21e-5ba2-3dfa-c43c-1989c381f468">
               <label>b)</label>
               <p id="_aaab8660-f068-0b90-4bbb-55c703e959b6">Determine the difference between the reading obtained at 20 minutes and the reading obtained at 30 minutes (see 5.5.1).</p>
             </list-item>
-            <list-item>
+            <list-item id="_6bc4f5bd-d6fa-01f5-f7b4-47d319978744">
               <label>c)</label>
               <p id="_3a65c687-3d8f-6105-5cdc-8a5dabcbb771">Change (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>) for DR: the initial indication (***) minus the initial
 “no load” indication (*) divided by the conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
             </list-item>
-            <list-item>
+            <list-item id="_1579cb17-945c-f066-f422-ee70de54a63e">
               <label>d)</label>
               <p id="_e6967a34-d781-7d2e-dc06-5d713d141013">Absolute (not relative) time shall be recorded.</p>
             </list-item>
@@ -8683,24 +8683,24 @@ and the indications at the prior temperature, divided by the conversion factor, 
             <non-normative-note>
               <label>NOTE</label>
               <list list-type="alpha-lower">
-                <list-item>
+                <list-item id="_21f6e11b-c702-dcd9-b494-29a8eec2e49a">
                   <label>a)</label>
                   <p id="_da85e198-526a-5e08-8687-553ed3a9f022">This test is not necessary if the load cell is marked NH or SH.</p>
                 </list-item>
-                <list-item>
+                <list-item id="_0c475b6e-6273-c52e-a5f6-bf90dbacb81f">
                   <label>b)</label>
                   <p id="_a26009e1-b7fc-9395-64c5-e08330b0adaa">Change (<inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>v</mml:mi></mml:mstyle></mml:math></inline-formula>): the difference between the indication after and before humidity
 exposure divided by the conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
                 </list-item>
-                <list-item>
+                <list-item id="note_3">
                   <label>c)</label>
                   <p id="_1e2a1a9b-b615-f134-1d2b-05b9d4055b02">Use five test runs for Class A and B; use 3 test runs for Class C and D.</p>
                 </list-item>
-                <list-item>
+                <list-item id="_3d7d4ded-51e3-850e-01b6-291be643faf5">
                   <label>d)</label>
                   <p id="_983c177c-a578-3141-0ccc-97cc1cbb5413">Absolute (not relative) time shall be recorded.</p>
                 </list-item>
-                <list-item>
+                <list-item id="_1c28b775-5457-adf7-baae-15c100b433ee">
                   <label>e)</label>
                   <p id="_40d02839-583c-b0c4-3736-8785ea9eafd9">For family certification this test is not necessary, if a pattern with a smaller capacity and the same or better metrological characteristics has passed this test.</p>
                 </list-item>
@@ -10135,24 +10135,24 @@ exposure divided by the conversion factor, <inline-formula><mml:math><mml:mstyle
             <non-normative-note>
               <label>NOTE</label>
               <list list-type="alpha-lower">
-                <list-item>
+                <list-item id="_4cadd533-144c-11be-05ec-dfd524b6a188">
                   <label>a)</label>
                   <p id="_e649c532-714c-6606-6fe6-f439e081696f">Load/reference indications: if at 75 % load point was not obtained, a straight line interpolation between the adjacent higher and lower load point indication is used.</p>
                 </list-item>
-                <list-item>
+                <list-item id="_75a54a49-a755-71be-8300-7ce65edd2b82">
                   <label>b)</label>
                   <p id="_0e3f5aae-be70-74f5-395f-95d492a11bda">Error, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>L</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>: the difference between the test reference and the reference
 indication divided by the conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
                 </list-item>
-                <list-item>
+                <list-item id="_70874185-6527-9cf3-90c7-45dab98b028e">
                   <label>c)</label>
                   <p id="_96a649b2-4911-39a8-14ca-8c5b65bdca1a">Test load values are values above minimum test load, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>D</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
                 </list-item>
-                <list-item>
+                <list-item id="_f0cf6acf-6a0f-61a9-20de-1ab1f4255f93">
                   <label>d)</label>
                   <p id="_9db4dda6-a13d-abc4-dd51-2a10d18365d2">Conditioning period: the time period for exercising the load cell.</p>
                 </list-item>
-                <list-item>
+                <list-item id="_70f72bde-f82a-9ad4-b480-fcfc2dbd80fa">
                   <label>e)</label>
                   <p id="_04b6bb3c-189a-1de0-f484-2da65c44b423">For family certification this test is not necessary, if a pattern with a smaller capacity and the same or better metrological characteristics has passed this test.</p>
                 </list-item>
@@ -10311,27 +10311,27 @@ indication divided by the conversion factor, <inline-formula><mml:math><mml:msty
           <non-normative-note>
             <label>NOTE</label>
             <list list-type="alpha-lower">
-              <list-item>
+              <list-item id="_917d8196-9d9e-9fca-e56d-5f7612888d8f">
                 <label>a)</label>
                 <p id="_3c3b6c61-49a9-cc6e-2b8b-e0a8dd52db5e">Absolute (not relative) time shall be recorded.</p>
               </list-item>
-              <list-item>
+              <list-item id="_5b22331c-7be7-95fb-84e3-7f27b065de19">
                 <label>b)</label>
                 <p id="_71999355-92d7-d10e-ca9f-74700ec74f98">Span: the result of subtraction of the indication at minimum test load from the indication at maximum test load. All span errors (error at maximum test load minus the error at minimum test load) shall be within the maximum permissible error during the 30 minute test.</p>
               </list-item>
-              <list-item>
+              <list-item id="_d9ff3196-2c84-1252-8d74-02dac71b5617">
                 <label>c)</label>
                 <p id="_8ef2df4c-4715-6e58-611d-bda3a9dcfbe2">The change of span must not exceed <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
               </list-item>
-              <list-item>
+              <list-item id="_89a74d66-8cc1-b4c2-68a8-92c0502e1f2f">
                 <label>d)</label>
                 <p id="_bd1cf9b7-1699-539a-2d71-a1f66058f8a6">Change: the difference between the span and the initial run span.</p>
               </list-item>
-              <list-item>
+              <list-item id="_9d63679a-4991-aac2-9493-76ac3e967173">
                 <label>e)</label>
                 <p id="_bcc99da6-70df-1b49-0350-2c9b59dabe90">Maximum permissible change, mpc: the absolute value of the maximum permissible error for the maximum test load applied.</p>
               </list-item>
-              <list-item>
+              <list-item id="_113e33f7-541d-0fe0-b84a-ff2d581d63b4">
                 <label>f)</label>
                 <p id="_2eb9e979-617c-b60a-8a92-cbb0668cd6aa">Exercises have to be run before disconnection.</p>
               </list-item>
@@ -10465,28 +10465,28 @@ indication divided by the conversion factor, <inline-formula><mml:math><mml:msty
           <non-normative-note>
             <label>NOTE</label>
             <list list-type="alpha-lower">
-              <list-item>
+              <list-item id="_dc2b383a-8391-a6b5-b238-2475140145ac">
                 <label>a)</label>
                 <p id="_00d99c3b-3ccf-396b-b858-b76b32499eff">Reference indications: if at 75 % load point was not obtained, a straight line interpolation between the adjacent higher and lower indication is used (see 2.8.2 in R 60-2 and calculation procedures in R 60-3, 2.1.2)</p>
               </list-item>
-              <list-item>
+              <list-item id="_b208a90d-6128-970a-b1bf-bac7f6680bab">
                 <label>b)</label>
                 <p id="_320552bb-3c88-6d3b-08f3-272454a817b3">Error: the difference between the test indication and the reference indication
 divided by the conversion factor, <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>f</mml:mi></mml:mstyle></mml:math></inline-formula>.</p>
               </list-item>
-              <list-item>
+              <list-item id="_39b71241-2943-0c61-07ce-62acb125e561">
                 <label>c)</label>
                 <p id="_4782abee-023a-f5f0-60a6-61f3b4235453">The change of span must not exceed <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>v</mml:mi><mml:mtext>min</mml:mtext></mml:msub></mml:mstyle></mml:math></inline-formula>.</p>
               </list-item>
-              <list-item>
+              <list-item id="_74b66d7d-491a-a218-6d87-f9955e4a3d71">
                 <label>d)</label>
                 <p id="_df1a9c77-69ae-6293-3806-7a37de9ba647">When a voltage range is marked, use the average value as the reference value and determine upper and lower values of applied voltage according to R 60-2, 2.10.7.4.</p>
               </list-item>
-              <list-item>
+              <list-item id="_174cdd1f-2743-cc9f-f066-afaf6cdb8b9c">
                 <label>e)</label>
                 <p id="_c7edddc1-9e7a-dc1a-1b55-ed9f710fb16f">Upper limit not applicable to battery powered load cells</p>
               </list-item>
-              <list-item>
+              <list-item id="_6f4bd830-6dc8-1318-37cb-91fde805d5a9">
                 <label>f)</label>
                 <p id="_0cdc2aa5-cee1-9dfa-7a06-65665206dbcb">At lower limit, battery powered load cells shall function and be within MPE, or cease to function</p>
               </list-item>
@@ -11742,13 +11742,13 @@ divided by the conversion factor, <inline-formula><mml:math><mml:mstyle displays
           <p id="_ae6551e8-34ca-549b-87f9-df90324bcd37">R 60-1, 5.7.2.5 R 60-2, 2.10.7.8 R 60-3, 2.2.6</p>
           <p id="_e20862a6-062f-c611-f9ad-65bed3cee223">Specify test points utilised on load cell and test equipment used, e.g. by photos or sketches.</p>
           <list list-type="alpha-lower">
-            <list-item>
+            <list-item id="_a17d4cf5-1b2b-c16d-1c26-22748d489887">
               <label>a)</label>
               <p id="_73e74b49-2883-95c2-ad2a-a73aca97be95">Direct application</p>
               <p id="_04a325a6-158c-1cd3-43d8-56f95da7a9c6">Contact discharges:</p>
               <p id="_b94f4cb9-7257-1b3f-42a6-a60a923d7712">Air discharges:</p>
             </list-item>
-            <list-item>
+            <list-item id="_47ef16f7-0642-dc62-0774-e290b2fc1efc">
               <label>b)</label>
               <p id="_cd69755f-9c35-789f-83c6-e1d117bbe80f">Indirect application</p>
             </list-item>
@@ -12554,11 +12554,11 @@ divided by the conversion factor, <inline-formula><mml:math><mml:mstyle displays
           <non-normative-note>
             <label>NOTE</label>
             <list list-type="alpha-lower">
-              <list-item>
+              <list-item id="_dc8a7f09-2a9d-a267-e638-9931a63001fc">
                 <label>a)</label>
                 <p id="_38a1881a-6f4a-fab3-279e-8cfa2c4da58c">Span is the result of subtracting the average indication at minimum test load from the average indication at maximum test load.</p>
               </list-item>
-              <list-item>
+              <list-item id="_4b852b48-ea65-733e-5e92-554e146679cd">
                 <label>b)</label>
                 <p id="_cb311593-558e-be9e-7330-aa098f31119a">Absolute (not relative) time shall be recorded.</p>
               </list-item>
@@ -12998,11 +12998,11 @@ R 60-3, 2.2.9</p>
           <non-normative-note>
             <label>NOTE</label>
             <list list-type="alpha-lower">
-              <list-item>
+              <list-item id="_29134077-20ca-cdc4-90fe-59bd2f251a98">
                 <label>a)</label>
                 <p id="_fd56f8ab-91c0-7db3-97b4-18511bd252c3">Span is the result of subtracting the average indication at minimum test load from the average indication at maximum test load.</p>
               </list-item>
-              <list-item>
+              <list-item id="_17c08e6e-796c-919d-e0a2-9752029f6db8">
                 <label>b)</label>
                 <p id="_bb729a41-b6aa-b5f2-0edf-018af51ad4e5">Absolute (not relative) time shall be recorded.</p>
               </list-item>

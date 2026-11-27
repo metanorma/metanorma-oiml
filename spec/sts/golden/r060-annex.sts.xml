@@ -45,16 +45,16 @@
       <p id="_f38c1156-6177-3ef5-50b8-864745ac082c">OIML Publications may be downloaded from the OIML web site in the form of PDF files. Additional information on OIML Publications may be obtained from the Organisation’s headquarters:</p>
       <p id="_376fd438-865f-19e3-fda8-8fe1cec58bf9">Bureau International de Métrologie Légale 11, rue Turgot — 75009 Paris — France Telephone: 33 (0)1 48 78 12 82 Fax:33 (0)1 42 82 17 27 E-mail:biml@oiml.org Internet: www.oiml.org</p>
       <list list-type="bullet">
-        <list-item>
+        <list-item id="_8e6d9ebd-9b81-8586-364b-5c92d2d12aaf">
           <p id="_d372c31f-bfd7-7fbb-535a-ed45152cf8ca"><bold>International Recommendations (OIML R),</bold> which are model regulations that establish the metrological characteristics required of certain measuring instruments and which specify methods and equipment for checking their conformity. OIML Member States shall implement these Recommendations to the greatest possible extent;</p>
         </list-item>
-        <list-item>
+        <list-item id="_015ba13f-651e-cf59-c4cf-ba51718cd4f1">
           <p id="_82dedfa9-31e2-ffd7-34db-ed3d3913cc6b"><bold>International Documents (OIML D),</bold> which are informative in nature and which are intended to harmonise and improve work in the field of legal metrology;</p>
         </list-item>
-        <list-item>
+        <list-item id="_8a94387d-dc14-0c9d-d969-cd392d9a5b9d">
           <p id="_12fb4c73-5c12-16b9-03ab-4fabaf852c47"><bold>International Guides (OIML G),</bold> which are also informative in nature and which are intended to give guidelines for the application of certain requirements to legal metrology;</p>
         </list-item>
-        <list-item>
+        <list-item id="_0dd1d64b-c260-f54f-1b9a-986ae82a6bc1">
           <p id="_a958a960-842a-d89c-8ca5-3ec04ac73868"><bold>International Basic Publications (OIML B),</bold> which define the operating rules of the various OIML structures and systems; and</p>
         </list-item>
       </list>
@@ -1190,13 +1190,13 @@ repeatability and creep in the temperature range of <inline-formula><mml:math><m
           <non-normative-example>
             <label>EXAMPLE</label>
             <list list-type="bullet">
-              <list-item>
+              <list-item id="_9b2e5e16-f9bd-430c-f371-6d1e05616fff">
                 <p id="_cf77091b-3d86-89e4-c8ad-dacf27b49cb8">Test Report No. xxx; C3; <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Y</mml:mi><mml:mo>=</mml:mo><mml:mtext>xxx</mml:mtext></mml:mstyle></mml:math></inline-formula>; <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mi>Z</mml:mi><mml:mo>=</mml:mo><mml:mtext>xxx</mml:mtext></mml:mstyle></mml:math></inline-formula>; <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:msub><mml:mi>E</mml:mi><mml:mtext>max</mml:mtext></mml:msub><mml:mo>=</mml:mo><mml:mtext>xxx</mml:mtext><mml:mo rspace="thickmathspace">⁢</mml:mo><mml:mrow xref="U_NISTu2"><mml:mstyle mathvariant="normal"><mml:mi>kg</mml:mi></mml:mstyle></mml:mrow></mml:mstyle></mml:math></inline-formula>; SN: xxx</p>
               </list-item>
-              <list-item>
+              <list-item id="_92bf4145-98dd-d12b-b6fd-1dfbd39730e6">
                 <p id="_dd1a869b-fb77-c947-7c41-6cf366992fb4">Datasheet No. Xxx</p>
               </list-item>
-              <list-item>
+              <list-item id="_db3acb82-1c46-d3f0-946a-bbadbfec4b39">
                 <p id="_5a86ea19-1650-382b-6d5a-cd45ed664481">Technical Drawing No. Xxx</p>
               </list-item>
             </list>
@@ -3428,65 +3428,65 @@ C3 — <inline-formula><mml:math><mml:mstyle displaystyle="false"><mml:mn>30
  can also be utilised in a completely reversed manner.</p>
         <p id="_dfafb31e-c8ab-0fac-747e-2b681ddbb78e">The load transmission device is independent of the encapsulation, potting or housing which are shown in the examples.</p>
         <list list-type="alpha-lower">
-          <list-item>
+          <list-item id="_b57eba21-8f11-e3d3-1ac6-f5602010c8fa">
             <label>a)</label>
             <p id="_3f57717b-b324-ae89-fd99-d379cb049b3f">Compression LCs (<xref ref-type="table" rid="table-e1">Table E.1</xref>, upper part)</p>
             <list list-type="bullet">
-              <list-item>
+              <list-item id="_35552b4e-8ec4-4406-d6ef-42d655850df5">
                 <p id="_7a194909-592b-e5c4-5d7b-7337bc086248">The load transmissions 1 to 8 are presented for canister type LCs. Instead, all load transmissions may be constructed for S-type or ring type load cells.</p>
               </list-item>
-              <list-item>
+              <list-item id="_421016ab-8b45-dbb8-fd6d-66e34b82e76c">
                 <p id="_50022c3f-3224-f3e4-e6a8-ce3f55a6df74">6a shows a pendulum construction build as a complete unit.</p>
               </list-item>
-              <list-item>
+              <list-item id="_8046b312-6b32-8143-aabb-1751351c3e3a">
                 <p id="_bb3fbcbc-a112-14ec-a35f-fbc2c3f318be">6b and 6c show external pendulum rocker pins combined with ring-type LCs.</p>
               </list-item>
-              <list-item>
+              <list-item id="_531d4406-433e-c164-00e9-c3ddf00d6c02">
                 <p id="_d9958e73-b3a4-8db6-b032-e159b7b35aef">The bearings for all compression load cells may be installed either below or above the LC.</p>
               </list-item>
             </list>
           </list-item>
-          <list-item>
+          <list-item id="_65a68f56-df63-79c6-cf62-5858b2863bf2">
             <label>b)</label>
             <p id="_e110d52e-6741-55b6-2639-65a41fabfc91">Tension LCs (<xref ref-type="table" rid="table-e1">Table E.1</xref>, lower part)</p>
             <list list-type="bullet">
-              <list-item>
+              <list-item id="_de5db1bb-7bde-9857-4942-3e81ab8633be">
                 <p id="_8cffc037-c7ca-6c77-f6ff-5a44601630a1">The load transmissions 1 and 2 are presented for canister type LCs. Alternatively, both load transmissions may be used for S-type LCs.</p>
               </list-item>
             </list>
           </list-item>
-          <list-item>
+          <list-item id="_c8371429-8986-9ccc-12c4-ddb6878451cc">
             <label>c)</label>
             <p id="_8c5fee45-8e9b-0670-438d-fade8b6e2fad">Beam LCs (<xref ref-type="table" rid="table-e2">Table E.2</xref>, upper part)</p>
             <list list-type="bullet">
-              <list-item>
+              <list-item id="_84f740b7-f572-30ce-20b1-77f3776d63f2">
                 <p id="_66e67e56-a1cd-89ef-377e-f5f529b812ba">The drawings present double bending and shear beams, as well as plastic potted and encapsulated constructions; all these constructions may be combined with either of the load transmissions 1 to 10.</p>
               </list-item>
-              <list-item>
+              <list-item id="_2e03cc0b-a43c-1127-a15c-22c1311266d9">
                 <p id="_80116f34-8f89-ffb6-c247-17f7cefdcc6a">The direction of loading, which is given by the manufacturer, has to be observed.</p>
               </list-item>
             </list>
           </list-item>
-          <list-item>
+          <list-item id="_a288e38e-a1e0-eac1-80e2-d8a283d063f5">
             <label>d)</label>
             <p id="_326ae92d-9784-ac9f-4cde-ee97f061bdfb">Single point LCs (<xref ref-type="table" rid="table-e2">Table E.2</xref>, middle part)</p>
             <list list-type="bullet">
-              <list-item>
+              <list-item id="_95c7850c-35ce-ab61-a379-9201a9c42c04">
                 <p id="_57e1b967-e180-42f5-b2db-bb4bc38d0597">The load transmissions 1 to 10 for the beam LCs may be applied to all single point LCs.</p>
               </list-item>
-              <list-item>
+              <list-item id="_b1f8b079-eba3-803f-faa8-bf41b69bab70">
                 <p id="_d4f3727b-c768-5b6d-f546-4078d85c56f6">The direction of loading, which is given by the manufacturer, has to be observed.</p>
               </list-item>
             </list>
           </list-item>
-          <list-item>
+          <list-item id="_9e4e6454-4b6b-984c-ecc8-bd7527e5b0ee">
             <label>e)</label>
             <p id="_ea4ba0b7-5763-908b-1f4d-7b9cfbee877f">Double bending beam LCs (<xref ref-type="table" rid="table-e2">Table E.2</xref>, lower part)</p>
             <list list-type="bullet">
-              <list-item>
+              <list-item id="_e94ffe25-63ee-2de7-4918-913231ffb312">
                 <p id="_48dad19d-30fe-9f77-8078-c94aea4ecc56">The table shows examples of common constructions. Variations are possible provided the constructions allow enough horizontal flexibility between both ends.</p>
               </list-item>
-              <list-item>
+              <list-item id="_1b579d87-e11f-2a9c-e7f6-294374f13e11">
                 <p id="_7fc861a5-6d68-ddda-c08f-66e8399efad4">The direction of loading, provided by the manufacturer, has to be observed.</p>
               </list-item>
             </list>
