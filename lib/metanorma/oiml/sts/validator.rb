@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require "moxml"
+require "pathname"
+require "metanorma/oiml/sts/validation_report"
 
 module Metanorma
   module Oiml
