@@ -9,10 +9,18 @@ module Metanorma
       # (metanorma-document 0.5.15, Metanorma::Document::Sts) —
       # metanorma-iso#1760 / metanorma-document#165.
       class Profile
+        # The <processing-meta> element the engine injects after
+        # <standard>; identical on the facade and the adapter paths.
+        PROCESSING_META =
+          '<processing-meta tagset-family="sts" base-tagset="interchange" ' \
+          'table-model="xhtml" mathml="MathML 3.0" terminology-model="tbx"/>'.freeze
+
         def self.instance
           @instance ||= Metanorma::Document::Sts::Profile.new(
             name: :oiml,
             org_abbrev: "OIML",
+            dtd_version: "1.2",
+            processing_meta: PROCESSING_META,
             reader_class: Metanorma::Oiml::Document::Root,
             validator_class: Metanorma::Oiml::Sts::Validator,
             class_overrides: overrides,
