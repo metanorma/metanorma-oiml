@@ -4,60 +4,17 @@ module Metanorma
   module Oiml
     module Sts
       module Transformer
+        # Delegates to the shared engine (metanorma-document 0.5.15,
+        # Metanorma::Document::Sts::Transformer::DocumentTransformer) per
+        # metanorma-iso#1760 / metanorma-document#165. The shared trunk
+        # owns the reference-id pre-registration (the id-generator kinds
+        # registry fills before any transform, so forward xrefs resolve
+        # their ref type regardless of section order), the profile-driven
+        # @dtd-version (OIML pins "1.2" on its profile), and the
+        # namespace / processing-meta / lang post-processing; every
+        # engine step resolves to the OIML subclasses through the
+        # profile's class_overrides.
         class DocumentTransformer < Metanorma::Document::Sts::Transformer::DocumentTransformer
-          def transform(source)
-            front_model = build_front(source)
-            body_model = build_body(source)
-            back_model = build_back(source)
-
-            std = ModelBuilder.standard(
-              lang: context.language,
-              dtd_version: "1.2",
-              front: front_model,
-              body: body_model,
-              back: back_model
-            )
-            std
-          end
-
-          def transform_to_xml(source)
-            std = transform(source)
-            xml = std.to_xml
-            inject_namespaces(xml)
-              .then { |x| inject_processing_meta(x) }
-              .then { |x| fix_lang_attribute(x) }
-          end
-
-          private
-
-          def build_front(source)
-            return nil unless source.has_metadata?
-            front_transformer.transform(source)
-          end
-
-          def build_body(source)
-            BodyTransformer.new(context).transform(source)
-          end
-
-          def build_back(source)
-            return nil unless source.has_back?
-            BackTransformer.new(context).transform(source)
-          end
-
-          def inject_namespaces(xml)
-            return xml if xml.include?("xmlns:xlink")
-            xml.sub("<standard", '<standard xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"')
-          end
-
-          def inject_processing_meta(xml)
-            return xml if xml.include?("<processing-meta")
-            meta = '<processing-meta tagset-family="sts" base-tagset="interchange" table-model="xhtml" mathml="MathML 3.0" terminology-model="tbx"/>'
-            xml.sub(/(<standard[^>]*>)/, "\\1\n  #{meta}")
-          end
-
-          def fix_lang_attribute(xml)
-            xml.gsub(/\slang="([a-z-]+)"/, ' xml:lang="\\1"')
-          end
         end
       end
     end
