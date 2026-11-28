@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "metanorma-document", "~> 0.5.15" # the shared STS engine (metanorma-iso#1760)
+  spec.add_dependency "metanorma-iso", "~> 3.5" # required at load: the OIML document register falls back to the ISO register (metanorma/oiml/document.rb)
   spec.add_dependency "metanorma-standoc", ">= 3.4.2" # the model tree uses Standoc::Document
   spec.add_dependency "lutaml-model", "~> 0.8.0"
   spec.add_dependency "sts", ">= 0.5.6" # relaxed until glossarist supports 0.6
